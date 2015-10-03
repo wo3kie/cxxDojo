@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<doc xmlns:foo="http://www.foo.com">
+  <name first="David" last="Bertoni">Mr. Bertoni</name>
+  <name first="Shane" last="Curcuru">Mr. Curcuru</name>
+  <name first="Joseph" last="Kesselman">Mr. Kesselman</name>
+  <name first="Stephen" last="Auriemma">Mr. Auriemma</name>
+</doc>

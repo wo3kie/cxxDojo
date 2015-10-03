@@ -9,8 +9,10 @@ CPP_FILES=$(shell ls *.cpp)
 APPS=$(subst .cpp,,$(CPP_FILES))
 
 CC=$(CXX)
-CXXFLAGS=--std=c++11 -g
-LDLIBS=-lboost_system -lboost_thread -pthread
+INC=-I/usr/include/libxml2
+LIB=-Lusr/lib/x86_64-linux-gnu/
+CXXFLAGS=$(INC) --std=c++11 -g
+LDLIBS=$(LIB) -lboost_system -lboost_thread -pthread -lxml2
 
 all: $(APPS)
 
