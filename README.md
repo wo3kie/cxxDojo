@@ -18,9 +18,8 @@ make
 
 # list of puzzles  
 
-1. asio.echo   
-Implement simple echo server and text line based client.  
-[console 1] $ ./asio.echo.server  
-[console 2] $ ./asio.echo.client test  
+1. Implement simple echo server and text line based client.  
+[console 1] $ ./echo.server  
+[console 2] $ ./echo.client test  
 [console 2] $ server echo: test  
 

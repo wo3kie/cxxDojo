@@ -6,11 +6,11 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 asio.echo.server.cpp -o asio.echo.server -lboost_system
+ *      g++ --std=c++11 echo.server.cpp -o echo.server -lboost_system
  *
  *  Usage:
- *      [console 1] $ ./asio.echo.server
- *      [console 2] $ ./asio.echo.client text
+ *      [console 1] $ ./echo.server
+ *      [console 2] $ ./echo.client text
  *      [console 2] $ server echo: text
  */
 #include <iostream>
