@@ -16,6 +16,7 @@
  *      $ Mr. Kesselman
  *      $ Mr. Auriemma
  *
+ *  Usage:
  *      $ ./xpath xpath.xml "/doc/name/@first"
  *      $ David
  *      $ Shane
