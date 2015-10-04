@@ -1,23 +1,20 @@
 # dojo  
 Implementation of some programmic puzzles  
 
-# website  
-https://github.com/wo3kie/server  
-
-# license  
+## license  
 For license please refer to LICENSE file  
 
-# requirements  
+## requirements  
 C++11  
 g++/clang++  
 boost  
 xml2  
 python  
 
-# how to build it  
+## how to build it  
 make  
 
-# list of puzzles  
+## list of puzzles  
 
 **1. echo.server/echo.client**  
 Implement simple echo server and text line based client.  
