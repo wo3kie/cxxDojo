@@ -42,3 +42,10 @@ Take care about at least a simple authorization on a proxy server.
 Implement a program to do base64 encoding.  
 `$ ./base64.encode "Hello World"`  
 `SGVsbG8gV29ybGQ`  
+
+**5. base64.decode.cpp**  
+Implement a program to do base64 decoding.  
+$ ./base64.decode SGVsbG8gV29ybGQ  
+Hello World  
+
+
