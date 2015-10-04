@@ -34,5 +34,5 @@ make
 3. Implement a program to download a website content. Use 'get' request to do it.  
 Take care about at least a simple authorization on a proxy server.  
 `$ ./get.request http://www.boost.org LICENSE_1_0.txt \`  
-`  proxy_server proxy_port `echo -n "my_login:my_password" | base64`
+`  proxy_server proxy_port \`echo -n "my_login:my_password" | base64\``
 
