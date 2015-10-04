@@ -26,7 +26,7 @@ Implement simple echo server and text line based client.
 `[console 2] $ server echo: test`  
 
 **2. xpath.cpp/xpath.xml**  
-Implement a program to print nodes from xml matching a given XPath  
+Implement a program to print nodes from xml matching a given XPath.  
 `$ ./xpath xpath.xml "/doc/name/@first"`  
 `David`  
 `Shane`  
@@ -36,5 +36,9 @@ Implement a program to print nodes from xml matching a given XPath
 **3. get.request.cpp**  
 Implement a program to download a website content. Use 'get' request to do it.  
 Take care about at least a simple authorization on a proxy server.  
-``$ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port `echo -n "my_login:my_password" | base64```
+``$ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port `echo -n "my_login:my_password" | base64```  
 
+**4. base64.encode.cpp**  
+Implement a program to do base64 encoding.  
+`$ ./base64.encode "Hello World"`  
+`SGVsbG8gV29ybGQ`  

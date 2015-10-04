@@ -11,7 +11,7 @@
  *  Usage:
  *      [console 1] $ ./echo.server
  *      [console 2] $ ./echo.client text
- *      [console 2] $ server echo: text
+ *      [console 2] server echo: text
  */
 #include <iostream>
 
