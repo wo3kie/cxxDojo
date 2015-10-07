@@ -42,7 +42,9 @@ Implement a program to do base64 encoding.
 
 **5. base64.decode.cpp**  
 Implement a program to do base64 decoding.  
-$ ./base64.decode SGVsbG8gV29ybGQ  
-Hello World  
+`$ ./base64.decode SGVsbG8gV29ybGQ`  
+`Hello World`  
 
+**6. bind.cpp**  
+What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them  
 
