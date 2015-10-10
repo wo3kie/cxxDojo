@@ -9,6 +9,7 @@ C++11
 g++/clang++  
 boost  
 xml2  
+openssl  
 python  
 
 ## how to build it  
@@ -47,4 +48,18 @@ Implement a program to do base64 decoding.
 
 **6. bind.cpp**  
 What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them  
-
+  
+**7. Write a program to sign/verify a message with a RSA key  
+```{r, engine='bash'}
+$ openssl genrsa -des3 -out private.key 1024  
+  
+$ openssl rsa -in private.key -pubout > key.pub  
+  
+$ echo "C++" | openssl dgst -sha1 -sign private.key -out signature  
+  
+$ echo "C++" | openssl dgst -sha1 -verify key.pub -signature signature   
+Verified OK  
+  
+$ echo "C--" | openssl dgst -sha1 -verify key.pub -signature signature   
+Verification Failure  
+```
