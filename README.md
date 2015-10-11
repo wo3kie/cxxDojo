@@ -49,8 +49,8 @@ Implement a program to do base64 decoding.
 **6. bind.cpp**  
 What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them  
   
-**7. sign.verify.cpp**
-Write a program to sign/verify a message with a RSA key
+**7. sign.verify.cpp**  
+Write a program to sign/verify a message with a RSA key  
 
 ```{r, engine='bash'}
 $ openssl genrsa -des3 -out private.key 1024  
@@ -65,4 +65,8 @@ Verified OK
 $ echo "C--" | openssl dgst -sha1 -verify key.pub -signature signature   
 Verification Failure  
 ```
-
+  
+**8. barrier.cpp**  
+Implement a barrier synchronization method  
+  
+From Wiki, A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
