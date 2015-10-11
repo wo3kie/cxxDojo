@@ -95,7 +95,7 @@ int main()
         std::move( std::thread( std::bind( & thread_impl, std::ref( b ) ) ) ) );
     }
 
-    for( int i = 0 ; i < 10 ; ++ i )
+    for( int i = 0 ; i < 4 ; ++ i )
     {
         threads[ i ].join();
     }

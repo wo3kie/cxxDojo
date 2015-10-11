@@ -69,4 +69,4 @@ Verification Failure
 **8. barrier.cpp**  
 Implement a barrier synchronization method  
   
-From Wiki, A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
+From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
