@@ -19,32 +19,42 @@ make
 
 **1. echo.server/echo.client**  
 Implement simple echo server and text line based client.  
-`[console 1] $ ./echo.server`  
-`[console 2] $ ./echo.client test`  
-`[console 2] $ server echo: test`  
+```{r, engine='bash'}
+[console 1] $ ./echo.server  
+[console 2] $ ./echo.client test  
+[console 2] $ server echo: test  
+```
 
 **2. xpath.cpp/xpath.xml**  
 Implement a program to print nodes from xml matching a given XPath.  
-`$ ./xpath xpath.xml "/doc/name/@first"`  
-`David`  
-`Shane`  
-`Joseph`  
-`Stephen`  
+```{r, engine='bash'}
+$ ./xpath xpath.xml "/doc/name/@first"  
+David  
+Shane  
+Joseph  
+Stephen  
+```
 
 **3. get.request.cpp**  
 Implement a program to download a website content. Use 'get' request to do it.  
 Take care about at least a simple authorization on a proxy server.  
-``$ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port `echo -n "my_login:my_password" | base64```  
+```{r, engine='bash'}
+$ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port `echo -n "my_login:my_password" | base64  
+```
 
 **4. base64.encode.cpp**  
 Implement a program to do base64 encoding.  
-`$ ./base64.encode "Hello World"`  
-`SGVsbG8gV29ybGQ`  
+```{r, engine='bash'}
+$ ./base64.encode "Hello World"  
+SGVsbG8gV29ybGQ  
+```
 
 **5. base64.decode.cpp**  
 Implement a program to do base64 decoding.  
-`$ ./base64.decode SGVsbG8gV29ybGQ`  
-`Hello World`  
+```{r, engine='bash'}
+$ ./base64.decode SGVsbG8gV29ybGQ  
+Hello World  
+```
 
 **6. bind.cpp**  
 What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them  
