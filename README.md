@@ -81,3 +81,17 @@ Verification Failure
 Implement a barrier synchronization method  
   
 From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
+  
+**9. scope_exit.cpp**  
+Implement a class util for RAII idiom to call a clean-up/completion function when leaving the scoppe.  
+  
+```{r, engine='cpp'  
+{  
+  FILE * file = open( "filename.txt, "r" );  
+  auto fileGuard = make_scope_exit(  
+    [ & file ](){ close( file ); }  
+  );
+  ...  
+}  
+```
+
