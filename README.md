@@ -80,12 +80,12 @@ Verification Failure
 **8. barrier.cpp**  
 Implement a barrier synchronization method.  
   
-From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
+From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
   
 **9. scope_exit.cpp**  
 Implement a scope quard class.  
   
-From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf), a scope_exit is a generic RAII wrapper class which ties zero or one resource to a clean-up/completion routine which is bound by scope, ensuring execution at scope exit.  
+From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf), a *scope_exit* is a generic RAII wrapper class which ties zero or one resource to a clean-up/completion routine which is bound by scope, ensuring execution at scope exit.  
   
 ```{r, engine='cpp'}  
 {  
