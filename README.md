@@ -87,7 +87,7 @@ Implement a class util for RAII idiom to call a clean-up/completion function whe
   
 ```{r, engine='cpp'}  
 {  
-  FILE * file = open( "filename.txt, "r" );  
+  FILE * file = open( "filename.txt", "r" );  
   auto fileGuard = make_scope_exit(  
     [ & file ](){ close( file ); }  
   );
