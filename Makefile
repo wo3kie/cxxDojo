@@ -6,8 +6,8 @@ else
 endif 
 
 
-CPP_FILES=$(shell ls *.cpp)
-APPS=$(subst .cpp,,$(CPP_FILES))
+SRCS=$(shell ls *.cpp)
+APPS=$(subst .cpp,,$(SRCS))
 
 CC=$(CXX)
 INC=-I/usr/include/libxml2

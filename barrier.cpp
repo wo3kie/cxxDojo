@@ -56,9 +56,10 @@ public:
             return true;
         }
 
-        m_condition.wait( lock, [oldGlobal, this](){
-            return oldGlobal != m_global;
-        });
+        m_condition.wait(
+            lock,
+            [ oldGlobal, this ](){ return oldGlobal != m_global; }
+        );
 
         return false;
     }

@@ -86,15 +86,15 @@
 RSA* getPrivateKey( std::string const & privateKeyPemString )
 {
     BIO* bioBuffer = BIO_new_mem_buf( 
-        ( void*) privateKeyPemString.c_str(),
-        ( int) privateKeyPemString.size()
+        ( void* ) privateKeyPemString.c_str(),
+        ( int ) privateKeyPemString.size()
     );
 
     RSA* result = PEM_read_bio_RSAPrivateKey( 
         bioBuffer,
         nullptr,
         nullptr,
-        ( void*) "1234" /* password */
+        ( void* ) "1234" /* password */
     );
 
     BIO_set_close( bioBuffer, BIO_NOCLOSE );
@@ -106,8 +106,8 @@ RSA* getPrivateKey( std::string const & privateKeyPemString )
 RSA* getPublicKey1( std::string const & publicKeyPemString )
 {
     BIO* const bioBuffer = BIO_new_mem_buf( 
-        ( void*) publicKeyPemString.c_str(),
-        ( int) publicKeyPemString.size()
+        ( void* ) publicKeyPemString.c_str(),
+        ( int ) publicKeyPemString.size()
     );
 
     //RSA* const rsaPublic = PEM_read_bio_RSAPublicKey( 
@@ -154,12 +154,12 @@ RSA* getPublicKey3( RSA* rsaPrivate )
 
     int const size = i2d_RSAPublicKey( 
         rsaPrivate,
-        ( unsigned char**)( & buffer)
+        ( unsigned char** )( & buffer )
     );  
 
     RSA* const rsaPublic = d2i_RSAPublicKey( 
         nullptr,
-        ( unsigned char const**)( & buffer),
+        ( unsigned char const** )( & buffer ),
         size
     );
 
