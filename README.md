@@ -58,10 +58,10 @@ Hello World
 ```
 
 **6. bind.cpp**  
-What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them  
+What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them.  
   
 **7. sign.verify.cpp**  
-Write a program to sign/verify a message with a RSA key  
+Write a program to sign/verify a message with a RSA key.  
 
 ```{r, engine='bash'}
 $ openssl genrsa -des3 -out private.key 1024  
@@ -78,12 +78,14 @@ Verification Failure
 ```
   
 **8. barrier.cpp**  
-Implement a barrier synchronization method  
+Implement a barrier synchronization method.  
   
 From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), A barrier for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
   
 **9. scope_exit.cpp**  
-Implement a class util for RAII idiom to call a clean-up/completion function when leaving a scope.  
+Implement a scope quard class.  
+  
+From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf), A scope_exit is a generic RAII wrapper class which ties zero or one resource to a clean-up/completion routine which is bound by scope, ensuring execution at scope exit.  
   
 ```{r, engine='cpp'}  
 {  
