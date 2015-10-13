@@ -85,7 +85,7 @@ From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), A barrier
 **9. scope_exit.cpp**  
 Implement a class util for RAII idiom to call a clean-up/completion function when leaving the scoppe.  
   
-```{r, engine='cpp'  
+```{r, engine='c_cpp'  
 {  
   FILE * file = open( "filename.txt, "r" );  
   auto fileGuard = make_scope_exit(  
