@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 barrier.cpp -o barrier -lboost_thread -pthread
+ *      g++ --std=c++11 barrier.cpp -o barrier
  *
  *  Usage:
  *      $ ./barrier
@@ -14,10 +14,6 @@
  *
  *      hello thread...0
  *      1
- *      hello thread...1
- *      hello thread...0
- *      hello thread...0
- *      hello thread...0
  *      hello thread...1
  *      hello thread...0
  *      hello thread...0

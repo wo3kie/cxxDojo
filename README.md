@@ -96,4 +96,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...  
 }  
 ```
+  
+**10. buffer.cpp**  
+Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and a thread trying to get an item from the empty queue should be also block.  
 
