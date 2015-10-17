@@ -28,8 +28,8 @@ struct Bloom
     };
 
     static unsigned optimalNumberOfHashFunctions(
-        int b /* number of bits */,
-        int i /* expected number of items */
+        long i /* expected number of items */,
+        long b /* number of bits */
     )
     {
         using std::ceil;
@@ -39,7 +39,7 @@ struct Bloom
          * https://en.wikipedia.org/wiki/Bloom_filter
          */
 
-        return ceil( ( b / i ) * log( 2 ) );
+        return ceil( ( 1.0 * b / i ) * log( 2 ) );
     }
 
     static unsigned optimalNumberOfBits(
@@ -201,12 +201,24 @@ int main()
     assert( Bloom::optimalNumberOfBits( 1e3, 0.001 ) == 14378 /* 1.7kB */ );
     assert( Bloom::optimalNumberOfBits( 1e3, 0.0001 ) == 19171 /* 2.3kB */ );
 
+    assert( Bloom::optimalNumberOfHashFunctions( 1e3, 9586 ) == 7 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e3, 14378 ) == 10 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e3, 19171 ) == 14 );
+
     assert( Bloom::optimalNumberOfBits( 1e6, 0.001 ) == 14377578 /* 1.7MB */ );
     assert( Bloom::optimalNumberOfBits( 1e6, 0.0001 ) == 19170104 /* 2.3MB */ );
     assert( Bloom::optimalNumberOfBits( 1e6, 0.00001 ) == 23962630 /* 2.9MB */ );
 
+    assert( Bloom::optimalNumberOfHashFunctions( 1e6, 14377578 ) == 10 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e6, 19170104 ) == 14 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e6, 23962630 ) == 17 );
+    
     assert( Bloom::optimalNumberOfBits( 1e9, 0.001 ) == 1492676007 /* 177MB */ );
     assert( Bloom::optimalNumberOfBits( 1e9, 0.0001 ) == 1990234676 /* 237MB */ );
     assert( Bloom::optimalNumberOfBits( 1e9, 0.00001 ) == 2487793345 /* 296MB */ );
+
+    assert( Bloom::optimalNumberOfHashFunctions( 1e9, 1492676007 ) == 2 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e9, 1990234676 ) == 2 );
+    assert( Bloom::optimalNumberOfHashFunctions( 1e9, 2487793345 ) == 2 );
 }
 
