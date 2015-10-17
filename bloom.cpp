@@ -13,96 +13,146 @@
  */
 
 #include <cassert>
+#include <cmath>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
 
-template< typename T >
-class Bloom
+struct Bloom
 {
-public:
     enum
     {
         None = 0,
         Maybe = 1
     };
 
-    typedef std::function< int ( T const & ) noexcept > Filter;
-
-public:
-    Bloom( unsigned numberOfBits = 1024 )
-        : m_bits( numberOfBits )
+    static unsigned optimalNumberOfHashFunctions(
+        int b /* number of bits */,
+        int i /* expected number of items */
+    )
     {
+        using std::ceil;
+        using std::log2;
+
+        /*
+         * https://en.wikipedia.org/wiki/Bloom_filter
+         */
+
+        return ceil( ( b / i ) * log( 2 ) );
     }
 
-    ~Bloom() = default;
-
-    Bloom( Bloom const & ) = default;
-    Bloom( Bloom && ) = default;
-
-    Bloom & operator=( Bloom const & ) = default;
-    Bloom & operator=( Bloom && ) = default;
-
-    void addFilter( Filter const & f )
+    static unsigned optimalNumberOfBits(
+        int i /* expected number of items */,
+        double pe /* expected probability of false positive */
+    )
     {
-        m_filters.push_back( f );
+        using std::ceil;
+        using std::log2;
+        using std::pow;
+
+        double const e = 2.71828;
+
+        /*
+         * https://en.wikipedia.org/wiki/Bloom_filter
+         *
+         * pe = (1-e^(-i/b))^k
+         *
+         * k = b/i*ln(2)
+         *
+         * pe = (1-e^ln(2))^(b/i*ln(2))  /ln
+         * ln(pe) = ln((1-e^ln(2))^(b/i*ln(2)))
+         * ln(pe) = (b/i*ln(2))*ln(1-e^ln(2))
+         * (b/i*ln(2) = ln(pe)/ln(1-e^ln(2))
+         * b = i/ln(2)*ln(pe)/ln(1-e^ln(2))
+         */
+
+        return ceil(
+            i / log(2) * log( pe ) / log( 1 - pow( e, -log( 2 ) ) )
+        );
     }
 
-    template< typename Filter_ >
-    void addFilter( Filter_ && f )
+    template< typename T >
+    class Filter
     {
-        m_filters.emplace_back( std::forward< Filter_ >( f ) );
-    }
+    public:
 
-    void insert( T const & t ) noexcept
-    {
-        for( Filter const & filter : m_filters )
+        typedef std::function< int ( T const & ) noexcept > HashFunction;
+
+    public:
+        Filter( unsigned numberOfBits = 1024 )
+            : m_bits( numberOfBits )
         {
-            unsigned const bit = filter( t ) % m_bits.size();
-            m_bits[ bit ] = true;
         }
-    }
 
-    int find( T const & t ) const noexcept
-    {
-        for( Filter const & filter : m_filters )
+        ~Filter() = default;
+
+        Filter( Filter const & ) = default;
+        Filter( Filter && ) = default;
+
+        Filter & operator=( Filter const & ) = default;
+        Filter & operator=( Filter && ) = default;
+
+        void addHash( HashFunction const & f )
         {
-            unsigned const bit = filter( t ) % m_bits.size();
-            if( m_bits[ bit ] == false ){
-                return None;
+            m_filters.push_back( f );
+        }
+
+        template< typename Hash_ >
+        void addHash( Hash_ && f )
+        {
+            m_filters.emplace_back( std::forward< Hash_ >( f ) );
+        }
+
+        void insert( T const & t ) noexcept
+        {
+            for( HashFunction const & filter : m_filters )
+            {
+                unsigned const bit = filter( t ) % m_bits.size();
+                m_bits[ bit ] = true;
             }
         }
 
-        return Maybe;
-    }
+        int find( T const & t ) const noexcept
+        {
+            for( HashFunction const & filter : m_filters )
+            {
+                unsigned const bit = filter( t ) % m_bits.size();
+                if( m_bits[ bit ] == false ){
+                    return None;
+                }
+            }
 
-    void clear() noexcept
-    {
-        m_bits.clear();
-        m_filters.clear();
-    }
+            return Maybe;
+        }
 
-    bool empty() const noexcept
-    {
-        return
-            m_bits.empty() && m_filters.empty();
-    }
+        void clear() noexcept
+        {
+            m_bits.clear();
+            m_filters.clear();
+        }
 
-    void swap( Bloom & other )
-    {
-        std::swap( m_bits, other.m_bits );
-        std::swap( m_filters, other.m_filters );
-    }
+        bool empty() const noexcept
+        {
+            return
+                m_bits.empty() && m_filters.empty();
+        }
 
-private:
-    std::vector< bool > m_bits;
-    std::vector< Filter > m_filters;
+        void swap( Filter & other )
+        {
+            std::swap( m_bits, other.m_bits );
+            std::swap( m_filters, other.m_filters );
+        }
+
+    private:
+        std::vector< bool > m_bits;
+        std::vector< HashFunction > m_filters;
+    };
 };
 
 int main()
 {
-    Bloom< std::string > bloom( 32 );
+    Bloom::Filter< std::string > bloom( 32 );
 
     auto hash1 = []( std::string const & s ) noexcept
     {
@@ -131,20 +181,32 @@ int main()
         return std::hash< std::string >()( s );
     };
 
-    bloom.addFilter( hash1 );
-    bloom.addFilter( hash2 );
-    bloom.addFilter( hash3 );
+    bloom.addHash( hash1 );
+    bloom.addHash( hash2 );
+    bloom.addHash( hash3 );
 
     bloom.insert( "c++" );
     bloom.insert( "python" );
     bloom.insert( "haskell" );
 
-    assert( bloom.find( "c++" ) == Bloom< std::string >::Maybe );
-    assert( bloom.find( "python" ) == Bloom< std::string >::Maybe );
-    assert( bloom.find( "haskell" ) == Bloom< std::string >::Maybe );
+    assert( bloom.find( "c++" ) == Bloom::Maybe );
+    assert( bloom.find( "python" ) == Bloom::Maybe );
+    assert( bloom.find( "haskell" ) == Bloom::Maybe );
 
-    assert( bloom.find( "java" ) == Bloom< std::string >::None );
-    assert( bloom.find( "c#" ) == Bloom< std::string >::None );
-    assert( bloom.find( "perl" ) == Bloom< std::string >::None );
+    assert( bloom.find( "java" ) == Bloom::None );
+    assert( bloom.find( "c#" ) == Bloom::None );
+    assert( bloom.find( "perl" ) == Bloom::None );
+
+    assert( Bloom::optimalNumberOfBits( 1e3, 0.01 ) == 9586 /* 1kB */ );
+    assert( Bloom::optimalNumberOfBits( 1e3, 0.001 ) == 14378 /* 1.7kB */ );
+    assert( Bloom::optimalNumberOfBits( 1e3, 0.0001 ) == 19171 /* 2.3kB */ );
+
+    assert( Bloom::optimalNumberOfBits( 1e6, 0.001 ) == 14377578 /* 1.7MB */ );
+    assert( Bloom::optimalNumberOfBits( 1e6, 0.0001 ) == 19170104 /* 2.3MB */ );
+    assert( Bloom::optimalNumberOfBits( 1e6, 0.00001 ) == 23962630 /* 2.9MB */ );
+
+    assert( Bloom::optimalNumberOfBits( 1e9, 0.001 ) == 1492676007 /* 177MB */ );
+    assert( Bloom::optimalNumberOfBits( 1e9, 0.0001 ) == 1990234676 /* 237MB */ );
+    assert( Bloom::optimalNumberOfBits( 1e9, 0.00001 ) == 2487793345 /* 296MB */ );
 }
 
