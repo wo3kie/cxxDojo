@@ -80,7 +80,7 @@ Verification Failure
 **8. barrier.cpp**  
 Implement a barrier synchronization method.  
   
-From [Wiki](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
+From [Wikipedia](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
   
 **9. scope_exit.cpp**  
 Implement a scope quard class.  
@@ -102,4 +102,9 @@ Implement a thread safe queue with a limited capacity. A thread trying to put an
   
 **11. exec.cpp**  
 Implement a function to execute a shell command and capture its output. Consider a case of long running process.  
+  
+**12. bloom.cpp**  
+Implement a Bloom filter.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with False positive matches possible but False negatives not.  
 
