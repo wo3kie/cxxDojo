@@ -57,7 +57,6 @@ struct Bloom
          * https://en.wikipedia.org/wiki/Bloom_filter
          *
          * pe = (1-e^(-i/b))^k
-         *
          * k = b/i*ln(2)
          *
          * pe = (1-e^ln(2))^(b/i*ln(2))  /ln
@@ -197,7 +196,7 @@ int main()
     assert( bloom.find( "c#" ) == Bloom::None );
     assert( bloom.find( "perl" ) == Bloom::None );
 
-    assert( Bloom::optimalNumberOfBits( 1e3, 0.01 ) == 9586 /* 1kB */ );
+    assert( Bloom::optimalNumberOfBits( 1e3, 0.01 ) == 9586 /* 1.2kB */ );
     assert( Bloom::optimalNumberOfBits( 1e3, 0.001 ) == 14378 /* 1.7kB */ );
     assert( Bloom::optimalNumberOfBits( 1e3, 0.0001 ) == 19171 /* 2.3kB */ );
 

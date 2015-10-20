@@ -21,6 +21,7 @@ make
 Implement simple echo server and text line based client.  
 ```{r, engine='bash'}
 [console 1] $ ./echo.server  
+
 [console 2] $ ./echo.client test  
 [console 2] $ server echo: test  
 ```
@@ -107,4 +108,14 @@ Implement a function to execute a shell command and capture its output. Consider
 Implement a Bloom filter.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with False positive matches possible but False negatives not.  
+  
+**13. bond.cpp**  
+Implement a function to calculate a price for a bond.  
+  
+```{r, engine='bash'}
+$ ./bond 2015/12/31 100 0.08 0.08 2014/12/31
+  PV( F ): 92.5926
+  PV( Coupon ): 7.40741
+P: 100
+```  
 

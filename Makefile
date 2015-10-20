@@ -13,7 +13,7 @@ CC=$(CXX)
 INC=-I/usr/include/libxml2
 LIB=-Lusr/lib/x86_64-linux-gnu/
 CXXFLAGS=$(INC) --std=c++11 -g
-LDLIBS=$(LIB) -lboost_system -pthread -lxml2 -lssl -lcrypto
+LDLIBS=$(LIB) -lboost_system -lboost_date_time -pthread -lxml2 -lssl -lcrypto
 
 all: $(APPS)
 
