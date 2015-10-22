@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 echo.client.cpp -o echo.client -lboost_system
  *
- *  Usage:
+ * Usage:
  *      [console 1] $ ./echo.server
  *      [console 2] $ ./echo.client text
  *      [console 2] server echo: text

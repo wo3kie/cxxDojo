@@ -2,21 +2,21 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 xpath.cpp -o xpath -I/usr/include/libxml2/ \
  *          -Lusr/lib/x86_64-linux-gnu/ -lxml2
  *
- *  Usage:
+ * Usage:
  *      $ ./xpath xpath.xml "/doc/name"
  *      Mr. Bertoni
  *      Mr. Curcuru
  *      Mr. Kesselman
  *      Mr. Auriemma
  *
- *  Usage:
+ * Usage:
  *      $ ./xpath xpath.xml "/doc/name/@first"
  *      David
  *      Shane

@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 get.request.cpp -o get.request -lboost_system -lboost_thread -pthread
  *
- *  Usage:
+ * Usage:
  *      $ ./get.request http://www.boost.org LICENSE_1_0.txt www.boost.org 80 ""
  *      > Date: Sun, 04 Oct 2015 09:32:39 GMT
  *      > Server: Apache/2.2.15 (Red Hat)
@@ -25,7 +25,7 @@
  *      obtaining a copy of the software and accompanying documentation covered by
  *      ...
  *
- *  Usage:
+ * Usage:
  *      $ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
  *          `echo -n "my_login:my_password" | base64`
  *

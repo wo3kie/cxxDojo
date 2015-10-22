@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 bond.cpp -o bond -lboost_date_time
  *
- *  Usage:
+ * Usage:
  *      $ ./bond 2015/12/31 100 0.08 0.08 2014/12/31
  *        PV( F ): 92.5926
  *        PV( Coupon ): 7.40741

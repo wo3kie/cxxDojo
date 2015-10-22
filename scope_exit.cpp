@@ -11,7 +11,7 @@
  * Compilation:
  *      g++ --std=c++11 scope_exit.cpp -o scope_exit
  *
- *  Usage:
+ * Usage:
  *      $ ./scope_exit
  *      OK
  */

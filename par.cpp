@@ -8,7 +8,7 @@
  * Compilation:
  *      g++ --std=c++11 par.cpp -o par -pthread
  *
- *  Usage:
+ * Usage:
  *      $ echo {1..10} > 1-10-file
  *      $ sed -i 's/ /\n/g' 1-10-file
  *      $

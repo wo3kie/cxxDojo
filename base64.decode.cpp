@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 base64.decode.cpp -o base64.decode
  *
- *  Usage:
+ * Usage:
  *      $ ./base64.decode SGVsbG8gV29ybGQ
  *      Hello World
  */

@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 barrier.cpp -o barrier
  *
- *  Usage:
+ * Usage:
  *      $ ./barrier
  *      hello thread...hello thread...hello thread...00
  *

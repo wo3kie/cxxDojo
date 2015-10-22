@@ -2,13 +2,13 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 bloom.cpp -o bloom
  *
- *  Usage:
+ * Usage:
  *      $ ./bloom
  */
 

@@ -2,12 +2,11 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
  *      g++ --std=c++11 bind.cpp -o bind
- *
  */
 
 #include <boost/bind.hpp>
