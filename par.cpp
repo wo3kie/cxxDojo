@@ -2,7 +2,7 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- *  Author:
+ * Author:
  *      Lukasz Czerwinski
  *
  * Compilation:
@@ -11,7 +11,7 @@
  *  Usage:
  *      $ echo {1..10} > 1-10-file
  *      $ sed -i 's/ /\n/g' 1-10-file
- *
+ *      $
  *      $ cat 1-10-file | ./par echo
  *      140556950165248: 1
  *      140556941772544: 2
@@ -63,17 +63,6 @@ public:
     bool get( T & result )
     {
         std::unique_lock< std::mutex > lock( m_mutex );
-
-        if( m_queue.empty() )
-        {
-            lock.unlock();
-
-            std::this_thread::sleep_for(
-                std::chrono::milliseconds( 100 )
-            );
-
-            lock.lock();
-        }
 
         if( m_queue.empty() ){
             return false;
@@ -141,7 +130,17 @@ void consumer( std::string const & command, Buffer< std::string > & buffer )
 
     std::string args;
 
-    while( buffer.get( args ) ){
+    while( true )
+    {
+        if( buffer.get( args ) == false )
+        {
+            std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
+        
+            if( buffer.get( args ) == false ){
+                return;
+            }
+        }
+
         exec( (command + args).c_str(), print );
     }
 }

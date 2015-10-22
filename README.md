@@ -123,6 +123,9 @@ P: 100
 Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).  
   
 ```{r, engine='bash'}
+$ echo {1..10} > 1-10-file
+$ sed -i 's/ /\n/g' 1-10-file
+$
 $ cat 1-10-file | ./par echo
 140556950165248: 1
 140556941772544: 2
