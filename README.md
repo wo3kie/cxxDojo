@@ -118,4 +118,21 @@ $ ./bond 2015/12/31 100 0.08 0.08 2014/12/31
   PV( Coupon ): 7.40741
 P: 100
 ```  
+  
+  **14. par.cpp**  
+Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).  
+  
+```{r, engine='bash'}
+$ cat 1-10-file | ./par echo
+140556950165248: 1
+140556941772544: 2
+140556950165248: 3
+140556941772544: 4
+140556950165248: 5
+140556941772544: 6
+140556950165248: 7
+140556941772544: 8
+140556941772544: 10
+140556950165248: 9
+```  
 

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 buffer.cpp -o buffer -lboost_thread -pthread
+ *      g++ --std=c++11 buffer.cpp -o buffer -pthread
  *
  *  Usage:
  *      $ ./buffer
