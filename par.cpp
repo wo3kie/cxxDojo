@@ -28,9 +28,7 @@
  *      http://www.gnu.org/software/parallel/
  */
 
-#include <cassert>
 #include <chrono>
-#include <condition_variable>
 #include <iostream>
 #include <mutex>
 #include <queue>
@@ -41,23 +39,10 @@ class Buffer
 {
 public:
 
-    Buffer( unsigned capacity = -1 )
-        : m_capacity( capacity )
-        , m_size( 0 )
-    {
-    }
-
     void push( T const & t )
     {
         std::unique_lock< std::mutex > lock( m_mutex );
-
-        m_notFull.wait(
-            lock,
-            [ this ](){ return m_size + 1 < m_capacity; }
-        );
-
         m_queue.push( t );
-        m_size += 1;
     }
 
     bool get( T & result )
@@ -68,22 +53,15 @@ public:
             return false;
         }
 
-        m_size -= 1;
         result = m_queue.front();
         m_queue.pop();
-
-        m_notFull.notify_one();
 
         return true;
     }
 
 private:
+
     std::mutex m_mutex;
-
-    std::condition_variable m_notFull;
-
-    unsigned m_size;
-    unsigned m_capacity;
     std::queue< T > m_queue;
 };
 
@@ -116,8 +94,7 @@ void producer( Buffer< std::string > & buffer )
 {
     std::string line;
 
-    while( std::getline( std::cin, line ) )
-    {
+    while( std::getline( std::cin, line ) ){
         buffer.push( line );
     }
 }
@@ -153,7 +130,7 @@ int main( int argc, char* argv[] )
         command += std::string( argv[ i ] ) + " ";
     }
 
-    Buffer< std::string > buffer( 1024 );
+    Buffer< std::string > buffer;
     std::vector< std::thread > threads;
 
     threads.push_back( std::thread( & producer, std::ref( buffer ) ) );
