@@ -138,4 +138,17 @@ $ cat 1-10-file | ./par echo
 140556941772544: 10
 140556950165248: 9
 ```  
+  
+**15. ls.cpp**  
+Implement a program to print a given directory content.  
+  
+```{r, engine='bash'}
+$ ./ls .
+F "./get.request.cpp"
+F "./par.cpp"
+F "./barrier.cpp"
+F "./ls.cpp"
+F "./scope_exit.cpp"
+...
+```  
 
