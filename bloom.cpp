@@ -76,7 +76,7 @@ struct Bloom
     {
     public:
 
-        typedef std::function< int ( T const & ) noexcept > HashFunction;
+        typedef std::function< int ( T const & )  > HashFunction;
 
     public:
         Filter( unsigned numberOfBits = 1024 )
@@ -103,7 +103,7 @@ struct Bloom
             m_filters.emplace_back( std::forward< Hash_ >( f ) );
         }
 
-        void insert( T const & t ) noexcept
+        void insert( T const & t ) 
         {
             for( HashFunction const & filter : m_filters )
             {
@@ -112,7 +112,7 @@ struct Bloom
             }
         }
 
-        int find( T const & t ) const noexcept
+        int find( T const & t ) const 
         {
             for( HashFunction const & filter : m_filters )
             {
@@ -125,13 +125,13 @@ struct Bloom
             return Maybe;
         }
 
-        void clear() noexcept
+        void clear() 
         {
             m_bits.clear();
             m_filters.clear();
         }
 
-        bool empty() const noexcept
+        bool empty() const 
         {
             return
                 m_bits.empty() && m_filters.empty();
@@ -153,7 +153,7 @@ int main()
 {
     Bloom::Filter< std::string > bloom( 32 );
 
-    auto hash1 = []( std::string const & s ) noexcept
+    auto hash1 = []( std::string const & s ) 
     {
         int result = 0;
 
@@ -164,7 +164,7 @@ int main()
         return result;
     };
     
-    auto hash2 = []( std::string const & s ) noexcept
+    auto hash2 = []( std::string const & s ) 
     {
         int result = 0;
 
@@ -175,7 +175,7 @@ int main()
         return result;
     };
 
-    auto hash3 = []( std::string const & s ) noexcept
+    auto hash3 = []( std::string const & s ) 
     {
         return std::hash< std::string >()( s );
     };

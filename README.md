@@ -162,4 +162,21 @@ $ cat grep.cpp | ./grep ".*line.*"
             if( std::regex_match( line, std::regex( argv[1] ) ) )
                 std::cout << line << std::endl;
 ```
-
+  
+** 17. timer.cpp**  
+Implement a function to measure an execution time of a some piece of code.  
+   
+```{r, engine='bash'}
+$ ./timer 
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+702µs
+```
