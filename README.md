@@ -163,7 +163,7 @@ $ cat grep.cpp | ./grep ".*line.*"
                 std::cout << line << std::endl;
 ```
   
-** 17. timer.cpp**  
+**17. timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.  
    
 ```{r, engine='bash'}
