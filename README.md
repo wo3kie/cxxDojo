@@ -180,3 +180,7 @@ $ ./timer
 9
 702µs
 ```
+
+**18. output.cpp**  
+Implement an output operator (operator<<) for basic containers like std::array, std::vector, std::list...  
+  
