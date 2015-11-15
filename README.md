@@ -1,24 +1,21 @@
+## Copyright (C) 2015 Łukasz Czerwiński
+
 # dojo  
 Implementation of some programmic puzzles  
 
-## license  
-For license please refer to LICENSE file  
-
-## requirements  
+## Requirements  
 C++11  
-g++/clang++  
 boost  
 xml2  
 openssl  
-python  
 
-## how to build it  
+## How to build it?  
 make  
 
-## list of puzzles  
+## List of puzzles  
 
 **1. echo.server/echo.client**  
-Implement simple echo server and text line based client.  
+Implement simple echo server and text line based client to work with server.  
 ```{r, engine='bash'}
 [console 1] $ ./echo.server  
 
@@ -37,7 +34,7 @@ Stephen
 ```
 
 **3. get.request.cpp**  
-Implement a program to download a website content. Use 'get' request to do it.  
+Implement a program to download a website content. Use _get_ request to perform it.  
 Take care about at least a simple authorization on a proxy server.  
 ```{r, engine='bash'}
 $ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
@@ -45,21 +42,21 @@ $ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
 ```
 
 **4. base64.encode.cpp**  
-Implement a program to do base64 encoding.  
+Implement a program to do _base64_ encoding.  
 ```{r, engine='bash'}
 $ ./base64.encode "Hello World"  
 SGVsbG8gV29ybGQ  
 ```
 
 **5. base64.decode.cpp**  
-Implement a program to do base64 decoding.  
+Implement a program to do _base64_ decoding.  
 ```{r, engine='bash'}
 $ ./base64.decode SGVsbG8gV29ybGQ  
 Hello World  
 ```
 
 **6. bind.cpp**  
-What is boost::apply? What is boost::protect? Write a short program to demonstrate usage of each of them.  
+What is _boost::apply_? What is _boost::protect_? Write a short program to demonstrate usage of each of them.  
   
 **7. sign.verify.cpp**  
 Write a program to sign/verify a message with a RSA key.  
@@ -81,7 +78,7 @@ Verification Failure
 **8. barrier.cpp**  
 Implement a barrier synchronization method.  
   
-From [Wikipedia](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code means any thread/process must stop at this point and cannot proceed until all other threads/processes reach this barrier.  
+From [Wikipedia](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code it a point where any thread/process must stop and cannot proceed until all other threads/processes reach this point.  
   
 **9. scope_exit.cpp**  
 Implement a scope quard class.  
@@ -99,7 +96,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 ```
   
 **10. buffer.cpp**  
-Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and a thread trying to get an item from the empty queue should be also block.  
+Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and also a thread trying to get an item from the empty queue should be blocked.  
   
 **11. exec.cpp**  
 Implement a function to execute a shell command and capture its output. Consider a case of long running process.  
@@ -140,7 +137,7 @@ $ cat 1-10-file | ./par echo
 ```  
   
 **15. ls.cpp**  
-Implement a program to print a given directory content.  
+Implement a program to print a content of a given directory.  
   
 ```{r, engine='bash'}
 $ ./ls .
@@ -153,7 +150,7 @@ F "./scope_exit.cpp"
 ```  
   
 **16. grep.cpp**  
-Implement a program to find a text matching a regular expression in standard input.  
+Implement a program to find a text matching a regular expression in a standard input.  
   
 ```{r, engine='bash'}
 $ cat grep.cpp | ./grep ".*line.*"
