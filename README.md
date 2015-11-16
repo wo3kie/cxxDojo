@@ -162,7 +162,7 @@ $ cat grep.cpp | ./grep ".*line.*"
   
 **17. timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.  
-   
+
 ```{r, engine='bash'}
 $ ./timer 
 0
@@ -183,4 +183,12 @@ Implement an output operator (operator<<) for basic containers like std::array, 
   
 **19. union_cast.cpp**  
 Implement union_cast.
+
+**20. User defined literals**  
+Implement used defined literal _bin_ to convert a string of zeros and ones "1010101" into a decimal integer value.  
+
+```
+assert( 561 == "1000110001"_bin );
+assert( 561 == 1000110001_bin );
+```
 
