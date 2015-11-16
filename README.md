@@ -184,11 +184,25 @@ Implement an output operator (operator<<) for basic containers like std::array, 
 **19. union_cast.cpp**  
 Implement union_cast.
 
-**20. User defined literals**  
+**20. literal.cpp**  
 Implement used defined literal _bin_ to convert a string of zeros and ones "1010101" into a decimal integer value.  
 
 ```
 assert( 561 == "1000110001"_bin );
 assert( 561 == 1000110001_bin );
+```
+
+
+**21. matrix.cpp**  
+Implement a performance test for matrix multiplication. Consider all possibilities with loop nesting.  
+
+```
+$ ./matrix 
+nmp: 743355µs
+npm: 1925037µs
+mnp: 721955µs
+mpn: 793389µs
+pnm: 1738803µs
+pmn: 962802µs
 ```
 
