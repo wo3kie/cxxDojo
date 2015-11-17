@@ -1,7 +1,10 @@
 ## Copyright (C) 2015 Łukasz Czerwiński
 
-# dojo  
+# Dojo  
 Implementation of some programmic puzzles  
+
+## Website  
+https://github.com/wo3kie/dojo
 
 ## Requirements  
 C++11  
