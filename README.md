@@ -210,6 +210,8 @@ pmn: 962802µs
 ```
 
 **22. visitor.cpp**  
-Implement an example of the [visitor](https://en.wikipedia.org/wiki/Visitor_pattern) design pattern.  
+Implement an example of the visitor design pattern.  
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.  
 
 
