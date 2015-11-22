@@ -81,7 +81,7 @@ Verification Failure
 **8. barrier.cpp**  
 Implement a barrier synchronization method.  
   
-From [Wikipedia](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code it a point where any thread/process must stop and cannot proceed until all other threads/processes reach this point.  
+From [Wikipedia](https://en.wikipedia.org/wiki/Barrier_(computer_science)), a *barrier* for a group of threads or processes in the source code is a point where any thread/process must stop and cannot proceed until all other threads/processes reach this point.  
   
 **9. scope_exit.cpp**  
 Implement a scope quard class.  
@@ -99,7 +99,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 ```
   
 **10. buffer.cpp**  
-Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and also a thread trying to get an item from the empty queue should be blocked.  
+Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and as well as a thread trying to get an item from the empty queue.  
   
 **11. exec.cpp**  
 Implement a function to execute a shell command and capture its output. Consider a case of long running process.  
@@ -107,7 +107,7 @@ Implement a function to execute a shell command and capture its output. Consider
 **12. bloom.cpp**  
 Implement a Bloom filter.  
   
-From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with False positive matches possible but False negatives not.  
+From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.  
   
 **13. bond.cpp**  
 Implement a function to calculate a price for a bond.  
@@ -208,4 +208,8 @@ mpn: 793389µs
 pnm: 1738803µs
 pmn: 962802µs
 ```
+
+**22. visitor.cpp**  
+Implement an example of a *visitor* design pattern.  
+
 
