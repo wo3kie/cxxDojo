@@ -210,6 +210,6 @@ pmn: 962802µs
 ```
 
 **22. visitor.cpp**  
-Implement an example of a *visitor* design pattern.  
+Implement an example of the [visitor](https://en.wikipedia.org/wiki/Visitor_pattern) design pattern.  
 
 
