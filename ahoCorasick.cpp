@@ -13,6 +13,7 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <functional>
 #include <map>
 #include <string>
@@ -178,20 +179,31 @@ private:
     Node * root_;
 };
 
-int main()
+int main( int argc, char * argv[] )
 {
-    AhoCorasick ac;
-    ac.insert( "mama" );
-    ac.insert( "ananas" );
-    ac.insert( "matematyka" );
+    if( argc != 3 ){
+        std::cerr << "Usage: " << argv[ 0 ] << " dictionary_file text_file" << std::endl;
+        return 1;
+    }
 
-    std::string const text = "mamatematematykananas";
-    std::cout << "Text: '" << text << "'" << std::endl;
+    AhoCorasick ac;
 
     auto const print = []( size_t const pos, std::string const & word ){
-        std::cout << "Word: '" << word << "' at pos: " << pos << std::endl;
+        std::cout << "> " << std::string( pos, ' ' ) << word << std::endl;
     };
 
-    ac.search( text, print );
+    std::string line;
+    std::ifstream dictFile( argv[ 1 ] );
+    std::ifstream textFile( argv[ 2 ] );
+
+    while( std::getline( dictFile, line ) ){
+        ac.insert( line );
+    }
+
+    while( std::getline( textFile, line ) ){
+        std::cout << "> " << line << "\n";
+        ac.search( line, print );
+        std::cout << std::string( 80, '-' ) << "\n";
+    }
 }
 

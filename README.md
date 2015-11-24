@@ -219,4 +219,17 @@ Implement the Aho-Corasick algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), the Aho-Corasick algorithm can be used to locate elements of a finite set of strings (the "dictionary") within an input text.  
 
-
+```
+$ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp 
+...
+--------------------------------------------------------------------------------
+>     auto const print = []( size_t const pos, std::string const & word ){
+>     auto
+>          const
+>                  int
+>                                   const
+>                                                          const
+>                                                                   or
+--------------------------------------------------------------------------------
+...
+```
