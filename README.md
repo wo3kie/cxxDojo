@@ -233,3 +233,7 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 --------------------------------------------------------------------------------
 ...
 ```
+  
+**24. gzip.cpp**  
+Implement a function to pack/unpack text using compression algorithm.  
+
