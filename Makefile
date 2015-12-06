@@ -1,24 +1,16 @@
-ERR=$(shell which clang++ >/dev/null; echo $$?) 
-ifeq "$(ERR)" "0" 
-	CXX=clang++
-else 
-	CXX=g++ 
-endif 
-
-
 SRCS=$(shell ls *.cpp)
 APPS=$(subst .cpp,,$(SRCS))
 
-CC=$(CXX)
+CXX=g++ 
 INC=-I/usr/include/libxml2
-LIB=-Lusr/lib/x86_64-linux-gnu/
-CXXFLAGS=$(INC) --std=c++11 -g
-LDLIBS=$(LIB) -lboost_system -lboost_date_time -lboost_filesystem -pthread -lxml2 -lssl -lcrypto
+LIB=-L/usr/lib/x86_64-linux-gnu/
+CXXFLAGS=--std=c++11 -g $(INC)
+LDLIBS=$(LIB) -lboost_system -lboost_date_time -lboost_filesystem -lboost_iostreams -pthread -lxml2 -lssl -lcrypto
 
 all: $(APPS)
 
 %: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) $< -o $@ $(CXXFLAGS) $(LDLIBS)
 
 clean:
 	rm -rf $(APPS)

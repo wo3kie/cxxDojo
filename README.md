@@ -236,4 +236,9 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
   
 **24. gzip.cpp**  
 Implement a function to pack/unpack text using compression algorithm.  
+  
+**25. levenstein.cpp**  
+Implement a Levenstein distance function.  
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.  
 
