@@ -242,7 +242,15 @@ Implement a Levenstein distance function.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.  
 
-**26. shared**
+**26. shared**  
 Implement a shared (.so) library.  
 
+**27. convertBase**  
+Implement a function to convert number between different numeric bases.
 
+```
+assert( convertBase( "101010", 2, 8 ) == "52" );
+assert( convertBase( "52", 8, 10 ) == "42" );
+assert( convertBase( "42", 10, 16 ) == "2A" );
+assert( convertBase( "2A", 16, 2 ) == "101010" );
+```
