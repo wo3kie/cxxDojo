@@ -1,0 +1,7 @@
+//
+
+extern "C"
+{
+    void helloWorld();
+}
+
