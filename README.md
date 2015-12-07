@@ -254,3 +254,13 @@ assert( convertBase( "52", 8, 10 ) == "42" );
 assert( convertBase( "42", 10, 16 ) == "2A" );
 assert( convertBase( "2A", 16, 2 ) == "101010" );
 ```
+
+**28. kmp**  
+Implement a Knuth-Morris-Pratt text searching algorithm.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), the Knuth-Morris-Pratt algorithm searches ofr occurences od a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
+
+```
+$ ./kmp 5 3.14159265359
+5 9 11
+```
