@@ -12,11 +12,13 @@ LDLIBS=$(LIB) -lboost_system -lboost_date_time -lboost_filesystem -lboost_iostre
 
 all: $(APPS)
 	$(MAKE) -C shared
+	$(MAKE) -C jni
 
 %: %.cpp
 	$(CXX) $< -o $@ $(CXXFLAGS) $(INC) $(LIBS) $(LDLIBS)
 
 clean:
 	rm -rf $(APPS)
-	$(MAKE) -C shared
+	$(MAKE) -C shared clean
+	$(MAKE) -C jni clean
 

@@ -245,7 +245,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levens
 **26. shared**  
 Implement a shared (.so) library.  
 
-**27. convertBase**  
+**27. convertBase.cpp**  
 Implement a function to convert number between different numeric bases.
 
 ```
@@ -255,7 +255,7 @@ assert( convertBase( "42", 10, 16 ) == "2A" );
 assert( convertBase( "2A", 16, 2 ) == "101010" );
 ```
 
-**28. kmp**  
+**28. kmp.cpp**  
 Implement a Knuth-Morris-Pratt text searching algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), the Knuth-Morris-Pratt algorithm searches ofr occurences od a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
@@ -264,3 +264,9 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Prat
 $ ./kmp 5 3.14159265359
 5 9 11
 ```
+  
+**29. jni**  
+Implement a simple Java class and then call its code from C++ application. Use JNI for it.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Java_Native_Interface) Java Native Interface (JNI) is a programming framework that enables Java code running in a Java Virtual Machine to call and be called by native applications and libraries written in other languages such as C, C++ and assembly.
+

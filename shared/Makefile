@@ -1,4 +1,3 @@
-CXX=g++ 
 
 all: libshared.so main
 
