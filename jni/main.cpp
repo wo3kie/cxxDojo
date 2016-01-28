@@ -1,3 +1,23 @@
+/*
+ * Website:
+ *      https://github.com/wo3kie/dojo
+ *
+ * Inspired & followed by:
+ *      http://www.codeproject.com/Articles/993067/Calling-Java-from-Cplusplus-with-JNI
+ *
+ * Author:
+ *      Lukasz Czerwinski
+ *
+ * Compilation:
+ *      g++ --std=c++11 main.cpp -o main                        \
+ *          -I .../java-7-openjdk-amd64/include                 \
+ *          -L .../java-7-openjdk-amd64/jre/lib/amd64/server    \
+ *          -ljvm
+ *
+ * Usage:
+ *      $ ./main
+ */
+
 #include <iostream>
 
 #include <jni.h>
