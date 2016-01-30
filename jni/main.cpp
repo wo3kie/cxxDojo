@@ -2,7 +2,7 @@
  * Website:
  *      https://github.com/wo3kie/dojo
  *
- * Inspired & followed by:
+ * Inspired by & followed:
  *      http://www.codeproject.com/Articles/993067/Calling-Java-from-Cplusplus-with-JNI
  *
  * Author:
@@ -18,6 +18,7 @@
  *      $ ./main
  */
 
+#include <cassert>
 #include <iostream>
 
 #include <jni.h>
@@ -35,7 +36,7 @@ int main(){
     vmArgs.options = options;
     vmArgs.ignoreUnrecognized = false;
 
-    jint rc = JNI_CreateJavaVM( & jvm, (void**)( & env ), & vmArgs );
+    jint rc = JNI_CreateJavaVM( & jvm, ( void** )( & env ), & vmArgs );
 
     if( rc != JNI_OK ){
         std::cerr << "errorCode: " << rc << std::endl;
@@ -67,8 +68,8 @@ int main(){
 
         {
             /*
-             * static with parameters
-            */
+             * static with parameters and return value
+             */
 
             jmethodID methodId = env->GetStaticMethodID( cls, "function2", "(I)I" );
 
@@ -77,9 +78,38 @@ int main(){
                 return 4;
             }
 
-            jint result = env->CallStaticIntMethod( cls, methodId, (jint)(5) );
+            jint result = env->CallStaticIntMethod( cls, methodId, ( jint )( 5 ) );
+            assert( ( int )( result ) == 10 );
+        }
 
-            std::cout << (int)(result) << std::endl;
+        {
+            /*
+             * method
+             */
+
+            jmethodID methodId = env->GetMethodID( cls, "<init>", "()V" );
+
+            if( methodId == nullptr ){
+                std::cerr << "Could not find method '<init>'" << std::endl;
+                return 5;
+            }
+
+            jobject object = env->NewObject( cls, methodId );
+
+            if( object == nullptr ){
+                std::cerr << "Could not construct an object" << std::endl;
+                return 6;
+            }
+
+            methodId = env->GetMethodID( cls, "getId", "()I" );
+
+            if( methodId == nullptr ){
+                std::cerr << "Could not find method 'getId'" << std::endl;
+                return 7;
+            }
+
+            jint result = env->CallIntMethod( object, methodId );
+            assert( ( int )( result ) == 14 );
         }
     }
 
