@@ -269,4 +269,8 @@ $ ./kmp 5 3.14159265359
 Implement a simple Java class and then call its code from C++ application. Use JNI for it.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Java_Native_Interface) Java Native Interface (JNI) is a programming framework that enables Java code running in a Java Virtual Machine to call and be called by native applications and libraries written in other languages such as C, C++ and assembly.
+  
+**30. xml.cpp**  
+Implement a program to parse xml document. Can you use boost for it?  
+  
 
