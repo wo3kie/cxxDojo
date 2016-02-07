@@ -1,3 +1,17 @@
+/*
+ * Website:
+ *      https://github.com/wo3kie/dojo
+ *
+ * Author:
+ *      Lukasz Czerwinski
+ *
+ * Compilation:
+ *      g++ --std=c++11 xml.cpp -o xml
+ *
+ * Usage:
+ *      $ ./xml
+ */
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -29,9 +43,14 @@ void print( boost::property_tree::ptree pt, int indent = 0 ){
                     << std::endl;
             }
         }
-        else{
-            print( element.second, indent + 4 );
+        else if( element.first == "doc" ){
+            std::cout
+                << std::string( indent, ' ' )
+                << element.first
+                << std::endl;
         }
+        
+        print( element.second, indent + 4 );
     }
 }
 
