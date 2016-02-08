@@ -48,7 +48,7 @@ std::vector< int > getRandomVector( int maxSize = 32, int maxValue = 32 ){
     std::vector< int > result( size );
 
     for( int i = 0 ; i < size ; ++ i ){
-        result[ i ] = std::rand() % 1024;
+        result[ i ] = std::rand() % maxValue;
     }
 
     return result;
@@ -58,7 +58,7 @@ void test(){
     for( int i = 0 ; i < 32 * 1024 ; ++ i ){
         std::vector< int > v1 = getRandomVector();
         std::vector< int > v2 = v1;
-        int pivot = rand() % v1.size();
+        int const pivot = rand() % v1.size();
 
         rotate_cxx11( v1.begin(), v1.begin() + pivot, v1.end() );
         std::rotate( v2.begin(), v2.begin() + pivot, v2.end() );
