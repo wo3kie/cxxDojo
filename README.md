@@ -275,4 +275,8 @@ Implement a program to parse xml document. Can you use only boost for it?
   
 **31. json.cpp**  
 Implement a program to parse json document. Can you use only boost for it?  
+  
+**32. rotate.cpp**
+Implement a function 'rorate'.  
 
+From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
