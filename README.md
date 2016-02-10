@@ -271,12 +271,16 @@ Implement a simple Java class and then call its code from C++ application. Use J
 From [Wikipedia](https://en.wikipedia.org/wiki/Java_Native_Interface) Java Native Interface (JNI) is a programming framework that enables Java code running in a Java Virtual Machine to call and be called by native applications and libraries written in other languages such as C, C++ and assembly.
   
 **30. xml.cpp**  
-Implement a program to parse xml document. Can you use only boost for it?  
+Implement a program to parse an xml document. Can you use only boost for it?  
   
 **31. json.cpp**  
-Implement a program to parse json document. Can you use only boost for it?  
+Implement a program to parse a json document. Can you use only boost for it?  
   
 **32. rotate.cpp**  
-Implement a function 'rorate'.  
+Implement a function 'rotate'.  
 
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
+  
+**33. allocator.cpp**  
+Implement a simple allocator. Follow std::allocator as an example.  
+
