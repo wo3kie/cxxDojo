@@ -283,4 +283,8 @@ From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rota
   
 **33. allocator.cpp**  
 Implement a simple allocator. Follow std::allocator as an example.  
+  
+**34. const_expr.cpp**  
+Can you calculate trigonometric functions like 'sin', 'cos'... in a compilation time?  
+
 
