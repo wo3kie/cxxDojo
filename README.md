@@ -277,7 +277,7 @@ Implement a program to parse an xml document. Can you use only boost for it?
 Implement a program to parse a json document. Can you use only boost for it?  
   
 **32. rotate.cpp**  
-Implement a function 'rotate'.  
+Implement 'rotate' function.  
 
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
   
@@ -289,4 +289,11 @@ Can you calculate trigonometric functions like 'sin', 'cos'... during a compilat
 
 **35. void_t.cpp**  
 What is a void_t and how it can be useful?  
+  
+**36. pi.cpp**  
+Estimate PI number using Monte-Carlo method.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo method is a computational algorithm that relies on repeated random sampling to obtain numerical results.  
+
+
 
