@@ -294,6 +294,8 @@ What is a void_t and how it can be useful?
 Estimate PI number using Monte-Carlo method.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo method is a computational algorithm that relies on repeated random sampling to obtain numerical results.  
-
-
+  
+**37. lua**  
+Implement a simple Lua function and then call it from C++ code.  
+  
 
