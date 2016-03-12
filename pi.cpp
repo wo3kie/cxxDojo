@@ -13,13 +13,18 @@
  */
 
 #include <iostream>
+#include <random>
 
 double getPi(unsigned const iterations){
     unsigned inside = 0;
-    
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> dist(0.0, 2.0);
+
     for(int i = 0; i < iterations; ++i){
-        double const x = (2.0 * rand() / RAND_MAX) - 1.0;
-        double const y = (2.0 * rand() / RAND_MAX) - 1.0;
+        double const x = dist(gen) - 1.0;
+        double const y = dist(gen) - 1.0;
         
         if(x*x + y*y <= 1){
             inside += 1;
