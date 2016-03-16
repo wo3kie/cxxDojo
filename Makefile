@@ -3,7 +3,7 @@ CXX=g++
 SRCS=$(shell ls *.cpp)
 APPS=$(subst .cpp,,$(SRCS))
 
-CXXFLAGS=--std=c++14 -O1 -g
+CXXFLAGS=--std=c++14 -O0 -g
 INC=-I/usr/include/libxml2
 
 LIB=-L/usr/lib/x86_64-linux-gnu/

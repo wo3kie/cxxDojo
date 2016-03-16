@@ -298,4 +298,8 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo m
 **37. lua**  
 Implement a simple Lua function and then call it from C++ code.  
   
+**38. linear.regression.cpp**  
+Implement a function to calcuate linear regression using least squares approach.  
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_. 
 
