@@ -302,4 +302,19 @@ Implement a simple Lua function and then call it from C++ code.
 Implement a function to calcuate linear regression using least squares approach.  
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_. 
+  
+**39. getContainerType.cpp**  
+Can you get a container type from its iterator?  
+  
+```{r, engine='cpp'}  
+{  
+    std::vector< int >::iterator vectorIterator;
 
+    static_assert(
+        std::is_same< 
+            decltype( getContainerType( vectorIterator ) ) ),
+            std::vector< int >
+        >::value
+    );
+}  
+```
