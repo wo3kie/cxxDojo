@@ -15,6 +15,7 @@
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
 #include <vector>
 
 struct Point
@@ -23,12 +24,12 @@ struct Point
     double y;
 };
 
-bool linearRegression(
+bool linearRegression( 
     std::vector<Point> const & points,
     double & a,
     double & b
-){
-    if(points.empty()){
+ ){
+    if( points.empty() ){
         a = 0;
         b = 0;
 
@@ -40,7 +41,7 @@ bool linearRegression(
     double sumX2i = 0;
     double sumXiYi = 0;
 
-    for(Point const & p : points){
+    for( Point const & p : points ){
         sumXi += p.x;
         sumYi += p.y;
         sumX2i += p.x * p.x;
@@ -51,33 +52,65 @@ bool linearRegression(
     double const n = points.size();
     double const denominator = n * sumX2i - sumXi2;
 
-    if(fabs(denominator - 0.0000) < 0.00001){
+    if( fabs( denominator - 0.0000 ) < 0.00001 ){
         return false;
     }
 
-    b =  (n * sumXiYi - sumXi * sumYi) / denominator;
+    a =  ( n * sumXiYi - sumXi * sumYi ) / denominator;
 
     double const avgYi = sumYi / n;
     double const avgXi = sumXi / n;
 
-    a = avgYi - b * avgXi;
+    b = avgYi - a * avgXi;
 
     return true;
 }
 
 int main(){
-    double a;
-    double b;
-    std::vector<Point> const points{
-        {3, 20},
-        {3, 25},
-        {2, 20},
-        {4, 30},
-        {1, 10}
-    };
+    {
+        double a;
+        double b;
+        std::vector<Point> const points{
+            { 1, 10 },
+            { 2, 20 },
+            { 3, 20 },
+            { 3, 25 },
+            { 4, 30 }
+        };
 
-    assert(linearRegression(points, a, b));
-    assert(fabs(a - 5.0000) < 0.0001);
-    assert(fabs(b - 6.1539) < 0.0001);
+        assert( linearRegression( points, a, b ) );
+        assert( fabs( a - 6.1539 ) < 0.0001 );
+        assert( fabs( b - 5.0000 ) < 0.0001 );
+    }
+
+    {
+        double a;
+        double b;
+        std::vector<Point> const points{
+            { 1, 1 },
+            { 2, 1 },
+            { 3, 1 },
+            { 4, 1 },
+            { 5, 1 }
+        };
+
+        assert( linearRegression( points, a, b ) );
+        assert( fabs( a - 0.0000 ) < 0.0001 );
+        assert( fabs( b - 1.0000 ) < 0.0001 );
+    }
+
+    {
+        double a;
+        double b;
+        std::vector<Point> const points{
+            { 1, 1 },
+            { 1, 2 },
+            { 1, 3 },
+            { 1, 4 },
+            { 1, 5 }
+        };
+
+        assert( ! linearRegression( points, a, b ) );
+    }
 }
 
