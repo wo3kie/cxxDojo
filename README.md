@@ -317,4 +317,9 @@ Can you get a container type from its iterator?
         >::value
     );
 }  
-```
+```  
+  
+**40. getCounters.cpp**  
+Implement a function to count a distrubution of data.
+
+
