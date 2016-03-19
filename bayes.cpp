@@ -37,7 +37,7 @@ struct ItemStats
 struct ClassStats
 {
     unsigned itemCounter_ = 0;
-    double minProbability_ = 0;
+    double minProbability_ = 1;
     std::map< std::string, ItemStats > itemStats_;
 };
 
@@ -72,8 +72,9 @@ public:
             classes[ name ] = std::log( classProbability ) + classifyClass( pair, items ); 
 
             std::cout
-                << "class '" << name
-                << "' has probability: " << classProbability
+                << "class '" << name << "'"
+                << " has probability: " << classProbability 
+                << " (" << std::log( classProbability ) << ")"
                 << " and a final result: " << classes[ name ]
                 << std::endl;
         }
@@ -98,18 +99,20 @@ private:
                 probability += std::log( stats.minProbability_ );
 
                 std::cout
-                    << "class '" << name 
-                    << "' item '" << item 
-                    << "' not found: " << stats.minProbability_ 
+                    << "class '" << name << "'"
+                    << " item '" << item << "'" 
+                    << " not found: " << stats.minProbability_ 
+                    << " (" << std::log( stats.minProbability_ ) << ")"
                     << std::endl;
             }
             else{
                 probability += std::log( itemIterator->second.probability_ );
 
                 std::cout
-                    << "class '" << name 
-                    << "' item '" << item 
-                    << "' found: " << itemIterator->second.probability_
+                    << "class '" << name << "'"
+                    << " item '" << item  << "'"
+                    << " found: " << itemIterator->second.probability_
+                    << " (" << std::log( itemIterator->second.probability_ ) << ")"
                     << std::endl;
             }
         }
