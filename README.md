@@ -322,4 +322,8 @@ Can you get a container type from its iterator?
 **40. getCounters.cpp**  
 Implement a function to count a distrubution of data.
 
+**41. bayes.cpp**  
+Implement a simple program for ham/spam messages classification. Use naive Bayes approach.  
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.  
 
