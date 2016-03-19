@@ -1,3 +1,17 @@
+/*
+ * Website:
+ *      https://github.com/wo3kie/dojo
+ *
+ * Author:
+ *      Lukasz Czerwinski
+ *
+ * Compilation:
+ *      g++ --std=c++11 getCounters.cpp -o getCounters
+ *
+ * Usage:
+ *      $ ./getCounters
+ */
+
 #include <cassert>
 #include <vector>
 
