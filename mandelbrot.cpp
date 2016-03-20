@@ -1,6 +1,20 @@
+/*
+ * Website:
+ *      https://github.com/wo3kie/dojo
+ *
+ * Author:
+ *      Lukasz Czerwinski
+ *
+ * Compilation:
+ *      g++ --std=c++11 mandelbrot.cpp -o mandelbrot
+ *
+ * Usage:
+ *      $ ./mandelbrot
+ */
+
 #include <iostream>
 
-char modulo10(int r, int t){
+char digit(int r, int t){
     return '0' + (r % 10);
 }
 
@@ -8,8 +22,13 @@ char hash(int r, int t){
     return (r >= t) ? '#' : ' ';
 }
 
-char asciiArt(int r, int t){
+char asciiArt1(int r, int t){
     char const * const ascii = " .,:;^*&#@";
+    return ascii[ r % 10 ];
+}
+
+char asciiArt2(int r, int t){
+    char const * const ascii = "@#&*^;:,. ";
     return ascii[ r % 10 ];
 }
 
@@ -47,7 +66,8 @@ void mandelbrot( char (*getAscii)(int, int) ){
 }
 
 int main(){
-    mandelbrot( & modulo10 );
+    mandelbrot( & digit );
     mandelbrot( & hash );
-    mandelbrot( & asciiArt );
+    mandelbrot( & asciiArt1 );
+    mandelbrot( & asciiArt2 );
 }
