@@ -38,8 +38,8 @@ char asciiArt2(int iteration, int maxIteration){
 
 void mandelbrot(
     char (*getAscii)(int, int),
-    unsigned const rows = 60,
-    unsigned const columns = 150
+    unsigned const rows = 75,
+    unsigned const columns = 2.5 * 75
 ){
     int const maxIteration = 50;
     
