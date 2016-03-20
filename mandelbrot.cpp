@@ -22,6 +22,10 @@ char hash(int iteration, int maxIteration){
     return (iteration == maxIteration) ? '#' : ' ';
 }
 
+char space(int iteration, int maxIteration){
+    return (iteration == maxIteration) ? ' ' : '#';
+}
+
 char asciiArt1(int iteration, int maxIteration){
     char const * const ascii = " .,:;^*&#@";
     return ascii[ iteration % 10 ];
@@ -37,10 +41,11 @@ void mandelbrot(
     unsigned const rows = 60,
     unsigned const columns = 150
 ){
+    int const maxIteration = 50;
+    
     for( double r = -1.5 ; r < 1.5 ; r += ( 3.0 / rows ) ){
         for( double c = -2.5 ; c < 1.5 ; c += ( 4.0 / columns ) ){
             int iteration = 0;
-            int const maxIteration = 50;
             
             for( double x = 0, y = 0 
                 ; x * x + y * y < 4 && iteration < maxIteration 
@@ -61,6 +66,7 @@ void mandelbrot(
 int main(){
     mandelbrot( & digit );
     mandelbrot( & hash );
+    mandelbrot( & space );
     mandelbrot( & asciiArt1 );
     mandelbrot( & asciiArt2 );
 }
