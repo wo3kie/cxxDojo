@@ -19,7 +19,7 @@ char digit(int iteration, int maxIteration){
 }
 
 char hash(int iteration, int maxIteration){
-    return (iteration >= maxIteration) ? '#' : ' ';
+    return (iteration == maxIteration) ? '#' : ' ';
 }
 
 char asciiArt1(int iteration, int maxIteration){
@@ -32,29 +32,22 @@ char asciiArt2(int iteration, int maxIteration){
     return ascii[ iteration % 10 ];
 }
 
-void mandelbrot( char (*getAscii)(int, int) ){
-    double scale = 1;
-
-    int width = scale * 150;
-    double const wStep = 4.0 / width;
-
-    int height = scale * 60;
-    double const hStep = 4.0 / height;
-
-    int const maxIteration = 50;
-
-    for( int h = 0 ; h < height ; ++h ){
-        for( int w = 0 ; w < width ; ++w ){
-            double const x0 = wStep * w - 2;
-            double const y0 = hStep * h - 2;
-            
+void mandelbrot(
+    char (*getAscii)(int, int),
+    unsigned const rows = 60,
+    unsigned const columns = 150
+){
+    for( double r = -1.5 ; r < 1.5 ; r += ( 3.0 / rows ) ){
+        for( double c = -2.5 ; c < 1.5 ; c += ( 4.0 / columns ) ){
             int iteration = 0;
-            double x = 0;
-            double y = 0;
-
-            for( ; x * x + y * y < 4 && iteration < maxIteration ; ++iteration ){
-                double const temp = x * x - y * y + x0;
-                y = 2 * x * y + y0;
+            int const maxIteration = 50;
+            
+            for( double x = 0, y = 0 
+                ; x * x + y * y < 4 && iteration < maxIteration 
+                ; ++iteration
+            ){
+                double const temp = c + ( x * x - y * y );
+                y = r + ( 2 * x * y );
                 x = temp;
             }
 
