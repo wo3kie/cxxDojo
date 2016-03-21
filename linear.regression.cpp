@@ -18,6 +18,8 @@
 #include <iostream>
 #include <vector>
 
+#include "./feq.hpp"
+
 struct Point
 {
     double x;
@@ -79,8 +81,8 @@ int main(){
         };
 
         assert( linearRegression( points, a, b ) );
-        assert( fabs( a - 6.1539 ) < 0.0001 );
-        assert( fabs( b - 5.0000 ) < 0.0001 );
+        assert( feq( a, 6.1539, 0.0001 ) );
+        assert( feq( b, 5.0000, 0.0001 ) );
     }
 
     {
@@ -95,8 +97,8 @@ int main(){
         };
 
         assert( linearRegression( points, a, b ) );
-        assert( fabs( a - 0.0000 ) < 0.0001 );
-        assert( fabs( b - 1.0000 ) < 0.0001 );
+        assert( feq( a, 0.0000, 0.0001 ) );
+        assert( feq( b, 1.0000, 0.0001 ) );
     }
 
     {
