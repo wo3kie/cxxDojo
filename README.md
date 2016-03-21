@@ -373,3 +373,8 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 #################&&&&&&&&&&&&&&&&&&&&&&&*********************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 ####################&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 ```
+  
+**43. quickSort**  
+Implement a quick sort algorithm. Can you use any standard library function to do it?  
+
+
