@@ -383,4 +383,19 @@ Implement _in_ operator in C++. Follow the idea of [named-operators](https://git
 ```{r, engine='cpp'}  
 assert(    1 <in> std::vector< int >{ 1 } );
 assert( !( 2 <in> std::vector< int >{ 1 } ) );
-```
+```  
+  
+**45. hanoi.cpp**  
+Implement a program to solve the Tower of Hanoi problem.  
+  
+```{r, engine='cpp'}  
+$ ./hanoi 3
+Move from 1 to 2
+Move from 1 to 3
+Move from 2 to 3
+Move from 1 to 2
+Move from 3 to 1
+Move from 3 to 2
+Move from 1 to 2
+```  
+
