@@ -374,7 +374,13 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 ####################&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 ```
   
-**43. quickSort**  
+**43. quickSort.cpp**  
 Implement a quick sort algorithm. Can you use any standard library function to do it?  
 
+**44. in.cpp**  
+Implement a _in_ operator in C++. Follow the idea of [named-operators](https://github.com/klmr/named-operator).
 
+```{r, engine='cpp'}  
+assert(    1 <in> std::vector< int >{ 1 } );
+assert( !( 2 <in> std::vector< int >{ 1 } ) );
+```
