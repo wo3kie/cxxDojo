@@ -388,7 +388,7 @@ assert( !( 2 <in> std::vector< int >{ 1 } ) );
 **45. hanoi.cpp**  
 Implement a program to solve the Tower of Hanoi problem.  
   
-```{r, engine='cpp'}  
+```{r, engine='bash'}  
 $ ./hanoi 3
 Move from 1 to 2
 Move from 1 to 3
