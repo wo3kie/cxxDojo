@@ -398,4 +398,8 @@ Move from 3 to 1
 Move from 3 to 2
 Move from 1 to 2
 ```  
+  
+**46. interpolation.cpp**  
+Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?  
+
 

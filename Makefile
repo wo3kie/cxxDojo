@@ -8,7 +8,7 @@ INC=-I/usr/include/libxml2
 
 LIB=-L/usr/lib/x86_64-linux-gnu/
 LDLIBS=$(LIB) -lboost_system -lboost_date_time -lboost_filesystem -lboost_iostreams \
-	-pthread -lxml2 -lssl -lcrypto
+	-pthread -lxml2 -lssl -lcrypto -lgsl -lgslcblas -lm
 
 all: $(APPS)
 	$(MAKE) -C shared
