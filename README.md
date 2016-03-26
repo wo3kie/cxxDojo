@@ -406,13 +406,13 @@ Implement a program to interpolate a set of points with a polynomial function. C
 Implement a function to calculate a mean value from a collection.  
 
 **48. variance.cpp**  
-Implement a function to calculate variance.  
+Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
 
 **49. standardDeviation.cpp**  
-Implement a function to calculate standard deviation.  
+Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation) standard deviation indicates how the data values tend to be close to the mean.
 
 **50. correlation.cpp**  
 Implement a function to calculate correlation between two collections.  
 
 **51. exponentialSmoothing.cpp**  
-Implement a function to calculate exponential smoothing.  
+Implement a function to calculate exponential smoothing. Use 'Brown\'s simple exponential smoothing.'
