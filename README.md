@@ -410,3 +410,6 @@ Implement a function to calculate variance.
 
 **49. standardDeviation.cpp**  
 Implement a function to calculate standard deviation.  
+
+**50. correlation.cpp**  
+Implement a function to calculate correlation between two collections.  
