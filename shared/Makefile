@@ -10,5 +10,5 @@ libshared.so: shared.cpp shared.h
 	g++ -g3 -shared shared.o -o libshared.so
 
 clean:
-	rm -rf main libshared.so *.o
+	rm -rf main libshared.so *.o *.gch
 

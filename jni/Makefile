@@ -15,5 +15,5 @@ main: main.cpp
 	$(CXX) $< -o main $(CXXFLAGS) $(INC) $(LIBS) $(LDLIBS)
 
 clean:
-	rm -rf main Main.class
+	rm -rf main Main.class *.gch
 

@@ -18,7 +18,7 @@ all: $(APPS)
 	$(CXX) $< -o $@ $(CXXFLAGS) $(INC) $(LIBS) $(LDLIBS)
 
 clean:
-	rm -rf $(APPS)
+	rm -rf $(APPS) *.gch
 	$(MAKE) -C shared clean
 	$(MAKE) -C jni clean
 
