@@ -22,6 +22,8 @@
 
 #include <gsl/gsl_linalg.h>
 
+#include "./feq.hpp"
+
 namespace ublas = boost::numeric::ublas;
 
 struct Point
@@ -30,7 +32,26 @@ struct Point
     double y_;
 };
 
-ublas::vector< double > interpolation_ublas( std::vector< Point > const & points ){
+ublas::vector< double > linear_interpolation_ublas(
+    std::vector< Point > const & points
+){
+    assert( points.size() == 2 );
+
+    ublas::vector< double > X( 2 );
+
+    Point const & p1 = points[ 0 ];
+    Point const & p2 = points[ 1 ];
+
+    double const a = (p1.y_ - p2.y_) / (p1.x_ - p2.x_);
+    double const b = p1.y_ - p1.x_ * ((p1.y_ - p2.y_) / (p1.x_ - p2.x_));
+
+    X( 0 ) = a;
+    X( 1 ) = b;
+
+    return X;
+}
+
+ublas::vector< double > polynominal_interpolation_ublas( std::vector< Point > const & points ){
     std::size_t const size = points.size();
 
     ublas::matrix< double > A( size, size );
@@ -54,8 +75,25 @@ ublas::vector< double > interpolation_ublas( std::vector< Point > const & points
     return Y;
 }
 
-gsl_vector * interpolation_gsl( std::vector< Point > const & points ){
-    std::size_t const size = points.size(); 
+gsl_vector * linear_interpolation_gsl( std::vector< Point > const & points ){
+    assert( points.size() == 2 );
+
+    gsl_vector * X = gsl_vector_alloc( 2 );
+
+    Point const & p1 = points[ 0 ];
+    Point const & p2 = points[ 1 ];
+
+    double const a = (p1.x_ - p2.x_) / (p1.x_ - p2.x_);
+    double const b = p1.y_ - p1.x_ * ((p1.y_ - p2.y_) / (p1.x_ - p2.x_));
+
+    gsl_vector_set( X, 0, a );
+    gsl_vector_set( X, 1, b );
+
+    return X;
+}
+
+gsl_vector * polynominal_interpolation_gsl( std::vector< Point > const & points ){
+    std::size_t const size = points.size();
 
     gsl_matrix * A = gsl_matrix_alloc( size, size );
 
@@ -83,42 +121,106 @@ gsl_vector * interpolation_gsl( std::vector< Point > const & points ){
     gsl_matrix_free( A );
 
     return X;
-
 }
 
-void interpolation_ublas_test(){
+void linear_interpolation_ublas_test(){
+    ublas::vector< double > expected( 2 );
+    expected( 0 ) = 5 / 2;
+    expected( 1 ) = -13 / 2;
+
+    ublas::vector< double > const actual = linear_interpolation_ublas(
+        std::vector< Point >{ { 5, 6 }, { 7, 11 } }
+    );
+
+    auto feqDouble = [](double d1, double d2){
+        return feq(d1, d2);
+    };
+
+    assert(
+        std::equal(
+            actual.begin(),
+            actual.end(),
+            expected.begin(),
+            feqDouble
+        )
+    );
+}
+
+void polynominal_interpolation_ublas_test(){
     ublas::vector< double > expected( 3 );
     expected( 0 ) = 7;
     expected( 1 ) = 6;
     expected( 2 ) = -1;
 
-    ublas::vector< double > const actual = interpolation_ublas(
+    ublas::vector< double > const actual = polynominal_interpolation_ublas(
         std::vector< Point >{ { 1, 12 }, { 2, 15 }, { 3, 16 } }
     );
 
-    assert( std::equal( actual.begin(), actual.end(), expected.begin() ) );
+    auto feqDouble = [](double d1, double d2){
+        return feq(d1, d2);
+    };
+
+    assert(
+        std::equal(
+            actual.begin(),
+            actual.end(),
+            expected.begin(),
+            feqDouble
+        )
+    );
 }
 
-void interpolation_gsl_test(){
-    gsl_vector * expected = gsl_vector_alloc( 3 );
-    gsl_vector_set( expected, 0, 7 );
-    gsl_vector_set( expected, 1, 6 );
-    gsl_vector_set( expected, 2, -1 );
+void linear_interpolation_gsl_test(){
+    gsl_vector * expected = gsl_vector_alloc( 2 );
+    gsl_vector_set( expected, 0, 5 / 2 );
+    gsl_vector_set( expected, 1, -13 / 2 );
 
-    gsl_vector * actual = interpolation_gsl( 
-        std::vector< Point >{ { 1, 12 }, { 2, 15 }, { 3, 16 } } 
+    gsl_vector * actual = polynominal_interpolation_gsl(
+        std::vector< Point >{ { 5, 6 }, { 7, 11 } }
     );
 
-    for( std::size_t i = 0 ; i < 3 ; ++ i ){
-        assert(( gsl_vector_get( actual, i ) == gsl_vector_get( expected, i ) ));
+    for( std::size_t i = 0 ; i < 2 ; ++ i ){
+        assert((
+            feq(
+                gsl_vector_get( actual, i ),
+                gsl_vector_get( expected, i )
+            )
+        ));
     }
 
     gsl_vector_free( actual );
     gsl_vector_free( expected );
 }
 
-int main(){
-    interpolation_ublas_test();
-    interpolation_gsl_test();
+void polynominal_interpolation_gsl_test(){
+    gsl_vector * expected = gsl_vector_alloc( 3 );
+    gsl_vector_set( expected, 0, 7 );
+    gsl_vector_set( expected, 1, 6 );
+    gsl_vector_set( expected, 2, -1 );
+
+    gsl_vector * actual = polynominal_interpolation_gsl(
+        std::vector< Point >{ { 1, 12 }, { 2, 15 }, { 3, 16 } }
+    );
+
+    for( std::size_t i = 0 ; i < 3 ; ++ i ){
+        assert((
+            feq(
+                gsl_vector_get( actual, i ),
+                gsl_vector_get( expected, i )
+            )
+        ));
+    }
+
+    gsl_vector_free( actual );
+    gsl_vector_free( expected );
 }
 
+#include <vector>
+
+int main(){
+    linear_interpolation_ublas_test();
+    linear_interpolation_gsl_test();
+
+    polynominal_interpolation_ublas_test();
+    polynominal_interpolation_gsl_test();
+}
