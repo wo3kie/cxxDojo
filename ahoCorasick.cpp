@@ -80,6 +80,7 @@ struct AhoCorasick {
     AhoCorasick & operator=( AhoCorasick const & ) = delete;
     AhoCorasick & operator=( AhoCorasick && other ){
         std::swap( root_, other.root_ );
+        return * this;
     }
 
     void insert( std::string const & word ){
@@ -161,7 +162,7 @@ private:
             if( parentsFailure == root_ ){
                 return root_;
             }
-    
+
             parentsFailure = parentsFailure->failure_;
         }
     }
@@ -170,7 +171,7 @@ private:
         std::cout << std::string( indent, ' ' ) << *node << std::endl;
 
         for( auto const pair : node->children_ ){
-            dump_( indent + 4, pair.second ); 
+            dump_( indent + 4, pair.second );
         }
     }
 
@@ -182,7 +183,8 @@ private:
 int main( int argc, char * argv[] )
 {
     if( argc != 3 ){
-        std::cerr << "Usage: " << argv[ 0 ] << " dictionary_file text_file" << std::endl;
+        std::cerr << "Usage: " << argv[ 0 ] << " dictionary_file text_file"
+            << std::endl;
         return 1;
     }
 
@@ -206,4 +208,3 @@ int main( int argc, char * argv[] )
         std::cout << std::string( 80, '-' ) << "\n";
     }
 }
-
