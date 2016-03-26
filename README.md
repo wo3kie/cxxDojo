@@ -404,3 +404,6 @@ Implement a program to interpolate a set of points with a polynomial function. C
 
 **47. mean.cpp**
 Implement a function to calculate a mean value from a collection.  
+
+**48. variance.cpp**  
+Implement a function to calculate variance.  
