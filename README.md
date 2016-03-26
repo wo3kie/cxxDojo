@@ -413,3 +413,6 @@ Implement a function to calculate standard deviation.
 
 **50. correlation.cpp**  
 Implement a function to calculate correlation between two collections.  
+
+**51. exponentialSmoothing.cpp**  
+Implement a function to calculate exponential smoothing.  
