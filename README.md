@@ -407,3 +407,6 @@ Implement a function to calculate a mean value from a collection.
 
 **48. variance.cpp**  
 Implement a function to calculate variance.  
+
+**49. standardDeviation.cpp**  
+Implement a function to calculate standard deviation.  
