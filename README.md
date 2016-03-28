@@ -402,7 +402,7 @@ Move from 1 to 2
 **46. interpolation.cpp**  
 Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?  
 
-**47. mean.cpp**
+**47. mean.cpp**  
 Implement a function to calculate a mean value from a collection.  
 
 **48. variance.cpp**  
@@ -415,4 +415,7 @@ Implement a function to calculate a standard deviation. From [Wikipedia](https:/
 Implement a function to calculate correlation between two collections.  
 
 **51. exponentialSmoothing.cpp**  
-Implement a function to calculate exponential smoothing. Use 'Brown\'s simple exponential smoothing.'
+Implement a function to do exponential smoothing. Use Brown's simple exponential smoothing.  
+
+**52. integration.cpp**  
+Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.  
