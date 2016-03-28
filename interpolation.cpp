@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 interpolation.cpp -o interpolation
+ *      g++ --std=c++11 interpolation.cpp -o interpolation -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./interpolation
@@ -83,7 +83,7 @@ gsl_vector * linear_interpolation_gsl( std::vector< Point > const & points ){
     Point const & p1 = points[ 0 ];
     Point const & p2 = points[ 1 ];
 
-    double const a = (p1.x_ - p2.x_) / (p1.x_ - p2.x_);
+    double const a = (p1.y_ - p2.y_) / (p1.x_ - p2.x_);
     double const b = p1.y_ - p1.x_ * ((p1.y_ - p2.y_) / (p1.x_ - p2.x_));
 
     gsl_vector_set( X, 0, a );
@@ -125,8 +125,8 @@ gsl_vector * polynominal_interpolation_gsl( std::vector< Point > const & points 
 
 void linear_interpolation_ublas_test(){
     ublas::vector< double > expected( 2 );
-    expected( 0 ) = 5 / 2;
-    expected( 1 ) = -13 / 2;
+    expected( 0 ) = 5.0 / 2;
+    expected( 1 ) = -13.0 / 2;
 
     ublas::vector< double > const actual = linear_interpolation_ublas(
         std::vector< Point >{ { 5, 6 }, { 7, 11 } }
@@ -172,10 +172,10 @@ void polynominal_interpolation_ublas_test(){
 
 void linear_interpolation_gsl_test(){
     gsl_vector * expected = gsl_vector_alloc( 2 );
-    gsl_vector_set( expected, 0, 5 / 2 );
-    gsl_vector_set( expected, 1, -13 / 2 );
+    gsl_vector_set( expected, 0, 5.0 / 2 );
+    gsl_vector_set( expected, 1, -13.0 / 2 );
 
-    gsl_vector * actual = polynominal_interpolation_gsl(
+    gsl_vector * actual = linear_interpolation_gsl(
         std::vector< Point >{ { 5, 6 }, { 7, 11 } }
     );
 
