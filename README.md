@@ -419,8 +419,9 @@ Implement a function to do exponential smoothing. Use Brown's simple exponential
 
 **52. integration.cpp**  
 Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.  
-  
+
 **53. lu.cpp**  
 Implement a function to make a LU decomposition of a matrix.  
-  
 
+**54. ode.euler.cpp**  
+Implement a function to solve a first order ordinary differential equation numerically with Euler's method.  
