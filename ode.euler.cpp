@@ -19,30 +19,39 @@
 
 double solveOdeEuler(
     std::function<double (double, double)> f,
-    unsigned n,
     double x0,
-    double y0,
-    double c
+    double xN,
+    double h,
+    double y0
 ){
-    double x = x0;
+    double x = x0 + h;
     double y = y0;
-    double h = (c - x0) / n;
 
-    for(unsigned i = 0; i < n; ++i){
-        double const fx = f(x, y);
-        double const fxh = f(x + h, y + h * fx);
+    while(x <= xN){
+        {
+            // basic
+            // y = y + h * f(x - h, y);
+        }
+
+        {
+            // midpoint
+            double const k1 = h * f(x - h, y);
+            double const k2 = h * f(x - h/2, y + h*k1/2);
+            y = y + k2;
+        }
 
         x += h;
-        y += h * (fx + fxh) / 2;
     }
 
     return y;
 }
 
 double f(double x, double y){
-    return 3 * x + 2 * y + 1;
+    // f(x) = 3x^3
+    // f'(x) = x * x
+    return x * x;
 }
 
 int main(){
-    assert(feq(77.5625, solveOdeEuler(f, 100, 0, 0.25, 2)));
+    assert(feq(9.9775, solveOdeEuler(f, 0, 3, 0.3, 1)));
 }
