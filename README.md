@@ -423,8 +423,8 @@ Implement a set of functions to calculate numerical integration for a function _
 **53. lu.cpp**  
 Implement a function to make a LU decomposition of a matrix.  
 
-**54. ode.euler.cpp**  
-Implement a function to solve a first order ordinary differential equation numerically with Euler's method.  
+**54. ode.cpp**  
+Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.  
 
 **55. covariance.cpp**  
 Implement a function to calculate a covariance between two collections.  
