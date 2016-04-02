@@ -412,7 +412,7 @@ Implement a function to calculate a variance. From [Wikipedia](https://en.wikipe
 Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation) standard deviation indicates how the data values tend to be close to the mean.
 
 **50. correlation.cpp**  
-Implement a function to calculate correlation between two collections.  
+Implement a function to calculate a correlation between two collections.  
 
 **51. exponentialSmoothing.cpp**  
 Implement a function to do exponential smoothing. Use Brown's simple exponential smoothing.  
@@ -425,3 +425,6 @@ Implement a function to make a LU decomposition of a matrix.
 
 **54. ode.euler.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's method.  
+
+**55. covariance.cpp**  
+Implement a function to calculate a covariance between two collections.  
