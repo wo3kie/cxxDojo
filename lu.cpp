@@ -16,59 +16,12 @@
 #include <vector>
 
 #include "./feq.hpp"
-#include "./output.hpp"
-
-typedef std::vector<double> Vector;
-typedef std::vector<Vector> Matrix;
-
-Matrix makeMatrix(unsigned numRows, unsigned numColumns){
-    return Matrix(numRows, Vector(numColumns, 0));
-}
-
-bool matrixEq(Matrix const & m1, Matrix const & m2){
-    unsigned const rows1 = m1.size();
-    unsigned const rows2 = m2.size();
-
-    if(rows1 != rows2){
-        return false;
-    }
-
-    for(unsigned row = 0; row < rows1; ++row){
-        unsigned const columns1 = m1[row].size();
-        unsigned const columns2 = m2[row].size();
-
-        if(columns1 != columns2){
-            return false;
-        }
-
-        for(unsigned column = 0; column < columns1; ++column){
-            if(!feq(m1[row][column], m2[row][column])){
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
-Matrix matrixMul(Matrix const & m1, Matrix const & m2){
-    Matrix result = makeMatrix(m1.size(), m2[0].size());
-
-    for(unsigned i = 0; i < m1.size(); ++i){
-        for(unsigned j = 0; j < m2[0].size(); ++j){
-            for(unsigned k = 0; k < m2.size(); ++k){
-                result[i][j] += m1[i][k] * m2[k][j];
-            }
-        }
-    }
-
-    return result;
-}
+#include "./matrix.hpp"
 
 Matrix pivotaize(Matrix const & m){
-    unsigned const size = m.size();
+    unsigned const size = m.rows();
 
-    Matrix result = makeMatrix(size, size);
+    Matrix result = Matrix(size, size);
 
     for(unsigned i = 0; i < size; ++i){
         result[i][i] = 1;
@@ -92,13 +45,13 @@ Matrix pivotaize(Matrix const & m){
 }
 
 void lu(Matrix const & A, Matrix & L, Matrix & U, Matrix & P){
-    unsigned const size = A.size();
+    unsigned const size = A.rows();
 
-    L = makeMatrix(size, size);
-    U = makeMatrix(size, size);
+    L = Matrix(size, size);
+    U = Matrix(size, size);
     P = pivotaize(A);
 
-    Matrix const A2 = matrixMul(P, A);
+    Matrix const A2 = P * A;
 
     for(unsigned a = 0; a < size; ++a){
         L[a][a] = 1.0;
@@ -138,20 +91,15 @@ int main(){
 
         lu(A, L, U, P);
 
-        std::cout << "A: " << A << std::endl;
-        std::cout << "P: " << P << std::endl;
-        std::cout << "PA: " << matrixMul(P, A) << std::endl;
-        std::cout << "L: " << L << std::endl;
-        std::cout << "U: " << U << std::endl;
-        std::cout << "PA: " << matrixMul(P, A) << std::endl;
-        std::cout << "LU: " << matrixMul(L, U) << std::endl << std::endl;
+        std::cout << "A: \n" << A << std::endl;
+        std::cout << "P: \n" << P << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "L: \n" << L << std::endl;
+        std::cout << "U: \n" << U << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "LU: \n" << L * U << std::endl << std::endl;
 
-        assert(
-            matrixEq(
-                matrixMul(P, A),
-                matrixMul(L, U)
-            )
-        );
+        assert(P * A == L * U);
     }
 
     {
@@ -163,19 +111,15 @@ int main(){
 
         lu(A, L, U, P);
 
-        std::cout << "A: " << A << std::endl;
-        std::cout << "P: " << P << std::endl;
-        std::cout << "L: " << L << std::endl;
-        std::cout << "U: " << U << std::endl;
-        std::cout << "PA: " << matrixMul(P, A) << std::endl;
-        std::cout << "LU: " << matrixMul(L, U) << std::endl << std::endl;
+        std::cout << "A: \n" << A << std::endl;
+        std::cout << "P: \n" << P << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "L: \n" << L << std::endl;
+        std::cout << "U: \n" << U << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "LU: \n" << L * U << std::endl << std::endl;
 
-        assert(
-            matrixEq(
-                matrixMul(P, A),
-                matrixMul(L, U)
-            )
-        );
+        assert(P * A == L * U);
     }
 
     {
@@ -187,19 +131,15 @@ int main(){
 
         lu(A, L, U, P);
 
-        std::cout << "A: " << A << std::endl;
-        std::cout << "P: " << P << std::endl;
-        std::cout << "L: " << L << std::endl;
-        std::cout << "U: " << U << std::endl;
-        std::cout << "PA: " << matrixMul(P, A) << std::endl;
-        std::cout << "LU: " << matrixMul(L, U) << std::endl << std::endl;
+        std::cout << "A: \n" << A << std::endl;
+        std::cout << "P: \n" << P << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "L: \n" << L << std::endl;
+        std::cout << "U: \n" << U << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "LU: \n" << L * U << std::endl << std::endl;
 
-        assert(
-            matrixEq(
-                matrixMul(P, A),
-                matrixMul(L, U)
-            )
-        );
+        assert(P * A == L * U);
     }
 
     {
@@ -212,18 +152,14 @@ int main(){
 
         lu(A, L, U, P);
 
-        std::cout << "A: " << A << std::endl;
-        std::cout << "P: " << P << std::endl;
-        std::cout << "L: " << L << std::endl;
-        std::cout << "U: " << U << std::endl;
-        std::cout << "PA: " << matrixMul(P, A) << std::endl;
-        std::cout << "LU: " << matrixMul(L, U) << std::endl << std::endl;
+        std::cout << "A: \n" << A << std::endl;
+        std::cout << "P: \n" << P << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "L: \n" << L << std::endl;
+        std::cout << "U: \n" << U << std::endl;
+        std::cout << "PA: \n" << P * A << std::endl;
+        std::cout << "LU: \n" << L * U << std::endl << std::endl;
 
-        assert(
-            matrixEq(
-                matrixMul(P, A),
-                matrixMul(L, U)
-            )
-        );
+        assert(P * A == L * U);
     }
 }
