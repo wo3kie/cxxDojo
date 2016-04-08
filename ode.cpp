@@ -57,7 +57,7 @@ double solveOdeEulerMidpoint(
     auto approx = [&f](double x0, double x1, double y){
         double const h = (x1 - x0);
         double const k1 = h * f(x0, y);
-        double const k2 = h * f(x0 + h / 2, y + h * k1 / 2);
+        double const k2 = h * f(x0 + h/2, y + h * k1/2);
         return k2;
     };
 
@@ -77,7 +77,7 @@ double solveOdeRungeKutta4(
         double const k2 = h * f(x0 + h/2, y + k1/2);
         double const k3 = h * f(x0 + h/2, y + k2/2);
         double const k4 = h * f(x0 + h, y + k3);
-        return 1.0 / 6 * (k1 + 2*k2 + 2*k3 + k4);
+        return (k1 + 2*k2 + 2*k3 + k4) / 6;
     };
 
     return solveOdeImpl(approx, x0, xN, h, y0);
