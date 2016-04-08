@@ -26,7 +26,7 @@ std::ostream & printImpl(
     std::ostream & out,
     char const beginning,
     Iterator begin,
-    char const separator,
+    char const * const separator,
     Iterator const end,
     char const ending
 ){
@@ -34,7 +34,7 @@ std::ostream & printImpl(
 
     if( begin != end ){
         out << * begin;
-        
+
         while( ++ begin != end ){
             out << separator << * begin;
         }
@@ -45,7 +45,7 @@ std::ostream & printImpl(
 
 template< typename Iterator >
 std::ostream & printVector( std::ostream & out, Iterator begin, Iterator end ){
-    return printImpl( out, '[', begin, ',', end, ']' );
+    return printImpl( out, '[', begin, ", ", end, ']' );
 }
 
 template< typename T >
@@ -60,7 +60,7 @@ std::ostream & operator<<( std::ostream & out, std::array< T, Size > const & a )
 
 template< typename Iterator >
 std::ostream & printList( std::ostream & out, Iterator begin, Iterator end ){
-    return printImpl( out, '(', begin, ',', end, ')' );
+    return printImpl( out, '(', begin, ", ", end, ')' );
 }
 
 template< typename T >
@@ -70,17 +70,17 @@ std::ostream & operator<<( std::ostream & out, std::list< T > const & v ){
 
 template< typename T1, typename T2 >
 std::ostream & printPair( std::ostream & out, std::pair< T1, T2 > const & p ){
-    return out << '{' << p.first << ',' << p.second << '}';
+    return out << '{' << p.first << ", " << p.second << '}';
 }
 
 template< typename T1, typename T2 >
 std::ostream & operator<<( std::ostream & out, std::pair< T1, T2 > const & p ){
-    return printPair( out, p );    
+    return printPair( out, p );
 }
 
 template< typename Iterator >
 std::ostream & printMap( std::ostream & out, Iterator begin, Iterator end ){
-    return printImpl( out, '{', begin, ',', end, '}' );
+    return printImpl( out, '{', begin, ", ", end, '}' );
 }
 
 template< typename T1, typename T2 >
@@ -90,7 +90,7 @@ std::ostream & operator<<( std::ostream & out, std::map< T1, T2 > const & m ){
 
 template< typename Iterator >
 std::ostream & printSet( std::ostream & out, Iterator begin, Iterator end ){
-    return printImpl( out, '{', begin, ',', end, '}' );
+    return printImpl( out, '{', begin, ", ", end, '}' );
 }
 
 template< typename T >
@@ -220,4 +220,3 @@ void output_tests()
 }
 
 #endif
-
