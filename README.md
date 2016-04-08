@@ -196,11 +196,11 @@ assert( 561 == 1000110001_bin );
 ```
 
 
-**21. matrix.cpp**  
+**21. matrix.mul.perf.cpp**  
 Implement a performance test for matrix multiplication. Consider all possibilities with loop nesting.  
 
 ```
-$ ./matrix
+$ ./matrix.mul.perf
 nmp: 743355µs
 npm: 1925037µs
 mnp: 721955µs
@@ -428,3 +428,6 @@ Implement a function to solve a first order ordinary differential equation numer
 
 **55. covariance.cpp**  
 Implement a function to calculate a covariance between two collections.  
+
+**56. matrix.cpp**  
+Implement a simple matrix class. Provide a basic functionality for it.  
