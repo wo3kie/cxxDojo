@@ -431,3 +431,6 @@ Implement a function to calculate a covariance between two collections.
 
 **56. matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.  
+
+**57. blackScholes.cpp**  
+Calculate an option price for a given ime and underlying stock price. Use Black-Scholes method for it.  

@@ -43,8 +43,8 @@
  * Central  f'(t*dt, s*ds)ds  ~ (f[t][s+1] - f[t][s-1])/2ds
  *          f''(t*dt, s*ds)ds ~ (f[t][s+1] - 2f[t][s] + f[t][s-1])/(dsds)
  *
- * Use backward approximation for df/dt <- (f[t][s] - f[t-1][s])/dt
- *      central approximation for df/dS <- (f[t][s+1] - f[t][s-1])/2ds
+ * Using backward approximation for df/dt <- (f[t][s] - f[t-1][s])/dt
+ *       central approximation for df/dS <- (f[t][s+1] - f[t][s-1])/2ds
  *                        and for d2f/dS2 <- (f[t][s+1] + f[t][s-1] - 2f[t][s])/dsds
  * we can get explicit method equation
  *

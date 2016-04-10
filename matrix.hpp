@@ -15,10 +15,51 @@
 #include "./feq.hpp"
 #include "./output.hpp"
 
+namespace details
+{
+
+class Row
+{
+public:
+    Row() = default;
+    Row(Row const &) = default;
+    Row(Row &&) = default;
+
+    Row & operator=(Row const &) = default;
+    Row & operator=(Row &&) = default;
+
+    Row(unsigned size, double init = 0.0)
+        : row_(size, init)
+    {
+    }
+
+    Row(std::initializer_list<double> const & data)
+        : row_(data)
+    {
+    }
+
+    double & operator[](unsigned i){
+        return row_.at(i);
+    }
+
+    double const & operator[](unsigned i)const{
+        return row_.at(i);
+    }
+
+    unsigned columns()const{
+        return row_.size();
+    }
+
+private:
+    std::vector<double> row_;
+};
+
+}
+
 class Matrix
 {
 public:
-    typedef std::vector<double> Row;
+    typedef details::Row Row;
 
 public:
     Matrix() = default;
@@ -55,7 +96,7 @@ public:
             return 0;
         }
 
-        return matrix_[0].size();
+        return matrix_[0].columns();
     }
 
 private:
@@ -73,12 +114,12 @@ std::ostream & operator<<(std::ostream & out, Matrix const & matrix){
     if(matrix.rows() != 0){
         out << "[";
 
-        if(matrix[0].size() != 0){
+        if(matrix[0].columns() != 0){
             out << std::fixed << std::setfill(' ')
                 << std::setw(4) << std::setprecision(getPrecision(matrix[0][0]))
                 << matrix[0][0];
 
-            for(unsigned j = 1; j < matrix[0].size(); ++j){
+            for(unsigned j = 1; j < matrix[0].columns(); ++j){
                 out << ' ' << std::fixed << std::setfill(' ')
                     << std::setw(4) << std::setprecision(getPrecision(matrix[0][j]))
                     << matrix[0][j];
@@ -90,12 +131,12 @@ std::ostream & operator<<(std::ostream & out, Matrix const & matrix){
         for(unsigned i = 1; i < matrix.rows(); ++i){
             out << "\n [";
 
-            if(matrix[i].size() != 0){
+            if(matrix[i].columns() != 0){
                 out << std::fixed << std::setfill(' ')
                     << std::setw(4) << std::setprecision(getPrecision(matrix[i][0]))
                     << matrix[i][0];
 
-                for(unsigned j = 1; j < matrix[i].size(); ++j){
+                for(unsigned j = 1; j < matrix[i].columns(); ++j){
                     out << ' ' << std::fixed << std::setfill(' ')
                         << std::setw(4) << std::setprecision(getPrecision(matrix[i][j]))
                         << matrix[i][j];
@@ -121,8 +162,8 @@ bool operator==(Matrix const & matrix1, Matrix const & matrix2){
     }
 
     for(unsigned row = 0; row < rows1; ++row){
-        unsigned const columns1 = matrix1[row].size();
-        unsigned const columns2 = matrix2[row].size();
+        unsigned const columns1 = matrix1[row].columns();
+        unsigned const columns2 = matrix2[row].columns();
 
         if(columns1 != columns2){
             return false;
@@ -148,7 +189,7 @@ Matrix operator+(Matrix const & matrix1, double d){
     Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
     for(unsigned i = 0; i < matrix1.rows(); ++i){
-        for(unsigned j = 0; j < matrix1[0].size(); ++j){
+        for(unsigned j = 0; j < matrix1[0].columns(); ++j){
             result[i][j] = matrix1[i][j] + d;
         }
     }
@@ -174,7 +215,7 @@ Matrix operator*(Matrix const & matrix1, double d){
     Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
     for(unsigned i = 0; i < matrix1.rows(); ++i){
-        for(unsigned j = 0; j < matrix1[0].size(); ++j){
+        for(unsigned j = 0; j < matrix1[0].columns(); ++j){
             result[i][j] = matrix1[i][j] * d;
         }
     }
