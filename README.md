@@ -409,7 +409,7 @@ Implement a function to calculate a mean value from a collection.
 Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
 
 **49. standardDeviation.cpp**  
-Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation) standard deviation indicates how the data values tend to be close to the mean.
+Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation), standard deviation indicates how the data values tend to be close to the mean.
 
 **50. correlation.cpp**  
 Implement a function to calculate a correlation between two collections.  
@@ -433,4 +433,8 @@ Implement a function to calculate a covariance between two collections.
 Implement a simple matrix class. Provide a basic functionality for it.  
 
 **57. blackScholes.cpp**  
-Calculate an option price for a given ime and underlying stock price. Use Black-Scholes method for it.  
+Calculate an option price for a given time and underlying stock price. Use Black-Scholes method for it.  
+**58. boxMuller.cpp**  
+Implement the Box-Muller algorithm.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.  
