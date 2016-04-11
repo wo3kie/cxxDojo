@@ -44,7 +44,7 @@ double getNormalRandom(double mu, double sigma){
 std::map<int, int> getDistribution(std::function<double ()> const & f){
     std::map<int, int> result;
 
-    for(int i = 0; i < 50 * 2000; i++){
+    for(int i = 0; i < 50 * 1000; i++){
         result[ std::round(f()) ] += 1;
     }
 
