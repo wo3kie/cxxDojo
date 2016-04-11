@@ -434,7 +434,11 @@ Implement a simple matrix class. Provide a basic functionality for it.
 
 **57. blackScholes.cpp**  
 Calculate an option price for a given time and underlying stock price. Use Black-Scholes method for it.  
+
 **58. boxMuller.cpp**  
-Implement the Box-Muller algorithm.
+Implement the Box-Muller algorithm.  
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.  
+
+**58. logNormal.cpp**  
+Implement a program to demonstrate a log normal distribution.  
