@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "./feq.hpp"
+#include "./floatFormatter.hpp"
 #include "./output.hpp"
 
 namespace details
@@ -105,24 +106,16 @@ private:
 
 inline
 std::ostream & operator<<(std::ostream & out, Matrix const & matrix){
-    auto getPrecision = [](double d){
-        return d < 0 ? 2 : 3;
-    };
-
     out << "[";
 
     if(matrix.rows() != 0){
         out << "[";
 
         if(matrix[0].columns() != 0){
-            out << std::fixed << std::setfill(' ')
-                << std::setw(4) << std::setprecision(getPrecision(matrix[0][0]))
-                << matrix[0][0];
+            out << FloatFormatter(matrix[0][0], 8);
 
             for(unsigned j = 1; j < matrix[0].columns(); ++j){
-                out << ' ' << std::fixed << std::setfill(' ')
-                    << std::setw(4) << std::setprecision(getPrecision(matrix[0][j]))
-                    << matrix[0][j];
+                out << ' ' << FloatFormatter(matrix[0][j], 8);
             }
         }
 
@@ -132,14 +125,10 @@ std::ostream & operator<<(std::ostream & out, Matrix const & matrix){
             out << "\n [";
 
             if(matrix[i].columns() != 0){
-                out << std::fixed << std::setfill(' ')
-                    << std::setw(4) << std::setprecision(getPrecision(matrix[i][0]))
-                    << matrix[i][0];
+                out << FloatFormatter(matrix[i][0], 8);
 
                 for(unsigned j = 1; j < matrix[i].columns(); ++j){
-                    out << ' ' << std::fixed << std::setfill(' ')
-                        << std::setw(4) << std::setprecision(getPrecision(matrix[i][j]))
-                        << matrix[i][j];
+                    out << ' ' << FloatFormatter(matrix[i][j], 8);
                 }
             }
 
