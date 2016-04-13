@@ -15,84 +15,91 @@
 #include <sstream>
 #include <string>
 
+inline
 double round(double value, int place = 1){
     return std::round(std::pow(10, place) * value) / std::pow(10, place);
 }
 
 struct FloatFormatter
 {
-    FloatFormatter(double value, int length = 5)
+    FloatFormatter(double value, int length = 6 /*-1e-01*/)
         : value_(value)
         , length_(length)
     {
     }
 
     std::ostream & toStream(std::ostream & out) const {
-        std::string s = toString();
-        return out << std::string(length_ - s.length(), ' ') << std::move(s);
+        return out << toString();
     }
 
     std::string toString() const {
         std::ostringstream oss;
-        toStreamImpl(oss);
-        return oss.str();
+
+        if(value_ < 0){
+            toStreamImpl(oss, value_, length_ - 1);
+        }
+        else{
+            toStreamImpl(oss, value_, length_);
+        }
+
+        std::string const string = oss.str();
+
+        return std::string(length_ - string.length(), ' ') + string;
     }
 
 private:
 
-    std::ostream & toStreamImpl(std::ostream & out) const {
-        if(value_ == 0){
+    static std::ostream & toStreamImpl(std::ostream & out, double value, int length){
+        if(value == 0){
             out << 0;
         }
-        else if(value_ > 0 ){
-            if(value_ >= std::pow(10, length_)){
+        else{
+            if(std::fabs(value) >= std::pow(10, length)){
                 out
                     << std::scientific
-                    << std::setprecision(std::max(0, length_ - 5))
-                    << value_;
+                    << std::setprecision(std::max(0, length - 5))
+                    << value;
             }
-            else if(value_ < 1){
-                int const numberOfDigits = std::abs(std::log10(value_));
+            else if(std::fabs(value) < 1){
+                int const numberOfDigits = std::abs(std::log10(value));
 
-                if(length_ - numberOfDigits > 2){
+                if(length - numberOfDigits > 2){
                     out
                         << std::fixed
-                        << std::setprecision(length_ - 2)
-                        << round(value_, length_ - 2);
+                        << std::setprecision(length - 2)
+                        << round(value, length - 2);
                 }
                 else{
                     out
                         << std::scientific
-                        << std::setprecision(std::max(0, length_ - 6))
-                        << value_;
+                        << std::setprecision(std::max(0, length - 6))
+                        << value;
                 }
             }
-            else
-            {
-                int const numerator = value_;
+            else{
+                int const numerator = value;
 
-                if(numerator == value_){
+                if(numerator == value){
                     out
                         << std::fixed
-                        << int(value_);
+                        << int(value);
                 }
                 else{
-                    int const numberOfDigits = std::log10(numerator) + 1;
+                    int const numberOfDigits = std::log10(std::fabs(numerator)) + 1;
 
-                    if(length_ - numberOfDigits > 1){
+                    if(length - numberOfDigits > 1){
                         out
-                            << std::setprecision(length_ - numberOfDigits - 1)
-                            << round(value_, length_ - numberOfDigits - 1);
+                            << std::fixed
+                            << std::setprecision(length - numberOfDigits - 1)
+                            << round(value, length - numberOfDigits - 1);
                     }
                     else{
                         out
                             << std::fixed
-                            << int(round(value_, 0));
+                            << int(round(value, 0));
                     }
                 }
             }
-        }
-        else{
         }
 
         return out;

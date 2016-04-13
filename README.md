@@ -442,3 +442,13 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), th
 
 **58. logNormal.cpp**  
 Implement a program to demonstrate a log normal distribution.  
+
+**59. floatFormatter.cpp**  
+Implement a function to display a float number in a fixed number of characters.  
+
+```{r, engine='cpp'}  
+assert(FloatFormatter(0.0000001234, 6).toString() == " 1e-07");
+assert(FloatFormatter(0.0000001234, 7).toString() == "1.2e-07");
+assert(FloatFormatter(0.0000001234, 8).toString() == "1.23e-07");
+assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
+```  
