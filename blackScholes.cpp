@@ -10,15 +10,7 @@
  *
  * Usage:
  *      $ ./blackScholes
- */
-
-#include <cmath>
-#include <vector>
-
-#include "./matrix.hpp"
-#include "./output.hpp"
-
-/*
+ *
  * Black-Scholes Explicit Finite Difference Method for Call Options
  *
  * df/dt + 1/2 * o^2 * S^2 * d2f/dS2 + r * S * df/dS - r * f = 0, where
@@ -33,18 +25,21 @@
  *   f(x + dx) = f(x) + f'(x)dx + f''(x)(dx)(dx)/2! + ...
  * we can get a following approximations
  *
+ * Forward  f'(t*dt, s*ds)ds  ~ (f[t][s+1] - f[t][s])/ds
  * Forward  f'(t*dt, s*ds)dt  ~ (f[t+1][s] - f[t][s])/dt
+ *
+ * Backward f'(t*dt, s*ds)ds  ~ (f[t][s] - f[t][s-1])/ds
  * Backward f'(t*dt, s*ds)dt  ~ (f[t][s] - f[t-1][s])/dt
+ *
+ * Central  f'(t*dt, s*ds)ds  ~ (f[t][s+1] - f[t][s-1])/2ds
  * Central  f'(t*dt, s*ds)dt  ~ (f[t+1][s] - f[t-1][s])/2dt
+ *
+ *          f''(t*dt, s*ds)ds ~ (f[t][s+1] - 2f[t][s] + f[t][s-1])/(dsds)
  *          f''(t*dt, s*ds)dt ~ (f[t+1][s] - 2f[t][s] + f[t-1][s])/(dtdt)
  *
- * Forward  f'(t*dt, s*ds)ds  ~ (f[t][s+1] - f[t][s])/ds
- * Backward f'(t*dt, s*ds)ds  ~ (f[t][s] - f[t][s-1])/ds
- * Central  f'(t*dt, s*ds)ds  ~ (f[t][s+1] - f[t][s-1])/2ds
- *          f''(t*dt, s*ds)ds ~ (f[t][s+1] - 2f[t][s] + f[t][s-1])/(dsds)
  *
  * Using backward approximation for df/dt <- (f[t][s] - f[t-1][s])/dt
- *       central approximation for df/dS <- (f[t][s+1] - f[t][s-1])/2ds
+ *        central approximation for df/dS <- (f[t][s+1] - f[t][s-1])/2ds
  *                        and for d2f/dS2 <- (f[t][s+1] + f[t][s-1] - 2f[t][s])/dsds
  * we can get explicit method equation
  *
@@ -58,6 +53,12 @@
  *   http://www.goddardconsulting.ca/matlab-finite-diff-explicit.html
  *   https://www.quantstart.com/articles/C-Explicit-Euler-Finite-Difference-Method-for-Black-Scholes
  */
+
+#include <cmath>
+#include <vector>
+
+#include "./matrix.hpp"
+#include "./output.hpp"
 
 Matrix blackScholes_FDM_Explicit(
     double const r,       // risk free rate               (%)
