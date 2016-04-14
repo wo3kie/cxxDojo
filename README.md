@@ -452,3 +452,8 @@ assert(FloatFormatter(0.0000001234, 7).toString() == "1.2e-07");
 assert(FloatFormatter(0.0000001234, 8).toString() == "1.23e-07");
 assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
 ```  
+  
+**60. brownianMotion.cpp**  
+Implement a program to calculate simple Brownian motion, Brownian motion with drift, and geometric Brownian motion.  
+  
+
