@@ -51,4 +51,15 @@ int main(){
     assert(FloatFormatter(-123456.789, 7).toString() == "-123457");
     assert(FloatFormatter(-123456.789, 8).toString() == " -123457");
     assert(FloatFormatter(-123456.789, 9).toString() == "-123456.8");
+
+    assert(FloatFormatter(9.989898, 6).toString() == "9.9899");
+    assert(FloatFormatter(9.989898, 7).toString() == "9.98990");
+    assert(FloatFormatter(9.989898, 8).toString() == "9.989898");
+    assert(FloatFormatter(9.989898, 9).toString() == "9.9898980");
+
+    assert(FloatFormatter(9.999999, 6).toString() == "    10");
+    assert(FloatFormatter(9.999999, 7).toString() == "     10");
+    assert(FloatFormatter(9.999999, 8).toString() == "9.999999");
+    assert(FloatFormatter(9.999999, 9).toString() == "9.9999990");
+
 }

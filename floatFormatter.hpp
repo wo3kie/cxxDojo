@@ -57,7 +57,7 @@ private:
             if(std::fabs(value) >= std::pow(10, length)){
                 out
                     << std::scientific
-                    << std::setprecision(std::max(0, length - 5))
+                    << std::setprecision(std::max(0, length - 6))
                     << value;
             }
             else if(std::fabs(value) < 1){
@@ -77,26 +77,33 @@ private:
                 }
             }
             else{
-                int const numerator = value;
-
-                if(numerator == value){
+                if(value == int(value)){
                     out
                         << std::fixed
                         << int(value);
                 }
                 else{
-                    int const numberOfDigits = std::log10(std::fabs(numerator)) + 1;
+                    int const numberOfDigits = std::log10(std::fabs(value)) + 1;
 
-                    if(length - numberOfDigits > 1){
+                    if(numberOfDigits == length){
                         out
                             << std::fixed
-                            << std::setprecision(length - numberOfDigits - 1)
-                            << round(value, length - numberOfDigits - 1);
+                            << std::setprecision(0)
+                            << round(value, 1);
                     }
                     else{
-                        out
-                            << std::fixed
-                            << int(round(value, 0));
+                        double const rounded = round(value, length - numberOfDigits - 1);
+                        int const numberOfDigits2 = std::log10(std::fabs(rounded)) + 1;
+
+                        if(numberOfDigits == numberOfDigits2){
+                            out
+                                << std::fixed
+                                << std::setprecision(length - numberOfDigits - 1)
+                                << round(value, length - numberOfDigits - 1);
+                        }
+                        else{
+                            toStreamImpl(out, rounded, length);
+                        }
                     }
                 }
             }
