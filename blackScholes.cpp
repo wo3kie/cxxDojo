@@ -10,8 +10,15 @@
  *
  * Usage:
  *      $ ./blackScholes
- *
- * Black-Scholes Explicit Finite Difference Method for Call Options
+ */
+
+#include <cmath>
+#include <vector>
+
+#include "./matrix.hpp"
+#include "./output.hpp"
+
+/* Black-Scholes Explicit Finite Difference Method for Call Options
  *
  * df/dt + 1/2 * o^2 * S^2 * d2f/dS2 + r * S * df/dS - r * f = 0, where
  *   f - option price function, f(S, t)
@@ -54,12 +61,6 @@
  *   https://www.quantstart.com/articles/C-Explicit-Euler-Finite-Difference-Method-for-Black-Scholes
  */
 
-#include <cmath>
-#include <vector>
-
-#include "./matrix.hpp"
-#include "./output.hpp"
-
 Matrix blackScholes_FDM_Explicit(
     double const r,       // risk free rate               (%)
     double const o,       // annual volatility            (%)
@@ -75,18 +76,18 @@ Matrix blackScholes_FDM_Explicit(
     Matrix f = Matrix(T + 1, S + 1, -1);
 
     // f(0, t) = 0
-    for(int t = T; t >= 0; t--){
+    for(int t = 0; t <= T; t++){
         f[t][0] = 0;
+    }
+
+    // f(S, t) = sMax - Ke^-r(T-t)
+    for(int t = 0; t <= T; t++){
+        f[t][S] = sMax - K * std::exp(-r * (tMax - 1.0 * t * dT));
     }
 
     // f(s,T) = max(S-K, 0)
     for(int s = 0; s <= S; s++){
         f[T][s] = std::max(1.0 * s * dS - K, 0.0);
-    }
-
-    // f(S, t) = sMax - Ke^-r(T-t)
-    for(int t = T; t >= 0; t--){
-        f[t][S] = sMax - K * std::exp(-r * (tMax - 1.0 * t * dT));
     }
 
     for(int t = T - 1; t >= 0; t--){
@@ -102,8 +103,80 @@ Matrix blackScholes_FDM_Explicit(
     return f;
 }
 
+/*
+ * Analytical solution
+ *
+ * C(S, t) = N(d1) * S - N(d2) * K * e ^(-r * (T - t))
+ *   d1 = (1 / (o * sqrt(T - t))) * (ln(S / K) + (r + o * o / 2)(T - t)
+ *   d2 = d1 - o * sqrt(T - t)
+ *
+ * where
+ *
+ *   N(x) - cumulative distribution function of the standard normal distribution
+ *   T - expiry time
+ *   T - t - time to maturity
+ *   S - spot price of the underlying asset
+ *   K - strike price
+ *   r - risk free interest rate
+ *   o - sigma - the volatility of returns of the underlying asset
+ */
+
+double N(double x)
+{
+    double const a1 = 0.31938153;
+    double const a2 = -0.356563782;
+    double const a3 = 1.781477937;
+    double const a4 = -1.821255978;
+    double const a5 = 1.330274429;
+
+    double const L = fabs(x);
+    double const K = 1.0 / (1.0 + 0.2316419 * L);
+    double const w = 1.0 - 1.0 / sqrt(2 * M_PI) * exp(-L * L / 2)
+        * (a1 * K + a2 * K * K + a3 * pow(K, 3) + a4 * pow(K, 4) + a5 * pow(K, 5));
+
+    if (x < 0){
+        return 1.0 - w;
+    }
+
+    return w;
+}
+
+Matrix blackScholes_Formula(
+    double const r,       // risk free rate               (%)
+    double const o,       // annual volatility            (%)
+    double const tMax,    // expiry date,                 (y) 1.0=1y, 0.25=3m
+    double const K,       // strike price                 ($)
+    double const sMax,    // max stock price to consider  ($)
+    double const dT,      // time step                    (y) 1.0=1y, 0.25=3m
+    double const dS       // stock price step             ($)
+){
+    double const T = tMax / dT;
+    double const S = sMax / dS;
+    Matrix f = Matrix(T + 1, S + 1, -1);
+
+    for(int t = 0; t <= T; ++t){
+        for(int s = 0; s <= S; s++){
+            double const time = tMax - 1.0 * t * dT;
+            double const price = 1.0 * s * dS;
+
+            double const d1 = (1 / (o * std::sqrt(time)))
+                * (std::log(price / K) + (r + o * o / 2) * (time));
+
+            double const d2 = d1 - o * std::sqrt(time);
+
+            f[t][s] = N(d1) * price - N(d2) * K * std::exp(-r * (time));
+        }
+    }
+
+    return f;
+}
+
+/*
+ * main
+ */
+
 int main(int argc, char **argv) {
-    Matrix const result = blackScholes_FDM_Explicit(
+    Matrix const fdme = blackScholes_FDM_Explicit(
         0.1,
         0.4,
         0.25,
@@ -113,7 +186,18 @@ int main(int argc, char **argv) {
         0.5
     );
 
-    std::cout << result << std::endl;
+    Matrix const form = blackScholes_Formula(
+        0.1,
+        0.4,
+        0.25,
+        10,
+        30,
+        0.001,
+        0.5
+    );
+
+    // fdm - fm
+    std::cout << (fdme + (form * -1)) << "\n";
 
     return 0;
 }
