@@ -35,7 +35,10 @@ double brownianMotion(double t){
 
 double arithmeticBrownianMotion(double xt, double h, double u, double o){
     /*
-     * X(t+h) - X(t) ~ uh + o[X(t+h) - X(t)] = uh + o[N(0, t)] = uh + N(0, oot) = N(uh, oot)
+     * X(t+h) - X(t) ~ uh + o[X(t+h) - X(t)] = uh + o[N(0, t)] = uh + N(0, oot) = N(uh, oot), where
+     *   u - mju - drift, mean = drift * dt, drift = mean / dt
+     *   o - sigma - volatility, stdDev = o * sqrt(dt), o = stdDev / sqrt(dt), o = sqrt(variance / dt)
+     *   dt - for annual calculation dt = 1/252
      */
 
     double const xth = xt + std::normal_distribution<>(u * h, o * o * h)(gen);
