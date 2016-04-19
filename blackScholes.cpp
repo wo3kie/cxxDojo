@@ -160,16 +160,60 @@ Matrix blackScholes_Formula(
             double const price = 1.0 * s * dS;
 
             double const d1 = (1 / (o * std::sqrt(time)))
-                * (std::log(price / K) + (r + o * o / 2) * (time));
+                * (std::log(price / K) + (r + o * o / 2) * time);
 
             double const d2 = d1 - o * std::sqrt(time);
 
-            f[t][s] = N(d1) * price - N(d2) * K * std::exp(-r * (time));
+            f[t][s] = N(d1) * price - N(d2) * K * std::exp(-r * time);
         }
     }
 
     return f;
 }
+
+/*
+ * Monte Carlo
+ */
+
+#include <random>
+
+ Matrix monteCarlo(
+    double const r,       // risk free rate               (%)
+    double const o,       // annual volatility            (%)
+    double const tMax,    // expiry date,                 (y) 1.0=1y, 0.25=3m
+    double const K,       // strike price                 ($)
+    double const sMax,    // max stock price to consider  ($)
+    double const dT,      // time step                    (y) 1.0=1y, 0.25=3m
+    double const dS       // stock price step             ($)
+ ){
+    double const T = tMax / dT;
+    double const S = sMax / dS;
+    Matrix f = Matrix(T + 1, S + 1, -1);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    for(int t = 0; t <= T; ++t){
+        for(int s = 0; s <= S; s++){
+            double N = 200;
+            double runningSum = 0;
+            double const price = 1.0 * s * dS;
+            double const time = tMax - 1.0 * t * dT;
+
+            for (unsigned long i = 0; i < N; i++) {
+                double const wt = std::sqrt(time) * std::normal_distribution<>(0, 1)(gen);
+                double const e = ((r - 0.5 * o * o) * time) + o * wt;
+                double const S = price * std::exp(e);
+
+                runningSum += std::max(S - K, 0.0);
+            }
+
+            f[t][s] = exp(-r * time) * (runningSum / N);
+        }
+    }
+
+     return f;
+ }
 
 /*
  * main
@@ -196,8 +240,19 @@ int main(int argc, char **argv) {
         0.5
     );
 
-    // fdm - fm
-    std::cout << (fdme + (form * -1)) << "\n";
+    Matrix const mc = monteCarlo(
+        0.1,
+        0.4,
+        0.25,
+        10,
+        30,
+        0.001,
+        0.5
+    );
+
+    std::cout
+        << (form + (fdme * -1)) << "\n\n"
+        << (form + (mc * -1)) << "\n";
 
     return 0;
 }
