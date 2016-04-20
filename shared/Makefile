@@ -1,14 +1,18 @@
+include ../common.mk
 
 all: libshared.so main
 
-main: main.cpp
-	g++ --std=c++11 -g3 -c main.cpp -o main.o
-	g++ --std=c++11 -g3 main.o -o main -L. -lshared -ldl
+main.o: main.cpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
-libshared.so: shared.cpp shared.h
-	g++ -g3 -fpic -c shared.cpp -o shared.o
-	g++ -g3 -shared shared.o -o libshared.so
+main: main.o
+	$(CXX) $(CXXFLAGS) $< -o $@ -L. -ldl -lshared
+
+shared.o: shared.cpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS) -fpic
+
+libshared.so: shared.o
+	$(CXX) $< -o $@ $(CXXFLAGS) -shared
 
 clean:
 	rm -rf main libshared.so *.o *.gch
-

@@ -1,15 +1,11 @@
-CXX=g++
+include ../common.mk
 
-CXXFLAGS=--std=c++11 -g
-INC=-I/usr/local/include
-LIBS=/usr/local/lib/liblua.a
-LDLIBS=$(LIB) -ldl
+LDLIBS += /usr/local/lib/liblua.a -ldl
 
 all: main
 
 main: main.cpp
-	$(CXX) $< -o main $(CXXFLAGS) $(INC) $(LIBS) $(LDLIBS)
+	$(CXX) $< -o $@ $(CXXFLAGS) $(LDLIBS)
 
 clean:
 	rm -rf main *.gch
-
