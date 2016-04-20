@@ -11,6 +11,8 @@ C++11
 boost  
 xml2  
 openssl  
+lua  
+gsl  
 
 ## How to build it?  
 make  
@@ -26,7 +28,7 @@ Implement simple echo server and text line based client to work with server.
 [console 2] $ server echo: test  
 ```
 
-**2. xpath.cpp/xpath.xml**  
+**2. xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.  
 ```{r, engine='bash'}
 $ ./xpath xpath.xml "/doc/name/@first"  
@@ -61,7 +63,7 @@ Hello World
 **6. bind.cpp**  
 What is _boost::apply_? What is _boost::protect_? Write a short program to demonstrate usage of each of them.  
 
-**7. sign.verify.cpp**  
+**7. ssl/sign.verify.cpp**  
 Write a program to sign/verify a message with a RSA key.  
 
 ```{r, engine='bash'}
@@ -270,7 +272,7 @@ Implement a simple Java class and then call its code from C++ application. Use J
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Java_Native_Interface) Java Native Interface (JNI) is a programming framework that enables Java code running in a Java Virtual Machine to call and be called by native applications and libraries written in other languages such as C, C++ and assembly.
 
-**30. xml.cpp**  
+**30. xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?  
 
 **31. json.cpp**  
@@ -399,19 +401,19 @@ Move from 3 to 2
 Move from 1 to 2
 ```  
 
-**46. interpolation.cpp**  
+**46. gsl/interpolation.cpp**  
 Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?  
 
-**47. mean.cpp**  
+**47. gsl/mean.cpp**  
 Implement a function to calculate a mean value from a collection.  
 
-**48. variance.cpp**  
+**48. gsl/variance.cpp**  
 Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
 
 **49. standardDeviation.cpp**  
 Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation), standard deviation indicates how the data values tend to be close to the mean.
 
-**50. correlation.cpp**  
+**50. gsl/correlation.cpp**  
 Implement a function to calculate a correlation between two collections.  
 
 **51. exponentialSmoothing.cpp**  
@@ -426,7 +428,7 @@ Implement a function to make a LU decomposition of a matrix.
 **54. ode.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.  
 
-**55. covariance.cpp**  
+**55. gsl/covariance.cpp**  
 Implement a function to calculate a covariance between two collections.  
 
 **56. matrix.cpp**  
