@@ -71,6 +71,10 @@ Matrix blackScholes_FDM_Explicit(
     double const dS       // stock price step             ($)
 )
 {
+    /*
+     * Stability criterion is given by the formula: dT/(dSdS) <= 1/2
+     */
+
     double const T = tMax / dT;
     double const S = sMax / dS;
     Matrix f = Matrix(T + 1, S + 1, -1);
