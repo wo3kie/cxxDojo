@@ -31,6 +31,7 @@
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/bind.hpp>
+#include <boost/algorithm/string/replace.hpp>
 
 #include "../base64.encode.hpp"
 
@@ -219,6 +220,13 @@ std::string getHttpsResponse(
     return response;
 }
 
+std::string encodeQuery(std::string query){
+    boost::algorithm::replace_all(query, "+", "%2B");
+    boost::algorithm::replace_all(query, " ", "+");
+
+    return query;
+}
+
 std::string bingWebSearchQuery(
     std::string const query,
     std::string const basicAuthenticationToken
@@ -226,7 +234,7 @@ std::string bingWebSearchQuery(
     // todo white spaces escaping in query
 
     std::string const host = "api.datamarket.azure.com";
-    std::string const resource = "/Bing/Search/Web?Query=%27" + query + "%27";
+    std::string const resource = "/Bing/Search/Web?Query=%27" + encodeQuery(query) + "%27";
 
     std::string const response = getHttpsResponse(
         "api.datamarket.azure.com",
