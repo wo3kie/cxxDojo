@@ -1,0 +1,709 @@
+<?xml version="1.0"?>
+<feed xmlns:base="https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">Black-Scholes explanation</title>
+  <subtitle type="text">Bing Web Search</subtitle>
+  <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'</id>
+  <rights type="text"/>
+  <updated>2016-04-24T10:49:06Z</updated>
+  <link rel="next" href="https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes%20explanation'&amp;$skip=50"/>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=0&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">75ce4f26-2f6c-4918-a908-a1d55831eb72</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes: A Simple Explanation - YouTube</d:Title>
+        <d:Description m:type="Edm.String">Black Scholes: A Simple Explanation ... In this video, I give a general overview of the Black Scholes formula, and then break down N(d2) in detail.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.youtube.com/watch?v=Xy_txjKPNyg</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.youtube.com/watch?v=Xy_txjKPNyg</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=1&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">2603bc64-8122-4d18-b792-75c5aacdbc06</d:ID>
+        <d:Title m:type="Edm.String">Black&#x2013;Scholes model - Wikipedia, the free encyclopedia</d:Title>
+        <d:Description m:type="Edm.String">The Black&#x2013;Scholes / &#x2CC; b l &#xE6; k &#x2C8; &#x283; o&#x28A; l z / or Black&#x2013;Scholes&#x2013;Merton model is a mathematical model of a financial market containing derivative investment ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://en.wikipedia.org/wiki/Black&#x2013;Scholes</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://en.wikipedia.org/wiki/Black%E2%80%93Scholes</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=2&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">2a13eb56-5477-4597-a5fd-f33899100281</d:ID>
+        <d:Title m:type="Edm.String">Introduction to the Black Scholes Formula - Khan Academy</d:Title>
+        <d:Description m:type="Edm.String">Khan Academy is a nonprofit with the mission of providing a free, world-class education for anyone, anywhere. ... Introduction to the Black-Scholes formula;</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.khanacademy.org/economics-finance-domain/core-finance/...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.khanacademy.org/economics-finance-domain/core-finance/derivative-securities/Black-Scholes/v/introduction-to-the-black-scholes-formula</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=3&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">aeaf8232-8dd9-4451-82c6-dfc76be064fd</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes Model Definition | Investopedia</d:Title>
+        <d:Description m:type="Edm.String">What is the 'Black Scholes Model' The Black Scholes model is a model of price variation over time of financial instruments such as stocks that can, among other things ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.investopedia.com/terms/b/blackscholes.asp</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.investopedia.com/terms/b/blackscholes.asp</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=4&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">d56dccfb-6bd0-46ec-bcfc-5a6b92c65c97</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes Model - Stock Options Made Easy</d:Title>
+        <d:Description m:type="Edm.String">The Black Scholes Model is one of the most important concepts in modern financial theory. The BSM is considered the standard model for valuing options.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.stock-options-made-easy.com/black-scholes-model.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.stock-options-made-easy.com/black-scholes-model.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=5&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">4560d781-b462-4126-8a70-e695c246e0d7</d:ID>
+        <d:Title m:type="Edm.String">What is an intuitive explanation of the Black-Scholes ...</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes formula is pretty easy to understand intuitively. It is used to value a european call option given the parameters. In the above formula we can imagine ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.quora.com/What-is-an-intuitive-explanation-of-the...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.quora.com/What-is-an-intuitive-explanation-of-the-Black-Scholes-model</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=6&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">50f13be7-4a4c-4850-9248-f0a840fe7625</d:ID>
+        <d:Title m:type="Edm.String">Black&#x2013;Scholes equation - Wikipedia, the free encyclopedia</d:Title>
+        <d:Description m:type="Edm.String">In mathematical finance, the Black&#x2013;Scholes equation is a partial differential equation (PDE) governing the price evolution of a European call or European put under ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://en.wikipedia.org/wiki/Black&#x2013;Scholes_equation</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_equation</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=7&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">4f6ac489-f17b-4dc8-ac80-6e3d82df88a4</d:ID>
+        <d:Title m:type="Edm.String">BBC News - Black-Scholes: The maths formula linked to the ...</d:Title>
+        <d:Description m:type="Edm.String">But Black and Scholes weren't the only kids in the candy store, says Ian Stewart, whose book argues that Black-Scholes was a dangerous invention.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.bbc.co.uk/news/magazine-17866646</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.bbc.co.uk/news/magazine-17866646</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=8&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">91b40824-5b47-4396-ab0c-696aedf39214</d:ID>
+        <d:Title m:type="Edm.String">Options Pricing: Black-Scholes Model | Investopedia</d:Title>
+        <d:Description m:type="Edm.String">Options Pricing: Black-Scholes Model. By Jean Folger. The Black-Scholes model for calculating the premium of an option was introduced in 1973 in a paper entitled, ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.investopedia.com/.../options-pricing/black-scholes-model.asp</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.investopedia.com/university/options-pricing/black-scholes-model.asp</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=9&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">d5fd74e0-3fd9-4b9a-8c90-27ab4ca5bcd8</d:ID>
+        <d:Title m:type="Edm.String">ACCAPEDIA - kfknowledgebank.kaplan.co.uk</d:Title>
+        <d:Description m:type="Edm.String">Black Scholes option pricing model . Options are a key tool to assist financial risk management. Options give the right but not the obligation to fix the price of a ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">kfknowledgebank.kaplan.co.uk/KFKB/Wiki Pages/Black Scholes option...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://kfknowledgebank.kaplan.co.uk/KFKB/Wiki%20Pages/Black%20Scholes%20option%20pricing%20model.aspx?mode=none</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=10&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">f373b62a-4073-4484-a58e-f0adc1a594b2</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Excel Formulas and How to Create a Simple ...</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Excel Formulas and How to Create a Simple Option Pricing Spreadsheet. This page is a guide to creating your own option pricing Excel spreadsheet, in ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.macroption.com/black-scholes-excel</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.macroption.com/black-scholes-excel/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=11&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">953e1a71-1b5e-4e39-a61b-9943a7784a83</d:ID>
+        <d:Title m:type="Edm.String">What is simplest derivation to the Black-Scholes model ...</d:Title>
+        <d:Description m:type="Edm.String">What is simplest derivation to the Black-Scholes model with explanation? Update Cancel. Answer Wiki. ... What is an intuitive explanation of the Black-Scholes model?</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.quora.com/What-is-simplest-derivation-to-the-Black...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.quora.com/What-is-simplest-derivation-to-the-Black-Scholes-model-with-explanation</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=12&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">9991161b-54d2-4384-95e4-ac84b7176bc6</d:ID>
+        <d:Title m:type="Edm.String">The Black-Scholes Equation - Srikant Marakani</d:Title>
+        <d:Description m:type="Edm.String">The Black-Scholes Equation. The pioneering work of Black and Scholes started the serious study of the theory of option pricing. All further advances in this field ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">srikant.org/thesis/node8.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://srikant.org/thesis/node8.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=13&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">4f6b2dcb-dc9d-42cb-8559-33dbeb04f631</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes financial definition of Black-Scholes</d:Title>
+        <d:Description m:type="Edm.String">Black Scholes Model A model for mathematically pricing options. The model takes into account the strike price, the time until the expiration date, the price of the ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">financial-dictionary.thefreedictionary.com/Black-Scholes</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://financial-dictionary.thefreedictionary.com/Black-Scholes</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=14&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">df5eb44d-7d9b-4fdd-8071-b4fe707914f2</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Model - Knowledge Center - 12manage</d:Title>
+        <d:Description m:type="Edm.String">All you need to know about Black-Scholes Model. Summary, forum, expert tips, powerpoints, videos. Description, explanation and definition.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.12manage.com/description_black_scholes_model.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.12manage.com/description_black_scholes_model.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=15&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">d3882fd5-0a6b-47e0-9813-31747c99b353</d:ID>
+        <d:Title m:type="Edm.String">The Black-Scholes Financial Model | Black Scholes</d:Title>
+        <d:Description m:type="Edm.String">The Black-Scholes Financial Model What every trader should know about the founding fathers of binary options. The important Black-Scholes economics formula for ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.black-scholes.co.uk</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.black-scholes.co.uk/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=16&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">9894f42e-aacd-4c09-ab54-175ab520aac5</d:ID>
+        <d:Title m:type="Edm.String">The Black-Scholes Model - Baruch College</d:Title>
+        <d:Description m:type="Edm.String">The Black-Scholes-Merton (BSM) model Black and Scholes (1973) and Merton (1973) derive option prices under the following assumption on the stock price dynamics,</d:Description>
+        <d:DisplayUrl m:type="Edm.String">faculty.baruch.cuny.edu/lwu/9797/Lec6.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://faculty.baruch.cuny.edu/lwu/9797/Lec6.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=17&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">42197726-d353-4cfc-a6f9-c7a1d9001f97</d:ID>
+        <d:Title m:type="Edm.String">What is Black-Scholes Option Pricing Model? definition and ...</d:Title>
+        <d:Description m:type="Edm.String">Definition of Black-Scholes Option Pricing Model: A model used to calculate the value of an option, by considering the stock price, strike price and...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.investorwords.com/487/Black_Scholes_Option_Pricing_Model</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.investorwords.com/487/Black_Scholes_Option_Pricing_Model.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=18&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">a9095da0-fa9a-4e8c-b0ad-57722a680db8</d:ID>
+        <d:Title m:type="Edm.String">black scholes option pricing and option trading</d:Title>
+        <d:Description m:type="Edm.String">basic black scholes option pricing theory and applications to trading. Basic Black Scholes.com: ... a clear explanation of basic option pricing theory, ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.basicblackscholes.com</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.basicblackscholes.com/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=19&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">8a7045c9-dc13-44d0-ab71-74de6e3df9e0</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes spreadsheet</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Option Pricing Model (with dilution) *Note: This spreadsheet requires iterative calculations which may result in circular references.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www3.nd.edu/~scorwin/fin40610/BlackScholes.xls</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www3.nd.edu/~scorwin/fin40610/BlackScholes.xls</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=20&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">23ca7617-b03a-4194-8931-e1dbe062d051</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes Model financial definition of Black Scholes ...</d:Title>
+        <d:Description m:type="Edm.String">Black Scholes Model A model for mathematically pricing options. The model takes into account the strike price, the time until the expiration date, the price of the ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">financial-dictionary.thefreedictionary.com/Black+Scholes+Model</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://financial-dictionary.thefreedictionary.com/Black+Scholes+Model</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=21&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">67b1c80d-1db3-4e12-aeeb-2e1e2c6b88f6</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Option Pricing Model -- Intro and Call ...</d:Title>
+        <d:Description m:type="Edm.String">Introduces the Black-Scholes Option Pricing Model and walks through an example of using the BS OPM to find the value of a call. Supplemental files ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.youtube.com/watch?v=i0sGAds8ztI</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.youtube.com/watch?v=i0sGAds8ztI</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=22&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">670c6f0a-6c49-4b80-9f00-514e779ff603</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Formula (d1, d2, Call Price, Put Price, Greeks)</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Formula (d1, d2, Call Price, Put Price, Greeks) This page explains the Black-Scholes formulas for d1, d2, call option price, put option price, and ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.macroption.com/black-scholes-formula</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.macroption.com/black-scholes-formula/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=23&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">07256afc-8c20-4b68-aadb-e21b78338512</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes Option Pricing Model Definition, Example</d:Title>
+        <d:Description m:type="Edm.String">Black Scholes Option Pricing Model definition, formula, and example of the Model as used to price options.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.call-options.com/black-scholes.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.call-options.com/black-scholes.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=24&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">54788f36-1434-4aa2-838b-4882e37a487e</d:ID>
+        <d:Title m:type="Edm.String">LECTURE 7: BLACK&#x2013;SCHOLES THEORY</d:Title>
+        <d:Description m:type="Edm.String">LECTURE 7: BLACK&#x2013;SCHOLES THEORY 1. Introduction: The Black&#x2013;Scholes Model In 1973 Fisher Black and Myron Scholes ushered in the modern era of derivative securities ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">galton.uchicago.edu/~lalley/Courses/390/Lecture7.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://galton.uchicago.edu/~lalley/Courses/390/Lecture7.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=25&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">03ed4268-8528-4c82-954f-3861ec706902</d:ID>
+        <d:Title m:type="Edm.String">Risk Latte - Understanding the Black-Scholes Partial ...</d:Title>
+        <d:Description m:type="Edm.String">Understanding the Black-Scholes Partial Differential Equation (PDE) Team latte August 9, 2009. The other day we had a little discussion about the Black-Scholes ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.risklatte.com/Articles/QuantitativeFinance/QF165.php</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.risklatte.com/Articles/QuantitativeFinance/QF165.php</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=26&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">7d16365f-148e-412d-bfba-f718bf07d115</d:ID>
+        <d:Title m:type="Edm.String">CHAPTER 4 The Black-Scholes Equation - Administration</d:Title>
+        <d:Description m:type="Edm.String">CHAPTER 4 The Black-Scholes Equation We have stated that standard Brownian motionwith drift is described by the stochastic di erential equation dx = dt+&#x2D9;dW</d:Description>
+        <d:DisplayUrl m:type="Edm.String">people.math.gatech.edu/~meyer/MA6635/chap4.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://people.math.gatech.edu/~meyer/MA6635/chap4.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=27&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">94aa8631-95dd-49b0-bd5c-fa40616958d9</d:ID>
+        <d:Title m:type="Edm.String">Difference between N(d1) and N(d2) - Finance Training Course</d:Title>
+        <d:Description m:type="Edm.String">Understanding the difference between N(d1) and N(d2) Lars Tyge Nielsen provides an interpretation of N(d 1) and N(d 2) and an explanation behind the difference ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">financetrainingcourse.com/.../03/option-pricing-black-scholes...vs-nd2</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://financetrainingcourse.com/education/2011/03/option-pricing-black-scholes-probabilities-explained-understanding-nd1-vs-nd2/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=28&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">aad82aa4-ca5b-4f2f-84a6-29766bc0d05a</d:ID>
+        <d:Title m:type="Edm.String">Option Pricing Models (Black-Scholes &amp; Binomial) | Hoadley</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes and the binomial model are used for option pricing. Pay-off diagrams are used to show trading profitability. ... Option Pricing Models and the "Greeks"</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.hoadley.net/options/bs.htm</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.hoadley.net/options/bs.htm</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=29&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">a7efdf43-ca78-4b31-9e7f-413418734e50</d:ID>
+        <d:Title m:type="Edm.String">Understanding N d ) and N d ): Black-Scholes Model</d:Title>
+        <d:Description m:type="Edm.String">Understanding N(d 1) and N(d 2): Risk-Adjusted Probabilities in the Black-Scholes Model 1 LarsTygeNielsen INSEAD BoulevarddeConstance 77305FontainebleauCedex</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.ltnielsen.com/wp-content/uploads/Understanding.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.ltnielsen.com/wp-content/uploads/Understanding.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=30&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">ba9ea490-6eeb-461e-a8f3-120814393fb1</d:ID>
+        <d:Title m:type="Edm.String">NOVA Online | Trillion Dollar Bet | The Formula that Shook ...</d:Title>
+        <d:Description m:type="Edm.String">The Formula That Shook The World Let's not kid ourselves: The Black-Scholes option-pricing formula is a difficult concept to grasp. To begin to understand the ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.pbs.org/wgbh/nova/stockmarket/formula.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.pbs.org/wgbh/nova/stockmarket/formula.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=31&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">e768f81d-4fa1-4442-a666-76afab814593</d:ID>
+        <d:Title m:type="Edm.String">BLACK - SCHOLES -- OPTION PRICING MODELS</d:Title>
+        <d:Description m:type="Edm.String">The Black and Scholes Model: The Black and Scholes Option Pricing Model didn't appear overnight, in fact, Fisher Black started out working to create a valuation model ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">bradley.bradley.edu/~arr/bsm/pg04.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://bradley.bradley.edu/~arr/bsm/pg04.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=32&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">9df7b1c9-aae0-4448-a9dd-ae50e01792da</d:ID>
+        <d:Title m:type="Edm.String">Quick primer on Black Scholes - riskprep.com</d:Title>
+        <d:Description m:type="Edm.String">Quick primer on Black Scholes Written by Mukul Pareek Created on Monday, 27 December 2010 21:08 ... [Risk neutrality - my version of an intuitive explanation: ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.riskprep.com/.../124-quick-primer-on-black-scholes</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.riskprep.com/all-tutorials/36-exam-22/124-quick-primer-on-black-scholes</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=33&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">4249c885-a981-4705-be94-d853784fe01b</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes-Merton: A 40-year revolution in finance ...</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes-Merton: A 40-year revolution in finance Published: October 2, 2013 Professor Robert Merton discusses the transformative financial model that won him the ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">mitsloan.mit.edu/newsroom/articles/black-scholes-merton-a-40-year...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://mitsloan.mit.edu/newsroom/articles/black-scholes-merton-a-40-year-revolution-in-finance/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=34&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">d944dd4a-0c7c-4334-a918-7f54ec45f3bf</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Option Pricing Model explanation | Private ...</d:Title>
+        <d:Description m:type="Edm.String">What are Black-Scholes Option Pricing Model A Brief Explanation of Black-Scholes Option Pricing Model | Definition. The private equity definition for Black-Scholes ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">privateequity.com/.../black-scholes-option-pricing-model-explanation</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://privateequity.com/definition/tag/black-scholes-option-pricing-model-explanation/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=35&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">898a7612-1775-4cee-a9d7-42bcdfffbae3</d:ID>
+        <d:Title m:type="Edm.String">Advanced: Black Scholes calculation with a real ...</d:Title>
+        <d:Description m:type="Edm.String">Advanced: Black Scholes calculation with a real example. Balaji Viswanathan. This is an advanced lesson in derivatives trading. To calculate option pricing using ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://zingfin.quora.com/Advanced-Black-Scholes-calculation-with...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://zingfin.quora.com/Advanced-Black-Scholes-calculation-with-a-real-example</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=36&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">3d55be8b-e40f-4519-a66f-1eac32c201be</d:ID>
+        <d:Title m:type="Edm.String">Black Scholes Made Easy - Investment U</d:Title>
+        <d:Description m:type="Edm.String">In issue #557, Dr. Mark Skousen explains the Black Scholes model for pricing stock options &amp; how you can apply in options trading.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.investmentu.com/article/detail/736/black-scholes-made-easy</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.investmentu.com/article/detail/736/black-scholes-made-easy</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=37&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">e6934e04-1a9c-4503-b8e1-1480981c60ab</d:ID>
+        <d:Title m:type="Edm.String">How do you explain the volatility smile in the Black ...</d:Title>
+        <d:Description m:type="Edm.String">How do you explain the volatility smile in the Black-Scholes framework? ... Does anyone have an explanation for the currently naturally forming volatility smile ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">quant.stackexchange.com/questions/4503/how-do-you-explain-the...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://quant.stackexchange.com/questions/4503/how-do-you-explain-the-volatility-smile-in-the-black-scholes-framework</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=38&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">a8a76174-a00e-4411-8645-0f1f5fa1c973</d:ID>
+        <d:Title m:type="Edm.String">DERIVATION OF THE BLACK-SCHOLES EQUATION</d:Title>
+        <d:Description m:type="Edm.String">Derivation of the Black-Scholes Equation for Option Value A call option is the right to buy a security at a specified price (called the exercise or strike price) ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.sjsu.edu/faculty/watkins/blacksch2.htm</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.sjsu.edu/faculty/watkins/blacksch2.htm</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=39&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">5862d065-9420-473a-90c7-49c758ef8838</d:ID>
+        <d:Title m:type="Edm.String">The Black-Scholes PDE from Scratch</d:Title>
+        <d:Description m:type="Edm.String">The Black-Scholes PDE from Scratch chris bemis November 27, 2006 0-0. ... Black-Scholes is used to show that Black-Scholes is lacking. We could enrich the model.</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.math.umn.edu/~adams005/Financial/Materials/bemis5.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.math.umn.edu/~adams005/Financial/Materials/bemis5.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=40&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">d107f218-73c3-4c42-bdbb-39b8765341e6</d:ID>
+        <d:Title m:type="Edm.String">4.3 The Black-Scholes Partial Di erential Equation</d:Title>
+        <d:Description m:type="Edm.String">4.3 The Black-Scholes Partial Di erential Equation Let Sbe the price at time tof a particular asset. After a (short) time interval of length dt,</d:Description>
+        <d:DisplayUrl m:type="Edm.String">mathsci.ucd.ie/modules/mst3024/section4-3.pdf</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://mathsci.ucd.ie/modules/mst3024/section4-3.pdf</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=41&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">56e23752-c884-4fb8-a150-39e2fde4c3f9</d:ID>
+        <d:Title m:type="Edm.String">black scholes : definition of black scholes and synonyms ...</d:Title>
+        <d:Description m:type="Edm.String">Definitions of black scholes, synonyms, antonyms, derivatives of black scholes, analogical dictionary of black scholes (English)</d:Description>
+        <d:DisplayUrl m:type="Edm.String">dictionary.sensagent.com/black scholes/en-en</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://dictionary.sensagent.com/black%20scholes/en-en/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=42&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">ae6e8dda-4c05-4eb8-b388-e705adfe174a</d:ID>
+        <d:Title m:type="Edm.String">Using Black-Scholes to Put a Value on Stock Options</d:Title>
+        <d:Description m:type="Edm.String">Using Black-Scholes to Put a Value on Stock Options Since option grants to employees depend on a stock's future price, they are difficult to value, but this model ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">beginnersinvest.about.com/lw/Business-Finance/Personal-finance/...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://beginnersinvest.about.com/lw/Business-Finance/Personal-finance/Using-Black-Scholes-to-Put-a-Value-on-Stock-Options.htm</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=43&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">966b1ee9-00cb-486c-8ced-08823272d05c</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes model | Bionic Turtle</d:Title>
+        <d:Description m:type="Edm.String">Hi David, You show us very intuitive way to understand Black-Scholes model in your article "Option Pricing Models (OPM). Part 4: Black-Scholes".</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.bionicturtle.com/forum/threads/black-scholes-model.12</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.bionicturtle.com/forum/threads/black-scholes-model.12/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=44&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">44f825a4-aff8-4cc3-baff-41712a63d960</d:ID>
+        <d:Title m:type="Edm.String">Derivation of the Black-Scholes equation</d:Title>
+        <d:Description m:type="Edm.String">In writing the Black-Scholes equation, we will find the value of the price of the call option w(x,t) necessary to allow the hedge equity to grow at the same rate as ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.physics.uci.edu/~silverma/bseqn/bs/node3.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.physics.uci.edu/%7Esilverma/bseqn/bs/node3.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=45&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">531858b4-df80-4e91-a5ab-c7b44457d014</d:ID>
+        <d:Title m:type="Edm.String">Black - Scholes Model Assumptions</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Model Assumptions How to Improve the BS assumptions Constant volatility price changes smoothly constant short-term interest rate No trading cost</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.umsl.edu/~fungh/BSMODEL.PPT</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.umsl.edu/%7Efungh/BSMODEL.PPT</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=46&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">ecc95ed5-5664-4c2c-9756-98d642dbce05</d:ID>
+        <d:Title m:type="Edm.String">black-scholes.xls - NYU Stern</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Option Pricing Model with Dividends Current Stock Price Exercise Price Risk-Free Interest Rate Expected Life of Option Volatility Dividend Yield</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.stern.nyu.edu/~igiddy/spreadsheets/black-scholes.xls</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.stern.nyu.edu/%7Eigiddy/spreadsheets/black-scholes.xls</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=47&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">8e18bddf-f5b7-4c48-82b6-e10ff90ee7ba</d:ID>
+        <d:Title m:type="Edm.String">Black-Scholes Model for Value of Call Options Calculation</d:Title>
+        <d:Description m:type="Edm.String">Black-Scholes Value of Call Input Data Exercise Price of Option (EX) Output Data s*t^.5 d1 d2 Value of Call Value of Put Delta N(d1) Normal Cumulative Density Function</d:Description>
+        <d:DisplayUrl m:type="Edm.String">www.sup.org/entrepreneurialfinance/Excel Templates/Black-Scholes...</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://www.sup.org/entrepreneurialfinance/Excel%20Templates/Black-Scholes%20Template.xls</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=48&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">2b60eeae-77c9-4679-aa3e-8f9a43f61f6a</d:ID>
+        <d:Title m:type="Edm.String">European call and put options, The Black Scholes analysis.</d:Title>
+        <d:Description m:type="Edm.String">European call and put options, The Black Scholes analysis. A call (put) option gives the holder the right, but not the obligation, to buy (sell) some underlying asset ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">finance.bi.no/~bernt/gcc_prog/algoritms_v1/algoritms/node8.html</d:DisplayUrl>
+        <d:Url m:type="Edm.String">http://finance.bi.no/~bernt/gcc_prog/algoritms_v1/algoritms/node8.html</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+  <entry>
+    <id>https://api.datamarket.azure.com/Data.ashx/Bing/Search/Web?Query='Black-Scholes explanation'&amp;$skip=49&amp;$top=1</id>
+    <title type="text">WebResult</title>
+    <updated>2016-04-24T10:49:06Z</updated>
+    <content type="application/xml">
+      <m:properties>
+        <d:ID m:type="Edm.Guid">e8cfcd44-9197-4ca4-97f9-e6287d99ca60</d:ID>
+        <d:Title m:type="Edm.String">The Black Scholes Model | Random Walk Trading</d:Title>
+        <d:Description m:type="Edm.String">The Black Scholes Model; Option Strategy List. Synthetic Positions. Synthetic Overview; ... A brief explanation of the terms will follow. Equations. C(S,T) = SN ...</d:Description>
+        <d:DisplayUrl m:type="Edm.String">https://www.randomwalktrading.com/the-black-scholes-model</d:DisplayUrl>
+        <d:Url m:type="Edm.String">https://www.randomwalktrading.com/the-black-scholes-model/</d:Url>
+      </m:properties>
+    </content>
+  </entry>
+</feed>
