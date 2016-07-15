@@ -460,3 +460,7 @@ Implement a program to calculate simple Brownian motion, Brownian motion with dr
 
 **61. ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.  
+  
+**62. countBits.cpp**  
+Implement a program to count 1 bits in a number. Can you use constexpr to do it?  
+
