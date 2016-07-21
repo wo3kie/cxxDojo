@@ -466,5 +466,16 @@ Implement a program to count 1 bits in a number. Can you use constexpr to do it?
   
 **63. reverseWords.cpp**  
 Implement a program to reverse words in a given sentence.  
-
+  
+**64. rotateMatrix.cpp**  
+Implement a program to rotate inplace matrix to right by 90 degrees  
+  
+```{r, engine='bash'}  
+1 2 3    7 4 1
+4 5 6 -> 8 5 2
+7 8 9    9 6 3
+```  
+  
+**65. generateAllSubsets.cpp**  
+For a given set of numbers generate all possible subsets.  
 
