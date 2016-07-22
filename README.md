@@ -478,4 +478,11 @@ Implement a program to rotate inplace matrix to right by 90 degrees
   
 **65. generateAllSubsets.cpp**  
 For a given set of numbers generate all possible subsets.  
+  
+**66. parenthesis.cpp**  
+Implement a program to generate all strings correctly matched _n_ pairs of parenthesis, eg.:  
+
+```{r, engine='bash'}
+3: , , (), ()(), ()()(), ()(()), (()), (())(), (()()), ((()))  
+```
 
