@@ -485,4 +485,11 @@ Implement a program to generate all strings correctly matched _n_ pairs of paren
 ```{r, engine='bash'}
 3: , , (), ()(), ()()(), ()(()), (()), (())(), (()()), ((()))  
 ```
+  
+**67. longestIncreasingSubsequence.cpp**  
+Implement a program to find a longest increasing subsequence in  a given sequence, eg.:  
+
+```{r, engine='bash'}
+lis( {1, 9, 2, 8, 3, 7, 4} ) == { 1, 3, 4, 4 } )  
+```
 
