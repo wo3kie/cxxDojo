@@ -504,4 +504,6 @@ Implement Dijkstra algorithm.
 **70. bellmanFord.cpp**  
 Implement Bellman-Ford algorithm.  
   
+**71. floydWarshall.cpp**  
+Implement Floyd-Warshall algorithm.  
 
