@@ -1,3 +1,17 @@
+/*
+ * Website:
+ *      https://github.com/wo3kie/dojo
+ *
+ * Author:
+ *      Lukasz Czerwinski
+ *
+ * Compilation:
+ *      g++ --std=c++11 floydWarshall.cpp -o floydWarshall
+ *
+ * Usage:
+ *      $ ./floydWarshall
+ */
+
 #include <algorithm>
 #include <cassert>
 #include <vector>
