@@ -11,6 +11,7 @@
  * Usage:
  *      $ ./dijkstra
  */
+
 #include <algorithm>
 #include <cassert>
 #include <limits>
@@ -18,11 +19,11 @@
 
 #include "./output.hpp"
 
-typedef std::vector<std::vector<int>> Matrix;
-
 /*
  * S. Dasgupta, C. Papadimitrioui U. Vazirani, Algorithms
  */
+
+typedef std::vector<std::vector<int>> Matrix;
 
 std::pair<std::vector<int> /*dist*/, std::vector<int> /*prev*/>
 dijkstra(Matrix const & graph, int start = 0){
