@@ -510,4 +510,6 @@ Implement Floyd-Warshall algorithm.
 **72. treeClassification.cpp**  
 Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.  
   
+**73. matrixChainMultiplication.cpp**  
+From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) matrix chain multiplication is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.  
 
