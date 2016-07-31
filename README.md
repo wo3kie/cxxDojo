@@ -506,4 +506,8 @@ Implement Bellman-Ford algorithm.
   
 **71. floydWarshall.cpp**  
 Implement Floyd-Warshall algorithm.  
+  
+**72. treeClassification.cpp**  
+Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.  
+  
 
