@@ -102,7 +102,7 @@ bool isCompleteTreeImpl(
     std::unique_ptr<Node> const & node,
     unsigned currentDepth,
     unsigned & expectedDepth,
-    bool oneLevelUp
+    bool & oneLevelUp
 ){
     if(node == nullptr){
         return false;
@@ -262,6 +262,27 @@ void isCompleteTree_test(){
     // N   N N   N  N   N N
     root->right->left->right = std::make_unique<Node>();
     assert(isCompleteTree(root));
+
+    //            N
+    //      N            N
+    //   N            N     N
+    // N   N        N   N N
+    root->left->right = nullptr;
+    assert(! isCompleteTree(root));
+
+    //            N
+    //      N            N
+    //   N            N  
+    // N   N        N   N 
+    root->right->right = nullptr;
+    assert(! isCompleteTree(root));
+
+    //            N
+    //      N            N
+    //   N               
+    // N   N              
+    root->right->left = nullptr;
+    assert(! isCompleteTree(root));
 }
 
 int main(){
