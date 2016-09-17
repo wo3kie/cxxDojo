@@ -512,4 +512,8 @@ Check if a tree is a full tree or a complete tree. A full tree is a tree in whic
   
 **73. matrixChainMultiplication.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) matrix chain multiplication is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.  
+  
+**74. circular_buffer.cpp**  
+Implement a circular buffer.  
+  
 
