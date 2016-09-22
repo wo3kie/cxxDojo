@@ -522,4 +522,7 @@ Implement a function to print a tuple content.
 **76. layout.cpp**  
 Print struct/class layout for the most common cases.  
   
+**77. member_offset.cpp**  
+Implement a function to calculate struct/class member offert.  
+  
 
