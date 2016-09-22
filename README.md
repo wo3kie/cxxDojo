@@ -516,7 +516,10 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) matr
 **74. circular_buffer.cpp**  
 Implement a circular buffer.  
   
-**75.  print_tuple.cpp**  
+**75. print_tuple.cpp**  
 Implement a function to print a tuple content.  
+  
+**76. layout.cpp**  
+Print struct/class layout for the most common cases.  
   
 
