@@ -14,21 +14,7 @@
 
 #include <cassert>
 
-template<
-    typename ToType,
-    typename FromType
->
-ToType union_cast( FromType const & fromValue ){
-    static_assert( sizeof( ToType ) == sizeof( FromType ), "union_cast" );
-
-    union {
-        ToType toValue_;
-        FromType fromValue_;
-    } union_;
-
-    union_.fromValue_ = fromValue;
-    return union_.toValue_;
-}
+#include "./union_cast.hpp"
 
 struct S1{
     int i_;
