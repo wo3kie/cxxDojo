@@ -520,9 +520,12 @@ Implement a circular buffer.
 Implement a function to print a tuple content.  
   
 **76. layout.cpp**  
-Print struct/class layout for the most common cases.  
+Find struct/class layout for the most common cases.  
   
 **77. member_offset.cpp**  
 Implement a function to calculate struct/class member offert.  
+  
+**78. tuple.cpp**  
+Implement a simple _tuple_ class. Provide _get_ operator.  
   
 
