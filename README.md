@@ -528,4 +528,7 @@ Implement a function to calculate struct/class member offert.
 **78. tuple.cpp**  
 Implement a simple _tuple_ class. Provide _get_ operator.  
   
+**79. crtp.cpp**  
+Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.  
+  
 
