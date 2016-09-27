@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 tuple.cpp -o tuple
+ *      g++ --std=c++14 tuple.cpp -o tuple
  *
  * Usage:
  *      $ ./tuple
@@ -45,15 +45,14 @@ struct Tuple<Arg>
 };
 
 template<typename ... Args>
-Tuple<Args...> makeTuple(Args ... args){
-	return Tuple<Args...>(args...);
+constexpr Tuple<Args...> makeTuple(Args && ... args){
+	return Tuple<Args...>(std::forward<Args>(args)...);
 }
 
 template<int I, typename Arg, typename ... Args>
 struct Get
 {
-	auto operator()(Tuple<Arg, Args...> tuple)
-	{
+	constexpr auto operator()(Tuple<Arg, Args...> tuple) const {
 		return Get<I - 1, Args...>()(tuple.tail_);
 	}
 };
@@ -61,18 +60,18 @@ struct Get
 template<typename Arg, typename ... Args>
 struct Get<0, Arg, Args...>
 {
-	Arg operator()(Tuple<Arg, Args...> tuple){
+	constexpr Arg operator()(Tuple<Arg, Args...> tuple) const {
 		return tuple.head_;
 	}
 };
 
 template<int I, typename Arg, typename ... Args>
-auto get(Tuple<Arg, Args...> tuple){
+constexpr auto get(Tuple<Arg, Args...> tuple){
 	return Get<I, Arg, Args...>()(tuple);
 }
 
 template<typename Arg, typename ... Args>
-int size(Tuple<Arg, Args...> tuple){
+constexpr int size(Tuple<Arg, Args...> const & tuple){
 	return 1 + sizeof...(Args);
 }
 
