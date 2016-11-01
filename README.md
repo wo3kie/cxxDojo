@@ -539,4 +539,7 @@ void f(int, float, char){ /* ... */ }
 apply(f, std::make_tuple(1, 2.2, '3'));
 ```  
   
+**81. insmod.cpp**  
+Implement a Linux kernel module.  
+  
 
