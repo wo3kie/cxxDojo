@@ -531,4 +531,12 @@ Implement a simple _tuple_ class. Provide _get_ operator.
 **79. crtp.cpp**  
 Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.  
   
+**80. apply.cpp**  
+Implement a utility funtion to call another function with a tuple exploded to it as parameters.  
+  
+```{r, engine='cpp'}  
+void f(int, float, char){ /* ... */ }
+apply(f, std::make_tuple(1, 2.2, '3'));
+```  
+  
 
