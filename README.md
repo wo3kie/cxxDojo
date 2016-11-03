@@ -548,4 +548,7 @@ Implement a program calling jast a simple function. Generate an assembly code to
 **83. asm/plt.cpp**  
 Implement a simple program to demonstrate usage of plt table (procedural linkage table).  
   
+**84. asm/atomic.cpp**  
+Implement a simple program using std::atomic<int>. Generate an assembly code to how does std::atomic<int> differ from int.  
+  
 
