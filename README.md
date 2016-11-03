@@ -545,4 +545,7 @@ Implement a Linux kernel module.
 **82. asm/functionCall.cpp**  
 Implement a program calling jast a simple function. Generate an assembly code to see how does it work on low level.  
   
+**83. asm/plt.cpp**  
+Implement a simple program to demonstrate usage of plt table (procedural linkage table).  
+  
 

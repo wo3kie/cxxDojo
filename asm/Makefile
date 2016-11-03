@@ -9,8 +9,8 @@ all: $(APPS)
 
 %: %.cpp
 	$(CXX) $< -o $@ $(CXXFLAGS) $(LDLIBS)
-	objdump -d -C -S -M intel ./$@ > $@.s
+	objdump -d -D -C -S -M intel ./$@ > $@.s
 
 clean:
-	rm -rf $(APPS) *.gch *.s
+	rm -rf $(APPS) *.gch
 
