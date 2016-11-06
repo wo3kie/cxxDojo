@@ -10,7 +10,7 @@ info:
 	modinfo cxx_dojo_module.ko
 
 insmod:
-	sudo insmod ./cxx_dojo_module.ko
+	sudo insmod ./cxx_dojo_module.ko param_int=1 param_string=\"configuration string\"
 
 rmmod:
 	sudo rmmod cxx_dojo_module
@@ -24,4 +24,7 @@ log:
 	@dmesg | tail
 	@echo ""
 	@cat /var/log/kern.log | tail
+
+allsyms:
+	cat /proc/kallsyms
 
