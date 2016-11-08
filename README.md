@@ -551,4 +551,6 @@ Implement a simple program to demonstrate usage of plt table (procedural linkage
 **84. asm/atomic.cpp**  
 Implement a simple program using std::atomic<int>. Generate an assembly code to how does std::atomic<int> differ from int.  
   
-
+**85. heap**  
+Implement a heap data structure.  
+  
