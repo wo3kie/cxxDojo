@@ -1,30 +1,22 @@
-obj-m += cxx_dojo_module.o
+obj-m+=toUpperChar.o
 
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) modules
+	$(CC) testToUpperChar.c -o testToUpperChar
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
-
-info:
-	modinfo cxx_dojo_module.ko
+	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
+	rm testToUpperChar
 
 insmod:
-	sudo insmod ./cxx_dojo_module.ko param_int=1 param_string=\"configuration string\"
-
-rmmod:
-	sudo rmmod cxx_dojo_module
+	@echo
+	@sudo insmod toUpperChar.ko
 
 lsmod:
-	@lsmod | head -n 1
-	@lsmod | grep cxx_dojo_module
+	@sudo lsmod | head -n 1
+	@sudo lsmod | grep toUpperChar || true
+	@echo
 
-log:
-	@echo ""
-	@dmesg | tail
-	@echo ""
-	@cat /var/log/kern.log | tail
-
-allsyms:
-	cat /proc/kallsyms
+rmmod:
+	@sudo rmmod toUpperChar
 
