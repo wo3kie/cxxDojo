@@ -124,7 +124,7 @@ private:
 	}
 
 	static int getParentIndex(int index){
-		return index / 2;
+		return index == 0 ? 0 : (index - 1) / 2;
 	}
 
 	static int getLeftChildIndex(int index){
