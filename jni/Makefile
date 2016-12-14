@@ -1,8 +1,8 @@
 include ../common.mk
 
 JAVAC=javac
-CXXFLAGS += -I/usr/lib/jvm/java-7-openjdk-amd64/include
-LDLIBS += -L/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server -ljvm
+CXXFLAGS += -I/usr/lib/jvm/java-8-openjdk-amd64/include
+LDLIBS += -L/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server -ljvm
 
 all: Main.class main
 

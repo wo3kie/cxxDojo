@@ -1,6 +1,8 @@
 include ../common.mk
 
-LDLIBS += /usr/local/lib/liblua.a -ldl
+CXXFLAGS += -I /usr/include/lua5.2
+
+LDLIBS += /usr/local/lib/liblua.so -ldl
 
 all: main
 

@@ -2,11 +2,12 @@ include common.mk
 
 all: $(APPS)
 	$(MAKE) -C gsl
-	$(MAKE) -C jni
+	#$(MAKE) -C jni
 	$(MAKE) -C lua
 	$(MAKE) -C shared
 	$(MAKE) -C ssl
 	$(MAKE) -C xml
+	$(MAKE) -C prefetch
 
 %: %.cpp
 	$(CXX) $< -o $@ $(CXXFLAGS) $(LDLIBS)
@@ -19,3 +20,5 @@ clean:
 	$(MAKE) -C shared clean
 	$(MAKE) -C ssl clean
 	$(MAKE) -C xml clean
+	$(MAKE) -C xml prefetch
+
