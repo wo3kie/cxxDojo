@@ -554,10 +554,13 @@ Implement a simple program using std::atomic<int>. Generate an assembly code to 
 **85. heap**  
 Implement a heap data structure.  
   
-**86. gcd**  
+**86. gcd.cpp**  
 Implement a function to calculate the greatest common divisor.  
   
-**87. modexp**
+**87. modexp.cpp**
 Implement a function to calculate quickly exponential function with modulo operation.
+  
+**88. isPrime.cpp**  
+Implement a function to verify using Fermat theorem if a given number is a prime number.  
   
 
