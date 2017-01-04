@@ -554,3 +554,10 @@ Implement a simple program using std::atomic<int>. Generate an assembly code to 
 **85. heap**  
 Implement a heap data structure.  
   
+**86. gcd**  
+Implement a function to calculate the greatest common divisor.  
+  
+**87. modexp**
+Implement a function to calculate quickly exponential function with modulo operation.
+  
+
