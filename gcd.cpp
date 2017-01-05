@@ -12,21 +12,7 @@
  *      $ ./gcd
  */
 
-constexpr unsigned gcd(unsigned a, unsigned b){
-	return b == 0
-		? a
-		: gcd(b, a % b);
-}
-
-template<unsigned A, unsigned B>
-struct Gcd {
-	enum { value = Gcd<B, A % B>::value };
-};
-
-template<unsigned A>
-struct Gcd<A, 0> {
-	enum { value = A };
-};
+#include "./gcd.hpp"
 
 void gcd_test(){
 	static_assert(gcd( 0, 7) == 7, "");
