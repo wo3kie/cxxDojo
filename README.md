@@ -569,4 +569,7 @@ Implement the Ackermann function.
 **90. rhoPollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.  
   
+**91. laplaceSmoothing.cpp**  
+Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.  
+  
 
