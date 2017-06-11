@@ -13,22 +13,28 @@
 
 #include "./mean.hpp"
 
+/* 
+ * From Wikipedia, https://en.wikipedia.org/wiki/Covariance
+ *
+ * covariance(x, y) = E((x - E(x))(y - E(y))), where E means expected value (mean)
+ */
+
 template<typename Iterator1, typename Iterator2>
 double covariance(
     Iterator1 xBegin, Iterator1 const xEnd,
     Iterator2 yBegin, Iterator2 const yEnd
 ){
-    unsigned counter = 0;
-    double totalSum = 0;
     double const xMean = mean(xBegin, xEnd);
     double const yMean = mean(yBegin, yEnd);
+    unsigned xySize = 0;
+    double totalSum = 0;
 
     for( ; xBegin != xEnd; ++xBegin, ++yBegin){
-        counter += 1;
+        xySize += 1;
         totalSum += (*xBegin - xMean) * (*yBegin - yMean);
     }
 
-    return (1.0 / (counter - 1)) * totalSum;
+    return 1.0 * totalSum / (xySize - 1);
 }
 
 template<typename T>
