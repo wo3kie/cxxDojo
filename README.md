@@ -574,4 +574,7 @@ Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.w
   
 92. rSquared.cpp  
 Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).  
+  
+93. jaccardIndex.cpp  
+Jaccard index [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) is used for comparing the similarity and diversity of sample sets.  
 
