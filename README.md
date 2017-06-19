@@ -572,4 +572,6 @@ Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org
 **91. laplaceSmoothing.cpp**  
 Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.  
   
+92. rSquared.cpp  
+Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).  
 
