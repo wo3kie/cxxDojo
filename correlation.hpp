@@ -6,6 +6,13 @@
  *      Lukasz Czerwinski
  */
 
+/*
+ * From Wikipedia, https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+ *
+ * p(x, y) = covariance(x, y) / stdDev(x) / stdDev(y)
+ *
+ */
+
 #ifndef CXX_DOJO_CORRELATION_HPP
 #define CXX_DOJO_CORRELATION_HPP
 

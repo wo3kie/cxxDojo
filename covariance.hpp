@@ -13,10 +13,12 @@
 
 #include "./mean.hpp"
 
-/* 
+/*
  * From Wikipedia, https://en.wikipedia.org/wiki/Covariance
  *
- * covariance(x, y) = E((x - E(x))(y - E(y))), where E means expected value (mean)
+ *   covariance(x, y) = E((x - E(x))(y - E(y))), where E means expected value (mean)
+ *   covariance(x, y) = E(x*y) - E(x)E(y),       where E means expected value (mean)
+ *
  */
 
 template<typename Iterator1, typename Iterator2>
@@ -49,3 +51,4 @@ double covariance(
 }
 
 #endif
+
