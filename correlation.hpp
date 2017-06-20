@@ -20,7 +20,7 @@
 #include <vector>
 
 #include "./covariance.hpp"
-#include "./standardDeviation.hpp"
+#include "./stdDev.hpp"
 
 template<typename Iterator1, typename Iterator2>
 double correlation(
