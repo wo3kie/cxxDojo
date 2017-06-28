@@ -576,8 +576,12 @@ Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.w
 Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).  
   
 **93. jaccardIndex.cpp**  
-Jaccard index [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) is used for comparing the similarity and diversity of sample sets.  
+From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) Jaccard index is used for comparing the similarity and diversity of sample sets.  
   
 **94. scaling.cpp**  
 Implement functions for mean scaling and standard scaling. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.  
+  
+**95. find.root.cpp**  
+Implement a program to find the root of a function. Use bisection and Netwon's methods.  
+  
 
