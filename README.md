@@ -586,3 +586,6 @@ Implement a program to find the root of a function. Use bisection and Netwon's m
   
 **96. gsl/pca.cpp**  
 Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set X of dimension p to an alternative data set Y of smaller dimension p'.  
+  
+**97. entropy.cpp**  
+Implement a program to calculate a sequence entropy.  
