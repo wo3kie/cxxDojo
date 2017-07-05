@@ -584,4 +584,5 @@ Implement functions for mean scaling and standard scaling. From [Wikipedia](http
 **95. find.root.cpp**  
 Implement a program to find the root of a function. Use bisection and Netwon's methods.  
   
-
+**96. gsl/pca.cpp**  
+Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set X of dimension p to an alternative data set Y of smaller dimension p'.  
