@@ -589,3 +589,8 @@ Implement Principal Component Analysis using gsl library. From [Wikipedia](https
   
 **97. entropy.cpp**  
 Implement a program to calculate a sequence entropy.  
+  
+**98. fold.cpp  
+Implement the fold function using variadic templates.  
+  
+
