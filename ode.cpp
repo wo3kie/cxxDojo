@@ -64,6 +64,24 @@ double solveOdeEulerMidpoint(
     return solveOdeImpl(approx, x0, xN, h, y0);
 }
 
+double solveOdeTrapezoid(
+    std::function<double (double, double)> f,
+    double x0,
+    double xN,
+    double h,
+    double y0
+){
+    auto approx = [&f](double x0, double x1, double y){
+        double const h = (x1 - x0);
+        double const x0Slope = h * f(x0, y);
+        double const x1Slope = h * f(x1, y + h * f(x0, y));
+
+        return (x0Slope + x1Slope) / 2;
+    };
+
+    return solveOdeImpl(approx, x0, xN, h, y0);
+}
+
 double solveOdeRungeKutta4(
     std::function<double (double, double)> f,
     double x0,
@@ -89,8 +107,11 @@ double f(double x, double y){
     return x * x;
 }
 
+#include <iostream>
+
 int main(){
     assert(feq(8.6950, solveOdeEulerForward(f, 0, 3, 0.3, 1)));
+    assert(feq(10.045, solveOdeTrapezoid(f, 0, 3, 0.3, 1)));
     assert(feq(9.9775, solveOdeEulerMidpoint(f, 0, 3, 0.3, 1)));
     assert(feq(10.000, solveOdeRungeKutta4(f, 0, 3, 0.3, 1)));
 }
