@@ -62,7 +62,7 @@ gsl_matrix * pca(
 
     gsl_matrix * const mean_subtracted_matrix
         = gsl_matrix_alloc(points, dim);
-    
+
     gsl_matrix_memcpy(mean_subtracted_matrix, matrix);
 
     for(unsigned i = 0; i < points; ++i){
@@ -76,24 +76,24 @@ gsl_matrix * pca(
      */
 
     gsl_matrix * const covariance_matrix = gsl_matrix_alloc(dim, dim);
-    
+
     /*
      * Compute matrix-matrix product and sum
      * gsl_blas_dgemm(op1, op2, a, A, B, b, C )
      * C = a * op1(A) dot op2(B) + b * C
      * where op1, op2 can be CblasNoTrans, CblasTrans, CblasConjTrans
      *
-     * covariance_matrix = mean_subtracted_matrix dot 
+     * covariance_matrix = mean_subtracted_matrix dot
      *     mean_subtracted_matrix.T + 0 * covariance_matrix
      *
      * (points, dim).T dot (points, dim) =>
      * (dim, points) dot (points, dim) =>
      * (dim, dim)
      */
-    
+
     gsl_blas_dgemm(
         CblasConjTrans,
-        CblasNoTrans, 
+        CblasNoTrans,
         1.0 / (dim - 1),
         mean_subtracted_matrix,
         mean_subtracted_matrix,
@@ -106,12 +106,12 @@ gsl_matrix * pca(
 
     /* Allocate a workspace for computing eigenvalues and eigenvectors
      * with the size O(4n)
-     */ 
+     */
 
     gsl_eigen_symmv_workspace * const workspace
         = gsl_eigen_symmv_alloc(dim);
 
-    /* Compute the eigenvalues and eigenvectors of the real 
+    /* Compute the eigenvalues and eigenvectors of the real
      * symmetric matrix A.
      * The corresponding eigenvectors are stored in the dim
      * of the matrix `eigenvectors'
@@ -142,8 +142,8 @@ gsl_matrix * pca(
      */
 
     gsl_matrix * const result = gsl_matrix_alloc(points, newDimension);
-    
-    /* Make a matrix view of a submatrix of the matrix m. 
+
+    /* Make a matrix view of a submatrix of the matrix m.
      * The upper-left element of the submatrix is the element (k1,k2)
      * of the original matrix. The submatrix has n1 rows and n2 columns.
      *
@@ -198,7 +198,7 @@ int main(){
         8, 1,
         9, 0
     };
-        
+
     gsl_matrix_view const view = gsl_matrix_view_array(points, 9, 2);
 
     gsl_matrix * const result = pca(&view.matrix, 1);
@@ -215,3 +215,4 @@ int main(){
 
     gsl_matrix_free(result);
 }
+
