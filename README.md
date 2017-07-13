@@ -596,4 +596,6 @@ Implement the fold function using variadic templates.
 **99. gsl/page_rank.cpp**  
 Implement the Page Rank algorithm using eigenvalues and eigenvectors.  
   
+**100. differentiation.cpp**  
+Implement functions to calcutate a differentiate of a function.  
 
