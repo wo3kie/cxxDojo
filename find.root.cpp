@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 find_root.cpp
+ *      g++ --std=c++11 find_root.cpp -o find_root
  *
  * Usage:
- *      $ ./find_root.cpp
+ *      $ ./find_root
  */
 
 #include <cassert>
