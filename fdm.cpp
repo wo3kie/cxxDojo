@@ -76,15 +76,15 @@ void fdm_forward(){
     *
     */
 
-    constexpr double const D = 1.0;
-    constexpr double const dx = 0.1;
-    constexpr double const dt = 0.004;
-    constexpr double const s = D * dt / dx / dx;
+    constexpr double D = 1.0;
+    constexpr double dx = 0.1;
+    constexpr double dt = 0.004;
+    constexpr double s = D * dt / dx / dx;
 
     //static_assert(s <= 0.5, "");
 
-    constexpr int const X = 1 + 1 / dx;
-    constexpr int const T = 1 + 1 / dt;
+    constexpr unsigned X = 1 + 1 / dx;
+    constexpr unsigned T = 1 + 1 / dt;
 
     double f[X][T] = { 0 };
     double S[X-2][X-2] = { 0 };
@@ -98,23 +98,23 @@ void fdm_forward(){
         f[9][t] = 0;
     }
 
-    for(int x = 0; x < X-2; ++x){
+    for(unsigned x = 0; x < X-2; ++x){
         S[x][x] = 1 - 2 * s;
     }
 
-    for(int x = 0; x < X-2-1; ++x){
+    for(unsigned x = 0; x < X-2-1; ++x){
         S[x][x+1] = s;
     }
 
-    for(int x = 1; x < X-2; ++x){
+    for(unsigned x = 1; x < X-2; ++x){
         S[x][x-1] = s;
     }
 
-    for(int ti = 1; ti < T; ++ti){
+    for(unsigned ti = 1; ti < T; ++ti){
         f[1][ti] += s * f[0][ti-1];
 
-        for(int fR = 1; fR < X-1; ++fR){
-            for(int sC = 0; sC < X-2; ++sC){
+        for(unsigned fR = 1; fR < X-1; ++fR){
+            for(unsigned sC = 0; sC < X-2; ++sC){
                 f[fR][ti] += S[fR-1][sC] * f[sC+1][ti-1];
             }
         }
@@ -124,12 +124,19 @@ void fdm_forward(){
 
     {
         std::cout
-            << "# gnuplot 5.1 file script\n"
+            << "# gnuplot 5.0 script\n"
             << "$data << EOD\n";
 
-        for(int x = 0; x < X; ++x){
-            for(int t = 0; t < T; ++t){
-                std::cout << (x*dx) << " " << (t*dt) << " " << std::setprecision(5) << f[x][t] << '\n';
+        for(unsigned x = 0; x < X; ++x){
+            for(unsigned t = 0; t < T; ++t){
+                std::cout
+                    << (x*dx)
+                    << " "
+                    << (t*dt)
+                    << " "
+                    << std::setprecision(5)
+                    << f[x][t]
+                    << '\n';
             }
         }
 
