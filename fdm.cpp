@@ -9,7 +9,7 @@
  *      g++ --std=c++11 fdm.cpp -o fdm
  *
  * Usage:
- *      $ ./fmd | gnuplot5 -p
+ *      $ ./fdm | gnuplot5 -p
  */
 
  /*
@@ -78,10 +78,11 @@ void fdm_forward(){
 
     constexpr double D = 1.0;
     constexpr double dx = 0.1;
-    constexpr double dt = 0.004;
+    constexpr double dt = 0.005;
+    // constexpr double dt = 0.005; // unstable
     constexpr double s = D * dt / dx / dx;
 
-    //static_assert(s <= 0.5, "");
+    // static_assert(s <= 0.5, "Solution is not stable");
 
     constexpr unsigned X = 1 + 1 / dx;
     constexpr unsigned T = 1 + 1 / dt;
@@ -146,7 +147,7 @@ void fdm_forward(){
             << "set xlabel \"X\"\n"
             << "set yrange [0:1]\n"
             << "set ylabel \"Time\"\n"
-            << "set zrange [0:0.2]\n"
+            //<< "set zrange [0:0.2]\n"
             << "set zlabel \"Temp\"\n"
             << "set dgrid3d 50, 50\n"
             << "set hidden3d\n"
