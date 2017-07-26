@@ -227,4 +227,17 @@ Matrix operator*(Matrix const & matrix1, Matrix const & matrix2){
     return result;
 }
 
+inline
+Matrix transpose(Matrix const & matrix){
+    Matrix result = Matrix(matrix.rows(), matrix.columns());
+
+    for(unsigned i = 0; i < matrix.rows(); ++i){
+        for(unsigned j = 0; j < matrix.columns(); ++j){
+            result[i][j] = matrix[j][i];
+        }
+    }
+
+    return result;
+}
+
 #endif
