@@ -14,54 +14,11 @@
 
 #include "./feq.hpp"
 #include "./floatFormatter.hpp"
+#include "./vector.hpp"
 #include "./output.hpp"
-
-namespace details
-{
-
-class Row
-{
-public:
-    Row() = default;
-    Row(Row const &) = default;
-    Row(Row &&) = default;
-
-    Row & operator=(Row const &) = default;
-    Row & operator=(Row &&) = default;
-
-    Row(unsigned size, double init = 0.0)
-        : row_(size, init)
-    {
-    }
-
-    Row(std::initializer_list<double> const & data)
-        : row_(data)
-    {
-    }
-
-    double & operator[](unsigned i){
-        return row_.at(i);
-    }
-
-    double const & operator[](unsigned i)const{
-        return row_.at(i);
-    }
-
-    unsigned columns()const{
-        return row_.size();
-    }
-
-private:
-    std::vector<double> row_;
-};
-
-}
 
 class Matrix
 {
-public:
-    typedef details::Row Row;
-
 public:
     Matrix() = default;
     Matrix(Matrix const &) = default;
@@ -71,7 +28,7 @@ public:
     Matrix & operator=(Matrix &&) = default;
 
     Matrix(unsigned rows, unsigned columns, double init = 0.0)
-        : matrix_(rows, Row(columns, init))
+        : matrix_(rows, Vector(columns, init))
     {
     }
 
@@ -80,11 +37,11 @@ public:
     {
     }
 
-    Row & operator[](unsigned i){
+    Vector & operator[](unsigned i){
         return matrix_.at(i);
     }
 
-    Row const & operator[](unsigned i)const{
+    Vector const & operator[](unsigned i)const{
         return matrix_.at(i);
     }
 
@@ -97,11 +54,11 @@ public:
             return 0;
         }
 
-        return matrix_[0].columns();
+        return matrix_[0].size();
     }
 
 private:
-    std::vector<Row> matrix_;
+    std::vector<Vector> matrix_;
 };
 
 inline
@@ -109,30 +66,11 @@ std::ostream & operator<<(std::ostream & out, Matrix const & matrix){
     out << "[";
 
     if(matrix.rows() != 0){
-        out << "[";
-
-        if(matrix[0].columns() != 0){
-            out << FloatFormatter(matrix[0][0], 8);
-
-            for(unsigned j = 1; j < matrix[0].columns(); ++j){
-                out << ' ' << FloatFormatter(matrix[0][j], 8);
-            }
-        }
-
-        out << "]";
+        out << matrix[0];
 
         for(unsigned i = 1; i < matrix.rows(); ++i){
-            out << "\n [";
-
-            if(matrix[i].columns() != 0){
-                out << FloatFormatter(matrix[i][0], 8);
-
-                for(unsigned j = 1; j < matrix[i].columns(); ++j){
-                    out << ' ' << FloatFormatter(matrix[i][j], 8);
-                }
-            }
-
-            out << ']';
+            out << "\n ";
+            out << matrix[i];
         }
     }
 
@@ -151,8 +89,8 @@ bool operator==(Matrix const & matrix1, Matrix const & matrix2){
     }
 
     for(unsigned row = 0; row < rows1; ++row){
-        unsigned const columns1 = matrix1[row].columns();
-        unsigned const columns2 = matrix2[row].columns();
+        unsigned const columns1 = matrix1[row].size();
+        unsigned const columns2 = matrix2[row].size();
 
         if(columns1 != columns2){
             return false;
@@ -178,7 +116,7 @@ Matrix operator+(Matrix const & matrix1, double d){
     Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
     for(unsigned i = 0; i < matrix1.rows(); ++i){
-        for(unsigned j = 0; j < matrix1[0].columns(); ++j){
+        for(unsigned j = 0; j < matrix1[0].size(); ++j){
             result[i][j] = matrix1[i][j] + d;
         }
     }
@@ -204,7 +142,7 @@ Matrix operator*(Matrix const & matrix1, double d){
     Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
     for(unsigned i = 0; i < matrix1.rows(); ++i){
-        for(unsigned j = 0; j < matrix1[0].columns(); ++j){
+        for(unsigned j = 0; j < matrix1[0].size(); ++j){
             result[i][j] = matrix1[i][j] * d;
         }
     }
@@ -235,6 +173,17 @@ Matrix transpose(Matrix const & matrix){
         for(unsigned j = 0; j < matrix.columns(); ++j){
             result[i][j] = matrix[j][i];
         }
+    }
+
+    return result;
+}
+
+inline
+Matrix eye(unsigned size){
+    Matrix result(size, size, 0);
+
+    for(unsigned i = 0; i < size; ++i){
+        result[i][i] = 1;
     }
 
     return result;
