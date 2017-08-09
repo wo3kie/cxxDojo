@@ -15,7 +15,12 @@
 #include "matrix.hpp"
 
 Matrix cholesky(Matrix a){
-    // Cholesky decomposition: r.T * r = a
+    /*
+     * Cholesky decomposition: L.T * L = A,
+     * where L is a lower triangular matrix and L.T denotes the conjugnate transpose of L
+     *
+     * In this example for smplycity L.T is just a transposition of L
+     */
 
     Matrix r(a.rows(), a.columns(), 0);
 
@@ -111,3 +116,4 @@ int main(){
         assert(transpose(r) * r == a);
     }
 }
+
