@@ -14,6 +14,10 @@
 
 #include "./matrix.hpp"
 
+/*
+ * https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
+ */
+
 Matrix gramSchmidt(Matrix const & matrix, bool normalize = true){
     Matrix result(matrix.rows(), matrix.columns());
 
@@ -36,13 +40,20 @@ Matrix gramSchmidt(Matrix const & matrix, bool normalize = true){
     return result;
 }
 
+#include <cassert>
+
 int main(){
-    Matrix matrix(2, 2);
+    {
+        Matrix matrix(2, 2);
 
-    matrix[0][0] = 2;
-    matrix[0][1] = 1;
-    matrix[1][0] = 1;
-    matrix[1][1] = 1;
+        matrix[0][0] = 2;
+        matrix[0][1] = 1;
+        matrix[1][0] = 1;
+        matrix[1][1] = 1;
 
-    std::cout << gramSchmidt(matrix, false) << std::endl;
+        Matrix const orthonormal = gramSchmidt(matrix);
+
+        assert((dot(orthonormal, transpose(orthonormal)) == eye(matrix.rows())));
+    }
 }
+

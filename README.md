@@ -600,7 +600,12 @@ Implement the Page Rank algorithm using eigenvalues and eigenvectors.
 Implement functions to calcutate a differentiate of a function.
 
 **101. fdm.cpp**  
-Implement Finite Differential Method.
+Implement a program demonstrating a Finite Differential Method to calculate differential equation.  
 
 **102. cholesky.cpp**  
-Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix and its conjugate transpose.
+Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix and its conjugate transpose.  
+  
+**103. gramSchmidt.cpp**  
+Implement a function to orthonormalise a set of vectors. Use Gram-Schmidt algorithm to do it.  
+  
+

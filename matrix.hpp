@@ -166,6 +166,11 @@ Matrix operator*(Matrix const & matrix1, Matrix const & matrix2){
 }
 
 inline
+Matrix dot(Matrix const & matrix1, Matrix const & matrix2){
+    return matrix1 * matrix2;
+}
+
+inline
 Matrix transpose(Matrix const & matrix){
     Matrix result = Matrix(matrix.rows(), matrix.columns());
 
