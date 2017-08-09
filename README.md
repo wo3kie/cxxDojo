@@ -423,7 +423,7 @@ Implement a function to do exponential smoothing. Use Brown's simple exponential
 Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
 
 **53. lu.cpp**  
-Implement a function to make a LU decomposition of a matrix.
+Implement a function to make a LU decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition) LU decomposition factors a matrix as the product of a lower triangular matrix _L_ and an upper trianguar matrix _U_ _A_=_LU_.
 
 **54. ode.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
@@ -603,9 +603,11 @@ Implement functions to calcutate a differentiate of a function.
 Implement a program demonstrating a Finite Differential Method to calculate differential equation.  
 
 **102. cholesky.cpp**  
-Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix and its conjugate transpose.  
+Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix _L_ and its conjugate transpose _L'_ _A_=_LL'_.  
   
 **103. gramSchmidt.cpp**  
-Implement a function to orthonormalise a set of vectors. Use Gram-Schmidt algorithm to do it.  
+Implement a function to orthonormalise a set of vectors. Use [Gram-Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) algorithm to do it.  
   
+**104. qr.cpp**  
+Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
 
