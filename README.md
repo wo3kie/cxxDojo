@@ -585,13 +585,13 @@ Implement functions for mean scaling and standard scaling. From [Wikipedia](http
 Implement a program to find the root of a function. Use bisection and Netwon's methods.
 
 **96. gsl/pca.cpp**  
-Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set X of dimension p to an alternative data set Y of smaller dimension p'.
+Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
 
 **97. entropy.cpp**  
-Implement a program to calculate a sequence entropy.
+Implement a program to calculate a sequence's entropy.
 
 **98. fold.cpp**  
-Implement the fold function using variadic templates.
+Implement the _fold_ function using variadic templates.
 
 **99. gsl/page_rank.cpp**  
 Implement the Page Rank algorithm using eigenvalues and eigenvectors.
@@ -600,7 +600,7 @@ Implement the Page Rank algorithm using eigenvalues and eigenvectors.
 Implement functions to calcutate a differentiate of a function.
 
 **101. fdm.cpp**  
-Implement a program demonstrating a Finite Differential Method to calculate differential equation.  
+Implement a program demonstrating a Finite Difference Method to calculate differential equation.  
 
 **102. cholesky.cpp**  
 Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix _L_ and its conjugate transpose _L'_ _A_=_LL'_.  
