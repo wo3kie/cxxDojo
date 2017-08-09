@@ -12,35 +12,9 @@
  *      $ ./gram_schmidt
  */
 
-#include "./matrix.hpp"
-
-/*
- * https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
- */
-
-Matrix gramSchmidt(Matrix const & matrix, bool normalize = true){
-    Matrix result(matrix.rows(), matrix.columns());
-
-    result[0] = matrix[0];
-
-    for(unsigned i = 1; i < matrix.rows(); ++i){
-        result[i] = matrix[i];
-
-        for(unsigned j = 0; j < i; ++j){
-            result[i] = result[i] - projection(matrix[i], result[j]);
-        }
-    }
-
-    if(normalize){
-        for(unsigned i = 0; i < result.rows(); ++i){
-            result[i] = unit(result[i]);
-        }
-    }
-
-    return result;
-}
-
 #include <cassert>
+
+#include "./gramSchmidt.hpp"
 
 int main(){
     {
@@ -53,7 +27,7 @@ int main(){
 
         Matrix const orthonormal = gramSchmidt(matrix);
 
-        assert((dot(orthonormal, transpose(orthonormal)) == eye(matrix.rows())));
+        assert((dot(transpose(orthonormal), orthonormal) == eye(matrix.rows())));
     }
 }
 
