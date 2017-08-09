@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++14 tuple.cpp -o tuple
+ *      g++ --std=c++14 cxxTuple.cpp -o cxxTuple
  *
  * Usage:
- *      $ ./tuple
+ *      $ ./cxxTuple
  */
 
 #include <iostream>
