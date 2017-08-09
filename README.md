@@ -423,7 +423,7 @@ Implement a function to do exponential smoothing. Use Brown's simple exponential
 Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
 
 **53. lu.cpp**  
-Implement a function to make a LU decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition) LU decomposition factors a matrix as the product of a lower triangular matrix _L_ and an upper trianguar matrix _U_ _A_=_LU_.
+Implement a function to make a LU decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition) LU decomposition factors a matrix _A_ into a product _A_=_LU_ of a lower triangular matrix _L_ and an upper trianguar matrix _U_.
 
 **54. ode.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
