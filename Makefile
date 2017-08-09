@@ -4,10 +4,9 @@ all: $(APPS)
 	$(MAKE) -C gsl
 	#$(MAKE) -C jni
 	$(MAKE) -C lua
-	$(MAKE) -C shared
+	#$(MAKE) -C shared
 	$(MAKE) -C ssl
 	$(MAKE) -C xml
-	$(MAKE) -C prefetch
 
 %: %.cpp
 	$(CXX) $< -o $@ $(CXXFLAGS) $(LDLIBS)
@@ -15,10 +14,9 @@ all: $(APPS)
 clean:
 	rm -rf $(APPS) *.gch
 	$(MAKE) -C gsl clean
-	$(MAKE) -C jni clean
+	#$(MAKE) -C jni clean
 	$(MAKE) -C lua clean
-	$(MAKE) -C shared clean
+	#$(MAKE) -C shared clean
 	$(MAKE) -C ssl clean
 	$(MAKE) -C xml clean
-	$(MAKE) -C xml prefetch
 
