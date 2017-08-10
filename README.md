@@ -610,4 +610,7 @@ Implement a function to orthonormalise a set of vectors. Use [Gram-Schmidt](http
   
 **104. qr.cpp**  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
-
+  
+**105. interpolation.cpp**  
+Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
+  
