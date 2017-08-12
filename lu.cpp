@@ -18,62 +18,91 @@
 #include "./feq.hpp"
 #include "./matrix.hpp"
 
-Matrix pivotaize(Matrix const & m){
-    unsigned const size = m.rows();
+void lu(Matrix const & A, Matrix & L, Matrix & U){
+    /*
+     *      major column
+     *       |
+     *       v
+     * [ .   . . .       ]
+     * [  .  . . .       ]
+     * [   . . . .       ]
+     * [ ... a b c ... x ] <- major row
+     * [ ... d e f ... y ]  <- minor row
+     * [     . . . .     ]  <- minor row
+     * [     . . .  .    ]  <- minor row
+     * [     . . .   .   ]  <- minor row
+     * [     g h i ... z ]  <- minor row
+     *
+     *       ^ ^ ^     ^
+     *       | | | ... |
+     *      minor column
+     */
 
-    Matrix result = Matrix(size, size);
-
-    for(unsigned i = 0; i < size; ++i){
-        result[i][i] = 1;
-    }
-
-    for(unsigned row = 0; row < size; ++row){
-        unsigned maxRow = row;
-
-        for(unsigned row2 = maxRow + 1; row2 < size; ++row2){
-            if(std::abs(m[row2][row]) > std::abs(m[maxRow][row])){
-                maxRow = row2;
-            }
-        }
-
-        if(row != maxRow){
-            std::swap(result[row], result[maxRow]);
-        }
-    }
-
-    return result;
-}
-
-void lu(Matrix const & A, Matrix & L, Matrix & U, Matrix & P){
     unsigned const size = A.rows();
 
     L = Matrix(size, size);
-    U = Matrix(size, size);
-    P = pivotaize(A);
+    U = A;
 
-    Matrix const A2 = P * A;
+    for(unsigned majorColumn = 0; majorColumn < size; ++majorColumn){
+        unsigned const majorRow = majorColumn;
 
-    for(unsigned a = 0; a < size; ++a){
-        L[a][a] = 1.0;
-
-        for(unsigned b = 0; b < a + 1; ++b){
-            double s = 0;
-
-            for(unsigned c = 0; c < b; ++c){
-                s += U[c][a] * L[b][c];
-            }
-
-            U[b][a] = A2[b][a] - s;
+        if(U[majorColumn][majorColumn] == 0){
+            throw std::runtime_error("0 has been found on the main diagnonal, please use LUP algorithm instead");
         }
 
-        for(unsigned b = a; b < size; ++b){
-            double s = 0;
+        L[majorColumn][majorColumn] = 1;
 
-            for(unsigned c = 0; c < a; ++c){
-                s += U[c][a] * L[b][c];
+        for(unsigned minorRow = majorColumn + 1; minorRow < size; ++minorRow){
+            double const coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
+
+            for(unsigned minorColumn = majorColumn; minorColumn < size; ++minorColumn){
+                U[minorRow][minorColumn] -= coeff * U[majorRow][minorColumn];
             }
 
-            L[b][a] = (A2[b][a] - s) / U[a][a];
+            L[minorRow][majorColumn] = coeff;
+        }
+    }
+}
+
+void lup(Matrix const & A, Matrix & L, Matrix & U, Matrix & P){
+    unsigned const size = A.rows();
+
+    L = Matrix(size, size);
+    U = A;
+
+    for(unsigned majorColumn = 0; majorColumn < size; ++majorColumn){
+        unsigned const majorRow = majorColumn;
+
+        { // partial pivoting
+            unsigned maxRowId = majorRow;
+
+            for(unsigned row = majorRow + 1; row < size; ++row){
+                if(abs(U[maxRowId][majorColumn]) < abs(U[row][majorColumn])){
+                    maxRowId = row;
+                }
+            }
+
+            if(maxRowId != majorRow){
+                std::swap(L[maxRowId], L[majorRow]);
+                std::swap(U[maxRowId], U[majorRow]);
+                std::swap(P[maxRowId], P[majorRow]);
+            }
+        }
+
+        if(U[majorColumn][majorColumn] == 0){
+            throw std::runtime_error("0 has been found on the main diagnonal");
+        }
+
+        L[majorColumn][majorColumn] = 1;
+
+        for(unsigned minorRow = majorColumn + 1; minorRow < size; ++minorRow){
+            double const coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
+
+            for(unsigned minorColumn = majorColumn; minorColumn < size; ++minorColumn){
+                U[minorRow][minorColumn] -= coeff * U[majorRow][minorColumn];
+            }
+
+            L[minorRow][majorColumn] = coeff;
         }
     }
 }
@@ -81,85 +110,90 @@ void lu(Matrix const & A, Matrix & L, Matrix & U, Matrix & P){
 int main(){
     Matrix L;
     Matrix U;
-    Matrix P;
 
     {
         Matrix A = {
-            {4, 3},
-            {6, 3}
+            {1, 2, 3},
+            {4, 5, 6},
+            {3,-3, 5}
         };
 
-        lu(A, L, U, P);
+        lu(A, L, U);
 
-        std::cout << "A: \n" << A << std::endl;
-        std::cout << "P: \n" << P << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "L: \n" << L << std::endl;
-        std::cout << "U: \n" << U << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "LU: \n" << L * U << std::endl << std::endl;
+        std::cout << "A: \n" << A << "\n\n";
+        std::cout << "L: \n" << L << "\n\n";
+        std::cout << "U: \n" << U << "\n\n";
 
-        assert(P * A == L * U);
+        assert(L * U == A);
     }
 
     {
-        Matrix A = {
-            {1, 3, 5},
-            {2, 4, 7},
-            {1, 1, 0}
-        };
+        do{
+            Matrix A = {
+                {1, 2, 3},
+                {4, 8, 7},  // {4, 8, 7} + (-4) * {1, 2, 3} == {0, 0, 1}
+                {3,-3, 5}
+            };
 
-        lu(A, L, U, P);
+            try{
+                lu(A, L, U);
+            }
+            catch(std::runtime_error const &){
+                break;
+            }
 
-        std::cout << "A: \n" << A << std::endl;
-        std::cout << "P: \n" << P << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "L: \n" << L << std::endl;
-        std::cout << "U: \n" << U << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "LU: \n" << L * U << std::endl << std::endl;
-
-        assert(P * A == L * U);
+            assert(false);
+        }
+        while(false);
     }
 
     {
-        Matrix A = {
-            {8, 2, 9},
-            {4, 9, 4},
-            {6, 7, 9}
-        };
+        do{
+            Matrix A = {
+                {1, 2, 3},
+                {4, 8, 7},  // {4, 8, 7} + (-4) * {1, 2, 3} == {0, 0, 1}
+                {3,-3, 5}
+            };
 
-        lu(A, L, U, P);
+            Matrix P = eye(3);
 
-        std::cout << "A: \n" << A << std::endl;
-        std::cout << "P: \n" << P << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "L: \n" << L << std::endl;
-        std::cout << "U: \n" << U << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "LU: \n" << L * U << std::endl << std::endl;
+            lup(A, L, U, P);
 
-        assert(P * A == L * U);
+            std::cout << "A: \n" << A << "\n\n";
+            std::cout << "L: \n" << L << "\n\n";
+            std::cout << "U: \n" << U << "\n\n";
+            std::cout << "P: \n" << P << "\n\n";
+            std::cout << "PA: \n" << P*A << "\n\n";
+            std::cout << "LU: \n" << L*U << "\n\n";
+
+            assert(P * A == L * U);
+        }
+        while(false);
     }
 
     {
-        Matrix A = {
-            {11, 9, 24, 2},
-            {1, 5, 2, 6},
-            {3, 17, 18, 1},
-            {2, 5, 7, 1}
-        };
+        do{
+            Matrix A = {
+                {2, 1, 5},
+                {4, 4, -4},
+                {1, 3, 1}
+            };
 
-        lu(A, L, U, P);
+            Matrix P = eye(3);
 
-        std::cout << "A: \n" << A << std::endl;
-        std::cout << "P: \n" << P << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "L: \n" << L << std::endl;
-        std::cout << "U: \n" << U << std::endl;
-        std::cout << "PA: \n" << P * A << std::endl;
-        std::cout << "LU: \n" << L * U << std::endl << std::endl;
+            lup(A, L, U, P);
 
-        assert(P * A == L * U);
+            std::cout << "A: \n" << A << "\n\n";
+            std::cout << "L: \n" << L << "\n\n";
+            std::cout << "U: \n" << U << "\n\n";
+            std::cout << "P: \n" << P << "\n\n";
+            std::cout << "PA: \n" << P*A << "\n\n";
+            std::cout << "LU: \n" << L*U << "\n\n";
+
+            assert(P * A == L * U);
+        }
+        while(false);
     }
+    return 0;
 }
+
