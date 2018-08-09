@@ -614,3 +614,6 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 **105. interpolation.cpp**  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
   
+**106. find_union.cpp**  
+Implement a find-union algorithm.  
+
