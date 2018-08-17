@@ -616,4 +616,7 @@ Implement a function to interpolate a given set of points with a polynomial. Use
   
 **106. find_union.cpp**  
 Implement a find-union algorithm.  
-
+  
+**107. functional.cpp**  
+Implement higher-order functions like fold, map, reduce, filter...  
+  
