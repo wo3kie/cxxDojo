@@ -9,8 +9,11 @@
 #ifndef __CXX_DOJO_FUNCTIONAL_HPP__
 #define __CXX_DOJO_FUNCTIONAL_HPP__
 
+#include <algorithm>
 #include <iterator>
 #include <functional>
+
+#include "./container.hpp"
 
 namespace dojo {
 
@@ -30,13 +33,12 @@ R _lfold(
 
 }
 
-template<typename R, typename T, typename I>
-R lfold(
-    std::function<R (T, T)> f,
-    I begin, 
-    I end
+template<typename Return, typename Container>
+Return lfold(
+    Container c,
+    std::function<Return (typename Container::value_type, typename Container::value_type)> f
 ){
-    return _lfold(f, *begin, std::next(begin), end);
+    return _lfold(f, *c.begin(), std::next(c.begin()), c.end());
 }
 
 template<typename R, typename T, typename I>
@@ -54,69 +56,103 @@ R _rfold(
     }
 }
 
-template<typename R, typename T, typename I>
-R rfold(
-    std::function<R (T, T)> f,
-    I begin, 
-    I end
+template<typename Return, typename Container>
+Return rfold(
+    Container c,
+    std::function<Return (typename Container::value_type, typename Container::value_type)> f
 ){
-    return _rfold(f, *begin, std::next(begin), end);
+    return _rfold(f, *c.begin(), std::next(c.begin()), c.end());
 }
 
-template<typename I>
-typename std::iterator_traits<I>::value_type sum(I begin, I end){
-    typedef typename std::iterator_traits<I>::value_type value_type;
+template<typename Container>
+typename Container::value_type sum(Container container){
+    typedef typename Container::value_type value_type;
     
     std::function<value_type (value_type, value_type)> f
         = [](value_type lhs, value_type rhs) -> value_type { return lhs + rhs; };
     
     return lfold(
-        f,
-        begin,
-        end
+        container,
+        f
     );
 }
 
-template<typename I>
-typename std::iterator_traits<I>::value_type product(I begin, I end){
-    typedef typename std::iterator_traits<I>::value_type value_type;
+template<typename Container>
+typename Container::value_type product(Container container){
+    typedef typename Container::value_type value_type;
     
     std::function<value_type (value_type, value_type)> f
         = [](value_type lhs, value_type rhs) -> value_type { return lhs * rhs; };
     
     return lfold(
-        f,
-        begin,
-        end
+        container,
+        f
     );
 }
 
-template<typename I>
-typename std::iterator_traits<I>::value_type min(I begin, I end){
-    typedef typename std::iterator_traits<I>::value_type value_type;
+template<typename Container>
+typename Container::value_type min(Container container){
+    typedef typename Container::value_type value_type;
     
     std::function<value_type (value_type, value_type)> f
         = [](value_type lhs, value_type rhs) -> value_type { return lhs < rhs ? lhs : rhs; };
     
     return lfold(
-        f,
-        begin,
-        end
+        container,
+        f
     );
 }
 
-template<typename I>
-typename std::iterator_traits<I>::value_type max(I begin, I end){
-    typedef typename std::iterator_traits<I>::value_type value_type;
+template<typename Container>
+typename Container::value_type max(Container container){
+    typedef typename Container::value_type value_type;
     
     std::function<value_type (value_type, value_type)> f
         = [](value_type lhs, value_type rhs) -> value_type { return lhs < rhs ? rhs : lhs; };
     
     return lfold(
-        f,
-        begin,
-        end
+        container,
+        f
     );
+}
+
+template<typename Container>
+Container & filter(Container & container, std::function<bool (typename Container::value_type)> predicate){
+    typename Container::iterator toBeRemoved = std::partition(
+        container.begin(),
+        container.end(),
+        predicate
+    );
+
+    container.erase(toBeRemoved, container.end());
+
+    return container;
+}
+
+template<typename Container>
+Container filter_copy(Container const & container, std::function<bool (typename Container::value_type)> predicate){
+    Container result;
+
+    for(const typename Container::value_type & item: container){
+        if(predicate(item)){
+            result.push_back(item);
+        }
+    }
+
+    return result;
+}
+
+template<typename Return, typename Container>
+auto map(Container container, std::function<Return (typename Container::value_type)> functor) 
+    -> typename ContainerTraits<Container>::template rebind<Return>::type
+{
+    typename ContainerTraits<Container>::template rebind<Return>::type result;
+
+    for(typename Container::value_type const & item: container){
+        result.push_back(functor(item));
+    }
+
+    return result;
 }
 
 }
