@@ -145,9 +145,29 @@ std::ostream & operator<<( std::ostream & out, std::unordered_set< T > const & s
     return printSet( out, s.begin(), s.end() );
 }
 
-template<typename T>
-void print(T const & val, char end='\n'){
-    std::cout << val << end;
+template<typename T1>
+void print(T1 const & t1, char end='\n'){
+    std::cout << t1 << end;
+}
+
+template<typename T1, typename T2>
+void print(T1 const & t1, T2 const & t2, char end='\n'){
+    std::cout << t1 << ' ' << t2 << end;
+}
+
+template<typename T1, typename T2, typename T3>
+void print(T1 const & t1, T2 const & t2, T3 const & t3, char end='\n'){
+    std::cout << t1 << ' ' << t2 << ' ' << t3 << end;
+}
+
+template<typename T1, typename T2, typename T3, typename T4>
+void print(T1 const & t1, T2 const & t2, T3 const & t3, T4 const & t4, char end='\n'){
+    std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << end;
+}
+
+template<typename T1, typename T2, typename T3, typename T4, typename T5>
+void print(T1 const & t1, T2 const & t2, T3 const & t3, T4 const & t4, T5 const & t5 char end='\n'){
+    std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << ' ' << t5 << end;
 }
 
 #endif
