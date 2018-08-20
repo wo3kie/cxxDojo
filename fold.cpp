@@ -12,38 +12,9 @@
  *      $ ./fold
  */
 
-#include <functional>
-#include <iostream>
-
-/*
- * rfold(f, a, b, c, d) == f(a, f(b, f(c, d)))
- */
-
-template<typename R, typename T>
-R rfold(std::function<R (T, T)> f, T t1, T t2){
-    return f(std::forward<T>(t1), std::forward<T>(t2));
-}
-
-template<typename R, typename T, typename ... Ts>
-R rfold(std::function<R (T, T)> f, T t, Ts ... tail){
-    return f(std::forward<T>(t), rfold(f, std::forward<Ts>(tail)...));
-}
-
-/*
- * lfold(f, a, b, c, d) == f( f( f(a, b), c), d)
- */
-
-template<typename R, typename T>
-R lfold(std::function<R (T, T)> f, T t1, T t2){
-    return f(std::forward<T>(t1), std::forward<T>(t2));
-}
-
-template<typename R, typename T, typename ... Ts>
-R lfold(std::function<R (T, T)> f, T t1, T t2, Ts ... tail){
-    return lfold(f, f(std::forward<T>(t1), std::forward<T>(t2)), std::forward<Ts>(tail)...);
-}
-
 #include <cassert>
+
+#include "./fold.hpp"
 
 int main(){
     std::function<int (int, int)> add = [](int i, int j) -> int { return i + j; };
