@@ -13,6 +13,7 @@
  */
 
 #include <algorithm>
+#include <numeric>
 #include <map>
 
 template<typename T>

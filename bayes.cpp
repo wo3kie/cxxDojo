@@ -18,6 +18,7 @@
  *      {{ham,-118.253},{spam,-89.9372}}
  */
 
+#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <map>

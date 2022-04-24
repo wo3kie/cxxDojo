@@ -22,6 +22,7 @@
 
 #include <chrono>
 #include <condition_variable>
+#include <functional>
 #include <iostream>
 #include <thread>
 #include <vector>

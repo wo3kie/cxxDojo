@@ -18,7 +18,7 @@ public:
     {
         sizes_.assign(sizes.begin(), sizes.end());
         offsets_ = get_offsets_(sizes_);
-        data_.resize(dojo::product(sizes_.begin(), sizes_.end()));
+        data_.resize(dojo::product(sizes_));
     }
 
     value_type & operator[](std::vector<std::size_t> const & indices){

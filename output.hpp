@@ -166,7 +166,7 @@ void print(T1 const & t1, T2 const & t2, T3 const & t3, T4 const & t4, char end=
 }
 
 template<typename T1, typename T2, typename T3, typename T4, typename T5>
-void print(T1 const & t1, T2 const & t2, T3 const & t3, T4 const & t4, T5 const & t5 char end='\n'){
+void print(T1 const & t1, T2 const & t2, T3 const & t3, T4 const & t4, T5 const & t5, char end='\n'){
     std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << ' ' << t5 << end;
 }
 

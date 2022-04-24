@@ -126,6 +126,9 @@ bool isCompleteTreeImpl(
                     oneLevelUp = true;
                     return true;
                 }
+                else{
+                    return false;
+                }
             }
         }
         else{

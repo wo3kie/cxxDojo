@@ -23,6 +23,7 @@
 #include <set>
 #include <string>
 #include <typeinfo>
+#include <vector>
 
 struct In {
     void const * ptr_ = nullptr;

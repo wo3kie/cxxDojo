@@ -37,9 +37,10 @@ public:
         int const root = find(data_[i]);
 
         data_[i] = root;
+        return i;
     }
 
-    int merge(int i, int j){
+    void merge(int i, int j){
         int const i_pos = cfind(i);
         int const j_pos = cfind(j);
 
