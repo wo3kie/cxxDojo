@@ -12,82 +12,146 @@
  *      $ ./cxxTuple
  */
 
-#include <iostream>
-
-template<typename Arg, typename ... Args>
-struct Tuple
-{
-	Tuple(){
-	}
-
-	Tuple(Arg arg, Args... args)
-		: head_(arg)
-		, tail_(args...)
-	{
-	}
-
-	Arg head_;
-	Tuple<Args...> tail_;
-};
-
-template<typename Arg>
-struct Tuple<Arg> 
-{
-	Tuple(){
-	}
-
-	Tuple(Arg arg)
-		: head_(arg)
-	{
-	}
-
-	Arg head_;
-};
-
-template<typename ... Args>
-constexpr Tuple<Args...> makeTuple(Args && ... args){
-	return Tuple<Args...>(std::forward<Args>(args)...);
-}
-
-template<int I, typename Arg, typename ... Args>
-struct Get
-{
-	constexpr auto operator()(Tuple<Arg, Args...> tuple) const {
-		return Get<I - 1, Args...>()(tuple.tail_);
-	}
-};
-
-template<typename Arg, typename ... Args>
-struct Get<0, Arg, Args...>
-{
-	constexpr Arg operator()(Tuple<Arg, Args...> tuple) const {
-		return tuple.head_;
-	}
-};
-
-template<int I, typename Arg, typename ... Args>
-constexpr auto get(Tuple<Arg, Args...> tuple){
-	return Get<I, Arg, Args...>()(tuple);
-}
-
-template<typename Arg, typename ... Args>
-constexpr int size(Tuple<Arg, Args...> const & tuple){
-	return 1 + sizeof...(Args);
-}
-
 #include <cassert>
+#include <iostream>
 #include <string>
 
-int main(){
-	auto tuple = makeTuple(0, 1.0, '2', "3");    
+namespace composition 
+{
 
-	assert(get<0>(tuple) == 0);
-	assert(get<1>(tuple) == 1.0);
-	assert(get<2>(tuple) == '2');
+    template<typename T, typename... Ts>
+    struct Tuple {
+        Tuple(T t, Ts... ts)
+            : _t(t)
+            , _ts(ts...)
+        {
+        }
 
-	using namespace std::string_literals;
-	assert(get<3>(tuple) == "3"s);
+        T _t;
+        Tuple<Ts...> _ts;
+    };
 
-	assert(size(tuple) == 4);
+    template<typename T>
+    struct Tuple<T> {
+        Tuple(T t)
+            : _t(t)
+        {
+        }
+
+        T _t;
+    };
+
+    template<typename... Ts>
+    Tuple<Ts...> makeTuple(Ts &&... ts){
+        return Tuple<Ts...>(std::forward<Ts>(ts)...);
+    }
+
+    template<int N, typename T, typename... Ts>
+    struct Get {
+        static auto get(Tuple<T, Ts...> tuple){
+            return Get<N-1, Ts...>::get(tuple._ts);
+        }
+    };
+
+    template<typename T, typename... Ts>
+    struct Get<0, T, Ts...> {
+        static auto get(Tuple<T, Ts...> tuple){
+            return tuple._t;
+        }
+    };
+
+    template<int N, typename T, typename... Ts>
+    auto get(Tuple<T, Ts...> tuple){
+        return Get<N, T, Ts...>::get(tuple);
+    }
+
+    template<typename T, typename... Ts>
+    int size(Tuple<T, Ts...> const & tuple){
+        return 1 + size(tuple._ts);
+    }
+
+    template<typename T>
+    int size(Tuple<T> const & tuple){
+        return 1;
+    }
+
+	void test(){
+		auto tuple = makeTuple(0, 1.0, '2');    
+
+		assert(get<0>(tuple) == 0);
+		assert(get<1>(tuple) == 1.0);
+		assert(get<2>(tuple) == '2');
+
+		assert(size(tuple) == 3);
+	}
 }
 
+namespace inheritance
+{
+
+	template<typename T, typename... Ts>
+	struct Tuple : Tuple<Ts...> {
+		Tuple(T t, Ts... ts)
+			: Tuple<Ts...>(ts...)
+			, _t(t)
+		{
+		}
+
+		T _t;
+	};
+
+	template<typename T>
+	struct Tuple<T> {
+		Tuple(T t)
+			: _t(t)
+		{
+		}
+
+		T _t;
+	};
+
+	template<typename T, typename... Ts>
+	Tuple<T, Ts...> makeTuple(T t, Ts... ts){
+		return Tuple<T, Ts...>(t, ts...);
+	}
+
+	template<int N, typename T, typename... Ts>
+	struct Get {
+		static auto get(Tuple<T, Ts...> tuple){
+			// object slicing, Tuple<T, Ts...> --{sliced to base class}-->  Tuple<Ts...>
+			return Get<N-1, Ts...>::get(tuple); 
+		}
+	};
+
+	template<typename T, typename... Ts>
+	struct Get<0, T, Ts...> {
+		static auto get(Tuple<T, Ts...> tuple ){
+			return tuple._t;
+		}
+	};
+
+	template<int N, typename T, typename... Ts>
+	auto get(Tuple<T, Ts...> tuple){
+		return Get<N, T, Ts...>::get(tuple);
+	}
+
+    template<typename T, typename... Ts>
+    int size(Tuple<T, Ts...> const & tuple){
+        return 1 + sizeof...(Ts);
+    }
+
+	void test(){
+		auto tuple = makeTuple(0, 1.0, '2');    
+
+		assert(get<0>(tuple) == 0);
+		assert(get<1>(tuple) == 1.0);
+		assert(get<2>(tuple) == '2');
+
+		assert(size(tuple) == 3);
+	}
+}
+
+int main(){
+	composition::test();
+	inheritance::test();
+}
