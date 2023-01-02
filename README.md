@@ -628,4 +628,6 @@ Implement a min max function using std:async.
   
 **110. mapUtils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  
-
+  
+**111. trie.cpp**  
+Implement TRIE data structore.  
