@@ -1,8 +1,8 @@
 #include <chrono>
 #include <iostream>
 
-template< typename T > 
-void test( T const & t ) 
+template< typename T >
+void test( T const & t, int rep = 1 )
 {
     // typedef ratio< 1,  1000000000000000000 > atto;
     // typedef ratio< 1,     1000000000000000 > femto;
@@ -28,30 +28,36 @@ void test( T const & t )
     // typedef duration<int64_t, milli      > milliseconds;
     // typedef duration<int64_t             > seconds;
     // typedef duration<int64_t, ratio<  60>> minutes;
-    // typedef duration<int64_t, ratio<3600>> hours;    
+    // typedef duration<int64_t, ratio<3600>> hours;
 
-    std::chrono::time_point<
-        std::chrono::system_clock,
-        std::chrono::nanoseconds
-    >   
-    const & start = std::chrono::high_resolution_clock::now();
-
-    t(); 
-
-    std::chrono::time_point<
-        std::chrono::system_clock,
-        std::chrono::nanoseconds
-    >   
-    const & end = std::chrono::high_resolution_clock::now();
-
-    std::chrono::duration<
+    using duration = std::chrono::duration<
         long int,
         std::nano
-    >   
-    const & diff = end - start;
+    >;
+
+    using time_point = std::chrono::time_point<
+            std::chrono::system_clock,
+            std::chrono::nanoseconds
+        >;
+
+    duration bestTime = duration::zero();
+
+    for(int i = 0; i < rep ; ++i){
+        time_point const & start = std::chrono::high_resolution_clock::now();
+
+        t();
+
+        time_point const & end = std::chrono::high_resolution_clock::now();
+
+        duration const & diff = end - start;
+
+        if(bestTime == duration::zero() || bestTime > diff){
+            bestTime = diff;
+        }
+    }
 
     std::cout
-        << std::chrono::duration_cast< std::chrono::microseconds >( diff ).count()
+        << std::chrono::duration_cast< std::chrono::microseconds >( bestTime ).count()
         << "µs"
         << std::endl;
 }
