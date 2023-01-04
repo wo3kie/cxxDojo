@@ -631,3 +631,16 @@ Implement a collection of function to work with std::map like: groupBy, keys, va
   
 **111. trie.cpp**  
 Implement TRIE data structore.  
+  
+**112. isDuplicate.cpp**  
+Implement a function to check if there is a duplicate in a container of strings.  
+
+```{r, engine='bash'}
+$ ./isDuplicate 
+605µs
+313µs
+4684µs
+91218µs
+35834µs
+2454739µs
+```
