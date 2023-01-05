@@ -16,6 +16,7 @@
 #define __CXX_DOJO_TRIE_HPP__
 
 #include <cassert>
+#include <deque>
 #include <string>
 #include <vector>
 
@@ -38,7 +39,7 @@ struct Node {
 
 struct Trie {
     Trie() {
-        for (int i = 0; i < 10 + 26 + 1; ++i) {
+        for (size_t i = 0; i < 10 + 26 + 1; ++i) {
             nodes.push_back(Node());
         }
     }
@@ -81,7 +82,46 @@ struct Trie {
         return isCreated;
     }
 
+    std::vector<std::string> dump() const {
+        std::vector<std::string> result;
+
+        for(size_t i = 0; i < 10 + 26 + 1; ++i){
+            const std::string prefix = std::string(1, idToLetter(i));
+            const std::vector<std::string> partialResult = dump(prefix, i);
+            result.insert(result.end(), partialResult.begin(), partialResult.end());
+        }
+
+        return result;
+    }
+
+    std::vector<std::string> dump(const std::string& prefix, size_t nodeId) const {
+        std::vector<std::string> result;
+
+        if(nodes[nodeId].isEnd){
+            result.push_back(prefix);
+        }
+
+        for(size_t i = 0; i < 10 + 26 + 1; ++i){
+            if(nodes[nodeId].letters[i] == -1){
+                continue;
+            }
+
+            const std::vector<std::string> partialResult = dump(
+                prefix + std::string(1, idToLetter(i)),
+                nodes[nodeId].letters[i]
+            );
+
+            result.insert(result.end(), partialResult.begin(), partialResult.end());
+        }
+
+        return result;
+    }
+
 private:
+    char idToLetter(int id) const {
+        return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_"[id];
+    }
+
     int letterToId(char letter) const {
         int ids[256] = {
             /*   0 */ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
