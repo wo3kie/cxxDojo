@@ -35,117 +35,101 @@
 #include <queue>
 #include <thread>
 
-template< typename T >
-class Buffer
-{
+template<typename T>
+class Buffer {
 public:
+  void push(T const& t) {
+    std::unique_lock<std::mutex> lock(m_mutex);
+    m_queue.push(t);
+  }
 
-    void push( T const & t )
-    {
-        std::unique_lock< std::mutex > lock( m_mutex );
-        m_queue.push( t );
+  bool get(T& result) {
+    std::unique_lock<std::mutex> lock(m_mutex);
+
+    if(m_queue.empty()) {
+      return false;
     }
 
-    bool get( T & result )
-    {
-        std::unique_lock< std::mutex > lock( m_mutex );
-
-        if( m_queue.empty() ){
-            return false;
-        }
-
-        result = m_queue.front();
-        m_queue.pop();
-
-        return true;
-    }
-
-private:
-
-    std::mutex m_mutex;
-    std::queue< T > m_queue;
-};
-
-bool exec(
-    char const * const command,
-    std::function< void ( char const * ) > const onRead
-)
-{
-    FILE * const pipe = popen( command, "r" );
-
-    if( ! pipe ){
-        return false;
-    }
-
-    char buffer[ 4 * 1024 ];
-
-    while( ! feof( pipe ) )
-    {
-        if( fgets( buffer, sizeof( buffer ), pipe ) ){
-            onRead( buffer );
-        }
-    }
-
-    pclose( pipe );
+    result = m_queue.front();
+    m_queue.pop();
 
     return true;
+  }
+
+private:
+  std::mutex m_mutex;
+  std::queue<T> m_queue;
+};
+
+bool exec(char const* const command, std::function<void(char const*)> const onRead) {
+  FILE* const pipe = popen(command, "r");
+
+  if(! pipe) {
+    return false;
+  }
+
+  char buffer[4 * 1024];
+
+  while(! feof(pipe)) {
+    if(fgets(buffer, sizeof(buffer), pipe)) {
+      onRead(buffer);
+    }
+  }
+
+  pclose(pipe);
+
+  return true;
 }
 
-void producer( Buffer< std::string > & buffer )
-{
-    std::string line;
+void producer(Buffer<std::string>& buffer) {
+  std::string line;
 
-    while( std::getline( std::cin, line ) ){
-        buffer.push( line );
-    }
+  while(std::getline(std::cin, line)) {
+    buffer.push(line);
+  }
 }
 
-void consumer( std::string const & command, Buffer< std::string > & buffer )
-{
-    auto const print = []( std::string const & text ){
-        std::cout << std::this_thread::get_id() << ": " << text;
-    };
+void consumer(std::string const& command, Buffer<std::string>& buffer) {
+  auto const print = [](std::string const& text) {
+    std::cout << std::this_thread::get_id() << ": " << text;
+  };
 
-    std::string args;
+  std::string args;
 
-    while( true )
-    {
-        if( buffer.get( args ) == false )
-        {
-            std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
-        
-            if( buffer.get( args ) == false ){
-                return;
-            }
-        }
+  while(true) {
+    if(buffer.get(args) == false) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-        exec( (command + args).c_str(), print );
+      if(buffer.get(args) == false) {
+        return;
+      }
     }
+
+    exec((command + args).c_str(), print);
+  }
 }
 
-int main( int argc, char* argv[] )
-{
-    std::string command;
+int main(int argc, char* argv[]) {
+  std::string command;
 
-    for( unsigned i = 1 ; i < argc ; ++ i ){
-        command += std::string( argv[ i ] ) + " ";
-    }
+  for(unsigned i = 1; i < argc; ++i) {
+    command += std::string(argv[i]) + " ";
+  }
 
-    Buffer< std::string > buffer;
-    std::vector< std::thread > threads;
+  Buffer<std::string> buffer;
+  std::vector<std::thread> threads;
 
-    threads.push_back( std::thread( & producer, std::ref( buffer ) ) );
+  threads.push_back(std::thread(&producer, std::ref(buffer)));
 
-    unsigned const cores = std::thread::hardware_concurrency();
+  unsigned const cores = std::thread::hardware_concurrency();
 
-    for( unsigned i = 0 ; i < 2 * cores ; ++ i ){
-        threads.push_back( std::thread( & consumer, command, std::ref( buffer ) ) );
-    }
+  for(unsigned i = 0; i < 2 * cores; ++i) {
+    threads.push_back(std::thread(&consumer, command, std::ref(buffer)));
+  }
 
-    for( std::thread & t : threads ){
-        t.join();
-    }
+  for(std::thread& t : threads) {
+    t.join();
+  }
 
-    return 0;
+  return 0;
 }
-

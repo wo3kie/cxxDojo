@@ -14,49 +14,44 @@
 
 #include "./feq.hpp"
 
-struct Point
-{
-    double x;
-    double y;
+struct Point {
+  double x;
+  double y;
 };
 
-inline bool linearRegression( 
-    std::vector<Point> const & points,
-    double & a,
-    double & b
- ){
-    if( points.empty() ){
-        return false;
-    }
+inline bool linearRegression(std::vector<Point> const& points, double& a, double& b) {
+  if(points.empty()) {
+    return false;
+  }
 
-    double sumXi = 0;
-    double sumYi = 0;
-    double sumX2i = 0;
-    double sumXiYi = 0;
+  double sumXi = 0;
+  double sumYi = 0;
+  double sumX2i = 0;
+  double sumXiYi = 0;
 
-    for( Point const & p : points ){
-        sumXi += p.x;
-        sumYi += p.y;
-        sumX2i += p.x * p.x;
-        sumXiYi += p.x * p.y;
-    }
+  for(Point const& p : points) {
+    sumXi += p.x;
+    sumYi += p.y;
+    sumX2i += p.x * p.x;
+    sumXiYi += p.x * p.y;
+  }
 
-    double const sumXi2 = sumXi * sumXi;
-    double const n = points.size();
-    double const denominator = n * sumX2i - sumXi2;
+  double const sumXi2 = sumXi * sumXi;
+  double const n = points.size();
+  double const denominator = n * sumX2i - sumXi2;
 
-    if( fabs( denominator - 0.0000 ) < 0.00001 ){
-        return false;
-    }
+  if(fabs(denominator - 0.0000) < 0.00001) {
+    return false;
+  }
 
-    a =  ( n * sumXiYi - sumXi * sumYi ) / denominator;
+  a = (n * sumXiYi - sumXi * sumYi) / denominator;
 
-    double const avgYi = sumYi / n;
-    double const avgXi = sumXi / n;
+  double const avgYi = sumYi / n;
+  double const avgXi = sumXi / n;
 
-    b = avgYi - a * avgXi;
+  b = avgYi - a * avgXi;
 
-    return true;
+  return true;
 }
 
 /*
@@ -111,43 +106,39 @@ inline bool linearRegression(
  b = yMean - a*xMean
 */
 
-inline bool linearRegression2(
-    std::vector<Point> const & points,
-    double & a,
-    double & b
-){
-    if( points.empty() ){
-    	return false;
-    }
+inline bool linearRegression2(std::vector<Point> const& points, double& a, double& b) {
+  if(points.empty()) {
+    return false;
+  }
 
-    double xMean = 0;
-    double yMean = 0;
-    double xyMean = 0;
-    double x2Mean = 0;
-    unsigned const n = points.size();
+  double xMean = 0;
+  double yMean = 0;
+  double xyMean = 0;
+  double x2Mean = 0;
+  unsigned const n = points.size();
 
-    for( Point const & p : points ){
-    	xMean += p.x;
-    	yMean += p.y;
-    	xyMean += p.x * p.y;
-    	x2Mean += p.x * p.x;
-    }
+  for(Point const& p : points) {
+    xMean += p.x;
+    yMean += p.y;
+    xyMean += p.x * p.y;
+    x2Mean += p.x * p.x;
+  }
 
-    xMean /= n;
-    yMean /= n;
-    xyMean /= n;
-    x2Mean /= n;
+  xMean /= n;
+  yMean /= n;
+  xyMean /= n;
+  x2Mean /= n;
 
-    double const denominator = xMean * xMean - x2Mean;
+  double const denominator = xMean * xMean - x2Mean;
 
-    if( fabs( denominator - 0.0000 ) < 0.00001 ){
-        return false;
-    }
+  if(fabs(denominator - 0.0000) < 0.00001) {
+    return false;
+  }
 
-    a = (xMean * yMean - xyMean) / denominator;
-    b = yMean - a * xMean;
+  a = (xMean * yMean - xyMean) / denominator;
+  b = yMean - a * xMean;
 
-    return true;
+  return true;
 }
 
 #endif

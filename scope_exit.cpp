@@ -18,7 +18,8 @@
 
 #include "./scope_exit.hpp"
 
-int main()
-{
-    auto sg = make_scope_exit( [](){ std::cout << "OK" << std::endl; } );
+int main() {
+  auto sg = make_scope_exit([]() {
+    std::cout << "OK" << std::endl;
+  });
 }

@@ -5,11 +5,8 @@
 
 #include "shared.h"
 
-extern "C"
-{
-    void helloWorld()
-    {
-        std::cout << "Hello World!" << std::endl;
-    }
+extern "C" {
+void helloWorld() {
+  std::cout << "Hello World!" << std::endl;
 }
-
+}

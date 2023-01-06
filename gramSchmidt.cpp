@@ -16,18 +16,17 @@
 
 #include "./gramSchmidt.hpp"
 
-int main(){
-    {
-        Matrix matrix(2, 2);
+int main() {
+  {
+    Matrix matrix(2, 2);
 
-        matrix[0][0] = 2;
-        matrix[0][1] = 1;
-        matrix[1][0] = 1;
-        matrix[1][1] = 1;
+    matrix[0][0] = 2;
+    matrix[0][1] = 1;
+    matrix[1][0] = 1;
+    matrix[1][1] = 1;
 
-        Matrix const orthonormal = gramSchmidt(matrix);
+    Matrix const orthonormal = gramSchmidt(matrix);
 
-        assert((dot(transpose(orthonormal), orthonormal) == eye(matrix.rows())));
-    }
+    assert((dot(transpose(orthonormal), orthonormal) == eye(matrix.rows())));
+  }
 }
-

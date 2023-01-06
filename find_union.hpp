@@ -13,51 +13,49 @@
 
 class FindUnion {
 public:
-    FindUnion(int size)
-        : data_(size)
-    {
-        for(int i = 0; i < size; ++i){
-            data_[i] = i;
-        }
+  FindUnion(int size)
+      : data_(size) {
+    for(int i = 0; i < size; ++i) {
+      data_[i] = i;
+    }
+  }
+
+  int cfind(int i) const {
+    while(data_[i] != i) {
+      i = data_[i];
     }
 
-    int cfind(int i) const {
-        while(data_[i] != i){
-            i = data_[i];
-        }
+    return i;
+  }
 
-        return i;
+  int find(int i) {
+    if(data_[i] == i) {
+      return i;
     }
 
-    int find(int i) {
-        if(data_[i] == i){
-            return i;
-        }
+    int const root = find(data_[i]);
 
-        int const root = find(data_[i]);
+    data_[i] = root;
+    return i;
+  }
 
-        data_[i] = root;
-        return i;
-    }
+  void merge(int i, int j) {
+    int const i_pos = cfind(i);
+    int const j_pos = cfind(j);
 
-    void merge(int i, int j){
-        int const i_pos = cfind(i);
-        int const j_pos = cfind(j);
+    data_[i_pos] = j_pos;
+  }
 
-        data_[i_pos] = j_pos;
-    }
+  unsigned size() const {
+    return data_.size();
+  }
 
-    unsigned size() const {
-        return data_.size();
-    }
-
-    std::vector<int> getData() const {
-        return data_;
-    }
+  std::vector<int> getData() const {
+    return data_;
+  }
 
 private:
-    std::vector<int> data_;
+  std::vector<int> data_;
 };
 
 #endif
-

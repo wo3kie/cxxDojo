@@ -12,12 +12,11 @@
  *      $ ./allocator
  */
 
-#include <vector>
 #include <limits>
+#include <vector>
 
 #include "./allocator.hpp"
 
-int main(){
-    std::vector< int, Allocator< int > > vector;
+int main() {
+  std::vector<int, Allocator<int>> vector;
 }
-

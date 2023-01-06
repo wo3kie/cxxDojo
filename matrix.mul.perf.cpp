@@ -54,158 +54,119 @@
 #include <chrono>
 #include <iostream>
 
-template< int N, int M, typename F >
-void fill(
-    int (& matrix)[ N ][ M ],
-    F f
-)
-{
-    for( int n = 0 ; n < N ; ++n )
-        for( int m = 0 ; m < M ; ++m )
-            matrix[ n ][ m ] = f();
+template<int N, int M, typename F>
+void fill(int (&matrix)[N][M], F f) {
+  for(int n = 0; n < N; ++n)
+    for(int m = 0; m < M; ++m)
+      matrix[n][m] = f();
 }
 
-template< int N, int M, int P >
-void multiply1(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-    for( int n = 0 ; n < N ; ++ n )
-        for( int m = 0 ; m < M ; ++ m )
-            for( int p = 0 ; p < P ; ++ p )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply1(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int n = 0; n < N; ++n)
+    for(int m = 0; m < M; ++m)
+      for(int p = 0; p < P; ++p)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-template< int N, int M, int P >
-void multiply2(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-    for( int n = 0 ; n < N ; ++ n )
-            for( int p = 0 ; p < P ; ++ p )
-        for( int m = 0 ; m < M ; ++ m )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply2(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int n = 0; n < N; ++n)
+    for(int p = 0; p < P; ++p)
+      for(int m = 0; m < M; ++m)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-template< int N, int M, int P >
-void multiply3(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-        for( int m = 0 ; m < M ; ++ m )
-    for( int n = 0 ; n < N ; ++ n )
-            for( int p = 0 ; p < P ; ++ p )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply3(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int m = 0; m < M; ++m)
+    for(int n = 0; n < N; ++n)
+      for(int p = 0; p < P; ++p)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-template< int N, int M, int P >
-void multiply4(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-        for( int m = 0 ; m < M ; ++ m )
-            for( int p = 0 ; p < P ; ++ p )
-    for( int n = 0 ; n < N ; ++ n )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply4(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int m = 0; m < M; ++m)
+    for(int p = 0; p < P; ++p)
+      for(int n = 0; n < N; ++n)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-template< int N, int M, int P >
-void multiply5(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-            for( int p = 0 ; p < P ; ++ p )
-    for( int n = 0 ; n < N ; ++ n )
-        for( int m = 0 ; m < M ; ++ m )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply5(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int p = 0; p < P; ++p)
+    for(int n = 0; n < N; ++n)
+      for(int m = 0; m < M; ++m)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-template< int N, int M, int P >
-void multiply6(
-    int (& matrix1)[ N ][ M ],
-    int (& matrix2)[ P ][ N ],
-    int (& result )[ P ][ M ]
-)
-{
-            for( int p = 0 ; p < P ; ++ p )
-        for( int m = 0 ; m < M ; ++ m )
-    for( int n = 0 ; n < N ; ++ n )
-                result[ m ][ p ] += matrix1[ m ][ n ] * matrix2[ n ][ p ];
+template<int N, int M, int P>
+void multiply6(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
+  for(int p = 0; p < P; ++p)
+    for(int m = 0; m < M; ++m)
+      for(int n = 0; n < N; ++n)
+        result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
-int main()
-{
-    int matrix1[ 400 ][ 600 ];
-    int matrix2[ 600 ][ 400 ];
-    int matrix3[ 600 ][ 600 ];
+int main() {
+  int matrix1[400][600];
+  int matrix2[600][400];
+  int matrix3[600][600];
 
-    fill( matrix1, rand );
-    fill( matrix2, rand );
-    fill( matrix3, [](){ return 0; } );
+  fill(matrix1, rand);
+  fill(matrix2, rand);
+  fill(matrix3, []() {
+    return 0;
+  });
 
-    using namespace std::chrono;
+  using namespace std::chrono;
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply1( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply1(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "nmp: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "nmp: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply2( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply2(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "npm: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "npm: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply3( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply3(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "mnp: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "mnp: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply4( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply4(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "mpn: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "mpn: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply5( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply5(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "pnm: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "pnm: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 
-    {
-        const auto start = high_resolution_clock::now();
-        multiply6( matrix1, matrix2, matrix3 );
-        const auto end = high_resolution_clock::now();
+  {
+    const auto start = high_resolution_clock::now();
+    multiply6(matrix1, matrix2, matrix3);
+    const auto end = high_resolution_clock::now();
 
-        std::cout << "pmn: " << duration_cast< microseconds >(end - start).count()
-            << "µs" << std::endl;
-    }
+    std::cout << "pmn: " << duration_cast<microseconds>(end - start).count() << "µs" << std::endl;
+  }
 }

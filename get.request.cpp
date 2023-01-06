@@ -38,87 +38,83 @@
 
 namespace asio = boost::asio;
 
-int main( int argc, char * argv[] )
-{
-    if( argc != 6 ){
-        std::cerr << "Usage: " << argv[0] << " host file proxy_host proxt_port authorization" << std::endl;
-        return 1;
-    }
+int main(int argc, char* argv[]) {
+  if(argc != 6) {
+    std::cerr << "Usage: " << argv[0] << " host file proxy_host proxt_port authorization" << std::endl;
+    return 1;
+  }
 
-    std::string const host = argv[1];
-    std::string const file = argv[2];
-    std::string const proxyHost = argv[3];
-    std::string const proxyPort = argv[4];
-    std::string const authorization = argv[5];
+  std::string const host = argv[1];
+  std::string const file = argv[2];
+  std::string const proxyHost = argv[3];
+  std::string const proxyPort = argv[4];
+  std::string const authorization = argv[5];
 
-    asio::io_service io_service;
+  asio::io_service io_service;
 
-    asio::ip::tcp::resolver resolver( io_service );
-    asio::ip::tcp::resolver::query const query( proxyHost, proxyPort );
-    asio::ip::tcp::resolver::iterator endpointIterator = resolver.resolve( query );
+  asio::ip::tcp::resolver resolver(io_service);
+  asio::ip::tcp::resolver::query const query(proxyHost, proxyPort);
+  asio::ip::tcp::resolver::iterator endpointIterator = resolver.resolve(query);
 
-    asio::ip::tcp::socket socket( io_service );
-    asio::connect( socket, endpointIterator );
+  asio::ip::tcp::socket socket(io_service);
+  asio::connect(socket, endpointIterator);
 
-    asio::streambuf requestBuffer;
-    std::ostream requestStream( & requestBuffer );
+  asio::streambuf requestBuffer;
+  std::ostream requestStream(&requestBuffer);
 
-    requestStream << "GET " << host << "/" << file << " HTTP/1.0\r\n";
-    requestStream << "Host: " << host << "\r\n";
-    requestStream << "Accept: */*\r\n";
-    
-    if( authorization != "" ){
-        requestStream << "Proxy-Authorization: Basic " << authorization << "\n\r";
-    }
+  requestStream << "GET " << host << "/" << file << " HTTP/1.0\r\n";
+  requestStream << "Host: " << host << "\r\n";
+  requestStream << "Accept: */*\r\n";
 
-    requestStream << "Connection: close\r\n\r\n";
-    asio::write( socket, requestBuffer );
+  if(authorization != "") {
+    requestStream << "Proxy-Authorization: Basic " << authorization << "\n\r";
+  }
 
-    asio::streambuf response_buffer;
-    std::istream responseStream( & response_buffer );
+  requestStream << "Connection: close\r\n\r\n";
+  asio::write(socket, requestBuffer);
 
-    asio::read_until( socket, response_buffer, "\r\n");
+  asio::streambuf response_buffer;
+  std::istream responseStream(&response_buffer);
 
-    std::string httpVersion;
-    responseStream >> httpVersion;
+  asio::read_until(socket, response_buffer, "\r\n");
 
-    unsigned status_code;
-    responseStream >> status_code;
+  std::string httpVersion;
+  responseStream >> httpVersion;
 
-    std::string status_message;
-    std::getline( responseStream, status_message );
+  unsigned status_code;
+  responseStream >> status_code;
 
-    if( ! responseStream || httpVersion.substr( 0, 5 ) != "HTTP/" )
-    {
-        std::cerr << "Invalid response\n";
-        return 2;
-    }
+  std::string status_message;
+  std::getline(responseStream, status_message);
 
-    if( status_code != 200 )
-    {
-        std::cerr << "Response returned with status code " << status_code << "\n";
-        return 3;
-    }
+  if(! responseStream || httpVersion.substr(0, 5) != "HTTP/") {
+    std::cerr << "Invalid response\n";
+    return 2;
+  }
 
-    asio::read_until( socket, response_buffer, "\r\n\r\n" );
+  if(status_code != 200) {
+    std::cerr << "Response returned with status code " << status_code << "\n";
+    return 3;
+  }
 
-    std::string header;
-    while( std::getline( responseStream, header ) && header != "\r" ){
-        std::cout << "> " << header << "\n";
-    }
+  asio::read_until(socket, response_buffer, "\r\n\r\n");
 
-    std::cout << std::endl;
+  std::string header;
+  while(std::getline(responseStream, header) && header != "\r") {
+    std::cout << "> " << header << "\n";
+  }
 
-    boost::system::error_code error;
-    while( asio::read( socket, response_buffer, asio::transfer_at_least( 1 ), error ) ){
-        std::cout << & response_buffer;
-    }
+  std::cout << std::endl;
 
-    if( error != asio::error::eof ){
-        std::cerr << boost::system::system_error( error ).what() << "\n";
-        return 4;
-    }
+  boost::system::error_code error;
+  while(asio::read(socket, response_buffer, asio::transfer_at_least(1), error)) {
+    std::cout << &response_buffer;
+  }
 
-    return 0;
+  if(error != asio::error::eof) {
+    std::cerr << boost::system::system_error(error).what() << "\n";
+    return 4;
+  }
+
+  return 0;
 }
-

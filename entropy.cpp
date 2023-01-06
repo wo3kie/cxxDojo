@@ -21,24 +21,24 @@
 #include <map>
 
 template<typename Iterator>
-double entropy(Iterator const begin, Iterator const end){
-    typedef typename std::iterator_traits<Iterator>::value_type value_type;
+double entropy(Iterator const begin, Iterator const end) {
+  typedef typename std::iterator_traits<Iterator>::value_type value_type;
 
-    unsigned totalCount = 0;
-    std::map<value_type, unsigned> histogram;
+  unsigned totalCount = 0;
+  std::map<value_type, unsigned> histogram;
 
-    for(Iterator current = begin; current != end; ++current){
-        histogram[*current] += 1;
-        totalCount += 1;
-    }
+  for(Iterator current = begin; current != end; ++current) {
+    histogram[*current] += 1;
+    totalCount += 1;
+  }
 
-    double entropy;
+  double entropy;
 
-    for(auto const & pair: histogram){
-        entropy -= (1.0 * pair.second / totalCount) * log2(1.0 * pair.second / totalCount);
-    }
+  for(auto const& pair : histogram) {
+    entropy -= (1.0 * pair.second / totalCount) * log2(1.0 * pair.second / totalCount);
+  }
 
-    return entropy;
+  return entropy;
 }
 
 #include <cassert>
@@ -47,22 +47,21 @@ double entropy(Iterator const begin, Iterator const end){
 
 #include "./feq.hpp"
 
-void entropy_test(){
-    {
-        std::vector<int> array({1, 2});
-        assert(entropy(array.begin(), array.end()) == 1);
-    }
-    {
-        std::vector<int> array({1, 2, 2, 2});
-        assert(feq(entropy(array.begin(), array.end()), 0.811278));
-    }
-    {
-        std::vector<int> array({1, 1, 1, 1, 1});
-        assert(feq(entropy(array.begin(), array.end()), 0));
-    }
+void entropy_test() {
+  {
+    std::vector<int> array({1, 2});
+    assert(entropy(array.begin(), array.end()) == 1);
+  }
+  {
+    std::vector<int> array({1, 2, 2, 2});
+    assert(feq(entropy(array.begin(), array.end()), 0.811278));
+  }
+  {
+    std::vector<int> array({1, 1, 1, 1, 1});
+    assert(feq(entropy(array.begin(), array.end()), 0));
+  }
 }
 
-int main(){
-    entropy_test();
+int main() {
+  entropy_test();
 }
-

@@ -16,12 +16,12 @@
  * Algorithm from the book "Markowe wykłady z matematyki, algebra z geometrią", Marek Zakrzewski, page 173
  */
 
-#include <vector>
-#include <tuple>
 #include <complex>
+#include <tuple>
+#include <vector>
 
-#include <gsl/gsl_math.h>
 #include <gsl/gsl_eigen.h>
+#include <gsl/gsl_math.h>
 
 /*
  * Let's describe links between pages as a matrix "A"
@@ -53,103 +53,94 @@
  *  so, r = aMr, Mr = (1/a)r, r is a eigenvector, (1/a) is eigenvalue
  */
 
-std::vector<
-    std::tuple<
-        std::complex<double>,
-        std::vector<std::complex<double>>
-    >
->
-eigen(double * const data, unsigned rows, unsigned columns){
-    std::vector<std::tuple<std::complex<double>, std::vector<std::complex<double>>>> result;
+std::vector<std::tuple<std::complex<double>, std::vector<std::complex<double>>>>
+eigen(double* const data, unsigned rows, unsigned columns) {
+  std::vector<std::tuple<std::complex<double>, std::vector<std::complex<double>>>> result;
 
-    gsl_matrix_view matrix = gsl_matrix_view_array (data, rows, columns);
-    gsl_vector_complex * const values = gsl_vector_complex_alloc(columns);
-    gsl_matrix_complex * const vectors = gsl_matrix_complex_alloc(rows, columns);
-    gsl_eigen_nonsymmv_workspace * const w = gsl_eigen_nonsymmv_alloc(rows);
+  gsl_matrix_view matrix = gsl_matrix_view_array(data, rows, columns);
+  gsl_vector_complex* const values = gsl_vector_complex_alloc(columns);
+  gsl_matrix_complex* const vectors = gsl_matrix_complex_alloc(rows, columns);
+  gsl_eigen_nonsymmv_workspace* const w = gsl_eigen_nonsymmv_alloc(rows);
 
-    gsl_eigen_nonsymmv(&matrix.matrix, values, vectors, w);
-    gsl_eigen_nonsymmv_free(w);
-    gsl_eigen_nonsymmv_sort(values, vectors, GSL_EIGEN_SORT_ABS_DESC);
+  gsl_eigen_nonsymmv(&matrix.matrix, values, vectors, w);
+  gsl_eigen_nonsymmv_free(w);
+  gsl_eigen_nonsymmv_sort(values, vectors, GSL_EIGEN_SORT_ABS_DESC);
 
-    for(int i = 0; i < columns; ++i){
-        std::vector<std::complex<double>> vector;
-        gsl_vector_complex_view _view = gsl_matrix_complex_column(vectors, i);
+  for(int i = 0; i < columns; ++i) {
+    std::vector<std::complex<double>> vector;
+    gsl_vector_complex_view _view = gsl_matrix_complex_column(vectors, i);
 
-        for(int j = 0; j < rows; ++j){
-            gsl_complex _value = gsl_vector_complex_get(&_view.vector, j);
-            vector.push_back(std::complex<double>(GSL_REAL(_value), GSL_IMAG(_value)));
-        }
-
-        gsl_complex _value = gsl_vector_complex_get(values, i);
-        std::complex<double> value(GSL_REAL(_value), GSL_IMAG(_value));
-        result.push_back(std::make_tuple(value, vector));
+    for(int j = 0; j < rows; ++j) {
+      gsl_complex _value = gsl_vector_complex_get(&_view.vector, j);
+      vector.push_back(std::complex<double>(GSL_REAL(_value), GSL_IMAG(_value)));
     }
 
-    gsl_vector_complex_free(values);
-    gsl_matrix_complex_free(vectors);
+    gsl_complex _value = gsl_vector_complex_get(values, i);
+    std::complex<double> value(GSL_REAL(_value), GSL_IMAG(_value));
+    result.push_back(std::make_tuple(value, vector));
+  }
 
-    return result;
+  gsl_vector_complex_free(values);
+  gsl_matrix_complex_free(vectors);
+
+  return result;
 }
 
 #include <iostream>
 
-int getSign(double d){
-    if(d > 0){
-        return 1;
-    }
-    else if(d < 0){
-        return -1;
-    }
-    else{
-        return 0;
-    }
+int getSign(double d) {
+  if(d > 0) {
+    return 1;
+  } else if(d < 0) {
+    return -1;
+  } else {
+    return 0;
+  }
 }
 
-bool makePerronEigenvector(std::vector<std::complex<double>> & vector){
-    int sign = 0;
+bool makePerronEigenvector(std::vector<std::complex<double>>& vector) {
+  int sign = 0;
 
-    for(auto const & complex : vector){
-        if(complex.imag() != 0){
-            return false;
-        }
-
-        if(sign == 0){
-            sign = getSign(complex.real());
-        }
-        else if(sign == 1 && getSign(complex.real()) == -1){
-            return false;
-        }
-        else if(sign == -1 && getSign(complex.real()) == 1){
-            return false;
-        }
+  for(auto const& complex : vector) {
+    if(complex.imag() != 0) {
+      return false;
     }
 
-    if(sign == -1){
-        for(auto & complex : vector){
-            complex.real(-complex.real());
-        }
+    if(sign == 0) {
+      sign = getSign(complex.real());
+    } else if(sign == 1 && getSign(complex.real()) == -1) {
+      return false;
+    } else if(sign == -1 && getSign(complex.real()) == 1) {
+      return false;
     }
+  }
 
-    double sum = 0;
-
-    for(auto & complex : vector){
-        sum += complex.real();
+  if(sign == -1) {
+    for(auto& complex : vector) {
+      complex.real(-complex.real());
     }
+  }
 
-    if(sum == 0){
-        return false;
-    }
+  double sum = 0;
 
-    for(auto & complex : vector){
-        complex.real(complex.real() / sum);
-    }
+  for(auto& complex : vector) {
+    sum += complex.real();
+  }
 
-    return true;
+  if(sum == 0) {
+    return false;
+  }
+
+  for(auto& complex : vector) {
+    complex.real(complex.real() / sum);
+  }
+
+  return true;
 }
 
-int main(){
+int main() {
 
-    /*
+  /*
      * website -points to-> websites
      *
      * 0 ->         4
@@ -159,34 +150,33 @@ int main(){
      * 4 -> 0 1 2 3
      */
 
-    double data[] = {
-    //  0  1  2  3  4
-        0, 1, 1, 1, 1,  // 0
-        0, 0, 1, 1, 1,  // 1
-        0, 0, 0, 1, 1,  // 2
-        0, 0, 1, 0, 1,  // 3
-        1, 0, 0, 0, 0   // 4
-    };
+  double data[] = {
+      //  0  1  2  3  4
+      0, 1, 1, 1, 1, // 0
+      0, 0, 1, 1, 1, // 1
+      0, 0, 0, 1, 1, // 2
+      0, 0, 1, 0, 1, // 3
+      1, 0, 0, 0, 0  // 4
+  };
 
-    auto eigen_values_vectors = eigen(data, 5, 5);
+  auto eigen_values_vectors = eigen(data, 5, 5);
 
-    for(auto & eigen_value_vector : eigen_values_vectors){
-        std::complex<double> & value = std::get<0>(eigen_value_vector);
-        std::vector<std::complex<double>> & vector = std::get<1>(eigen_value_vector);
+  for(auto& eigen_value_vector : eigen_values_vectors) {
+    std::complex<double>& value = std::get<0>(eigen_value_vector);
+    std::vector<std::complex<double>>& vector = std::get<1>(eigen_value_vector);
 
-        if(value.imag() != 0){
-            continue;
-        }
-
-        if(makePerronEigenvector(vector) == false){
-            continue;
-        }
-
-        for(unsigned i = 0; i < vector.size(); ++i){
-            std::cout << "Site (" << i << ") has rank: " << vector[i].real() << std::endl;
-        }
+    if(value.imag() != 0) {
+      continue;
     }
 
-    return 0;
-}
+    if(makePerronEigenvector(vector) == false) {
+      continue;
+    }
 
+    for(unsigned i = 0; i < vector.size(); ++i) {
+      std::cout << "Site (" << i << ") has rank: " << vector[i].real() << std::endl;
+    }
+  }
+
+  return 0;
+}

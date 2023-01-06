@@ -13,31 +13,27 @@
  */
 
 template<typename T>
-struct SafeBool
-{
-	operator bool() const {
-		return static_cast<T const *>(this)->getBool();
-	}
+struct SafeBool {
+  operator bool() const {
+    return static_cast<T const*>(this)->getBool();
+  }
 };
 
-struct MyClass : SafeBool<MyClass>
-{
-	MyClass(bool b)
-		: b_(b)
-	{
-	}
+struct MyClass: SafeBool<MyClass> {
+  MyClass(bool b)
+      : b_(b) {
+  }
 
-	bool getBool() const {
-		return b_;
-	}
+  bool getBool() const {
+    return b_;
+  }
 
-	bool b_;
+  bool b_;
 };
 
 #include <cassert>
 
-int main(){
-	assert(MyClass(true) == true);
-	assert(MyClass(false) == false);
+int main() {
+  assert(MyClass(true) == true);
+  assert(MyClass(false) == false);
 }
-

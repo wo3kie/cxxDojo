@@ -19,22 +19,17 @@
 #include <iostream>
 #include <regex>
 
-int main( int argc, char * argv[] )
-{
-    if( argc != 2 )
-    {
-        std::cerr << "Usage " << argv[0] << " regex" << std::endl;
-        return 1;
-    }
+int main(int argc, char* argv[]) {
+  if(argc != 2) {
+    std::cerr << "Usage " << argv[0] << " regex" << std::endl;
+    return 1;
+  }
 
-    std::string line;
+  std::string line;
 
-    while( std::getline( std::cin, line ) )
-    {
-        if( std::regex_match( line, std::regex( argv[1] ) ) )
-        {
-            std::cout << line << std::endl;
-        }
+  while(std::getline(std::cin, line)) {
+    if(std::regex_match(line, std::regex(argv[1]))) {
+      std::cout << line << std::endl;
     }
+  }
 }
-

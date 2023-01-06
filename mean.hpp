@@ -12,21 +12,21 @@
 #include <vector>
 
 template<typename Iterator>
-double mean(Iterator begin, Iterator const end){
-    double totalSum = 0;
-    unsigned counter = 0;
+double mean(Iterator begin, Iterator const end) {
+  double totalSum = 0;
+  unsigned counter = 0;
 
-    for( ; begin != end; ++begin){
-        totalSum += * begin;
-        counter += 1;
-    }
+  for(; begin != end; ++begin) {
+    totalSum += *begin;
+    counter += 1;
+  }
 
-    return totalSum / counter;
+  return totalSum / counter;
 }
 
 template<typename T>
-double mean(std::vector<T> const & array){
-    return mean(array.begin(), array.end());
+double mean(std::vector<T> const& array) {
+  return mean(array.begin(), array.end());
 }
 
 #endif

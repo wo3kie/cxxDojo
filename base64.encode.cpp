@@ -15,15 +15,13 @@
 
 #include "./base64.encode.hpp"
 
-int main( int argc, char * argv[] )
-{
-    if( argc != 2 )
-    {
-        std::cerr << "Usage: " << argv[0] << " text" << std::endl;
-        return 1;
-    }
+int main(int argc, char* argv[]) {
+  if(argc != 2) {
+    std::cerr << "Usage: " << argv[0] << " text" << std::endl;
+    return 1;
+  }
 
-    std::cout << base64encode( argv[1] ) << std::endl;
+  std::cout << base64encode(argv[1]) << std::endl;
 
-    return 0;
+  return 0;
 }

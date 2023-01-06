@@ -36,75 +36,62 @@
 namespace date = boost::gregorian;
 namespace date_time = boost::date_time;
 
-double bondPrice(
-    date::date maturityDate,
-    double faceValue,
-    double yield,
-    double intrestRate,
-    date::date priceDay
-)
-{
-    using std::pow;
+double bondPrice(date::date maturityDate, double faceValue, double yield, double intrestRate, date::date priceDay) {
+  using std::pow;
 
-    int days = ( maturityDate - priceDay ).days();
+  int days = (maturityDate - priceDay).days();
 
-    if( days < 0 ){
-        return 0;
-    }
+  if(days < 0) {
+    return 0;
+  }
 
-    double result = 0;
+  double result = 0;
 
-    {
-        /*
+  {
+    /*
          * Face value
          */
 
-        result = faceValue / pow( ( 1.0 + intrestRate ), 1.0 * days / 365 );
+    result = faceValue / pow((1.0 + intrestRate), 1.0 * days / 365);
 
-        std::cout << "  PV( F ): " << result << std::endl;
-    }
+    std::cout << "  PV( F ): " << result << std::endl;
+  }
 
-    while( days > 0 )
-    {       
-        /*
+  while(days > 0) {
+    /*
          * Coupons
          */
 
-        double coupon =
-            ( faceValue * yield ) / pow( ( 1.0 + intrestRate ), 1.0 * days / 365 );
+    double coupon = (faceValue * yield) / pow((1.0 + intrestRate), 1.0 * days / 365);
 
-        std::cout << "  PV( Coupon ): " << coupon << std::endl;
+    std::cout << "  PV( Coupon ): " << coupon << std::endl;
 
-        result += coupon;
+    result += coupon;
 
-        maturityDate = maturityDate - date::years( 1 );
-        
-        days = ( maturityDate - priceDay ).days();
-    }
+    maturityDate = maturityDate - date::years(1);
 
-    std::cout << "P: " << result << std::endl;
+    days = (maturityDate - priceDay).days();
+  }
 
-    return result;
+  std::cout << "P: " << result << std::endl;
+
+  return result;
 }
 
-int main( int argc, char* argv[] )
-{
-    if( argc != 6 )
-    {
-        std::cerr << "Usage: " << argv[0] << " maturityDate faceValue yield intrestRate priceDate" << std::endl;
-        std::cerr << "       " << argv[0] << " 2015/12/31 100 0.08 0.08 2014/12/31" << std::endl;
+int main(int argc, char* argv[]) {
+  if(argc != 6) {
+    std::cerr << "Usage: " << argv[0] << " maturityDate faceValue yield intrestRate priceDate" << std::endl;
+    std::cerr << "       " << argv[0] << " 2015/12/31 100 0.08 0.08 2014/12/31" << std::endl;
 
-        return 1;
-    }
+    return 1;
+  }
 
-    bondPrice(
-        date::from_string( argv[1] ),
-        std::stoi( argv[2] ),
-        std::stof( argv[3] ),
-        std::stof( argv[4] ),
-        date::from_string( argv[5] )
-    );
+  bondPrice(
+      date::from_string(argv[1]),
+      std::stoi(argv[2]),
+      std::stof(argv[3]),
+      std::stof(argv[4]),
+      date::from_string(argv[5]));
 
-    return 0;
+  return 0;
 }
-

@@ -30,111 +30,104 @@
 #include <string>
 #include <utility>
 
-#include <libxml/tree.h>
 #include <libxml/parser.h>
+#include <libxml/tree.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
 
-template< typename Iterator>
-struct Range
-{
-    Range(Iterator begin, Iterator end)
-        : m_begin(begin)
-        , m_end(end)
-    {
-    }
+template<typename Iterator>
+struct Range {
+  Range(Iterator begin, Iterator end)
+      : m_begin(begin)
+      , m_end(end) {
+  }
 
-    Iterator begin() { return m_begin; }
-    Iterator end() { return m_end; }
+  Iterator begin() {
+    return m_begin;
+  }
+  Iterator end() {
+    return m_end;
+  }
 
 private:
-    Iterator m_begin;
-    Iterator m_end;
+  Iterator m_begin;
+  Iterator m_end;
 };
 
-struct XmlParser
-{
-    XmlParser(){
-        xmlInitParser();
-    }
+struct XmlParser {
+  XmlParser() {
+    xmlInitParser();
+  }
 
-    ~XmlParser(){
-        xmlCleanupParser();
-    }
+  ~XmlParser() {
+    xmlCleanupParser();
+  }
 };
 
-struct XmlDocDeleter
-{
-    void operator()(xmlDocPtr ptr) const {
-        xmlFreeDoc(ptr);
-    }
+struct XmlDocDeleter {
+  void operator()(xmlDocPtr ptr) const {
+    xmlFreeDoc(ptr);
+  }
 };
 
-struct XmlXPathContextDeleter
-{
-    void operator()(xmlXPathContextPtr ptr) const {
-        xmlXPathFreeContext(ptr);
-    }
+struct XmlXPathContextDeleter {
+  void operator()(xmlXPathContextPtr ptr) const {
+    xmlXPathFreeContext(ptr);
+  }
 };
 
-struct XmlXPathObjectDeleter
-{
-    void operator()(xmlXPathObjectPtr ptr) const {
-        xmlXPathFreeObject(ptr);
-    }
+struct XmlXPathObjectDeleter {
+  void operator()(xmlXPathObjectPtr ptr) const {
+    xmlXPathFreeObject(ptr);
+  }
 };
 
-struct XPathEval
-{
-    typedef Range<xmlNode**> ResultSet;
+struct XPathEval {
+  typedef Range<xmlNode**> ResultSet;
 
 public:
+  void readFile(std::string const& filename) {
+    m_doc.reset(xmlParseFile(filename.c_str()));
 
-    void readFile(std::string const & filename){
-        m_doc.reset(xmlParseFile(filename.c_str()));
-
-        if(! m_doc){
-            throw std::runtime_error("Error: unable to parse file " + filename);
-        }
-
-        m_ctx.reset(xmlXPathNewContext(m_doc.get()));
+    if(! m_doc) {
+      throw std::runtime_error("Error: unable to parse file " + filename);
     }
 
-    ResultSet run(std::string const & xpathExpr){
-        m_obj.reset(xmlXPathEvalExpression(BAD_CAST xpathExpr.c_str(), m_ctx.get()));
+    m_ctx.reset(xmlXPathNewContext(m_doc.get()));
+  }
 
-        if(! m_obj){
-            throw std::runtime_error("Error: unable to evaluate xpath expression " + xpathExpr);
-        }
+  ResultSet run(std::string const& xpathExpr) {
+    m_obj.reset(xmlXPathEvalExpression(BAD_CAST xpathExpr.c_str(), m_ctx.get()));
 
-        xmlNodeSetPtr const nodes = m_obj->nodesetval;
-
-        return {nodes->nodeTab, nodes->nodeTab + nodes->nodeNr };
+    if(! m_obj) {
+      throw std::runtime_error("Error: unable to evaluate xpath expression " + xpathExpr);
     }
+
+    xmlNodeSetPtr const nodes = m_obj->nodesetval;
+
+    return {nodes->nodeTab, nodes->nodeTab + nodes->nodeNr};
+  }
 
 private:
-
-    std::unique_ptr<xmlDoc, XmlDocDeleter> m_doc;
-    std::unique_ptr<xmlXPathContext, XmlXPathContextDeleter> m_ctx;
-    std::unique_ptr<xmlXPathObject, XmlXPathObjectDeleter> m_obj;
+  std::unique_ptr<xmlDoc, XmlDocDeleter> m_doc;
+  std::unique_ptr<xmlXPathContext, XmlXPathContextDeleter> m_ctx;
+  std::unique_ptr<xmlXPathObject, XmlXPathObjectDeleter> m_obj;
 };
 
-int main(int argc, char** argv)
-{
-    if( argc != 3 ){
-        std::cerr << "Usage: " << argv[0] << " xmlfile xpath" << std::endl;
-        return 1;
-    }
+int main(int argc, char** argv) {
+  if(argc != 3) {
+    std::cerr << "Usage: " << argv[0] << " xmlfile xpath" << std::endl;
+    return 1;
+  }
 
-    XmlParser parser;
+  XmlParser parser;
 
-    XPathEval xpathEval;
-    xpathEval.readFile(argv[1]);
-    
-    for(auto item : xpathEval.run(argv[2])){
-        std::cout << item->children->content << std::endl;
-    }
+  XPathEval xpathEval;
+  xpathEval.readFile(argv[1]);
 
-    return 0;
+  for(auto item : xpathEval.run(argv[2])) {
+    std::cout << item->children->content << std::endl;
+  }
+
+  return 0;
 }
-

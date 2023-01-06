@@ -1,6 +1,5 @@
 #include <cstdio>
 
-int main(){
-	printf("%d", 42);
+int main() {
+  printf("%d", 42);
 }
-

@@ -18,28 +18,24 @@
 #include <boost/asio.hpp>
 namespace asio = boost::asio;
 
-void handle_connections()
-{
-    asio::io_service io_service;
-    asio::ip::tcp::endpoint endpoint( asio::ip::tcp::v4(), 8001 );
-    asio::ip::tcp::acceptor acceptor( io_service, endpoint );
+void handle_connections() {
+  asio::io_service io_service;
+  asio::ip::tcp::endpoint endpoint(asio::ip::tcp::v4(), 8001);
+  asio::ip::tcp::acceptor acceptor(io_service, endpoint);
 
-    char buffer[ 32 ];
+  char buffer[32];
 
-    while( true )
-    {
-        asio::ip::tcp::socket socket( io_service );
-        acceptor.accept( socket );
+  while(true) {
+    asio::ip::tcp::socket socket(io_service);
+    acceptor.accept(socket);
 
-        int const bytes = socket.read_some( asio::buffer( buffer ) );
-        socket.write_some( asio::buffer( buffer, bytes ) );
+    int const bytes = socket.read_some(asio::buffer(buffer));
+    socket.write_some(asio::buffer(buffer, bytes));
 
-        socket.close();
-    }
+    socket.close();
+  }
 }
 
-int main()
-{
-    handle_connections();
+int main() {
+  handle_connections();
 }
-

@@ -13,9 +13,7 @@
  *      $ ./struct
  */
 
-
 // clang++ -cc1 -fdump-record-layouts -std=c++11 struct.cpp
-
 
 /*
 *** Dumping AST Record Layout
@@ -23,8 +21,7 @@
            | [sizeof=1, dsize=1, align=1,
            |  nvsize=1, nvalign=1]
 */
-struct Struct_Empty {
-};
+struct Struct_Empty {};
 
 static_assert(sizeof(Struct_Empty) == 1, "");
 static_assert(alignof(Struct_Empty) == 1, "");
@@ -37,8 +34,8 @@ static_assert(alignof(Struct_Empty) == 1, "");
            | [sizeof=4, dsize=4, align=4,
            |  nvsize=4, nvalign=4]
 */
-struct Struct_EBO : Struct_Empty {
-    int i;
+struct Struct_EBO: Struct_Empty {
+  int i;
 };
 
 static_assert(sizeof(Struct_EBO) == 4, "");
@@ -53,9 +50,10 @@ static_assert(alignof(Struct_EBO) == 4, "");
            |  nvsize=12, nvalign=8]
 */
 struct Struct_Base_Virtual_1 {
-    virtual ~Struct_Base_Virtual_1(){}
+  virtual ~Struct_Base_Virtual_1() {
+  }
 
-    int j;
+  int j;
 };
 
 static_assert(sizeof(Struct_Base_Virtual_1) == 16, "");
@@ -70,9 +68,10 @@ static_assert(alignof(Struct_Base_Virtual_1) == 8, "");
            |  nvsize=12, nvalign=8]
 */
 struct Struct_Base_Virtual_2 {
-    virtual ~Struct_Base_Virtual_2(){}
+  virtual ~Struct_Base_Virtual_2() {
+  }
 
-    int k;
+  int k;
 };
 
 static_assert(sizeof(Struct_Base_Virtual_2) == 16, "");
@@ -88,8 +87,8 @@ static_assert(alignof(Struct_Base_Virtual_2) == 8, "");
            | [sizeof=16, dsize=16, align=8,
            |  nvsize=16, nvalign=8]
 */
-struct Struct_Derived : Struct_Base_Virtual_1 {
-    int l;
+struct Struct_Derived: Struct_Base_Virtual_1 {
+  int l;
 };
 
 static_assert(sizeof(Struct_Derived) == 16, "");
@@ -108,8 +107,8 @@ static_assert(alignof(Struct_Derived) == 8, "");
            | [sizeof=32, dsize=32, align=8,
            |  nvsize=32, nvalign=8]
 */
-struct Struct_Derived_2 : Struct_Base_Virtual_1, Struct_Base_Virtual_2 {
-    int m;
+struct Struct_Derived_2: Struct_Base_Virtual_1, Struct_Base_Virtual_2 {
+  int m;
 };
 
 static_assert(sizeof(Struct_Derived_2) == 32, "");
@@ -126,8 +125,8 @@ static_assert(alignof(Struct_Derived_2) == 8, "");
            | [sizeof=32, dsize=28, align=8,
            |  nvsize=12, nvalign=8]
 */
-struct Struct_Virtual_1 : virtual Struct_Base_Virtual_1 {
-    int n;
+struct Struct_Virtual_1: virtual Struct_Base_Virtual_1 {
+  int n;
 };
 
 static_assert(sizeof(Struct_Virtual_1) == 32, "");
@@ -144,8 +143,8 @@ static_assert(alignof(Struct_Virtual_1) == 8, "");
            | [sizeof=32, dsize=28, align=8,
            |  nvsize=12, nvalign=8]
 */
-struct Struct_Virtual_2 : virtual Struct_Base_Virtual_1 {
-    int o;
+struct Struct_Virtual_2: virtual Struct_Base_Virtual_1 {
+  int o;
 };
 
 static_assert(sizeof(Struct_Virtual_2) == 32, "");
@@ -167,13 +166,12 @@ static_assert(alignof(Struct_Virtual_2) == 8, "");
            | [sizeof=48, dsize=44, align=8,
            |  nvsize=32, nvalign=8]
 */
-struct Struct_Diamond : Struct_Virtual_1, Struct_Virtual_2 {
-    int p;
+struct Struct_Diamond: Struct_Virtual_1, Struct_Virtual_2 {
+  int p;
 };
 
 static_assert(sizeof(Struct_Diamond) == 48, "");
 static_assert(alignof(Struct_Diamond) == 8, "");
 
-int main(){
+int main() {
 }
-

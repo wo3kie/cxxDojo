@@ -18,19 +18,18 @@
 #include "./union_cast.hpp"
 
 template<typename Type, typename Class>
-long long getMemberOffset(Type (Class::*member)){
-   return union_cast<long long>(member);
+long long getMemberOffset(Type(Class::*member)) {
+  return union_cast<long long>(member);
 }
 
 struct S {
-    int i;
-    float f;
-    char c;
+  int i;
+  float f;
+  char c;
 };
 
-int main(){
-    assert( getMemberOffset(&S::i) == 0LL );
-    assert( getMemberOffset(&S::f) == 4LL );
-    assert( getMemberOffset(&S::c) == 8LL );
+int main() {
+  assert(getMemberOffset(&S::i) == 0LL);
+  assert(getMemberOffset(&S::f) == 4LL);
+  assert(getMemberOffset(&S::c) == 8LL);
 }
-

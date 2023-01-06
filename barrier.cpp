@@ -27,75 +27,63 @@
 #include <thread>
 #include <vector>
 
-class barrier
-{
+class barrier {
 public:
-    barrier( unsigned threshold )
-        : m_threshold( threshold )
-        , m_local( 0 )
-        , m_global( 0 )
-    {
+  barrier(unsigned threshold)
+      : m_threshold(threshold)
+      , m_local(0)
+      , m_global(0) {
+  }
+
+  bool wait() {
+    std::unique_lock<std::mutex> lock(m_mutex);
+
+    const unsigned oldGlobal = m_global;
+
+    if(++m_local == m_threshold) {
+      m_local = 0;
+      m_global += 1;
+
+      m_condition.notify_all();
+
+      return true;
     }
 
-    bool wait()
-    {
-        std::unique_lock< std::mutex > lock( m_mutex );
+    m_condition.wait(lock, [oldGlobal, this]() {
+      return oldGlobal != m_global;
+    });
 
-        const unsigned oldGlobal = m_global;
-
-        if( ++ m_local == m_threshold )
-        {
-            m_local = 0;
-            m_global += 1;
-            
-            m_condition.notify_all();
-            
-            return true;
-        }
-
-        m_condition.wait(
-            lock,
-            [ oldGlobal, this ](){ return oldGlobal != m_global; }
-        );
-
-        return false;
-    }
+    return false;
+  }
 
 private:
-    const unsigned m_threshold;
+  const unsigned m_threshold;
 
-    unsigned m_local;
-    unsigned m_global;
+  unsigned m_local;
+  unsigned m_global;
 
-    std::mutex m_mutex;
-    std::condition_variable m_condition;
+  std::mutex m_mutex;
+  std::condition_variable m_condition;
 };
 
-void thread_impl( barrier & b )
-{
-    while( true )
-    {
-        std::cout << "hello thread..." << b.wait() << std::endl;
+void thread_impl(barrier& b) {
+  while(true) {
+    std::cout << "hello thread..." << b.wait() << std::endl;
 
-        std::this_thread::sleep_for( std::chrono::seconds( 2 ) );
-    }
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+  }
 }
 
-int main()
-{
-    barrier b( 4 );
+int main() {
+  barrier b(4);
 
-    std::vector< std::thread > threads;
+  std::vector<std::thread> threads;
 
-    for( int i = 0 ; i < 4 ; ++ i )
-    {
-        threads.push_back(
-        std::move( std::thread( std::bind( & thread_impl, std::ref( b ) ) ) ) );
-    }
+  for(int i = 0; i < 4; ++i) {
+    threads.push_back(std::move(std::thread(std::bind(&thread_impl, std::ref(b)))));
+  }
 
-    for( int i = 0 ; i < 4 ; ++ i )
-    {
-        threads[ i ].join();
-    }
+  for(int i = 0; i < 4; ++i) {
+    threads[i].join();
+  }
 }
-
