@@ -634,6 +634,7 @@ Implement TRIE data structure.
   
 **112. isDuplicate.cpp**  
 Implement a function to check if there is a duplicate in a container of strings.  
+  
 
 ```{r, engine='bash'}
 $ ./isDuplicate 
@@ -644,3 +645,7 @@ $ ./isDuplicate
 35834µs
 2454739µs
 ```
+  
+**113. co_await.cpp, co_iter.cpp, co_transform.cpp, co_yield.cpp**  
+Implement short examples presenting coroutine usages.  
+  
