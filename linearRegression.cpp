@@ -18,7 +18,7 @@
 #include <vector>
 
 #include "./feq.hpp"
-#include "./linear.regression.hpp"
+#include "./linearRegression.hpp"
 
 int main() {
   {
