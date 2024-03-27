@@ -649,3 +649,5 @@ $ ./isDuplicate
 **113. co_await.cpp, co_iter.cpp, co_transform.cpp, co_yield.cpp**  
 Implement short examples presenting coroutine usages.  
   
+**114. partition.cpp**  
+Implement partition and stable_partition algorithms.  
