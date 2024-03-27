@@ -12,62 +12,88 @@
  *      $ ./rotate
  */
 
-#include <algorithm>
 #include <cassert>
-#include <cstdlib>
-#include <iostream>
 #include <vector>
 
-template<typename TIterator>
-void rotate_cxx03(TIterator begin, TIterator pivot, TIterator const end) {
-  TIterator next = pivot;
+#include "./rotate.hpp"
+#include "./output.hpp"
 
-  while(begin != end) {
-    std::swap(*begin++, *next++);
+using VI = std::vector<int>;
 
-    if(next == end) {
-      next = pivot;
-    } else if(begin == pivot) {
-      pivot = next;
-    }
-  }
+template<typename Rotate>
+void rotate_right_test(Rotate r) {
+  VI array;
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 0, array.end());
+  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 1, array.end());
+  assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 2, array.end());
+  assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 3, array.end());
+  assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 4, array.end());
+  assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 5, array.end());
+  assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 6, array.end());
+  assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
+
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 7, array.end());
+  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 }
 
-template<typename TIterator>
-TIterator rotate_cxx11(TIterator begin, TIterator pivot, TIterator end) {
-  TIterator result = begin + (end - pivot);
+template<typename Rotate>
+void rotate_left_test(Rotate r) {
+  VI array;
 
-  rotate_cxx03(begin, pivot, end);
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 0, array.end());
+  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 
-  return result;
-}
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 1, array.end());
+  assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
 
-std::vector<int> getRandomVector(int maxSize = 32, int maxValue = 32) {
-  int const size = std::max(1, std::rand() % maxSize);
-  std::vector<int> result(size);
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 2, array.end());
+  assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
 
-  for(int i = 0; i < size; ++i) {
-    result[i] = std::rand() % maxValue;
-  }
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 3, array.end());
+  assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
 
-  return result;
-}
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 4, array.end());
+  assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
 
-void test() {
-  for(int i = 0; i < 32 * 1024; ++i) {
-    std::vector<int> v1 = getRandomVector();
-    std::vector<int> v2 = v1;
-    int const pivot = rand() % v1.size();
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 5, array.end());
+  assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
 
-    rotate_cxx11(v1.begin(), v1.begin() + pivot, v1.end());
-    std::rotate(v2.begin(), v2.begin() + pivot, v2.end());
-
-    assert(v1 == v2);
-  }
+  array = {1, 2, 3, 4, 5, 6, 7};
+  r(array.begin(), array.begin() + 6, array.end());
+  assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
 }
 
 int main() {
-  test();
+  rotate_left_test(rotate_left_1<VI::iterator>);
+  rotate_left_test(rotate_left_2<VI::iterator>);
 
-  std::cout << "OK" << std::endl;
+  rotate_right_test(rotate_right_1<VI::iterator>);
+  rotate_right_test(rotate_right_2<VI::iterator>);
 }
