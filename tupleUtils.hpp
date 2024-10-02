@@ -53,6 +53,11 @@ I foldr(std::tuple<T, Ts...> t, F f, I i) {
     return f(foldr(tail(t), f, i), head(t));
 }
 
+template <typename Tuple1, typename Tuple2>
+struct merge {
+    using type = decltype(std::tuple_cat(std::declval<Tuple1>(), std::declval<Tuple2>()));
+};
+
 }
 
 #endif
