@@ -9,9 +9,12 @@
 #ifndef CXX_DOJO_MAP_UTILS
 #define CXX_DOJO_MAP_UTILS
 
+#include <functional>
 #include <map>
 #include <type_traits>
 #include <vector>
+
+#include "./tupleUtils.hpp"
 
 template<typename Iter, typename KeyGetter>
 auto groupBy(Iter begin, Iter const end, KeyGetter getKey) {
@@ -53,5 +56,126 @@ auto groupBy(
 
   return grouped;
 }
+
+/*
+ * nested_key
+ */
+
+template <typename Mapped>
+struct _nested_key {
+  using type = std::tuple<>;
+};
+
+template <typename Key, typename Mapped>
+struct _nested_key<std::map<Key, Mapped>> {
+  using type = typename tuple::merge<std::tuple<Key>, typename _nested_key<Mapped>::type>::type;
+};
+
+template <typename MMap>
+struct nested_key {
+  using type = typename tuple::merge<std::tuple<typename MMap::key_type>, typename _nested_key<typename MMap::mapped_type>::type>::type;
+};
+
+/*
+ * nested_mapped
+ */
+
+template <typename Mapped>
+struct _nested_mapped {
+  using type = Mapped;
+};
+
+template <typename Key, typename Mapped>
+struct _nested_mapped<std::map<Key, Mapped>> {
+  using type = typename _nested_mapped<Mapped>::type;
+};
+
+template <typename MMap>
+struct nested_mapped {
+  using type = typename _nested_mapped<typename MMap::mapped_type>::type;
+};
+
+/*
+ * index
+ */
+template <typename Map, typename Keys>
+constexpr typename nested_mapped<Map>::type& index(Map& map, const Keys& keys) {
+  if constexpr (std::tuple_size<Keys>::value == 1) {
+    return map.at(std::get<0>(keys));
+  } else {
+    return index(map.at(tuple::head(keys)), tuple::tail(keys));
+  }
+}
+
+template <typename Map, typename Keys>
+constexpr const typename nested_mapped<Map>::type& index(const Map& map, const Keys& keys) {
+  if constexpr (std::tuple_size<Keys>::value == 1) {
+    return map.at(std::get<0>(keys));
+  } else {
+    return index(map.at(tuple::head(keys)), tuple::tail(keys));
+  }
+}
+
+/*
+ * TransformedMap
+ */
+ 
+template <typename Map, typename Mapped>
+struct TransformedMap {
+ public:
+  using key_type = typename Map::key_type;
+  using mapped_type = Mapped;
+ 
+  using iterator = typename Map::iterator;
+  using const_iterator = typename Map::const_iterator;
+ 
+  using Transform = std::function<mapped_type&(typename Map::mapped_type&)>;
+ 
+ public:
+  TransformedMap(Map& map, Transform transform)
+    : m_map(map)
+    , m_transform(transform) {}
+ 
+  Mapped& operator[](const key_type& key) {
+    return m_transform(m_map[key]);
+  }
+ 
+  const Mapped& operator[](const key_type& key) const {
+    return m_transform(m_map[key]);
+  }
+ 
+ private:
+  Map& m_map;
+  Transform m_transform;
+};
+ 
+/*
+ * FlattenMap
+ */
+ 
+template <typename Map>
+struct FlattenMap {
+ public:
+  using key_type = typename nested_key<Map>::type;
+  using mapped_type = typename nested_key<Map>::type;
+ 
+  using iterator = typename Map::iterator;
+  using const_iterator = typename Map::const_iterator;
+ 
+ public:
+  FlattenMap(Map& map)
+    : m_map(map) {}
+ 
+  mapped_type& operator[](const key_type& keys) {
+    return index(m_map, keys);
+  }
+ 
+  const mapped_type& operator[](const key_type& keys) const {
+    return index(m_map, keys);
+  }
+ 
+ private:
+  Map& m_map;
+};
 
 #endif
