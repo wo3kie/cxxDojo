@@ -15,6 +15,7 @@
 #ifndef __CXX_DOJO_TRIE_HPP__
 #define __CXX_DOJO_TRIE_HPP__
 
+#include <functional>
 #include <tuple>
 
 namespace tuple {
@@ -57,6 +58,16 @@ template <typename Tuple1, typename Tuple2>
 struct merge {
     using type = decltype(std::tuple_cat(std::declval<Tuple1>(), std::declval<Tuple2>()));
 };
+
+
+template<typename T, typename... Ts>
+std::size_t hash(const std::tuple<T, Ts...>& tuple) {
+    const auto combine = [](std::size_t h1, auto value) -> std::size_t {
+        return h1 + 0x9e3779b9 + (std::hash<std::decay_t<decltype(value)>>()(value) << 2);
+    };
+
+    return foldl(tuple, combine, 0);
+}
 
 }
 
