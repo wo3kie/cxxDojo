@@ -20,6 +20,8 @@
 #include <string>
 #include <vector>
 
+namespace dynamic {
+
 /*
  * +-- Any ---------------------------------------------------+
  * |                                                          |
@@ -99,10 +101,77 @@ private:
   typename InnerBase::Ptr _inner;
 };
 
-int main() {
+void test() {
   Any v{23};
   assert(v.cast<int>() == 23);
-
+  
   v = std::string("C++");
   assert(v.cast<std::string>() == "C++");
+}
+
+} // dynamic
+
+namespace lambda {
+
+#include <cassert>
+#include <cmath>
+#include <functional>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
+
+//
+
+struct S {
+    char run(int i, double d) {
+        return 's';
+    }
+};
+
+struct T {
+    char run(int i, double d){
+        return 't';
+    }
+};
+
+/*
+ *
+ */
+
+struct Runnable {
+    template<typename R>
+    Runnable(R& r)
+        : _ptr(&r)
+        , _run([this](void* ptr) -> std::function<char (int, double)> {
+            return [p = static_cast<R*>(this->_ptr)](int i, double d) -> char { return p->run(i, d); };
+        })
+    {
+    }
+
+    char run(int i, double d) {
+        return _run(_ptr)(i, d);
+    }
+
+    void* _ptr;
+    std::function<std::function<char (int, double)> (void*)> _run;
+};
+
+char f(Runnable r) {
+    return r.run(1, 2.3);
+}
+
+void test() {
+    S s;
+    assert(f(Runnable{s}) == 's');
+   
+    T t;
+    assert(f(Runnable{t}) == 't');
+}
+
+} // lambda
+
+int main() {
+  dynamic::test();
+  lambda::test();
 }
