@@ -664,4 +664,6 @@ Implement various methods to determine whether a given class contains a nested i
 **118. concepts.cpp**  
 Implement some concepts examples.  
   
+**119. ctad.cpp**  
+Implement some examples showing class template argument deduction (CTAD) usage.  
   
