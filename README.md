@@ -661,3 +661,7 @@ Implement simple examples showing how to use C++17 fold expressions.
 **117. has_type.cpp**  
 Implement various methods to determine whether a given class contains a nested internal type.  
   
+**118. concepts.cpp**  
+Implement some concepts examples.  
+  
+  
