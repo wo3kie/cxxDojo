@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 typeErasure.cpp -o typeErasure
+ *      g++ --std=c++11 typeErasure.cpp.1 -o typeErasure.1
  *
  * Usage:
- *      $ ./typeErasure
+ *      $ ./typeErasure.1
  */
 
 #include <cassert>
@@ -19,8 +19,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-
-namespace dynamic {
 
 /*
  * +-- Any ---------------------------------------------------+
@@ -38,11 +36,19 @@ namespace dynamic {
  *
  */
 
+ /*
+  * InnerBase
+  */
+
 struct InnerBase {
   typedef std::unique_ptr<InnerBase> Ptr;
 
   virtual InnerBase* clone() const = 0;
 };
+
+/*
+ * Inner
+ */
 
 template<typename T>
 struct Inner: InnerBase {
@@ -64,6 +70,10 @@ struct Inner: InnerBase {
 
   T _value;
 };
+
+/*
+ * Any
+ */
 
 struct Any {
   template<typename T>
@@ -101,6 +111,10 @@ private:
   typename InnerBase::Ptr _inner;
 };
 
+/*
+ * test
+ */
+
 void test() {
   Any v{23};
   assert(v.cast<int>() == 23);
@@ -109,69 +123,10 @@ void test() {
   assert(v.cast<std::string>() == "C++");
 }
 
-} // dynamic
-
-namespace lambda {
-
-#include <cassert>
-#include <cmath>
-#include <functional>
-#include <iostream>
-#include <memory>
-#include <string>
-#include <vector>
-
-//
-
-struct S {
-    char run(int i, double d) {
-        return 's';
-    }
-};
-
-struct T {
-    char run(int i, double d){
-        return 't';
-    }
-};
-
 /*
- *
+ * main
  */
 
-struct Runnable {
-    template<typename R>
-    Runnable(R& r)
-        : _ptr(&r)
-        , _run([this](void* ptr) -> std::function<char (int, double)> {
-            return [p = static_cast<R*>(this->_ptr)](int i, double d) -> char { return p->run(i, d); };
-        })
-    {
-    }
-
-    char run(int i, double d) {
-        return _run(_ptr)(i, d);
-    }
-
-    void* _ptr;
-    std::function<std::function<char (int, double)> (void*)> _run;
-};
-
-char f(Runnable r) {
-    return r.run(1, 2.3);
-}
-
-void test() {
-    S s;
-    assert(f(Runnable{s}) == 's');
-   
-    T t;
-    assert(f(Runnable{t}) == 't');
-}
-
-} // lambda
-
 int main() {
-  dynamic::test();
-  lambda::test();
+  test();
 }
