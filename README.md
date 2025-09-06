@@ -539,7 +539,7 @@ Implement _named type_ utility. The _named type_ is strongly-typed wrappers arou
   static_assert(std::is_assignable<Int, Age>::value == false);
 ```
   
-### type_erasure.*.cpp  
+### type_erasure_*.cpp  
 Implement a program representing the type erasure idiom.
 
 From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
