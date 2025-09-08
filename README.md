@@ -653,7 +653,7 @@ Implement short examples presenting coroutine usages.
 Implement partition and stable_partition algorithms.  
   
 **115. tupleUtils.cpp**  
-Implement simple std::tuple utilities, like `head`, `tail`, `foldl`, `foldr`.  
+Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
   
 **116. fold_expression.cpp**  
 Implement simple examples showing how to use C++17 fold expressions.  

@@ -6,29 +6,37 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++17 trie.cpp -o trie
+ *      g++ --std=c++17 tupleUtils.cpp -o tupleUtils
  *
  * Usage:
- *      $ ./trie
+ *      $ ./tupleUtils
  */
 
 #include <cassert>
-#include <iostream>
-#include <functional>
+
 #include "tupleUtils.hpp"
 
-void tuple_fold_test() {
+void foldl_test() {
     std::tuple<bool, int, double> tcid{true, 2, 3.3};
-
-    const auto f = [](int i, auto a) -> int {
-        return i + int(a);
+    
+    const auto fl = [](int acc, auto a) -> int {
+        return acc + int(a);
     };
-
-    assert(tuple::foldl(tcid, f, 0) == 1 + 2 + 3);
-    assert(tuple::foldr(tcid, f, 0) == 1 + 2 + 3);
+    
+    assert(tuple::foldl(fl, 0, tcid) == 1 + 2 + 3);
 }
 
-void tuple_hash_test() {
+void foldr_test() {
+    std::tuple<bool, int, double> tcid{true, 2, 3.3};
+
+    const auto fr = [](auto a, int acc) -> int {
+        return int(a) + acc;
+    };
+
+    assert(tuple::foldr(fr, 0, tcid) == 1 + 2 + 3);
+}
+
+void hash_test() {
     std::tuple<bool> tb{false};
     tuple::hash(tb);
 
@@ -39,7 +47,45 @@ void tuple_hash_test() {
     tuple::hash(tbif);
 }
 
+template<typename T>
+struct IsBig : std::conditional_t<(sizeof(T) > 4), std::true_type, std::false_type> {
+};
+
+void IsBig_test() {
+    static_assert(IsBig<char>::value == false);
+    static_assert(IsBig<double>::value == true);
+}
+
+void All_test() {
+    static_assert(tuple::All<IsBig, std::tuple<char, int, float>>::value == false);
+    static_assert(tuple::All<IsBig, std::tuple<double, long, long double>>::value == true);
+}
+
+void Any_test() {
+    static_assert(tuple::Any<IsBig, std::tuple<char, int, float>>::value == false);
+    static_assert(tuple::Any<IsBig, std::tuple<char, int, double>>::value == true);
+}  
+
+void None_test() {
+    static_assert(tuple::None<IsBig, std::tuple<char, int, float>>::value == true);
+    static_assert(tuple::None<IsBig, std::tuple<char, int, double>>::value == false);
+}
+
+void Foldl_test() {
+    std::tuple<bool, int, float> tbif{false, 1, 1.11};
+
+    static_assert(std::is_same_v<int, tuple::Foldl<std::common_type, std::tuple<short, int>>::type>);
+    static_assert(std::is_same_v<double, tuple::Foldl<std::common_type, std::tuple<short, int, double>>::type>);
+}
+
 int main() {
-    tuple_fold_test();
-    tuple_hash_test();
+    foldl_test();
+    foldr_test();
+    hash_test();
+
+    IsBig_test();
+    All_test();
+    Any_test();
+    None_test();
+    Foldl_test();
 }
