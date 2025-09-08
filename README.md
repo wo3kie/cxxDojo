@@ -667,3 +667,6 @@ Implement some concepts examples.
 **119. ctad.cpp**  
 Implement some examples showing class template argument deduction (CTAD) usage.  
   
+**120. dotdotdot.cpp**  
+Implement functional list operation like head, front, tail, back on template/function parameter pack.  
+  
