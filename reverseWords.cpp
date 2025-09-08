@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 reverseWords.cpp -o reverseWords
+ *      g++ --std=c++20 reverseWords.cpp -o reverseWords
  *
  * Usage:
  *      $ ./reverseWords

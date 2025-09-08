@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 json.cpp -o json
+ *      g++ --std=c++20 json.cpp -o json
  *
  * Usage:
  *      $ ./json

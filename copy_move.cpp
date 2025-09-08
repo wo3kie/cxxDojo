@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 copy_move.cpp -o copy_move
+ *      g++ --std=c++20 copy_move.cpp -o copy_move
  *
  * Usage:
  *      $ ./copy_move

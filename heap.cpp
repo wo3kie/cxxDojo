@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 heap.cpp -o heap
+ *      g++ --std=c++20 heap.cpp -o heap
  *
  * Usage:
  *      $ ./heap

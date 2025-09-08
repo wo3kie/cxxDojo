@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 container.cpp -o container
+ *      g++ --std=c++20 container.cpp -o container
  *
  */
 

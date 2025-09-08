@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 partition.cpp -o partition
+ *      g++ --std=c++20 partition.cpp -o partition
  *
  * Usage:
  *      $ ./partition

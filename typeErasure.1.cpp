@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 typeErasure.cpp.1 -o typeErasure.1
+ *      g++ --std=c++20 typeErasure.cpp.1 -o typeErasure.1
  *
  * Usage:
  *      $ ./typeErasure.1

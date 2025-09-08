@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 struct.cpp -o struct
+ *      g++ --std=c++20 struct.cpp -o struct
  *      clang++ -cc1 -fdump-record-layouts -std=c++11 struct.cpp
  *
  * Usage:

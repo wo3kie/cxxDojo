@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 ode.euler.cpp -o ode.euler
+ *      g++ --std=c++20 ode.euler.cpp -o ode.euler
  *
  * Usage:
  *      $ ./ode.euler

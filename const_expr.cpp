@@ -9,7 +9,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 const_expr -o const_expr
+ *      g++ --std=c++20 const_expr -o const_expr
  *
  * Usage:
  *      $ ./const_expr

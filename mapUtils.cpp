@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++14 mapUtils.cpp -o mapUtils
+ *      g++ --std=c++20 mapUtils.cpp -o mapUtils
  *
  * Usage:
  *      $ ./mapUtils

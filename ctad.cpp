@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 ctad.cpp -o ctad
+ *      g++ --std=c++20 ctad.cpp -o ctad
  * 
  * Reference:
  *      CTAD Class template argument deduction

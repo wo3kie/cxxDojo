@@ -9,7 +9,7 @@
  *      http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/smsspamcollection.zip
  *
  * Compilation:
- *      g++ --std=c++11 bayes.cpp -o bayes
+ *      g++ --std=c++20 bayes.cpp -o bayes
  *
  * Usage:
  *      $ ./bayes

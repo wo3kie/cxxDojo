@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++14 laplaceSmoothing.cpp -o laplaceSmoothing
+ *      g++ --std=c++20 laplaceSmoothing.cpp -o laplaceSmoothing
  *
  * Usage:
  *      $ ./laplaceSmoothing

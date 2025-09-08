@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 jaccardIndex.cpp -o jaccardIndex
+ *      g++ --std=c++20 jaccardIndex.cpp -o jaccardIndex
  *
  * Usage:
  *      $ ./jaccardIndex

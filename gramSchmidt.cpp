@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 gram_schmidt.cpp -o gram_schmidt
+ *      g++ --std=c++20 gram_schmidt.cpp -o gram_schmidt
  *
  * Usage:
  *      $ ./gram_schmidt

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 ackermann.cpp -o ackermann
+ *      g++ --std=c++20 ackermann.cpp -o ackermann
  *
  * Usage:
  *      $ ./ackermann

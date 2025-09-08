@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 bellmanFord.cpp -o bellmanFord
+ *      g++ --std=c++20 bellmanFord.cpp -o bellmanFord
  *
  * Usage:
  *      $ ./bellmanFord

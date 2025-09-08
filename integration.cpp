@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 integration.cpp -o integration
+ *      g++ --std=c++20 integration.cpp -o integration
  *
  * Usage:
  *      $ ./integration

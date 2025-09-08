@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 rotateMatrix.cpp -o rotateMatrix
+ *      g++ --std=c++20 rotateMatrix.cpp -o rotateMatrix
  *
  * Usage:
  *      $ ./rotateMatrix

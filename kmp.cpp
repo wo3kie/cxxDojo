@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 kmp.cpp -o kmp
+ *      g++ --std=c++20 kmp.cpp -o kmp
  *
  * Usage:
  *      $ ./kmp 5 3.14159265359

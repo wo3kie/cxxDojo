@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 dotdotdot.cpp -o dotdotdot
+ *      g++ --std=c++20 dotdotdot.cpp -o dotdotdot
  *
  * Usage:
  *      $ ./dotdotdot

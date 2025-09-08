@@ -9,7 +9,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 in.cpp -o in
+ *      g++ --std=c++20 in.cpp -o in
  *
  * Usage:
  *      $ ./in

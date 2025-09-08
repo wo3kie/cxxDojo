@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 floatFormat.cpp -o floatFormat
+ *      g++ --std=c++20 floatFormat.cpp -o floatFormat
  *
  * Usage:
  *      $ ./floatFormat

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 ls.cpp -o ls -lboost_filesystem -lboost_system
+ *      g++ --std=c++20 ls.cpp -o ls -lboost_filesystem -lboost_system
  *
  * Usage:
  *      $ ./ls .

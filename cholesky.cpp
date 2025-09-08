@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 cholesky.cpp -o cholesky
+ *      g++ --std=c++20 cholesky.cpp -o cholesky
  *
  * Usage:
  *      $ ./cholesky

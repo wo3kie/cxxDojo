@@ -1,4 +1,4 @@
-// g++ --std=c++11 -g3 -L. -lshared -ldl main.cpp -o main
+// g++ --std=c++20 -g3 -L. -lshared -ldl main.cpp -o main
 
 #include "shared.h"
 

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 linear.regression.cpp -o linear.regression
+ *      g++ --std=c++20 linear.regression.cpp -o linear.regression
  *
  * Usage:
  *      $ ./linear.regression

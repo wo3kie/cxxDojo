@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 variance.cpp -o variance -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 variance.cpp -o variance -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./variance

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 dijkstra.cpp -o dijkstra
+ *      g++ --std=c++20 dijkstra.cpp -o dijkstra
  *
  * Usage:
  *      $ ./dijkstra

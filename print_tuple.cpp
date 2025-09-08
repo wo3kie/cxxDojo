@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 print_tuple.cpp -o print_tuple
+ *      g++ --std=c++20 print_tuple.cpp -o print_tuple
  *
  * Usage:
  *      $ ./print_tuple

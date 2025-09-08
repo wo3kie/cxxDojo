@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 treeClassification.cpp -o treeClassification
+ *      g++ --std=c++20 treeClassification.cpp -o treeClassification
  *
  * Usage:
  *      $ ./treeClassification

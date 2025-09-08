@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 xpath.cpp -o xpath -I/usr/include/libxml2/ \
+ *      g++ --std=c++20 xpath.cpp -o xpath -I/usr/include/libxml2/ \
  *          -Lusr/lib/x86_64-linux-gnu/ -lxml2
  *
  * Usage:

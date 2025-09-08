@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 find_root.cpp -o find_root
+ *      g++ --std=c++20 find_root.cpp -o find_root
  *
  * Usage:
  *      $ ./find_root

@@ -9,7 +9,7 @@
  *      http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf
  *
  * Compilation:
- *      g++ --std=c++11 scope_exit.cpp -o scope_exit
+ *      g++ --std=c++20 scope_exit.cpp -o scope_exit
  *
  * Usage:
  *      $ ./scope_exit

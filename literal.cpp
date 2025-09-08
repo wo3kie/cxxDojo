@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 literal.cpp -o literal
+ *      g++ --std=c++20 literal.cpp -o literal
  *
  * Usage:
  *      $ ./literal

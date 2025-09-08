@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 apply.cpp -o apply
+ *      g++ --std=c++20 apply.cpp -o apply
  *
  * Usage:
  *      $ ./apply

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 mean.cpp -o mean -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 mean.cpp -o mean -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./mean

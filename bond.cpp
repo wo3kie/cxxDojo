@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 bond.cpp -o bond -lboost_date_time
+ *      g++ --std=c++20 bond.cpp -o bond -lboost_date_time
  *
  * Usage:
  *      $ ./bond 2015/12/31 100 0.08 0.08 2014/12/31

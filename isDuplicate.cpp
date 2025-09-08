@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++17 isDuplicate.cpp -o isDuplicate
+ *      g++ --std=c++20 isDuplicate.cpp -o isDuplicate
  *
  * Usage:
  *      $ ./isDuplicate

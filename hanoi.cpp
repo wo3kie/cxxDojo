@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 hanoi.cpp -o hanoi
+ *      g++ --std=c++20 hanoi.cpp -o hanoi
  *
  * Usage:
  *      $ ./hanoi size

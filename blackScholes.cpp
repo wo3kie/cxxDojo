@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 blackScholes.cpp -o blackScholes
+ *      g++ --std=c++20 blackScholes.cpp -o blackScholes
  *
  * Usage:
  *      $ ./blackScholes

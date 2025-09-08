@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 lu.cpp -o lu
+ *      g++ --std=c++20 lu.cpp -o lu
  *
  * Usage:
  *      $ ./lu

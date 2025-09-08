@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 https.cpp -o https -lssl
+ *      g++ --std=c++20 https.cpp -o https -lssl
  *
  * Usage:
  *      $ ./https "test" "oRCO/U6JyPR/Og..."

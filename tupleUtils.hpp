@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++17 tupleUtils.cpp -o tupleUtils
+ *      g++ --std=c++20 tupleUtils.cpp -o tupleUtils
  *
  * Usage:
  *      $ ./tupleUtils

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 grep.cpp -o grep
+ *      g++ --std=c++20 grep.cpp -o grep
  *
  * Usage:
  *      $ cat grep.cpp | ./grep ".*line.*"

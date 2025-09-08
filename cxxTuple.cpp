@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++14 cxxTuple.cpp -o cxxTuple
+ *      g++ --std=c++20 cxxTuple.cpp -o cxxTuple
  *
  * Usage:
  *      $ ./cxxTuple

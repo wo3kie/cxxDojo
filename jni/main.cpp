@@ -9,7 +9,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 main.cpp -o main                        \
+ *      g++ --std=c++20 main.cpp -o main                        \
  *          -I .../java-7-openjdk-amd64/include                 \
  *          -L .../java-7-openjdk-amd64/jre/lib/amd64/server    \
  *          -ljvm

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 rotate.cpp -o rotate
+ *      g++ --std=c++20 rotate.cpp -o rotate
  *
  * Usage:
  *      $ ./rotate

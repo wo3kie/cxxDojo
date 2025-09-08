@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 barrier.cpp -o barrier
+ *      g++ --std=c++20 barrier.cpp -o barrier
  *
  * Usage:
  *      $ ./barrier

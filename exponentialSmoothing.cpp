@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 exponentialSmoothing.cpp -o exponentialSmoothing
+ *      g++ --std=c++20 exponentialSmoothing.cpp -o exponentialSmoothing
  *
  * Usage:
  *      $ ./exponentialSmoothing

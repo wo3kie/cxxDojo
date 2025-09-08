@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 matrix.cpp -o matrix
+ *      g++ --std=c++20 matrix.cpp -o matrix
  *
  * Usage:
  *      $ ./matrix

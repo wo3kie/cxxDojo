@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 async.cpp -o async
+ *      g++ --std=c++20 async.cpp -o async
  *
  * Usage:
  *      $ ./async

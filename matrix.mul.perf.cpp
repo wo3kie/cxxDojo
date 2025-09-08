@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 matrix.mul.perf.cpp -o matrix.mul.perf
+ *      g++ --std=c++20 matrix.mul.perf.cpp -o matrix.mul.perf
  *
  * Usage:
  *      $ ./matrix.mul.perf

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 base64.decode.cpp -o base64.decode
+ *      g++ --std=c++20 base64.decode.cpp -o base64.decode
  *
  * Usage:
  *      $ ./base64.decode SGVsbG8gV29ybGQ

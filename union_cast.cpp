@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 union_cast.cpp -o union_cast
+ *      g++ --std=c++20 union_cast.cpp -o union_cast
  *
  * Usage:
  *      $ ./union_cast

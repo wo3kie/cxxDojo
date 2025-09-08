@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 bind.cpp -o bind
+ *      g++ --std=c++20 bind.cpp -o bind
  */
 
 #include <boost/bind.hpp>

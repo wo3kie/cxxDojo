@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 exec.cpp -o exec
+ *      g++ --std=c++20 exec.cpp -o exec
  *
  * Usage:
  *      $ ./exec ls

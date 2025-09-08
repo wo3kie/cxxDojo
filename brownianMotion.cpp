@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 brownianMotion.cpp -o brownianMotion
+ *      g++ --std=c++20 brownianMotion.cpp -o brownianMotion
  *
  * Usage:
  *      $ ./brownianMotion

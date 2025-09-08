@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 bloom.cpp -o bloom
+ *      g++ --std=c++20 bloom.cpp -o bloom
  *
  * Usage:
  *      $ ./bloom

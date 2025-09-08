@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 generateAllSubsets.cpp -o generateAllSubsets
+ *      g++ --std=c++20 generateAllSubsets.cpp -o generateAllSubsets
  *
  * Usage:
  *      $ ./generateAllSubsets

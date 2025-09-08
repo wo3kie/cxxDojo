@@ -12,7 +12,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 void_t.cpp -o void_t
+ *      g++ --std=c++20 void_t.cpp -o void_t
  *
  * Usage:
  *      $ ./void_t

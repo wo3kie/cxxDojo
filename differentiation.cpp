@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 differentiation.cpp -o differentiation
+ *      g++ --std=c++20 differentiation.cpp -o differentiation
  *
  * Usage:
  *      $ ./differentiation

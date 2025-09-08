@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 getCounters.cpp -o getCounters
+ *      g++ --std=c++20 getCounters.cpp -o getCounters
  *
  * Usage:
  *      $ ./getCounters

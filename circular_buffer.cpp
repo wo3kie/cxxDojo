@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 circular_buffer.cpp -o circular_buffer
+ *      g++ --std=c++20 circular_buffer.cpp -o circular_buffer
  *
  * Usage:
  *      $ ./circular_buffer

@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 output.cpp -o output
+ *      g++ --std=c++20 output.cpp -o output
  *
  * Usage:
  *      $ ./output

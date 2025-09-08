@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 par.cpp -o par -pthread
+ *      g++ --std=c++20 par.cpp -o par -pthread
  *
  * Usage:
  *      $ echo {1..10} > 1-10-file

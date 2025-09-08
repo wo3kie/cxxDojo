@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++17 fold_expression.cpp -o fold_expression
+ *      g++ --std=c++20 fold_expression.cpp -o fold_expression
  *
  * Usage:
  *      $ ./fold_expression

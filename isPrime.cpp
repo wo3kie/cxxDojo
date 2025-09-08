@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 isPrime.cpp -o isPrime
+ *      g++ --std=c++20 isPrime.cpp -o isPrime
  *
  * Usage:
  *      $ ./isPrime

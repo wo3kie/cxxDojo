@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 covariance.cpp -o covariance -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 covariance.cpp -o covariance -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./correlation

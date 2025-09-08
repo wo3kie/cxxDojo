@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 boxMuller.cpp -o boxMuller
+ *      g++ --std=c++20 boxMuller.cpp -o boxMuller
  *
  * Usage:
  *      $ ./boxMuller

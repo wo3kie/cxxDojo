@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 interpolation.cpp -o interpolation
+ *      g++ --std=c++20 interpolation.cpp -o interpolation
  *
  * Usage:
  *      $ ./interpolation

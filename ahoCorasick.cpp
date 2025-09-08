@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 ahoCorasick.cpp -o ahoCorasick
+ *      g++ --std=c++20 ahoCorasick.cpp -o ahoCorasick
  *
  * Usage:
  *      $ ./ahoCorasick

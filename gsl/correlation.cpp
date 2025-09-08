@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 correlation.cpp -o correlation -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 correlation.cpp -o correlation -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./correlation

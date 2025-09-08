@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 getContainerType.cpp -o getContainerType
+ *      g++ --std=c++20 getContainerType.cpp -o getContainerType
  *
  * Usage:
  *      $ ./getContainerType

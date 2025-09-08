@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 typeErasure.3.cpp -o typeErasure.3
+ *      g++ --std=c++20 typeErasure.3.cpp -o typeErasure.3
  *
  * Usage:
  *      $ ./typeErasure.3

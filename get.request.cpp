@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 get.request.cpp -o get.request -lboost_system -lboost_thread -pthread
+ *      g++ --std=c++20 get.request.cpp -o get.request -lboost_system -lboost_thread -pthread
  *
  * Usage:
  *      $ ./get.request http://www.boost.org LICENSE_1_0.txt www.boost.org 80 ""

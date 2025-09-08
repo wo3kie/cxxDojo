@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 quickSort.cpp -o quickSort
+ *      g++ --std=c++20 quickSort.cpp -o quickSort
  *
  * Usage:
  *      $ ./quickSort

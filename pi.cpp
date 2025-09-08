@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 pi.cpp -o pi
+ *      g++ --std=c++20 pi.cpp -o pi
  *
  * Usage:
  *      $ ./pi

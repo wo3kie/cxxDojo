@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 modexp.cpp -o modexp
+ *      g++ --std=c++20 modexp.cpp -o modexp
  *
  * Usage:
  *      $ ./modexp

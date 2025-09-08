@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ main.cpp -o main --std=c++11 -g -I/usr/local/include /usr/local/lib/liblua.a -ldl
+ *      g++ main.cpp -o main --std=c++20 -g -I/usr/local/include /usr/local/lib/liblua.a -ldl
  *
  * Usage:
  *      $ ./main

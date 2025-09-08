@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 levenstein.cpp -o levenstein
+ *      g++ --std=c++20 levenstein.cpp -o levenstein
  *
  * Usage:
  *      $ ./levenstein distance distant

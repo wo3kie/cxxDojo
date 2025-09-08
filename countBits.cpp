@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 countBits.cpp -o countBits
+ *      g++ --std=c++20 countBits.cpp -o countBits
  *
  * Usage:
  *      $ ./countBits

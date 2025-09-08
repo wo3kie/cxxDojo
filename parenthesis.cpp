@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 parenthesis.cpp -o parenthesis
+ *      g++ --std=c++20 parenthesis.cpp -o parenthesis
  *
  * Usage:
  *      $ ./parenthesis

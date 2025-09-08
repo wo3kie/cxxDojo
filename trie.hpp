@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++17 trie.cpp -o trie
+ *      g++ --std=c++20 trie.cpp -o trie
  *
  * Usage:
  *      $ ./trie

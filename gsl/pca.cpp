@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 pca.cpp -o pca -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 pca.cpp -o pca -lgsl -lgslcblas -lm
  *
  * Usage:
  *      $ ./pca

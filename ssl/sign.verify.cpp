@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 sign.cpp -o sign -lssl
+ *      g++ --std=c++20 sign.cpp -o sign -lssl
  *
  * Usage:
  *      $ ./sign

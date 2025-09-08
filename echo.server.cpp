@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 echo.server.cpp -o echo.server -lboost_system
+ *      g++ --std=c++20 echo.server.cpp -o echo.server -lboost_system
  *
  * Usage:
  *      [console 1] $ ./echo.server

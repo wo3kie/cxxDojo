@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 timer.cpp -o timer
+ *      g++ --std=c++20 timer.cpp -o timer
  *
  * Usage:
  *      $ ./timer

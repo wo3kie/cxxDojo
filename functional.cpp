@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 fold.cpp -o fold
+ *      g++ --std=c++20 fold.cpp -o fold
  *
  * Usage:
  *      $ ./fold

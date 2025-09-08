@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 find_union.cpp -o find_union
+ *      g++ --std=c++20 find_union.cpp -o find_union
  *
  * Usage:
  *      $ ./find_union

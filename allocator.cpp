@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++11 allocator.cpp -o allocator
+ *      g++ --std=c++20 allocator.cpp -o allocator
  *
  * Usage:
  *      $ ./allocator
