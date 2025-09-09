@@ -1,6 +1,6 @@
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
  * Named operators:
  *      https://github.com/klmr/named-operator

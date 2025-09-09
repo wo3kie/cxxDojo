@@ -1,6 +1,6 @@
 /*
  * Website:
- *      tttps://gittub.com/wo3kie/dojo
+ *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
  *      Lukasz Czerwinski

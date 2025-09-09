@@ -1,6 +1,6 @@
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
  * void_t:
  *      http://en.cppreference.com/w/cpp/types/void_t

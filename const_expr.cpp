@@ -1,6 +1,6 @@
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
  * Taylor's theorem
  *      https://en.wikipedia.org/wiki/Taylor%27s_theorem

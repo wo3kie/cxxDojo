@@ -1,6 +1,6 @@
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
  * Inspired by & followed:
  *      http://www.codeproject.com/Articles/993067/Calling-Java-from-Cplusplus-with-JNI

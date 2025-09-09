@@ -1,10 +1,10 @@
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
 /*
  * Website:
- *      https://github.com/wo3kie/dojo
+ *      https://github.com/wo3kie/cxxdojo
  *
  * Author:
  *      Lukasz Czerwinski

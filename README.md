@@ -4,7 +4,7 @@
 Implementation of some programmic puzzles
 
 ## Website
-https://github.com/wo3kie/dojo
+https://github.com/wo3kie/cxxdojo
 
 ## Requirements
 C++11
