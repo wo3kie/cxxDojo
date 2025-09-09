@@ -670,3 +670,6 @@ Implement some examples showing class template argument deduction (CTAD) usage.
 **120. dotdotdot.cpp**  
 Implement functional list operation like head, front, tail, back on template/function parameter pack.  
   
+**121. concat_view.cpp**  
+Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
+  
