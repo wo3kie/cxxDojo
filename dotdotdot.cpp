@@ -12,54 +12,52 @@
  *      $ ./dotdotdot
  */
 
-#include <tuple>
+#include <type_traits>
 
-/*
- * Head
- */
+#include "./dotdotdot.hpp"
 
-template<typename... Types>
-struct Head {
-    using type = std::tuple_element_t<0, std::tuple<Types...>>;
-};
+void Head_test() {
+    static_assert(std::is_same_v<Head<int, double, bool>::type, int>);
+}
 
-/*
- * Front
- */
+void Front_test() {
+    static_assert(std::is_same_v<Front<int, double, bool>::type, int>);
+}
 
-template<typename... Types>
-using Front = Head<Types...>;
+void Tail_test() {
+    static_assert(std::is_same_v<Tail<int, double, bool>::type, std::tuple<double, bool>>);
+}
 
-/*
- * Tail
- */
+void Back_test() {
+    static_assert(std::is_same_v<Back<int, double, bool>::type, bool>);
+}
 
-template<typename... Types>
-struct Tail {
-    using type = decltype(
-        std::apply(
-            [](auto, auto... t) { return std::make_tuple(t...); }, 
-            std::declval<std::tuple<Types...>>()
-        )
-    );
-};
+void Any_test() {
+  static_assert(!Any<std::is_const, int, double, bool>::value);
+  static_assert(Any<std::is_const, const int, double, bool>::value);
+}
 
-/*
- * Back
- */
+void All_test() {
+  static_assert(!All<std::is_const, const int, double, const bool>::value);
+  static_assert(All<std::is_const, const int, const double, const bool>::value);
+}
 
-template<typename... Types>
-struct Back {
-    using type = std::tuple_element_t<sizeof...(Types) - 1, std::tuple<Types...>>;
-};
+void None_test() {
+  static_assert(None<std::is_const, int, double, bool>::value);
+  static_assert(!None<std::is_const, const int, const double, const bool>::value);
+}
 
 /*
  * main
  */
 
 int main() {
-    static_assert(std::is_same_v<Head<int, double, bool>::type, int>);
-    static_assert(std::is_same_v<Front<int, double, bool>::type, int>);
-    static_assert(std::is_same_v<Tail<int, double, bool>::type, std::tuple<double, bool>>);
-    static_assert(std::is_same_v<Back<int, double, bool>::type, bool>);
+    Head_test();
+    Front_test();
+    Tail_test();
+    Back_test();
+
+    Any_test();
+    All_test();
+    None_test();
 }
