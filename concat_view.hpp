@@ -13,19 +13,31 @@
 #include <utility>
 #include <variant>
 
+#include "./dotdotdot.hpp"
+
+/*
+ * concat_view
+ */
+
 template<std::ranges::range... Ranges>
 struct concat_view: public std::ranges::view_interface<concat_view<Ranges...>> {
+  static constexpr bool IsAnyConst = Any<std::is_const, Ranges...>::value;
+
 public:
+  /*
+   * iterator
+   */
+
   struct iterator {
   public:
     using value_type = std::common_type_t<std::ranges::range_value_t<Ranges>...>;
     using iterator_category = std::forward_iterator_tag;
     using difference_type = std::ptrdiff_t;
-    using reference = value_type&;
-    using pointer = value_type*;
+    using reference = std::conditional<IsAnyConst, const value_type&, value_type&>::type;
+    using pointer = std::conditional<IsAnyConst, const value_type*, value_type*>::type;
 
   public:
-    iterator(std::tuple<Ranges...>* ranges, size_t idx)
+    iterator(std::tuple<Ranges&...>* ranges, size_t idx)
         : _idx(idx)
         , _ranges(ranges) {
       if(_idx < sizeof...(Ranges)) {
@@ -39,7 +51,7 @@ public:
       }
     }
 
-    value_type& operator*() {
+    reference operator*() {
       return _dereference<0>(_idx);
     }
 
@@ -64,8 +76,9 @@ public:
     }
 
     bool operator==(const iterator& other) const {
-      return _ranges == other._ranges && _idx == other._idx
-             && (_idx == sizeof...(Ranges) || _iterator == other._iterator);
+      return _ranges == other._ranges && 
+              _idx == other._idx && 
+              (_idx == sizeof...(Ranges) || _iterator == other._iterator);
     }
 
   private:
@@ -105,7 +118,7 @@ public:
     }
 
     template<size_t I = 0>
-    value_type& _dereference(const size_t idx) {
+    reference _dereference(const size_t idx) {
       if constexpr(I < sizeof...(Ranges)) {
         if(idx == I) {
           return *std::get<I>(_iterator);
@@ -119,7 +132,7 @@ public:
 
   private:
     size_t _idx;
-    std::tuple<Ranges...>* _ranges;
+    std::tuple<Ranges&...>* _ranges;
     std::variant<std::ranges::iterator_t<Ranges>...> _iterator;
   };
 
@@ -144,5 +157,5 @@ public:
   }
 
 private:
-  std::tuple<Ranges...> _ranges;
+  std::tuple<Ranges&...> _ranges;
 };
