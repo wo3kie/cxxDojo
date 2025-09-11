@@ -4,19 +4,14 @@
  *
  * Author:
  *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 ahoCorasick.cpp -o ahoCorasick
- *
- * Usage:
- *      $ ./ahoCorasick
  */
 
-#include <fstream>
 #include <functional>
 #include <iostream>
 #include <map>
 #include <string>
+
+namespace aho_corasick {
 
 struct Node {
   void free() {
@@ -34,10 +29,9 @@ struct Node {
   std::map<char, Node*> children_;
 };
 
-std::ostream& operator<<(std::ostream& out, Node const& node) {
+inline std::ostream& operator<<(std::ostream& out, Node const& node) {
   if(node.parent_) {
-    out << "(" << (&node) << ", " << node.letter_ << ", " << node.end_ << ", (" << node.failure_ << ", "
-        << node.failure_->letter_ << "))";
+    out << "(" << (&node) << ", " << node.letter_ << ", " << node.end_ << ", (" << node.failure_ << ", " << node.failure_->letter_ << "))";
   } else {
     out << "(" << (&node) << ", , , (,)))";
   }
@@ -45,7 +39,7 @@ std::ostream& operator<<(std::ostream& out, Node const& node) {
   return out;
 }
 
-std::string getWord(Node const* const node) {
+inline std::string getWord(Node const* const node) {
   if(! node) {
     return "";
   }
@@ -137,7 +131,6 @@ private:
   }
 
   Node* getFailure(Node const* const node, char const letter) {
-
     Node* const parent = node->parent_;
     Node* parentsFailure = parent->failure_;
 
@@ -168,29 +161,4 @@ private:
   Node* root_;
 };
 
-int main(int argc, char* argv[]) {
-  if(argc != 3) {
-    std::cerr << "Usage: " << argv[0] << " dictionary_file text_file" << std::endl;
-    return 1;
-  }
-
-  AhoCorasick ac;
-
-  auto const print = [](size_t const pos, std::string const& word) {
-    std::cout << "> " << std::string(pos, ' ') << word << std::endl;
-  };
-
-  std::string line;
-  std::ifstream dictFile(argv[1]);
-  std::ifstream textFile(argv[2]);
-
-  while(std::getline(dictFile, line)) {
-    ac.insert(line);
-  }
-
-  while(std::getline(textFile, line)) {
-    std::cout << "> " << line << "\n";
-    ac.search(line, print);
-    std::cout << std::string(80, '-') << "\n";
-  }
-}
+}  // namespace aho_corasick

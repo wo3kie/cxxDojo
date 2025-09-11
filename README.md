@@ -19,6 +19,24 @@ make
 
 ## List of puzzles
 
+**aho_corasick.cpp**  
+Implement the Aho-Corasick algorithm.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), the Aho-Corasick algorithm can be used to locate elements of a finite set of strings (the "dictionary") within an input text.
+
+```
+$ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
+--------------------------------------------------------------------------------
+>     auto const print = []( size_t const pos, std::string const & word ){
+>     auto
+>          const
+>                  int
+>                                   const
+>                                                          const
+>                                                                   or
+--------------------------------------------------------------------------------
+```
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -215,26 +233,6 @@ pmn: 962802µs
 Implement an example of the visitor design pattern.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
-
-**ahoCorasick.cpp**  
-Implement the Aho-Corasick algorithm.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), the Aho-Corasick algorithm can be used to locate elements of a finite set of strings (the "dictionary") within an input text.
-
-```
-$ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
-...
---------------------------------------------------------------------------------
->     auto const print = []( size_t const pos, std::string const & word ){
->     auto
->          const
->                  int
->                                   const
->                                                          const
->                                                                   or
---------------------------------------------------------------------------------
-...
-```
 
 **gzip.cpp**  
 Implement a function to pack/unpack text using compression algorithm.
