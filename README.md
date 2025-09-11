@@ -49,6 +49,14 @@ auto t = std::make_tuple(1, 2.2, '3');
 apply(f, t);
 ```
 
+**async.cpp**  
+Implement a recursive `min_max` function that leverages `std::async` to concurrently compute the minimum and maximum values within a given range.
+
+  
+```{r, engine='cpp'}
+assert(min_max({1, 2, 3, 4, 5}) == {1, 5});
+```
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -595,10 +603,7 @@ Implement higher-order functions like fold, map, reduce, filter...
     
 **copy_move.cpp**  
 Compare calling function with by value, by ref, by ref ref argument passing and returning.  
-  
-**async.cpp**  
-Implement a min max function using std:async.  
-  
+    
 **mapUtils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  
   
