@@ -15,12 +15,6 @@
  *
  * Author:
  *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 allocator.cpp -o allocator
- *
- * Usage:
- *      $ ./allocator
  */
 
 #include <limits>

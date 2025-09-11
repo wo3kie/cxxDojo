@@ -4,12 +4,6 @@
  * 
  * Author:
  *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 tupleUtils.cpp -o tupleUtils
- *
- * Usage:
- *      $ ./tupleUtils
  */
 
 #ifndef __CXX_DOJO_TUPLE_UTILS_HPP__
