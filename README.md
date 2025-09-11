@@ -40,6 +40,15 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 **allocator.cpp**  
 Implement a simple allocator. Follow std::allocator as an example.
 
+**apply.cpp**  
+Implement a simple version of `std::apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
+
+```{r, engine='cpp'}
+void f(int, float, char){ /* ... */ }
+auto t = std::make_tuple(1, 2.2, '3');
+apply(f, t);
+```
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -517,14 +526,6 @@ Implement a simple _tuple_ class. Provide _get_ operator.
 
 **crtp.cpp**  
 Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
-
-**apply.cpp**  
-Implement a utility funtion to call another function with a tuple exploded to it as parameters.
-
-```{r, engine='cpp'}
-void f(int, float, char){ /* ... */ }
-apply(f, std::make_tuple(1, 2.2, '3'));
-```
 
 **heap**  
 Implement a heap data structure.
