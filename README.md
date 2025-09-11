@@ -540,9 +540,6 @@ Implement a function to calculate quickly exponential function with modulo opera
 **isPrime.cpp**  
 Implement a function to verify using Fermat theorem if a given number is a prime number.
 
-**ackermann.cpp**  
-Implement the Ackermann function.
-
 **rhoPollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
 
