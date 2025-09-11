@@ -12,7 +12,6 @@
  *      $ ./allocator
  */
 
-#include <limits>
 #include <vector>
 
 #include "./allocator.hpp"

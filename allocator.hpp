@@ -9,14 +9,6 @@
  *      Lukasz Czerwinski
  */
 
-/*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
- *
- * Author:
- *      Lukasz Czerwinski
- */
-
 #include <limits>
 
 template<typename T>

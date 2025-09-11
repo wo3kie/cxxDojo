@@ -37,6 +37,9 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 --------------------------------------------------------------------------------
 ```
 
+**allocator.cpp**  
+Implement a simple allocator. Follow std::allocator as an example.
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -272,9 +275,6 @@ Implement a program to parse a json document. Can you use only boost for it?
 Implement 'rotate' function.
 
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
-
-**allocator.cpp**  
-Implement a simple allocator. Follow std::allocator as an example.
 
 **const_expr.cpp**  
 Can you calculate trigonometric functions like 'sin', 'cos'... during a compilation time?
