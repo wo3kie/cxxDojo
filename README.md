@@ -126,6 +126,9 @@ Can you use `preprocessor` to achieve this?
 **crtp.cpp**  
 Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
   
+**ctad.cpp**  
+Implement some examples showing class template argument deduction (CTAD) usage.  
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -623,10 +626,7 @@ Implement simple examples showing how to use C++17 fold expressions.
   
 **has_type.cpp**  
 Implement various methods to determine whether a given class contains a nested internal type.  
-    
-**ctad.cpp**  
-Implement some examples showing class template argument deduction (CTAD) usage.  
-  
+      
 **dotdotdot.cpp**  
 Implement functional list operation like head, front, tail, back on template/function parameter pack.  
   
