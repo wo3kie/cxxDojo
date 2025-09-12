@@ -76,6 +76,11 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Ba
 **bellman_ford.cpp**  
 Implement the Bellman-Ford algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm), the Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.  
   
+**black_scholes.cpp**  
+Calculate an option price for a given time and underlying stock price using _Black-Scholes_ method for it.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model), the Black–Scholes model is a mathematical model for the dynamics of a financial market containing derivative investment instruments.  
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -419,9 +424,6 @@ Implement a function to calculate a covariance between two collections.
 
 **matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.
-
-**blackScholes.cpp**  
-Calculate an option price for a given time and underlying stock price. Use Black-Scholes method for it.
 
 **boxMuller.cpp**  
 Implement the Box-Muller algorithm.

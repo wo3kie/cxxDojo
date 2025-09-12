@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 blackScholes.cpp -o blackScholes
+ *      g++ --std=c++20 black_scholes.cpp -o black_scholes
  *
  * Usage:
- *      $ ./blackScholes
+ *      $ ./black_scholes
  */
 
 #include <cmath>
@@ -223,9 +223,7 @@ Matrix monteCarlo(
 
 int main(int argc, char** argv) {
   Matrix const fdme = blackScholes_FDM_Explicit(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
-
   Matrix const form = blackScholes_Formula(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
-
   Matrix const mc = monteCarlo(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
 
   std::cout << (form + (fdme * -1)) << "\n\n" << (form + (mc * -1)) << "\n";
