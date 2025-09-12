@@ -57,6 +57,17 @@ Implement a recursive `min_max` function that leverages `std::async` to concurre
 assert(min_max({1, 2, 3, 4, 5}) == {1, 5});
 ```
 
+**base64.cpp**  
+Implement a program to do _base64_ encoding/decoding. From [Wikipedia](https://en.wikipedia.org/wiki/Base64) _base64_ is encoding scheme that transforms binary data into a sequence of printable characters, limited to a set of 64 unique characters.
+  
+```{r, engine='bash'}
+$ ./base64.encode "Hello World"
+SGVsbG8gV29ybGQ
+
+$ ./base64.decode SGVsbG8gV29ybGQ
+Hello World
+```
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -82,20 +93,6 @@ Take care about at least a simple authorization on a proxy server.
 ```{r, engine='bash'}
 $ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
   $(echo -n "my_login:my_password" | base64)
-```
-
-**base64.encode.cpp**  
-Implement a program to do _base64_ encoding.
-```{r, engine='bash'}
-$ ./base64.encode "Hello World"
-SGVsbG8gV29ybGQ
-```
-
-**base64.decode.cpp**  
-Implement a program to do _base64_ decoding.
-```{r, engine='bash'}
-$ ./base64.decode SGVsbG8gV29ybGQ
-Hello World
 ```
 
 **bind.cpp**  
