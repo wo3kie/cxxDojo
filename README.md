@@ -100,9 +100,6 @@ $ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
   $(echo -n "my_login:my_password" | base64)
 ```
 
-**bind.cpp**  
-What is _boost::apply_? What is _boost::protect_? Write a short program to demonstrate usage of each of them.
-
 **ssl/sign.verify.cpp**  
 Write a program to sign/verify a message with a RSA key.
 
