@@ -131,6 +131,9 @@ Joseph
 Stephen
 ```
 
+**feq.cpp**
+Create a function to compare two floating-point values within a given tolerance.
+    
 **get.request.cpp**  
 Implement a program to download a website content. Use _get_ request to perform it.
 Take care about at least a simple authorization on a proxy server.

@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -6,19 +8,14 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef CXX_DOJO_FEQ_HPP
-#define CXX_DOJO_FEQ_HPP
-
-inline constexpr bool feq(float const f1, float const f2, float const eps = 0.0001f) {
-  return ((f1 - f2) >= 0 ? (f1 - f2) : (f2 - f1)) < eps;
+inline constexpr bool feq(float const lhs, float const rhs, float const eps = 0.0001f) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
 }
 
-inline constexpr bool feq(double const f1, double const f2, double const eps = 0.0001) {
-  return ((f1 - f2) >= 0 ? (f1 - f2) : (f2 - f1)) < eps;
+inline constexpr bool feq(double const lhs, double const rhs, double const eps = 0.0001) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
 }
 
-inline constexpr bool feq(long double const f1, long double const f2, long double const eps = 0.0001) {
-  return ((f1 - f2) >= 0 ? (f1 - f2) : (f2 - f1)) < eps;
+inline constexpr bool feq(long double const lhs, long double const rhs, long double const eps = 0.0001) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
 }
-
-#endif
