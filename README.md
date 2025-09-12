@@ -93,6 +93,9 @@ Implement the Box-Muller algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
   
+**concurent_queue.cpp**  
+Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -151,9 +154,6 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
-
-**buffer.cpp**  
-Implement a thread safe queue with a limited capacity. A thread trying to put an item to the full queue should be blocked and as well as a thread trying to get an item from the empty queue.
 
 **exec.cpp**  
 Implement a function to execute a shell command and capture its output. Consider a case of long running process.
