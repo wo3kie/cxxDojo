@@ -530,8 +530,8 @@ Find struct/class layout for the most common cases.
 Implement a function to calculate struct/class member offert.
 
 **tuple.cpp**  
-Implement a simple _tuple_ class. Provide _get_ operator.
-  
+Implement simple examples of a `tuple` class using either composition or inheritance.
+    
 **heap**  
 Implement a heap data structure.
 

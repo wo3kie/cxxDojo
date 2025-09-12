@@ -63,12 +63,12 @@ auto get(Tuple<T, Ts...> tuple) {
 }
 
 template<typename T, typename... Ts>
-int size(Tuple<T, Ts...> const& tuple) {
+int size(const Tuple<T, Ts...>& tuple) {
   return 1 + size(tuple._ts);
 }
 
 template<typename T>
-int size(Tuple<T> const& tuple) {
+int size(const Tuple<T>& tuple) {
   return 1;
 }
 
@@ -81,6 +81,7 @@ void test() {
 
   assert(size(tuple) == 3);
 }
+
 } // namespace composition
 
 namespace inheritance {
@@ -130,7 +131,7 @@ auto get(Tuple<T, Ts...> tuple) {
 }
 
 template<typename T, typename... Ts>
-int size(Tuple<T, Ts...> const& tuple) {
+int size(const Tuple<T, Ts...>& tuple) {
   return 1 + sizeof...(Ts);
 }
 
@@ -143,6 +144,7 @@ void test() {
 
   assert(size(tuple) == 3);
 }
+
 } // namespace inheritance
 
 int main() {
