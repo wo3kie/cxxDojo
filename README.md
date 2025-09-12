@@ -115,6 +115,10 @@ Compare function calls passing arguments by value, by reference, and by ref ref.
 **correlation.cpp**  
 Implement a function to calculate the correlation between two collections using.
   
+**covariance.cpp**  
+Implement a function to calculate the covariance between two collections.
+  
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -423,6 +427,9 @@ Implement a function to calculate a standard deviation. From [Wikipedia](https:/
 **gsl/correlation.cpp**  
 Implement a function to calculate the correlation between two collections using gsl library.
 
+**gsl/covariance.cpp**  
+Implement a function to calculate the covariance between two collections using gsl library.
+
 **exponentialSmoothing.cpp**  
 Implement a function to do exponential smoothing. Use Brown's simple exponential smoothing.
 
@@ -434,9 +441,6 @@ Implement a function to make a LU decomposition of a matrix. From [Wikipedia](ht
 
 **ode.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
-
-**gsl/covariance.cpp**  
-Implement a function to calculate a covariance between two collections.
 
 **matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.

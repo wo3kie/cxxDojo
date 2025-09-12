@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -6,25 +8,14 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef CXX_DOJO_COVARIANCE_HPP
-#define CXX_DOJO_COVARIANCE_HPP
-
 #include <vector>
 
 #include "./mean.hpp"
 
-/*
- * From Wikipedia, https://en.wikipedia.org/wiki/Covariance
- *
- *   covariance(x, y) = E((x - E(x))(y - E(y))), where E means expected value (mean)
- *   covariance(x, y) = E(x*y) - E(x)E(y),       where E means expected value (mean)
- *
- */
-
 template<typename Iterator1, typename Iterator2>
-double covariance(Iterator1 xBegin, Iterator1 const xEnd, Iterator2 yBegin, Iterator2 const yEnd) {
-  double const xMean = mean(xBegin, xEnd);
-  double const yMean = mean(yBegin, yEnd);
+double covariance(Iterator1 xBegin, const Iterator1 xEnd, Iterator2 yBegin, const Iterator2 yEnd) {
+  const double xMean = mean(xBegin, xEnd);
+  const double yMean = mean(yBegin, yEnd);
   unsigned xySize = 0;
   double totalSum = 0;
 
@@ -37,8 +28,6 @@ double covariance(Iterator1 xBegin, Iterator1 const xEnd, Iterator2 yBegin, Iter
 }
 
 template<typename T>
-double covariance(std::vector<T> const& xs, std::vector<T> const& ys) {
+double covariance(const std::vector<T>& xs, const std::vector<T>& ys) {
   return covariance(xs.begin(), xs.end(), ys.begin(), ys.end());
 }
-
-#endif
