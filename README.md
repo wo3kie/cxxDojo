@@ -118,7 +118,11 @@ Implement a function to calculate the correlation between two collections using.
 **covariance.cpp**  
 Implement a function to calculate the covariance between two collections.
   
-
+**countBits.cpp**  
+Implement a program to count the number of `1` bits in a given integer.  
+Can you use `constexpr` to achieve this?  
+Can you use `preprocessor` to achieve this?  
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -460,9 +464,6 @@ assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
 
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
-
-**countBits.cpp**  
-Implement a program to count 1 bits in a number. Can you use constexpr to do it?
 
 **reverseWords.cpp**  
 Implement a program to reverse words in a given sentence.
