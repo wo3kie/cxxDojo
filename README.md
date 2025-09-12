@@ -99,6 +99,15 @@ Design and implement a thread-safe queue with bounded capacity. The queue should
 **concepts.cpp**  
 Implement some C++ `std`-like concepts examples demonstrating some different syntax. 
   
+**convert_base.cpp**  
+Implement a function that converts a number from one numeric base to another.
+
+```
+assert(convertBase("101010", 2, 8) == "52");
+assert(convertBase("52", 8, 10) == "42");
+assert(convertBase("42", 10, 16) == "2A");
+assert(convertBase("2A", 16, 2) == "101010");
+```
 
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
@@ -264,16 +273,6 @@ Implement a function to pack/unpack text using compression algorithm.
 Implement a Levenstein distance function.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
-
-**convertBase.cpp**  
-Implement a function to convert number between different numeric bases.
-
-```
-assert( convertBase( "101010", 2, 8 ) == "52" );
-assert( convertBase( "52", 8, 10 ) == "42" );
-assert( convertBase( "42", 10, 16 ) == "2A" );
-assert( convertBase( "2A", 16, 2 ) == "101010" );
-```
 
 **kmp.cpp**  
 Implement a Knuth-Morris-Pratt text searching algorithm.
