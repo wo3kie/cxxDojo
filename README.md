@@ -68,6 +68,11 @@ $ ./base64.decode SGVsbG8gV29ybGQ
 Hello World
 ```
 
+**bayes.cpp**  
+Implement a simple program for _ham_/_spam_ messages classification. Use the naive Bayes approach.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -319,11 +324,6 @@ Can you get a container type from its iterator?
 
 **getCounters.cpp**  
 Implement a function to count a distrubution of data.
-
-**bayes.cpp**  
-Implement a simple program for ham/spam messages classification. Use naive Bayes approach.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.
 
 **mandelbrot.cpp**  
 Implement a program to print ASCII art of Mandelbrot set fractal.
