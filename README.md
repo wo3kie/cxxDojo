@@ -562,9 +562,6 @@ Implement functions to calcutate a differentiate of a function.
 
 **fdm.cpp**  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.  
-
-**cholesky.cpp**  
-Implement Cholesky matrix decomposition. From [Wikipedia](https://en.wikipedia.org/wiki/Cholesky_decomposition) Cholesky decomposition of positive-definte matrix into the product of a lower triangular matrix _L_ and its conjugate transpose _L'_ _A_=_LL'_.  
   
 **gramSchmidt.cpp**  
 Implement a function to orthonormalise a set of vectors. Use [Gram-Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) algorithm to do it.  
