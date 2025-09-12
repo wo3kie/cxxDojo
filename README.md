@@ -445,9 +445,6 @@ assert(FloatFormatter(0.0000001234, 8).toString() == "1.23e-07");
 assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
 ```
 
-**brownianMotion.cpp**  
-Implement a program to calculate simple Brownian motion, Brownian motion with drift, and geometric Brownian motion.
-
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
 
