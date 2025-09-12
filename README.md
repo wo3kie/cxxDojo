@@ -129,6 +129,9 @@ Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki
 **ctad.cpp**  
 Implement some examples showing class template argument deduction (CTAD) usage.  
   
+**dijkstra.cpp**  
+Implement Dijkstra algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -504,9 +507,6 @@ lis( {1, 9, 2, 8, 3, 7, 4} ) == { 1, 2, 3, 4 } )
 Implement a program representing the type erasure idiom.
 
 From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
-
-**dijkstra.cpp**  
-Implement Dijkstra algorithm.
 
 **floydWarshall.cpp**  
 Implement Floyd-Warshall algorithm.
