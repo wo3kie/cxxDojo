@@ -88,6 +88,11 @@ Implement a Bloom filter.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.
   
+**box_muller.cpp**  
+Implement the Box-Muller algorithm.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -426,11 +431,6 @@ Implement a function to calculate a covariance between two collections.
 
 **matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.
-
-**boxMuller.cpp**  
-Implement the Box-Muller algorithm.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
 
 **logNormal.cpp**  
 Implement a program to demonstrate a log normal distribution.
