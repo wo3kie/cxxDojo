@@ -73,6 +73,9 @@ Implement a simple program for _ham_/_spam_ messages classification. Use the nai
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.
 
+**bellman_ford.cpp**  
+Implement the Bellman-Ford algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm), the Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.  
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -483,9 +486,6 @@ From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure)
 
 **dijkstra.cpp**  
 Implement Dijkstra algorithm.
-
-**bellmanFord.cpp**  
-Implement Bellman-Ford algorithm.
 
 **floydWarshall.cpp**  
 Implement Floyd-Warshall algorithm.
