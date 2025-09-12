@@ -123,6 +123,9 @@ Implement a program to count the number of `1` bits in a given integer.
 Can you use `constexpr` to achieve this?  
 Can you use `preprocessor` to achieve this?  
   
+**crtp.cpp**  
+Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -525,10 +528,7 @@ Implement a function to calculate struct/class member offert.
 
 **tuple.cpp**  
 Implement a simple _tuple_ class. Provide _get_ operator.
-
-**crtp.cpp**  
-Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
-
+  
 **heap**  
 Implement a heap data structure.
 

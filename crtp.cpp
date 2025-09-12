@@ -12,12 +12,20 @@
  *      $ ./crtp
  */
 
+ /*
+  * SafeBool
+  */
+ 
 template<typename T>
 struct SafeBool {
   operator bool() const {
-    return static_cast<T const*>(this)->getBool();
+    return static_cast<const T*>(this)->getBool();
   }
 };
+
+/*
+ * MyClass
+ */
 
 struct MyClass: SafeBool<MyClass> {
   MyClass(bool b)
@@ -32,6 +40,10 @@ struct MyClass: SafeBool<MyClass> {
 };
 
 #include <cassert>
+
+/*
+ * main
+ */
 
 int main() {
   assert(MyClass(true) == true);
