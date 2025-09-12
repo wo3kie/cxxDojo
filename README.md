@@ -124,13 +124,17 @@ Can you use `constexpr` to achieve this?
 Can you use `preprocessor` to achieve this?  
   
 **crtp.cpp**  
-Implement a CRTP pattern example. From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
+Implement a CRTP pattern example.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
   
 **ctad.cpp**  
 Implement some examples showing class template argument deduction (CTAD) usage.  
   
 **dijkstra.cpp**  
-Implement Dijkstra algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
+Implement Dijkstra algorithm.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
   
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
@@ -151,7 +155,7 @@ Joseph
 Stephen
 ```
 
-**feq.cpp**
+**feq.cpp**  
 Create a function to compare two floating-point values within a given tolerance.
     
 **get.request.cpp**  
