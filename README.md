@@ -96,6 +96,10 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), th
 **concurent_queue.cpp**  
 Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
   
+**concepts.cpp**  
+Implement some C++ `std`-like concepts examples demonstrating some different syntax. 
+  
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -612,10 +616,7 @@ Implement simple examples showing how to use C++17 fold expressions.
   
 **has_type.cpp**  
 Implement various methods to determine whether a given class contains a nested internal type.  
-  
-**concepts.cpp**  
-Implement some concepts examples.  
-  
+    
 **ctad.cpp**  
 Implement some examples showing class template argument deduction (CTAD) usage.  
   
