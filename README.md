@@ -74,12 +74,19 @@ Implement a simple program for _ham_/_spam_ messages classification. Use the nai
 From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.
 
 **bellman_ford.cpp**  
-Implement the Bellman-Ford algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm), the Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.  
+Implement the Bellman-Ford algorithm.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm), the Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.  
   
 **black_scholes.cpp**  
 Calculate an option price for a given time and underlying stock price using _Black-Scholes_ method for it.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model), the Black–Scholes model is a mathematical model for the dynamics of a financial market containing derivative investment instruments.  
+  
+**bloom_filter.cpp**  
+Implement a Bloom filter.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.
   
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
@@ -145,11 +152,6 @@ Implement a thread safe queue with a limited capacity. A thread trying to put an
 
 **exec.cpp**  
 Implement a function to execute a shell command and capture its output. Consider a case of long running process.
-
-**bloom.cpp**  
-Implement a Bloom filter.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.
 
 **par.cpp**  
 Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).
