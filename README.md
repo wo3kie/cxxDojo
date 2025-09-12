@@ -296,9 +296,6 @@ Implement 'rotate' function.
 
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
 
-**const_expr.cpp**  
-Can you calculate trigonometric functions like 'sin', 'cos'... during a compilation time?
-
 **void_t.cpp**  
 What is a void_t and how it can be useful?
 
