@@ -112,6 +112,9 @@ assert(convertBase("2A", 16, 2) == "101010");
 **copy_vs_move.cpp**  
 Compare function calls passing arguments by value, by reference, and by ref ref.
   
+**correlation.cpp**  
+Implement a function to calculate the correlation between two collections using.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -418,7 +421,7 @@ Implement a function to calculate a variance. From [Wikipedia](https://en.wikipe
 Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation), standard deviation indicates how the data values tend to be close to the mean.
 
 **gsl/correlation.cpp**  
-Implement a function to calculate a correlation between two collections.
+Implement a function to calculate the correlation between two collections using gsl library.
 
 **exponentialSmoothing.cpp**  
 Implement a function to do exponential smoothing. Use Brown's simple exponential smoothing.
