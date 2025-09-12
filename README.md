@@ -108,7 +108,10 @@ assert(convertBase("52", 8, 10) == "42");
 assert(convertBase("42", 10, 16) == "2A");
 assert(convertBase("2A", 16, 2) == "101010");
 ```
-
+  
+**copy_vs_move.cpp**  
+Compare function calls passing arguments by value, by reference, and by ref ref.
+  
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -577,9 +580,6 @@ Implement a find-union algorithm.
   
 **functional.cpp**  
 Implement higher-order functions like fold, map, reduce, filter...  
-    
-**copy_move.cpp**  
-Compare calling function with by value, by ref, by ref ref argument passing and returning.  
     
 **mapUtils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  

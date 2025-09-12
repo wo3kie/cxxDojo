@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 copy_move.cpp -o copy_move
+ *      g++ --std=c++20 copy_vs_move.cpp -o copy_vs_move
  *
  * Usage:
- *      $ ./copy_move
+ *      $ ./copy_vs_move
  */
 
 #include <cassert>
@@ -29,18 +29,23 @@ struct S {
   ~S() {
     ++m_destroyed;
   }
+
   S() {
   }
-  S(S const&) {
+
+  S(const S&) {
     ++m_copy;
   }
+
   S(S&&) {
     ++m_move;
   }
-  S& operator=(S const&) {
+
+  S& operator=(const S&) {
     ++m_copy;
     return *this;
   }
+
   S& operator=(S&&) {
     ++m_move;
     return *this;
