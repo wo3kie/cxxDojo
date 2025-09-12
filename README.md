@@ -143,17 +143,7 @@ Implement a Bloom filter.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.
 
-**bond.cpp**  
-Implement a function to calculate a price for a bond.
-
-```{r, engine='bash'}
-$ ./bond 2015/12/31 100 0.08 0.08 2014/12/31
-  PV( F ): 92.5926
-  PV( Coupon ): 7.40741
-P: 100
-```
-
-  **par.cpp**  
+**par.cpp**  
 Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).
 
 ```{r, engine='bash'}
