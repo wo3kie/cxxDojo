@@ -14,30 +14,13 @@
  *      exec.cpp
  */
 
-#include <functional>
 #include <iostream>
-#include <stdio.h>
-#include <string>
 
-bool exec(char const* const command, std::function<void(char const*)> const onRead) {
-  FILE* const pipe = popen(command, "r");
+#include "./exec.hpp"
 
-  if(! pipe) {
-    return false;
-  }
-
-  char buffer[4 * 1024];
-
-  while(! feof(pipe)) {
-    if(fgets(buffer, sizeof(buffer), pipe)) {
-      onRead(buffer);
-    }
-  }
-
-  pclose(pipe);
-
-  return true;
-}
+/*
+ * main
+ */
 
 int main(int argc, char* argv[]) {
   if(argc != 2) {
@@ -45,7 +28,7 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
-  auto const print = [](char const* p) {
+  const auto print = [](const char* p) {
     std::cout << p;
   };
 

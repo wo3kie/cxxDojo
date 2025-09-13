@@ -144,6 +144,9 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Entropy_(information_theory)) the
 **enumerate.cpp**  
 Implement a simple version of `std::enumerate_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html). The `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
   
+**exec.cpp**  
+Implement a function to run shell commands and capture their output, including support for long-running processes.
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -199,9 +202,6 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
-
-**exec.cpp**  
-Implement a function to execute a shell command and capture its output. Consider a case of long running process.
 
 **par.cpp**  
 Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).
