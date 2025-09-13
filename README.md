@@ -136,6 +136,9 @@ Implement Dijkstra algorithm.
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
   
+**parameter_pack.cpp**  
+"Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
+
 **echo.server/echo.client**  
 Implement simple echo server and text line based client to work with server.
 ```{r, engine='bash'}
@@ -627,9 +630,6 @@ Implement simple examples showing how to use C++17 fold expressions.
   
 **has_type.cpp**  
 Implement various methods to determine whether a given class contains a nested internal type.  
-      
-**dotdotdot.cpp**  
-Implement functional list operation like head, front, tail, back on template/function parameter pack.  
   
 **concat_view.cpp**  
 Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
