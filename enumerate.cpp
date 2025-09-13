@@ -19,12 +19,12 @@
 #include "./enumerate.hpp"
 
 /*
- * enumrate_test
+ * enumrate_view_test
  */
 
-void enumerate_test() {
+void enumerate_view_test() {
   std::vector<char> vec{'a', 'b', 'c'};
-  enumerate e(vec);
+  enumerate_view e(vec);
 
   const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
   const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
@@ -33,11 +33,24 @@ void enumerate_test() {
 }
 
 /*
+ * enumerate_test
+ */
+
+void enumerate_test() {
+  std::vector<char> vec{'a'};
+
+  for(auto [idx, value] : enumerate(vec)) {
+    assert(idx == 0);
+    assert(value == 'a');
+  }
+}
+
+/*
   * main
   */
 
 int main() {
-  enumerate_test();
+  enumerate_view_test();
 
   return 0;
 }

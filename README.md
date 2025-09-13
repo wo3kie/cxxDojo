@@ -141,6 +141,9 @@ Write a program to compute the entropy of a given sequence.
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Entropy_(information_theory)) the entropy of a random variable quantifies the average level of uncertainty or information associated with the variable's potential states or possible outcomes.
   
+**enumerate.cpp**  
+Implement a simple version of `std::enumerate_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html). The `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -626,8 +629,5 @@ Implement various methods to determine whether a given class contains a nested i
   
 **concat_view.cpp**  
 Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
-  
-**enumerate.cpp**  
-Implement a simple version of `std::enumerate_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html). The `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
-  
+ 
   

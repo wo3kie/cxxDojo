@@ -11,14 +11,12 @@
 #include <tuple>
 #include <type_traits>
 
-#include "./dotdotdot.hpp"
-
 /*
- * enumerate
+ * enumerate_view
  */
 
 template<std::ranges::range Range>
-struct enumerate: public std::ranges::view_interface<enumerate<Range>> {
+struct enumerate_view: public std::ranges::view_interface<enumerate_view<Range>> {
 public:
   /*
    * iterator
@@ -70,7 +68,7 @@ public:
   using iterator_category = iterator::iterator_category;
 
 public:
-  enumerate(Range& range)
+  enumerate_view(Range& range)
       : _range(range) {
   }
 
@@ -85,3 +83,12 @@ public:
 private:
   Range& _range;
 };
+
+/*
+ * enumerate
+ */
+
+template<std::ranges::range Range>
+auto enumerate(Range&& range) {
+  return enumerate_view<Range>(range);
+}
