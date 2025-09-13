@@ -147,6 +147,9 @@ Implement a simple version of `std::enumerate_view` [cppreference](https://en.cp
 **exec.cpp**  
 Implement a function to run shell commands and capture their output, including support for long-running processes.
   
+**exponential_smoothing.cpp**  
+Implement a function to perform exponential smoothing average (EMA) on a given sequence using a specified alpha parameter. From [Wikipedia](https://en.wikipedia.org/wiki/Exponential_smoothing) the EMA is a technique for smoothing time series data using the exponential window function, where exponential functions are used to assign exponentially decreasing weights over time.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -451,10 +454,7 @@ Implement a function to calculate the correlation between two collections using 
 
 **gsl/covariance.cpp**  
 Implement a function to calculate the covariance between two collections using gsl library.
-
-**exponentialSmoothing.cpp**  
-Implement a function to do exponential smoothing. Use Brown's simple exponential smoothing.
-
+  
 **integration.cpp**  
 Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
 
