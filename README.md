@@ -136,6 +136,11 @@ Implement Dijkstra algorithm.
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
   
+**entropy.cpp**  
+Write a program to compute the entropy of a given sequence.  
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Entropy_(information_theory)) the entropy of a random variable quantifies the average level of uncertainty or information associated with the variable's potential states or possible outcomes.
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -562,9 +567,6 @@ Implement a program to find the root of a function. Use bisection and Netwon's m
 
 **gsl/pca.cpp**  
 Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
-
-**entropy.cpp**  
-Implement a program to calculate a sequence's entropy.
 
 **fold.cpp**  
 Implement the _fold_ function using variadic templates.
