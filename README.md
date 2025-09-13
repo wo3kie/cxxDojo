@@ -139,15 +139,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijks
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
-**echo.server/echo.client**  
-Implement simple echo server and text line based client to work with server.
-```{r, engine='bash'}
-[console 1] $ ./echo.server
-
-[console 2] $ ./echo.client test
-[console 2] $ server echo: test
-```
-
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
