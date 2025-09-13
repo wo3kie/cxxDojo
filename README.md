@@ -147,6 +147,9 @@ Implement a simple version of `std::enumerate_view` [cppreference](https://en.cp
 **exec.cpp**  
 Implement a function to run shell commands and capture their output, including support for long-running processes.
   
+**mean_squared_error.cpp**
+Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
