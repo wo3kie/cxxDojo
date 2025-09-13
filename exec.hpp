@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -13,7 +15,7 @@
  * exec
  */
 
-bool exec(const char* const command, const std::function<void(const char*)> onRead) {
+inline bool exec(const char* const command, const std::function<void(const char*)> onRead) {
   FILE* const pipe = popen(command, "r");
 
   if(! pipe) {

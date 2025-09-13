@@ -1,17 +1,21 @@
-/*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
- *
- * Author:
- *      Lukasz Czerwinski
- */
+#pragma once
 
 /*
- * meanSquaredError
- */
+* Website:
+*      https://github.com/wo3kie/cxxdojo
+*
+* Author:
+*      Lukasz Czerwinski
+*/
+
+#include <cstddef>
+
+/*
+* meanSquaredError
+*/
 
 template<typename Iterator, typename Iterator2>
-double meanSquaredError(Iterator expectedBegin, Iterator expectedEnd, Iterator2 actualBegin) {
+inline double meanSquaredError(Iterator expectedBegin, Iterator expectedEnd, Iterator2 actualBegin) {
   std::size_t counter = 0;
   double error2Sum = 0;
 
