@@ -79,10 +79,10 @@ void fdm_forward() {
   constexpr double D = 1.0;
   constexpr double dx = 0.1;
   constexpr double dt = 0.005;
-  // constexpr double dt = 0.005; // unstable
+  // /* unstable */ constexpr double dt = 0.005;
   constexpr double s = D * dt / dx / dx;
 
-  // static_assert(s <= 0.5, "Solution is not stable");
+  static_assert(s <= 0.5, "Solution is not stable");
 
   constexpr unsigned X = 1 + 1 / dx;
   constexpr unsigned T = 1 + 1 / dt;

@@ -150,6 +150,9 @@ Implement a function to run shell commands and capture their output, including s
 **exponential_smoothing.cpp**  
 Implement a function to perform exponential smoothing average (EMA) on a given sequence using a specified alpha parameter. From [Wikipedia](https://en.wikipedia.org/wiki/Exponential_smoothing) the EMA is a technique for smoothing time series data using the exponential window function, where exponential functions are used to assign exponentially decreasing weights over time.
   
+**fdm.cpp**  
+Implement a program demonstrating a Finite Difference Method to calculate differential equation.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -578,10 +581,7 @@ Implement Principal Component Analysis using gsl library. From [Wikipedia](https
 Implement the _fold_ function using variadic templates.
 
 **gsl/page_rank.cpp**  
-Implement the Page Rank algorithm using eigenvalues and eigenvectors.
-
-**fdm.cpp**  
-Implement a program demonstrating a Finite Difference Method to calculate differential equation.  
+Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
   
 **gramSchmidt.cpp**  
 Implement a function to orthonormalise a set of vectors. Use [Gram-Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) algorithm to do it.  
