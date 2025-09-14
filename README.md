@@ -200,14 +200,6 @@ Stephen
 **feq.cpp**  
 Create a function to compare two floating-point values within a given tolerance.
     
-**get.request.cpp**  
-Implement a program to download a website content. Use _get_ request to perform it.
-Take care about at least a simple authorization on a proxy server.
-```{r, engine='bash'}
-$ ./get.request http://www.boost.org LICENSE_1_0.txt proxy_server proxy_port \
-  $(echo -n "my_login:my_password" | base64)
-```
-
 **ssl/sign.verify.cpp**  
 Write a program to sign/verify a message with a RSA key.
 
