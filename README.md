@@ -172,6 +172,9 @@ assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
 **floyd_warshall.cpp**  
 Implement Floyd-Warshall algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) the Floyd–Warshall algorithm is a procedure for finding shortest paths in a directed weighted graph with positive or negative edge weights but with no negative cycles.
   
+**fold_expression.cpp**  
+Implement simple examples that demonstrate how to use C++17 fold expressions.  
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -622,10 +625,7 @@ Implement partition and stable_partition algorithms.
   
 **tupleUtils.cpp**  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
-  
-**fold_expression.cpp**  
-Implement simple examples showing how to use C++17 fold expressions.  
-  
+    
 **has_type.cpp**  
 Implement various methods to determine whether a given class contains a nested internal type.  
   
