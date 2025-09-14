@@ -384,9 +384,6 @@ Can you get a container type from its iterator?
 }
 ```
 
-**getCounters.cpp**  
-Implement a function to count a distrubution of data.
-
 **mandelbrot.cpp**  
 Implement a program to print ASCII art of Mandelbrot set fractal.
 
