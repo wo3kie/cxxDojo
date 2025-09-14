@@ -267,18 +267,7 @@ F "./ls.cpp"
 F "./scope_exit.cpp"
 ...
 ```
-
-**grep.cpp**  
-Implement a program to find a text matching a regular expression in a standard input.
-
-```{r, engine='bash'}
-$ cat grep.cpp | ./grep ".*line.*"
-    std::string line;
-        while( std::getline( std::cin, line ) )
-            if( std::regex_match( line, std::regex( argv[1] ) ) )
-                std::cout << line << std::endl;
-```
-
+  
 **timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.
 
