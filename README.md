@@ -184,6 +184,9 @@ Implement a function to calculate the greatest common divisor.
 **gramSchmidt.cpp**  
 Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
   
+**gzip.cpp**  
+Implement a function to compress and decompress text using the _gzip_ algorithm.
+    
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -317,9 +320,6 @@ pmn: 962802µs
 Implement an example of the visitor design pattern.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
-
-**gzip.cpp**  
-Implement a function to pack/unpack text using compression algorithm.
 
 **levenstein.cpp**  
 Implement a Levenstein distance function.
