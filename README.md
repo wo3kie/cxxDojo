@@ -175,6 +175,9 @@ Implement Floyd-Warshall algorithm. From [Wikipedia](https://en.wikipedia.org/wi
 **fold_expression.cpp**  
 Implement simple examples that demonstrate how to use C++17 fold expressions.  
   
+**functional.cpp**  
+Implement higher-order functions such as `fold`, `reduce`, and `filter`.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -581,10 +584,7 @@ Implement functions for mean scaling and standard scaling. From [Wikipedia](http
 
 **gsl/pca.cpp**  
 Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
-
-**fold.cpp**  
-Implement the _fold_ function using variadic templates.
-
+  
 **gsl/page_rank.cpp**  
 Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
   
@@ -596,10 +596,7 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
   
 **interpolation.cpp**  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
-  
-**functional.cpp**  
-Implement higher-order functions like fold, map, reduce, filter...  
-    
+      
 **mapUtils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  
   

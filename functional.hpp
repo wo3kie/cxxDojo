@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -6,16 +8,10 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef __CXX_DOJO_FUNCTIONAL_HPP__
-#define __CXX_DOJO_FUNCTIONAL_HPP__
-
 #include <algorithm>
 #include <functional>
 #include <iterator>
 
-#include "./container.hpp"
-
-namespace dojo {
 
 template<typename R, typename T, typename I>
 R _lfold(std::function<R(T, T)> f, R init, I begin, I end) {
@@ -110,19 +106,3 @@ Container filter_copy(Container const& container, std::function<bool(typename Co
 
   return result;
 }
-
-template<typename Return, typename Container>
-auto map(Container container, std::function<Return(typename Container::value_type)> functor) ->
-    typename ContainerTraits<Container>::template rebind<Return>::type {
-  typename ContainerTraits<Container>::template rebind<Return>::type result;
-
-  for(typename Container::value_type const& item : container) {
-    result.push_back(functor(item));
-  }
-
-  return result;
-}
-
-} // namespace dojo
-
-#endif
