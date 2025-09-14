@@ -6,15 +6,15 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 floatFormat.cpp -o floatFormat
+ *      g++ --std=c++20 float_formatter.cpp -o float_formatter
  *
  * Usage:
- *      $ ./floatFormat
+ *      $ ./float_formatter
  */
 
 #include <cassert>
 
-#include "./floatFormatter.hpp"
+#include "./float_formatter.hpp"
 
 int main() {
   assert(FloatFormatter(0, 1).toString() == "0");

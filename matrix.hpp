@@ -13,7 +13,7 @@
 #include <vector>
 
 #include "./feq.hpp"
-#include "./floatFormatter.hpp"
+#include "./float_formatter.hpp"
 #include "./output.hpp"
 #include "./vector.hpp"
 

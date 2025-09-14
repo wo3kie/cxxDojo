@@ -17,7 +17,7 @@
  * bisectionNumberOfIteration
  */
 
-unsigned bisectionNumberOfIteration(unsigned precision) {
+inline unsigned bisectionNumberOfIteration(unsigned precision) {
   /*
      * 1/(2^(n+1)) < 0.5 * 10^(-precision)
      * n > precision / log10(2)
@@ -30,7 +30,7 @@ unsigned bisectionNumberOfIteration(unsigned precision) {
  * bisection
  */
 
-double bisection(double begin, double end, const std::function<double(double)>& f, unsigned precision = 6) {
+inline double bisection(double begin, double end, const std::function<double(double)>& f, unsigned precision = 6) {
   assert(f(begin) * f(end) <= 0);
 
   double midpoint = 0;
@@ -62,7 +62,7 @@ double bisection(double begin, double end, const std::function<double(double)>& 
  * newton
  */
 
-double newton(double x, const double end, const std::function<double(double)>& f, const std::function<double(double)>& fdx, const unsigned precision = 6) {
+inline double newton(double x, const double end, const std::function<double(double)>& f, const std::function<double(double)>& fdx, const unsigned precision = 6) {
   double xNext = 0;
   const double eps = std::pow(0.1, precision);
 
@@ -79,7 +79,7 @@ double newton(double x, const double end, const std::function<double(double)>& f
   return xNext;
 }
 
-double newton(double x, double end, const std::function<double(double)>& f, const unsigned precision = 6) {
+inline double newton(double x, double end, const std::function<double(double)>& f, const unsigned precision = 6) {
   const double eps = std::pow(0.1, precision);
 
   return newton(
