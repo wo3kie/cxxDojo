@@ -156,6 +156,9 @@ Implement a program demonstrating a Finite Difference Method to calculate differ
 **find_union.cpp**  
 Implement a find-union algorithm.  
   
+**find.root.cpp**  
+Implement a program to find the root of a function using the bisection and Newton's methods.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -572,9 +575,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) Jaccard index is u
 
 **scaling.cpp**  
 Implement functions for mean scaling and standard scaling. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
-
-**find.root.cpp**  
-Implement a program to find the root of a function. Use bisection and Netwon's methods.
 
 **gsl/pca.cpp**  
 Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
