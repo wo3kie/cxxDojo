@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef CXX_DOJO_VARIANCE_HPP
-#define CXX_DOJO_VARIANCE_HPP
 
 #include <vector>
 
@@ -87,4 +86,3 @@ double variance3(std::vector<T> const& array) {
   return variance(array.begin(), array.end());
 }
 
-#endif

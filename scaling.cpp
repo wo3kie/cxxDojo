@@ -21,7 +21,7 @@
 #include <tuple>
 
 #include "./feq.hpp"
-#include "./stdDev.hpp"
+#include "./std_dev.hpp"
 
 template<typename IteratorIn, typename IteratorOut>
 void rescale(IteratorIn const begin, IteratorIn const end, IteratorOut out) {

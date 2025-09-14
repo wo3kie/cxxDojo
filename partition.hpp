@@ -2,6 +2,8 @@
  * Website:
  *      https://github.com/wo3kie/cxxdojo
  *
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -9,9 +11,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef __CXX_DOJO_PARTITION_HPP__
-#define __CXX_DOJO_PARTITION_HPP__
 
 #include "./rotate.hpp"
 
@@ -96,4 +95,4 @@ typename Container::iterator stable_partition_if(Container& container, UnaryPred
     return stable_partition_if(container.begin(), container.end(), pred);
 }
 
-#endif
+

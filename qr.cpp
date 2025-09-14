@@ -16,7 +16,7 @@
 #include <vector>
 
 #include "./feq.hpp"
-#include "./gramSchmidt.hpp"
+#include "./gram_schmidt.hpp"
 #include "./matrix.hpp"
 
 void qr(Matrix const& a, Matrix& q, Matrix& r) {

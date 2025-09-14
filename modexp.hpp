@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef __CXX_DOJO_MODEXP_HPP__
-#define __CXX_DOJO_MODEXP_HPP__
 
 namespace {
 
@@ -26,5 +25,3 @@ inline constexpr unsigned modexp(unsigned a, unsigned exp, unsigned mod) {
 
                   : ((exp % 2 == 0 ? 1 : a) * pow2(modexp(a, exp / 2, mod)) % mod);
 }
-
-#endif

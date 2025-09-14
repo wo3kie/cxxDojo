@@ -6,8 +6,7 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef __CXX_DOJO_TUPLE_UTILS_HPP__
-#define __CXX_DOJO_TUPLE_UTILS_HPP__
+#pragma once
 
 #include <functional>
 #include <tuple>
@@ -157,4 +156,3 @@ struct Foldl<F, std::tuple<T1, T2, Ts...>> {
 
 } // namespace tuple
 
-#endif

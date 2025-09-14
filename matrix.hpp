@@ -1,6 +1,3 @@
-#ifndef __CXX_DOJO_MATRIX_HPP__
-#define __CXX_DOJO_MATRIX_HPP__
-
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -8,6 +5,8 @@
  * Author:
  *      Lukasz Czerwinski
  */
+
+ #pragma once
 
 #include <iomanip>
 #include <vector>
@@ -181,4 +180,4 @@ inline Matrix eye(unsigned size) {
   return result;
 }
 
-#endif
+

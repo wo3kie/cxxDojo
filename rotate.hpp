@@ -2,6 +2,8 @@
  * Website:
  *      https://github.com/wo3kie/cxxdojo
  *
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -9,9 +11,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef __CXX_DOJO_ROTATE_HPP__
-#define __CXX_DOJO_ROTATE_HPP__
 
 #include <algorithm>
 #include <stddef.h>
@@ -143,6 +142,3 @@ void rorate_right(Iterator begin, Iterator pivot, Iterator end) {
     return rotate_right_2(begin, pivot, end);
 }
 
-
-
-#endif

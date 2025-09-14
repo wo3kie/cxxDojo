@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef CXX_DOJO_LINEAR_REGRESSION
-#define CXX_DOJO_LINEAR_REGRESSION
 
 #include <cassert>
 #include <vector>
@@ -141,4 +140,4 @@ inline bool linearRegression2(std::vector<Point> const& points, double& a, doubl
   return true;
 }
 
-#endif
+

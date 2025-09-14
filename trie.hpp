@@ -6,8 +6,7 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef __CXX_DOJO_TRIE_HPP__
-#define __CXX_DOJO_TRIE_HPP__
+#pragma once
 
 #include <cassert>
 #include <deque>
@@ -138,4 +137,3 @@ private:
   std::vector<Node> nodes;
 };
 
-#endif

@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef __CXX_DOJO_SCOPE_EXIT_HPP__
-#define __CXX_DOJO_SCOPE_EXIT_HPP__
 
 #include <iostream>
 #include <type_traits>
@@ -52,4 +51,3 @@ scope_exit<typename std::remove_reference<F>::type> make_scope_exit(F&& f) {
   return scope_exit<typename std::remove_reference<F>::type>(std::forward<F>(f));
 }
 
-#endif

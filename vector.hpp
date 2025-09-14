@@ -6,8 +6,9 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef CXX_DOJO_VECTOR_HPP
-#define CXX_DOJO_VECTOR_HPP
+
+#pragma once
+
 
 class Vector {
 public:
@@ -120,4 +121,4 @@ inline Vector projection(Vector const& what, Vector const& where) {
   return dot(where, what) / dot(where, where) * where;
 }
 
-#endif
+

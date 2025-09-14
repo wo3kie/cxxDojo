@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -6,15 +8,12 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef CXX_DOJO_MAP_UTILS
-#define CXX_DOJO_MAP_UTILS
-
 #include <functional>
 #include <map>
 #include <type_traits>
 #include <vector>
 
-#include "./tupleUtils.hpp"
+#include "./tuple_utils.hpp"
 
 template<typename Iter, typename KeyGetter>
 auto groupBy(Iter begin, Iter const end, KeyGetter getKey) {
@@ -178,4 +177,4 @@ struct FlattenMap {
   Map& m_map;
 };
 
-#endif
+

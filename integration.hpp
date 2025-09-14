@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef __CXX_DOJO_INTEGRATION_HPP__
-#define __CXX_DOJO_INTEGRATION_HPP__
 
 #include <functional>
 
@@ -53,4 +52,4 @@ inline double simpsonIntegration(double (*f)(double), double from, double to, un
   return integrationBase(approx, f, from, to, numIterations);
 }
 
-#endif
+

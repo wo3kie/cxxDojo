@@ -1,5 +1,4 @@
-#ifndef __CXX_DOJO_ALLOCATOR_HPP__
-#define __CXX_DOJO_ALLOCATOR_HPP__
+#pragma once
 
 /*
  * Website:
@@ -73,4 +72,4 @@ struct Allocator {
   }
 };
 
-#endif
+

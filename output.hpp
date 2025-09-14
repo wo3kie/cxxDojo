@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -5,9 +7,6 @@
  * Author:
  *      Lukasz Czerwinski
  */
-
-#ifndef CXX_DOJO_OUTPUT_HPP
-#define CXX_DOJO_OUTPUT_HPP
 
 #include <array>
 #include <cassert>
@@ -168,4 +167,4 @@ void print(T1 const& t1, T2 const& t2, T3 const& t3, T4 const& t4, T5 const& t5,
   std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << ' ' << t5 << end;
 }
 
-#endif
+

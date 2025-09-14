@@ -12,7 +12,7 @@
  *      $ ./mapUtils
  */
 
-#include "mapUtils.hpp"
+#include "map_utils.hpp"
 
 #include <cassert>
 #include <set>

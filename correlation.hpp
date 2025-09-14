@@ -12,7 +12,7 @@
 #include <vector>
 
 #include "./covariance.hpp"
-#include "./stdDev.hpp"
+#include "./std_dev.hpp"
 
 template<typename Iterator1, typename Iterator2>
 double correlation(Iterator1 xBegin, const Iterator1 xEnd, Iterator2 yBegin, const Iterator2 yEnd) {
