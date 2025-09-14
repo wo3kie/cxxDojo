@@ -6,81 +6,43 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 floydWarshall.cpp -o floydWarshall
+ *      g++ --std=c++20 floyd_warshall.cpp -o floyd_warshall
  *
  * Usage:
- *      $ ./floydWarshall
+ *      $ ./floyd_warshall
  */
 
-#include <algorithm>
 #include <cassert>
 #include <vector>
 
+#include "./floyd_warshall.hpp"
 #include "./output.hpp"
 
-/*
- * Algorithms in a Nutshell
- */
-
-int const IN = 99;
-
-typedef std::vector<std::vector<int>> Matrix;
-
-std::pair<Matrix /* dist */, Matrix /* prev */> floydWarshall(Matrix const& graph) {
-  int const size = graph.size();
-
-  Matrix dist = graph;
-  Matrix prev = graph;
-
-  for(int u = 0; u < size; ++u) {
-    for(int v = 0; v < size; ++v) {
-      prev[u][v] = u;
-    }
-  }
-
-  for(int t = 0; t < size; ++t) {
-    for(int u = 0; u < size; ++u) {
-      for(int v = 0; v < size; ++v) {
-        if(dist[u][v] > dist[u][t] + dist[t][v]) {
-          dist[u][v] = dist[u][t] + dist[t][v];
-          prev[u][v] = prev[t][v];
-        }
-      }
-    }
-  }
-
-  return std::make_pair(dist, prev);
-}
-
-std::vector<int> decodeShortestPath(Matrix const& prev, int const start, int end) {
-  std::vector<int> path(1, end);
-
-  while(prev[start][end] != start) {
-    path.push_back(prev[start][end]);
-    end = prev[start][end];
-  }
-
-  std::reverse(path.begin(), path.end());
-
-  return path;
-}
+const int INF = 99;
 
 int main() {
+  // clang-format off
   Matrix matrix{
-      {0, 2, IN, IN, 4},
-      {IN, 0, 3, IN, IN},
-      {IN, IN, 0, 5, 1},
-      {8, IN, IN, 0, IN},
-      {IN, IN, IN, 7, 0},
+    {  0,   2, INF, INF,   4},
+    {INF,   0,   3, INF, INF},
+    {INF, INF,   0,   5,   1},
+    {  8, INF, INF,   0, INF},
+    {INF, INF, INF,   7,   0},
   };
-
+  // clang-format on
+  
   Matrix dist = matrix;
   Matrix prev = matrix;
-
+  
   std::tie(dist, prev) = floydWarshall(matrix);
-
-  assert(
-      (dist == Matrix{{0, 2, 5, 10, 4}, {16, 0, 3, 8, 4}, {13, 15, 0, 5, 1}, {8, 10, 13, 0, 12}, {15, 17, 20, 7, 0}}));
+  
+  // clang-format off
+  assert((dist == Matrix{{ 0,  2,  5, 10,  4}, //
+                         {16,  0,  3,  8,  4}, 
+                         {13, 15,  0,  5,  1}, 
+                         { 8, 10, 13,  0, 12}, 
+                         {15, 17, 20,  7,  0}}));
+  // clang-format on
 
   typedef std::vector<int> VI;
 

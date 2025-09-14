@@ -169,6 +169,9 @@ assert(FloatFormatter(0.0000001234, 8).toString() == "1.23e-07");
 assert(FloatFormatter(0.0000001234, 9).toString() == "0.0000001");
 ```
   
+**floyd_warshall.cpp**  
+Implement Floyd-Warshall algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm) the Floyd–Warshall algorithm is a procedure for finding shortest paths in a directed weighted graph with positive or negative edge weights but with no negative cycles.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -524,9 +527,6 @@ lis( {1, 9, 2, 8, 3, 7, 4} ) == { 1, 2, 3, 4 } )
 Implement a program representing the type erasure idiom.
 
 From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
-
-**floydWarshall.cpp**  
-Implement Floyd-Warshall algorithm.
 
 **treeClassification.cpp**  
 Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
