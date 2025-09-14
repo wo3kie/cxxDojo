@@ -201,6 +201,14 @@ Move from 3 to 2
 Move from 1 to 2
 ```
   
+**in.cpp**  
+Implement _in_ operator in C++. Follow the idea of [named-operators](https://github.com/klmr/named-operator).
+
+```{r, engine='cpp'}
+assert(    1 <in> std::vector< int >{ 1 } );
+assert( !( 2 <in> std::vector< int >{ 1 } ) );
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -439,14 +447,6 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 
 **quick_sort.cpp**  
 Implement the quick sort algorithm. Can you use any standard library function to do it?
-
-**in.cpp**  
-Implement _in_ operator in C++. Follow the idea of [named-operators](https://github.com/klmr/named-operator).
-
-```{r, engine='cpp'}
-assert(    1 <in> std::vector< int >{ 1 } );
-assert( !( 2 <in> std::vector< int >{ 1 } ) );
-```
   
 **gsl/interpolation.cpp**  
 Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?

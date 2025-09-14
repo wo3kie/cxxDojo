@@ -25,60 +25,70 @@
 #include <typeinfo>
 #include <vector>
 
+/*
+ * <in>
+ */
+
 struct In {
-  void const* ptr_ = nullptr;
+  const void* ptr_ = nullptr;
   std::size_t type_ = 0;
 } in;
 
 template<typename T>
-In operator<(T const& t, In in) {
+In operator<(const T& t, In in) {
   assert(in.type_ = typeid(T).hash_code());
   in.ptr_ = &t;
   return in;
 }
 
 template<typename T>
-bool operator>(In const& in, std::vector<T> const& v) {
+bool operator>(const In& in, const std::vector<T>& v) {
   assert(in.type_ == typeid(T).hash_code());
-  return std::find(v.begin(), v.end(), *(T const*)(in.ptr_)) != v.end();
+  return std::find(v.begin(), v.end(), *(const T*)(in.ptr_)) != v.end();
 }
 
 template<typename T>
-bool operator>(In const& in, std::list<T> const& l) {
+bool operator>(const In& in, const std::list<T>& l) {
   assert(in.type_ == typeid(T).hash_code());
-  return std::find(l.begin(), l.end(), *(T const*)(in.ptr_)) != l.end();
+  return std::find(l.begin(), l.end(), *(const T*)(in.ptr_)) != l.end();
 }
 
 template<typename T>
-bool operator>(In const& in, std::set<T> const& s) {
+bool operator>(const In& in, const std::set<T>& s) {
   assert(in.type_ == typeid(T).hash_code());
-  return s.count(*(T const*)(in.ptr_)) == 1;
+  return s.count(*(const T*)(in.ptr_)) == 1;
 }
 
 template<typename K, typename V>
-bool operator>(In const& in, std::map<K, V> const& m) {
+bool operator>(const In& in, const std::map<K, V>& m) {
   assert(in.type_ == typeid(K).hash_code());
-  return m.count(*(K const*)(in.ptr_)) == 1;
+  return m.count(*(const K*)(in.ptr_)) == 1;
 }
 
-bool operator>(In const& in, std::string const& s) {
+bool operator>(const In& in, const std::string& s) {
   assert(in.type_ == typeid(std::string).hash_code());
-  return std::find(s.begin(), s.end(), *(char const*)(in.ptr_)) != s.end();
+  return std::find(s.begin(), s.end(), *(const char*)(in.ptr_)) != s.end();
 }
+
+/*
+ * main
+ */
 
 int main() {
-  assert(1 < in > std::vector<int>{1});
-  assert(! (2 < in > std::vector<int>{1}));
-
-  assert(1 < in > std::list<int>{1});
-  assert(! (2 < in > std::list<int>{1}));
-
-  assert(1 < in > std::set<int>{1});
-  assert(! (2 < in > std::set<int>{1}));
-
-  assert((1 < in > std::map<int, int>{{1, 1}}));
-  assert((! (2 < in > std::map<int, int>{{1, 1}})));
-
-  assert(1 < in > std::string("1"));
-  assert(! (2 < in > std::string("2")));
+  // clang-format off
+  assert(1 <in> std::vector<int>{1});
+  assert(! (2 <in> std::vector<int>{1}));
+  
+  assert(1 <in> std::list<int>{1});
+  assert(! (2 <in> std::list<int>{1}));
+  
+  assert(1 <in> std::set<int>{1});
+  assert(! (2 <in> std::set<int>{1}));
+  
+  assert((1 <in> std::map<int, int>{{1, 1}}));
+  assert((! (2 <in> std::map<int, int>{{1, 1}})));
+  
+  assert(1 <in> std::string("1"));
+  assert(! (2 <in> std::string("2")));
+  // clang-format on
 }
