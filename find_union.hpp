@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Website:
  *      https://github.com/wo3kie/cxxdojo
@@ -6,56 +8,56 @@
  *      Lukasz Czerwinski
  */
 
-#ifndef __CXX_DOJO_FIND_UNION_HPP__
-#define __CXX_DOJO_FIND_UNION_HPP__
-
 #include <vector>
+
+/*
+ * FindUnion
+ */
 
 class FindUnion {
 public:
   FindUnion(int size)
-      : data_(size) {
+      : _data(size) 
+  {
     for(int i = 0; i < size; ++i) {
-      data_[i] = i;
+      _data[i] = i;
     }
   }
 
   int cfind(int i) const {
-    while(data_[i] != i) {
-      i = data_[i];
+    while(_data[i] != i) {
+      i = _data[i];
     }
 
     return i;
   }
 
   int find(int i) {
-    if(data_[i] == i) {
+    if(_data[i] == i) {
       return i;
     }
 
-    int const root = find(data_[i]);
+    const int root = find(_data[i]);
 
-    data_[i] = root;
+    _data[i] = root;
     return i;
   }
 
   void merge(int i, int j) {
-    int const i_pos = cfind(i);
-    int const j_pos = cfind(j);
+    const int i_pos = cfind(i);
+    const int j_pos = cfind(j);
 
-    data_[i_pos] = j_pos;
+    _data[i_pos] = j_pos;
   }
 
   unsigned size() const {
-    return data_.size();
+    return _data.size();
   }
 
   std::vector<int> getData() const {
-    return data_;
+    return _data;
   }
 
 private:
-  std::vector<int> data_;
+  std::vector<int> _data;
 };
-
-#endif

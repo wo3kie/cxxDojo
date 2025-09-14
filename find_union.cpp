@@ -11,6 +11,7 @@
  * Usage:
  *      $ ./find_union
  */
+
 #include <cassert>
 
 #include "./find_union.hpp"
@@ -18,7 +19,7 @@
 
 using V = std::vector<int>;
 
-int main() {
+void findUnion_test() {
   {
     FindUnion fu(6);
     assert((fu.getData() == V{0, 1, 2, 3, 4, 5}));
@@ -49,4 +50,12 @@ int main() {
     fu.find(4);
     assert((fu.getData() == V{0, 1, 1, 1, 1, 5}));
   }
+}
+
+/*
+ * main
+ */
+
+int main() {
+  findUnion_test();
 }

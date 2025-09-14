@@ -153,6 +153,9 @@ Implement a function to perform exponential smoothing average (EMA) on a given s
 **fdm.cpp**  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.
   
+**find_union.cpp**  
+Implement a find-union algorithm.  
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -287,7 +290,6 @@ Implement used defined literal _bin_ to convert a string of zeros and ones "1010
 assert( 561 == "1000110001"_bin );
 assert( 561 == 1000110001_bin );
 ```
-
 
 **matrix.mul.perf.cpp**  
 Implement a performance test for matrix multiplication. Consider all possibilities with loop nesting.
@@ -591,9 +593,6 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
   
 **interpolation.cpp**  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
-  
-**find_union.cpp**  
-Implement a find-union algorithm.  
   
 **functional.cpp**  
 Implement higher-order functions like fold, map, reduce, filter...  
