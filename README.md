@@ -374,7 +374,7 @@ Implement a function to calcuate linear regression using least squares approach.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_.
 
-**getContainerType.cpp**  
+**get_container_type.cpp**  
 Can you get a container type from its iterator?
 
 ```{r, engine='cpp'}
@@ -437,7 +437,7 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 ####################&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 ```
 
-**quickSort.cpp**  
+**quick_sort.cpp**  
 Implement the quick sort algorithm. Can you use any standard library function to do it?
 
 **in.cpp**  
@@ -478,16 +478,16 @@ Implement a function to solve a first order ordinary differential equation numer
 **matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.
 
-**logNormal.cpp**  
+**log_normal.cpp**  
 Implement a program to demonstrate a log normal distribution.
 
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
 
-**reverseWords.cpp**  
+**reverse_words.cpp**  
 Implement a program to reverse words in a given sentence.
 
-**rotateMatrix.cpp**  
+**rotate_matrix.cpp**  
 Implement a program to rotate inplace matrix to right by 90 degrees
 
 ```{r, engine='bash'}
@@ -503,7 +503,7 @@ Implement a program to generate all strings correctly matched _n_ pairs of paren
 3: , , (), ()(), ()()(), ()(()), (()), (())(), (()()), ((()))
 ```
 
-**longestIncreasingSubsequence.cpp**  
+**longest_increasing_subsequence.cpp**  
 Implement a program to find a longest increasing subsequence in  a given sequence, eg.:
 
 ```{r, engine='bash'}
@@ -515,10 +515,10 @@ Implement a program representing the type erasure idiom.
 
 From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
 
-**treeClassification.cpp**  
+**tree_classification.cpp**  
 Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
 
-**matrixChainMultiplication.cpp**  
+**matrix_chain_multiplication.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) matrix chain multiplication is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
 
 **circular_buffer.cpp**  
@@ -542,19 +542,19 @@ Implement a heap data structure.
 **modexp.cpp**  
 Implement a function to calculate quickly exponential function with modulo operation.
 
-**isPrime.cpp**  
+**is_prime.cpp**  
 Implement a function to verify using Fermat theorem if a given number is a prime number.
 
-**rhoPollard.cpp**  
+**rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
 
-**laplaceSmoothing.cpp**  
+**laplace_smoothing.cpp**  
 Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
 
-**rSquared.cpp**  
+**r_squared.cpp**  
 Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).
 
-**jaccardIndex.cpp**  
+**jaccard_index.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) Jaccard index is used for comparing the similarity and diversity of sample sets.
 
 **scaling.cpp**  
@@ -572,30 +572,16 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 **interpolation.cpp**  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
       
-**mapUtils.cpp**  
+**map_utils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  
   
 **trie.cpp**  
 Implement TRIE data structure.  
-  
-**isDuplicate.cpp**  
-Implement a function to check if there is a duplicate in a container of strings.  
-  
-
-```{r, engine='bash'}
-$ ./isDuplicate 
-605µs
-313µs
-4684µs
-91218µs
-35834µs
-2454739µs
-```
-  
+    
 **partition.cpp**  
 Implement partition and stable_partition algorithms.  
   
-**tupleUtils.cpp**  
+**tuple_utils.cpp**  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
     
 **has_type.cpp**  
