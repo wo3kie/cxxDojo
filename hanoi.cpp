@@ -19,12 +19,18 @@ void hanoi(int size, int from, int to) {
     return;
   }
 
-  int const middle = 1 + 2 + 3 - from - to;
+  const int middle = 1 + 2 + 3 - from - to;
 
   hanoi(size - 1, from, middle);
+
   std::cout << "Move from " << from << " to " << to << std::endl;
+  
   hanoi(size - 1, middle, to);
 }
+
+/*
+ * main
+ */
 
 int main(int argc, char* argv[]) {
   hanoi(atoi(argv[1]), 1, 2);

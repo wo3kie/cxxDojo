@@ -187,6 +187,20 @@ Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikiped
 **gzip.cpp**  
 Implement a function to compress and decompress text using the _gzip_ algorithm.
     
+**hanoi.cpp**  
+Implement a program to solve the Tower of Hanoi problem.
+
+```{r, engine='bash'}
+$ ./hanoi 3
+Move from 1 to 2
+Move from 1 to 3
+Move from 2 to 3
+Move from 1 to 2
+Move from 3 to 1
+Move from 3 to 2
+Move from 1 to 2
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -433,21 +447,7 @@ Implement _in_ operator in C++. Follow the idea of [named-operators](https://git
 assert(    1 <in> std::vector< int >{ 1 } );
 assert( !( 2 <in> std::vector< int >{ 1 } ) );
 ```
-
-**hanoi.cpp**  
-Implement a program to solve the Tower of Hanoi problem.
-
-```{r, engine='bash'}
-$ ./hanoi 3
-Move from 1 to 2
-Move from 1 to 3
-Move from 2 to 3
-Move from 1 to 2
-Move from 3 to 1
-Move from 3 to 2
-Move from 1 to 2
-```
-
+  
 **gsl/interpolation.cpp**  
 Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?
 
