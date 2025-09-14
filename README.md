@@ -178,6 +178,9 @@ Implement simple examples that demonstrate how to use C++17 fold expressions.
 **functional.cpp**  
 Implement higher-order functions such as `fold`, `reduce`, and `filter`.
   
+**gcd.cpp**  
+Implement a function to calculate the greatest common divisor.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -512,9 +515,6 @@ Implement a program to rotate inplace matrix to right by 90 degrees
 7 8 9    9 6 3
 ```
 
-**generateAllSubsets.cpp**  
-For a given set of numbers generate all possible subsets.
-
 **parenthesis.cpp**  
 Implement a program to generate all strings correctly matched _n_ pairs of parenthesis, eg.:
 
@@ -557,10 +557,7 @@ Implement simple examples of a `tuple` class using either composition or inherit
     
 **heap**  
 Implement a heap data structure.
-
-**gcd.cpp**  
-Implement a function to calculate the greatest common divisor.
-
+  
 **modexp.cpp**  
 Implement a function to calculate quickly exponential function with modulo operation.
 
