@@ -181,6 +181,9 @@ Implement higher-order functions such as `fold`, `reduce`, and `filter`.
 **gcd.cpp**  
 Implement a function to calculate the greatest common divisor.
   
+**gramSchmidt.cpp**  
+Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -573,10 +576,7 @@ Implement Principal Component Analysis using gsl library. From [Wikipedia](https
   
 **gsl/page_rank.cpp**  
 Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
-  
-**gramSchmidt.cpp**  
-Implement a function to orthonormalise a set of vectors. Use [Gram-Schmidt](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) algorithm to do it.  
-  
+    
 **qr.cpp**  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
   
