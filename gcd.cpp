@@ -32,23 +32,29 @@ void gcd_test() {
   static_assert(gcd(14, 7) == 7, "");
 }
 
-void Gcd_test() {
-  static_assert(Gcd<0, 7>::value == 7, "");
-  static_assert(Gcd<1, 7>::value == 1, "");
-  static_assert(Gcd<2, 7>::value == 1, "");
-  static_assert(Gcd<3, 7>::value == 1, "");
-  static_assert(Gcd<4, 7>::value == 1, "");
-  static_assert(Gcd<5, 7>::value == 1, "");
-  static_assert(Gcd<6, 7>::value == 1, "");
-  static_assert(Gcd<7, 7>::value == 7, "");
-  static_assert(Gcd<8, 7>::value == 1, "");
-  static_assert(Gcd<9, 7>::value == 1, "");
-  static_assert(Gcd<10, 7>::value == 1, "");
-  static_assert(Gcd<11, 7>::value == 1, "");
-  static_assert(Gcd<12, 7>::value == 1, "");
-  static_assert(Gcd<13, 7>::value == 1, "");
-  static_assert(Gcd<14, 7>::value == 7, "");
+void GCD_test() {
+  static_assert(GCD<0, 7>::value == 7, "");
+  static_assert(GCD<1, 7>::value == 1, "");
+  static_assert(GCD<2, 7>::value == 1, "");
+  static_assert(GCD<3, 7>::value == 1, "");
+  static_assert(GCD<4, 7>::value == 1, "");
+  static_assert(GCD<5, 7>::value == 1, "");
+  static_assert(GCD<6, 7>::value == 1, "");
+  static_assert(GCD<7, 7>::value == 7, "");
+  static_assert(GCD<8, 7>::value == 1, "");
+  static_assert(GCD<9, 7>::value == 1, "");
+  static_assert(GCD<10, 7>::value == 1, "");
+  static_assert(GCD<11, 7>::value == 1, "");
+  static_assert(GCD<12, 7>::value == 1, "");
+  static_assert(GCD<13, 7>::value == 1, "");
+  static_assert(GCD<14, 7>::value == 7, "");
 }
 
+/*
+ * main
+ */
+
 int main() {
+  gcd_test();
+  GCD_test();
 }
