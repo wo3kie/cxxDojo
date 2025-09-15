@@ -30,44 +30,44 @@
  */
 
 struct In {
-  const void* ptr_ = nullptr;
-  std::size_t type_ = 0;
+  const void* _ptr = nullptr;
+  std::size_t _type = 0;
 } in;
 
 template<typename T>
 In operator<(const T& t, In in) {
-  assert(in.type_ = typeid(T).hash_code());
-  in.ptr_ = &t;
+  assert(in._type = typeid(T).hash_code());
+  in._ptr = &t;
   return in;
 }
 
 template<typename T>
 bool operator>(const In& in, const std::vector<T>& v) {
-  assert(in.type_ == typeid(T).hash_code());
-  return std::find(v.begin(), v.end(), *(const T*)(in.ptr_)) != v.end();
+  assert(in._type == typeid(T).hash_code());
+  return std::find(v.begin(), v.end(), *(const T*)(in._ptr)) != v.end();
 }
 
 template<typename T>
 bool operator>(const In& in, const std::list<T>& l) {
-  assert(in.type_ == typeid(T).hash_code());
-  return std::find(l.begin(), l.end(), *(const T*)(in.ptr_)) != l.end();
+  assert(in._type == typeid(T).hash_code());
+  return std::find(l.begin(), l.end(), *(const T*)(in._ptr)) != l.end();
 }
 
 template<typename T>
 bool operator>(const In& in, const std::set<T>& s) {
-  assert(in.type_ == typeid(T).hash_code());
-  return s.count(*(const T*)(in.ptr_)) == 1;
+  assert(in._type == typeid(T).hash_code());
+  return s.count(*(const T*)(in._ptr)) == 1;
 }
 
 template<typename K, typename V>
 bool operator>(const In& in, const std::map<K, V>& m) {
-  assert(in.type_ == typeid(K).hash_code());
-  return m.count(*(const K*)(in.ptr_)) == 1;
+  assert(in._type == typeid(K).hash_code());
+  return m.count(*(const K*)(in._ptr)) == 1;
 }
 
 bool operator>(const In& in, const std::string& s) {
-  assert(in.type_ == typeid(std::string).hash_code());
-  return std::find(s.begin(), s.end(), *(const char*)(in.ptr_)) != s.end();
+  assert(in._type == typeid(std::string).hash_code());
+  return std::find(s.begin(), s.end(), *(const char*)(in._ptr)) != s.end();
 }
 
 /*
