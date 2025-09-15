@@ -201,6 +201,12 @@ Move from 3 to 2
 Move from 1 to 2
 ```
   
+**has_type.cpp**  
+Implement various methods to determine whether a given class contains a nested internal type.  
+  
+**heap**  
+Implement the heap data structure.
+  
 **in.cpp**  
 Implement _in_ operator in C++. Follow the idea of [named-operators](https://github.com/klmr/named-operator).
 
@@ -536,9 +542,6 @@ Implement a function to calculate struct/class member offert.
 **tuple.cpp**  
 Implement simple examples of a `tuple` class using either composition or inheritance.
     
-**heap**  
-Implement a heap data structure.
-  
 **modexp.cpp**  
 Implement a function to calculate quickly exponential function with modulo operation.
 
@@ -583,10 +586,7 @@ Implement partition and stable_partition algorithms.
   
 **tuple_utils.cpp**  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
-    
-**has_type.cpp**  
-Implement various methods to determine whether a given class contains a nested internal type.  
-  
+      
 **concat_view.cpp**  
 Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
  
