@@ -218,6 +218,9 @@ assert( !( 2 <in> std::vector< int >{ 1 } ) );
 **integration.cpp**  
 Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
   
+**interpolation.cpp**  
+Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -571,10 +574,7 @@ Implement the Page Rank algorithm using eigenvalues and eigenvectors.
     
 **qr.cpp**  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
-  
-**interpolation.cpp**  
-Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
-      
+        
 **map_utils.cpp**  
 Implement a collection of function to work with std::map like: groupBy, keys, values...  
   
