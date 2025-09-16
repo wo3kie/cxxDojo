@@ -240,6 +240,11 @@ $ ./kmp 5 3.14159265359
 **laplace_smoothing.cpp**  
 Implement a function to perform _the Laplace smoothing_. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) the Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
   
+**levenstein.cpp**  
+Implement the _Levenstein distance_ function.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -373,12 +378,7 @@ pmn: 962802µs
 Implement an example of the visitor design pattern.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
-
-**levenstein.cpp**  
-Implement a Levenstein distance function.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
-  
+    
 **xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?
   
