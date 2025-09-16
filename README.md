@@ -378,10 +378,7 @@ $ ./kmp 5 3.14159265359
 
 **xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?
-
-**json.cpp**  
-Implement a program to parse a json document. Can you use only boost for it?
-
+  
 **rotate.cpp**  
 Implement 'rotate' function.
 
