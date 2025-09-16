@@ -13,7 +13,7 @@
 #include <utility>
 #include <variant>
 
-#include "./dotdotdot.hpp"
+#include "./parameter_pack.hpp"
 
 /*
  * concat_view
@@ -21,7 +21,7 @@
 
 template<std::ranges::range... Ranges>
 struct concat_view: public std::ranges::view_interface<concat_view<Ranges...>> {
-  static constexpr bool IsAnyConst = Any<std::is_const, Ranges...>::value;
+  static constexpr bool IsAnyConst = parameter_pack::Any<std::is_const, Ranges...>::value;
 
 public:
   /*
