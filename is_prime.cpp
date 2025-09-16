@@ -22,27 +22,12 @@
  */
 
 #include <cassert>
-#include <cstdlib>
 
-#include "./modexp.hpp"
+#include "./is_prime.hpp"
 
-bool isPrime(unsigned long long N) {
-  if(N == 1) {
-    return false;
-  }
-
-  if(N == 2) {
-    return true;
-  }
-
-  int const a = 2 + (rand() % (N - 2));
-
-  if(modexp(a, N - 1, N) == 1) {
-    return true;
-  } else {
-    return false;
-  }
-}
+/*
+ * isPrime_test
+ */
 
 void isPrime_test() {
   assert(isPrime(1) == false);
@@ -57,9 +42,13 @@ void isPrime_test() {
   assert(isPrime(10) == false);
   assert(isPrime(11) == true);
 
-  assert(isPrime(11 * 31 /*341*/) == true);
-  assert(isPrime(3 * 11 * 17 /*561*/) == true);
+  assert(isPrime(11 * 31 /* 341 */) == true);
+  assert(isPrime(3 * 11 * 17 /* 561 */) == true);
 }
+
+/*
+ * main
+ */
 
 int main() {
   isPrime_test();

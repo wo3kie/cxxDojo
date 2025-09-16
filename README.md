@@ -221,6 +221,9 @@ Implement a set of functions to calculate numerical integration for a function _
 **interpolation.cpp**  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
   
+**is_prime.cpp**  
+Implement a function to check whether a given number is prime using _Fermat's Little Theorem_.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -547,10 +550,7 @@ Implement simple examples of a `tuple` class using either composition or inherit
     
 **modexp.cpp**  
 Implement a function to calculate quickly exponential function with modulo operation.
-
-**is_prime.cpp**  
-Implement a function to verify using Fermat theorem if a given number is a prime number.
-
+  
 **rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
 
