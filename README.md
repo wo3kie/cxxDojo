@@ -250,6 +250,14 @@ Implement a function to calcuate linear regression using least squares approach.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_.
   
+**literal.cpp**  
+Implement used defined literal _bin_ to convert a string of zeros and ones "1010101" into a decimal integer value.
+
+```
+assert( 561 == "1000110001"_bin );
+assert( 561 == 1000110001_bin );
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -357,15 +365,7 @@ Implement an output operator (operator<<) for basic containers like std::array, 
 
 **union_cast.cpp**  
 Implement union_cast.
-
-**literal.cpp**  
-Implement used defined literal _bin_ to convert a string of zeros and ones "1010101" into a decimal integer value.
-
-```
-assert( 561 == "1000110001"_bin );
-assert( 561 == 1000110001_bin );
-```
-
+  
 **matrix.mul.perf.cpp**  
 Implement a performance test for matrix multiplication. Consider all possibilities with loop nesting.
 

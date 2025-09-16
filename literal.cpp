@@ -15,6 +15,10 @@
 #include <cassert>
 #include <string>
 
+/*
+ * operator"" _bin(const char* text, size_t length)
+ */
+
 int operator"" _bin(const char* text, size_t length) {
   int result = 0;
 
@@ -24,6 +28,10 @@ int operator"" _bin(const char* text, size_t length) {
 
   return result;
 }
+
+/*
+ * operator"" _bin(const char* text)
+ */
 
 int operator"" _bin(const char* text) {
   int result = 0;
@@ -35,7 +43,11 @@ int operator"" _bin(const char* text) {
   return result;
 }
 
+/*
+ * main
+ */
+
 int main() {
-  assert(561 == "1000110001"_bin);
-  assert(561 == 1000110001_bin);
+  assert(561 == "1000110001"_bin);  // int operator"" _bin(const char* text, size_t length)
+  assert(561 == 1000110001_bin);    // int operator"" _bin(const char* text)
 }
