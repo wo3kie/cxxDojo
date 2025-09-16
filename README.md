@@ -492,10 +492,7 @@ Implement a function to solve a first order ordinary differential equation numer
 
 **matrix.cpp**  
 Implement a simple matrix class. Provide a basic functionality for it.
-
-**log_normal.cpp**  
-Implement a program to demonstrate a log normal distribution.
-
+  
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
 
