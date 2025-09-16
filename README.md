@@ -258,6 +258,19 @@ assert( 561 == "1000110001"_bin );
 assert( 561 == 1000110001_bin );
 ```
   
+**ls.cpp**  
+Implement a program to print a content of a given directory.
+
+```{r, engine='bash'}
+$ ./ls .
+F "./get.request.cpp"
+F "./par.cpp"
+F "./barrier.cpp"
+F "./ls.cpp"
+F "./scope_exit.cpp"
+...
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -327,19 +340,6 @@ $ cat 1-10-file | ./par echo
 140556941772544: 8
 140556941772544: 10
 140556950165248: 9
-```
-
-**ls.cpp**  
-Implement a program to print a content of a given directory.
-
-```{r, engine='bash'}
-$ ./ls .
-F "./get.request.cpp"
-F "./par.cpp"
-F "./barrier.cpp"
-F "./ls.cpp"
-F "./scope_exit.cpp"
-...
 ```
   
 **timer.cpp**  
