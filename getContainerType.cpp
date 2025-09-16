@@ -21,28 +21,37 @@
 
 template<typename T>
 std::vector<T> getContainerTypeImpl(typename std::vector<T>::iterator) {
+  return {};
 }
 
 template<typename T>
 std::vector<T> getContainerTypeImpl(typename std::vector<T>::const_iterator) {
+  return {};
 }
 
 template<typename T>
 std::list<T> getContainerTypeImpl(typename std::list<T>::iterator) {
+  return {};
 }
 
 template<typename T>
 std::list<T> getContainerTypeImpl(typename std::list<T>::const_iterator) {
+  return {};
 }
 
 template<typename T>
 std::set<T> getContainerTypeImpl(typename std::set<T>::iterator) {
+  return {};
 }
 
 template<typename Iterator>
 auto getContainerType(Iterator i) {
   return getContainerTypeImpl<typename std::iterator_traits<Iterator>::value_type>(i);
 }
+
+/*
+ * getContainerTypeTest
+ */
 
 void getContainerTypeTest() {
   std::vector<int>::iterator vectorIterator;
@@ -64,8 +73,12 @@ void getContainerTypeTest() {
   decltype(getContainerType(setConstIterator)) set2 = std::set<int>();
 
   std::map<int, int>::iterator mapIterator;
-  decltype(getContainerType(mapIterator)) set3 = std::set<std::pair<int const, int>>();
+  decltype(getContainerType(mapIterator)) set3 = std::set<std::pair<const int, int>>();
 }
+
+/*
+ * main
+ */
 
 int main() {
   getContainerTypeTest();
