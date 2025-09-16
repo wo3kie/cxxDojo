@@ -237,6 +237,9 @@ $ ./kmp 5 3.14159265359
 5 9 11
 ```
   
+**laplace_smoothing.cpp**  
+Implement a function to perform _the Laplace smoothing_. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) the Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -553,10 +556,7 @@ Implement a function to calculate quickly exponential function with modulo opera
   
 **rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
-
-**laplace_smoothing.cpp**  
-Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
-
+  
 **r_squared.cpp**  
 Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).
   
