@@ -515,13 +515,6 @@ Implement a program to generate all strings correctly matched _n_ pairs of paren
 3: , , (), ()(), ()()(), ()(()), (()), (())(), (()()), ((()))
 ```
 
-**longest_increasing_subsequence.cpp**  
-Implement a program to find a longest increasing subsequence in  a given sequence, eg.:
-
-```{r, engine='bash'}
-lis( {1, 9, 2, 8, 3, 7, 4} ) == { 1, 2, 3, 4 } )
-```
-
 **typeErasure.*.cpp**  
 Implement a program representing the type erasure idiom.
 
