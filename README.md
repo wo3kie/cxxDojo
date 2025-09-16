@@ -227,6 +227,16 @@ Implement a function to check whether a given number is prime using _Fermat's Li
 **jaccard_index.cpp**  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
   
+**kmp.cpp**  
+Implement the Knuth-Morris-Pratt text searching algorithm.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), the Knuth-Morris-Pratt algorithm searches ofr occurences od a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
+
+```
+$ ./kmp 5 3.14159265359
+5 9 11
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -365,17 +375,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor desi
 Implement a Levenstein distance function.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
-
-**kmp.cpp**  
-Implement a Knuth-Morris-Pratt text searching algorithm.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), the Knuth-Morris-Pratt algorithm searches ofr occurences od a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
-
-```
-$ ./kmp 5 3.14159265359
-5 9 11
-```
-
+  
 **xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?
   
