@@ -224,6 +224,9 @@ Implement a function to interpolate a given set of points with a polynomial. Use
 **is_prime.cpp**  
 Implement a function to check whether a given number is prime using _Fermat's Little Theorem_.
   
+**jaccard_index.cpp**  
+Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -559,10 +562,7 @@ Implement a function to perform Laplace smoothing. From [Wikipedia](https://en.w
 
 **r_squared.cpp**  
 Implement a function to calculate r squared score. From [Wikipedia](https://en.wikipedia.org/wiki/Coefficient_of_determination) R squared, also known as coefficient of determination is the proportion of the varince in the dependent variable that is predictable from the independent variable(s).
-
-**jaccard_index.cpp**  
-From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) Jaccard index is used for comparing the similarity and diversity of sample sets.
-
+  
 **scaling.cpp**  
 Implement functions for mean scaling and standard scaling. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
 
