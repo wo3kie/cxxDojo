@@ -215,6 +215,9 @@ assert(    1 <in> std::vector< int >{ 1 } );
 assert( !( 2 <in> std::vector< int >{ 1 } ) );
 ```
   
+**integration.cpp**  
+Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -472,9 +475,6 @@ Implement a function to calculate the correlation between two collections using 
 **gsl/covariance.cpp**  
 Implement a function to calculate the covariance between two collections using gsl library.
   
-**integration.cpp**  
-Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
-
 **lu.cpp**  
 Implement a function to make a LU decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition) LU decomposition factors a matrix _A_ into a product _A_=_LU_ of a lower triangular matrix _L_ and an upper trianguar matrix _U_.
 
