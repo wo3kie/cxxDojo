@@ -6,10 +6,10 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 linear.regression.cpp -o linear.regression
+ *      g++ --std=c++20 linear_regression.cpp -o linear_regression
  *
  * Usage:
- *      $ ./linear.regression
+ *      $ ./linear_regression
  */
 
 #include <cassert>
@@ -20,11 +20,15 @@
 #include "./feq.hpp"
 #include "./linear_regression.hpp"
 
+/*
+ * main
+ */
+
 int main() {
   {
     double a;
     double b;
-    std::vector<Point> const points{{1, 10}, {2, 20}, {3, 20}, {3, 25}, {4, 30}};
+    const std::vector<Point> points{{1, 10}, {2, 20}, {3, 20}, {3, 25}, {4, 30}};
 
     assert(linearRegression(points, a, b));
     assert(feq(a, 6.1539, 0.0001));
@@ -38,7 +42,7 @@ int main() {
   {
     double a;
     double b;
-    std::vector<Point> const points{{1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}};
+    const std::vector<Point> points{{1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}};
 
     assert(linearRegression(points, a, b));
     assert(feq(a, 0.0000, 0.0001));
@@ -52,7 +56,7 @@ int main() {
   {
     double a;
     double b;
-    std::vector<Point> const points{{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}};
+    const std::vector<Point> points{{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}};
 
     assert(! linearRegression(points, a, b));
     assert(! linearRegression2(points, a, b));

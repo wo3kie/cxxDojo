@@ -18,7 +18,7 @@ struct Point {
   double y;
 };
 
-inline bool linearRegression(std::vector<Point> const& points, double& a, double& b) {
+inline bool linearRegression(const std::vector<Point>& points, double& a, double& b) {
   if(points.empty()) {
     return false;
   }
@@ -28,16 +28,16 @@ inline bool linearRegression(std::vector<Point> const& points, double& a, double
   double sumX2i = 0;
   double sumXiYi = 0;
 
-  for(Point const& p : points) {
+  for(const Point& p : points) {
     sumXi += p.x;
     sumYi += p.y;
     sumX2i += p.x * p.x;
     sumXiYi += p.x * p.y;
   }
 
-  double const sumXi2 = sumXi * sumXi;
-  double const n = points.size();
-  double const denominator = n * sumX2i - sumXi2;
+  const double sumXi2 = sumXi * sumXi;
+  const double n = points.size();
+  const double denominator = n * sumX2i - sumXi2;
 
   if(fabs(denominator - 0.0000) < 0.00001) {
     return false;
@@ -45,8 +45,8 @@ inline bool linearRegression(std::vector<Point> const& points, double& a, double
 
   a = (n * sumXiYi - sumXi * sumYi) / denominator;
 
-  double const avgYi = sumYi / n;
-  double const avgXi = sumXi / n;
+  const double avgYi = sumYi / n;
+  const double avgXi = sumXi / n;
 
   b = avgYi - a * avgXi;
 
@@ -105,7 +105,7 @@ inline bool linearRegression(std::vector<Point> const& points, double& a, double
  b = yMean - a*xMean
 */
 
-inline bool linearRegression2(std::vector<Point> const& points, double& a, double& b) {
+inline bool linearRegression2(const std::vector<Point>& points, double& a, double& b) {
   if(points.empty()) {
     return false;
   }
@@ -114,9 +114,9 @@ inline bool linearRegression2(std::vector<Point> const& points, double& a, doubl
   double yMean = 0;
   double xyMean = 0;
   double x2Mean = 0;
-  unsigned const n = points.size();
+  const unsigned n = points.size();
 
-  for(Point const& p : points) {
+  for(const Point& p : points) {
     xMean += p.x;
     yMean += p.y;
     xyMean += p.x * p.y;
@@ -128,7 +128,7 @@ inline bool linearRegression2(std::vector<Point> const& points, double& a, doubl
   xyMean /= n;
   x2Mean /= n;
 
-  double const denominator = xMean * xMean - x2Mean;
+  const double denominator = xMean * xMean - x2Mean;
 
   if(fabs(denominator - 0.0000) < 0.00001) {
     return false;
@@ -139,5 +139,3 @@ inline bool linearRegression2(std::vector<Point> const& points, double& a, doubl
 
   return true;
 }
-
-

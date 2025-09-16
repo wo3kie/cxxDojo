@@ -245,6 +245,11 @@ Implement the _Levenstein distance_ function.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
   
+**linear.regression.cpp**  
+Implement a function to calcuate linear regression using least squares approach.
+
+From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_.
+  
 **mean_squared_error.cpp**
 Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
   
@@ -394,12 +399,7 @@ What is a void_t and how it can be useful?
 Estimate PI number using Monte-Carlo method.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo method is a computational algorithm that relies on repeated random sampling to obtain numerical results.
-
-**linear.regression.cpp**  
-Implement a function to calcuate linear regression using least squares approach.
-
-From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_.
-
+  
 **get_container_type.cpp**  
 Can you get a container type from its iterator?
 
