@@ -36,7 +36,7 @@ char asciiArt2(int iteration, int maxIteration) {
   return ascii[iteration % 10];
 }
 
-void mandelbrot(char (*getAscii)(int, int), unsigned const rows = 76, unsigned const columns = 2.5 * 75) {
+void mandelbrot(char (*getAscii)(int, int), unsigned const rows = 51, unsigned const columns = 2.5 * 50) {
   int const maxIteration = 50;
 
   for(double r = -1.5; r < 1.5; r += (3.0 / rows)) {
@@ -55,6 +55,10 @@ void mandelbrot(char (*getAscii)(int, int), unsigned const rows = 76, unsigned c
     std::cout << std::endl;
   }
 }
+
+/*
+ * main
+ */
 
 int main() {
   mandelbrot(&digit);
