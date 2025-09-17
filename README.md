@@ -333,7 +333,20 @@ This task involves implementing a simple matrix class and providing essential fu
   
 **matrix_chain_multiplication.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) _the matrix chain multiplication_ is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
+  
+**matrix.mul.perf.cpp**  
+Design a performance benchmark for matrix multiplication, considering various loop nesting orders.
 
+```
+$ ./matrix.mul.perf
+nmp: 743355µs
+npm: 1925037µs
+mnp: 721955µs
+mpn: 793389µs
+pnm: 1738803µs
+pmn: 962802µs
+```
+  
 **mean_squared_error.cpp**
 Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) the MSE is the average squared difference between the estimated values and the true value. 
   
@@ -429,19 +442,6 @@ Implement an output operator (operator<<) for basic containers like std::array, 
 **union_cast.cpp**  
 Implement union_cast.
   
-**matrix.mul.perf.cpp**  
-Implement a performance test for matrix multiplication. Consider all possibilities with loop nesting.
-
-```
-$ ./matrix.mul.perf
-nmp: 743355µs
-npm: 1925037µs
-mnp: 721955µs
-mpn: 793389µs
-pnm: 1738803µs
-pmn: 962802µs
-```
-
 **visitor.cpp**  
 Implement an example of the visitor design pattern.
 

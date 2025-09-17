@@ -54,12 +54,20 @@
 #include <chrono>
 #include <iostream>
 
+/*
+ * fill
+ */
+
 template<int N, int M, typename F>
 void fill(int (&matrix)[N][M], F f) {
   for(int n = 0; n < N; ++n)
     for(int m = 0; m < M; ++m)
       matrix[n][m] = f();
 }
+
+/*
+ * multiply1
+ */
 
 template<int N, int M, int P>
 void multiply1(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
@@ -69,6 +77,10 @@ void multiply1(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
+/*
+ * multiply2
+ */
+
 template<int N, int M, int P>
 void multiply2(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
   for(int n = 0; n < N; ++n)
@@ -76,6 +88,10 @@ void multiply2(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
       for(int m = 0; m < M; ++m)
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
+
+/*
+ * multiply3
+ */
 
 template<int N, int M, int P>
 void multiply3(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
@@ -85,6 +101,10 @@ void multiply3(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
+/*
+ * multiply4
+ */
+
 template<int N, int M, int P>
 void multiply4(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
   for(int m = 0; m < M; ++m)
@@ -92,6 +112,10 @@ void multiply4(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
       for(int n = 0; n < N; ++n)
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
+
+/*
+ * multiply5
+ */
 
 template<int N, int M, int P>
 void multiply5(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
@@ -101,6 +125,10 @@ void multiply5(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
 
+/*
+ * multiply6
+ */
+
 template<int N, int M, int P>
 void multiply6(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) {
   for(int p = 0; p < P; ++p)
@@ -108,6 +136,10 @@ void multiply6(int (&matrix1)[N][M], int (&matrix2)[P][N], int (&result)[P][M]) 
       for(int n = 0; n < N; ++n)
         result[m][p] += matrix1[m][n] * matrix2[n][p];
 }
+
+/*
+ * main
+ */
 
 int main() {
   int matrix1[400][600];
