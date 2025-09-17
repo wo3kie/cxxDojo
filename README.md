@@ -326,9 +326,13 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 ................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 .................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.
 ...................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,...```
+```
+  
+**matrix_chain_multiplication.cpp**  
+From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) _the matrix chain multiplication_ is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
 
 **mean_squared_error.cpp**
-Implement a function to calculate mean squared error (MSE). From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) MSE is the average squared difference between the estimated values and the true value. 
+Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) the MSE is the average squared difference between the estimated values and the true value. 
   
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
@@ -531,9 +535,6 @@ From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure)
 
 **tree_classification.cpp**  
 Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-**matrix_chain_multiplication.cpp**  
-From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) matrix chain multiplication is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
 
 **circular_buffer.cpp**  
 Implement a circular buffer.

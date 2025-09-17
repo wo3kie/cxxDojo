@@ -26,12 +26,16 @@ struct Node {
   std::string solution;
 };
 
-std::ostream& operator<<(std::ostream& out, Node const& node) {
+std::ostream& operator<<(std::ostream& out, const Node& node) {
   return out << "{" << node.rows << ", " << node.columns << ", " << node.score << ", " << node.solution << "}";
 }
 
+/*
+ * matrixChainMultiplication
+ */
+
 Node matrixChainMultiplication(std::vector<std::pair<int, int>> matrices) {
-  int const n = matrices.size();
+  const int n = matrices.size();
 
   std::vector<std::vector<Node>> C(n, std::vector<Node>(n));
 
@@ -48,10 +52,10 @@ Node matrixChainMultiplication(std::vector<std::pair<int, int>> matrices) {
       int to = j;
 
       for(int k = from; k < to; ++k) {
-        Node const& first = C[k - from][k];
-        Node const& second = C[to - k - 1][to];
+        const Node& first = C[k - from][k];
+        const Node& second = C[to - k - 1][to];
 
-        int const score = first.score + second.score + first.rows * first.columns * second.columns;
+        const int score = first.score + second.score + first.rows * first.columns * second.columns;
 
         if(C[i][j].score > score) {
           C[i][j].score = score;
@@ -66,6 +70,10 @@ Node matrixChainMultiplication(std::vector<std::pair<int, int>> matrices) {
 
   return C.back().back();
 }
+
+/*
+ * main
+ */
 
 int main() {
   {
