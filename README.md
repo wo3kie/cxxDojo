@@ -570,10 +570,7 @@ Implement the Page Rank algorithm using eigenvalues and eigenvectors.
     
 **qr.cpp**  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
-        
-**map_utils.cpp**  
-Implement a collection of function to work with std::map like: groupBy, keys, values...  
-  
+    
 **trie.cpp**  
 Implement TRIE data structure.  
     
