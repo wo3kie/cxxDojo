@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  */
 
- #pragma once
+#pragma once
 
 #include <iomanip>
 #include <vector>
@@ -16,20 +16,24 @@
 #include "./output.hpp"
 #include "./vector.hpp"
 
+/*
+ * Matrix
+ */
+
 class Matrix {
 public:
   Matrix() = default;
-  Matrix(Matrix const&) = default;
+  Matrix(const Matrix&) = default;
   Matrix(Matrix&&) = default;
 
-  Matrix& operator=(Matrix const&) = default;
+  Matrix& operator=(const Matrix&) = default;
   Matrix& operator=(Matrix&&) = default;
 
   Matrix(unsigned rows, unsigned columns, double init = 0.0)
       : matrix_(rows, Vector(columns, init)) {
   }
 
-  Matrix(std::initializer_list<std::initializer_list<double>> const& data)
+  Matrix(const std::initializer_list<std::initializer_list<double>>& data)
       : matrix_(data.begin(), data.end()) {
   }
 
@@ -37,7 +41,7 @@ public:
     return matrix_.at(i);
   }
 
-  Vector const& operator[](unsigned i) const {
+  const Vector& operator[](unsigned i) const {
     return matrix_.at(i);
   }
 
@@ -57,7 +61,11 @@ private:
   std::vector<Vector> matrix_;
 };
 
-inline std::ostream& operator<<(std::ostream& out, Matrix const& matrix) {
+/*
+ * operator<<
+ */
+
+inline std::ostream& operator<<(std::ostream& out, const Matrix& matrix) {
   out << "[";
 
   if(matrix.rows() != 0) {
@@ -74,17 +82,21 @@ inline std::ostream& operator<<(std::ostream& out, Matrix const& matrix) {
   return out;
 }
 
-inline bool operator==(Matrix const& matrix1, Matrix const& matrix2) {
-  unsigned const rows1 = matrix1.rows();
-  unsigned const rows2 = matrix2.rows();
+/*
+ * operator==
+ */
+
+inline bool operator==(const Matrix& matrix1, const Matrix& matrix2) {
+  const unsigned rows1 = matrix1.rows();
+  const unsigned rows2 = matrix2.rows();
 
   if(rows1 != rows2) {
     return false;
   }
 
   for(unsigned row = 0; row < rows1; ++row) {
-    unsigned const columns1 = matrix1[row].size();
-    unsigned const columns2 = matrix2[row].size();
+    const unsigned columns1 = matrix1[row].size();
+    const unsigned columns2 = matrix2[row].size();
 
     if(columns1 != columns2) {
       return false;
@@ -100,11 +112,19 @@ inline bool operator==(Matrix const& matrix1, Matrix const& matrix2) {
   return true;
 }
 
-inline bool operator!=(Matrix const& matrix1, Matrix const& matrix2) {
+/*
+ * operator!=
+ */
+
+inline bool operator!=(const Matrix& matrix1, const Matrix& matrix2) {
   return ! (matrix1 == matrix2);
 }
 
-inline Matrix operator+(Matrix const& matrix1, double d) {
+/*
+ * operator+
+ */
+
+inline Matrix operator+(const Matrix& matrix1, double d) {
   Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
   for(unsigned i = 0; i < matrix1.rows(); ++i) {
@@ -116,7 +136,11 @@ inline Matrix operator+(Matrix const& matrix1, double d) {
   return result;
 }
 
-inline Matrix operator+(Matrix const& matrix1, Matrix const& matrix2) {
+/*
+ * operator+
+ */
+
+inline Matrix operator+(const Matrix& matrix1, const Matrix& matrix2) {
   Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
   for(unsigned i = 0; i < matrix1.rows(); ++i) {
@@ -128,7 +152,11 @@ inline Matrix operator+(Matrix const& matrix1, Matrix const& matrix2) {
   return result;
 }
 
-inline Matrix operator*(Matrix const& matrix1, double d) {
+/*
+ * operator*
+ */
+
+inline Matrix operator*(const Matrix& matrix1, double d) {
   Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
   for(unsigned i = 0; i < matrix1.rows(); ++i) {
@@ -140,7 +168,11 @@ inline Matrix operator*(Matrix const& matrix1, double d) {
   return result;
 }
 
-inline Matrix operator*(Matrix const& matrix1, Matrix const& matrix2) {
+/*
+ * operator*
+ */
+
+inline Matrix operator*(const Matrix& matrix1, const Matrix& matrix2) {
   Matrix result = Matrix(matrix1.rows(), matrix1.columns());
 
   for(unsigned i = 0; i < matrix1.rows(); ++i) {
@@ -154,11 +186,19 @@ inline Matrix operator*(Matrix const& matrix1, Matrix const& matrix2) {
   return result;
 }
 
-inline Matrix dot(Matrix const& matrix1, Matrix const& matrix2) {
+/*
+ * dot
+ */
+
+inline Matrix dot(const Matrix& matrix1, const Matrix& matrix2) {
   return matrix1 * matrix2;
 }
 
-inline Matrix transpose(Matrix const& matrix) {
+/*
+ * transpose
+ */
+
+inline Matrix transpose(const Matrix& matrix) {
   Matrix result = Matrix(matrix.rows(), matrix.columns());
 
   for(unsigned i = 0; i < matrix.rows(); ++i) {
@@ -170,6 +210,10 @@ inline Matrix transpose(Matrix const& matrix) {
   return result;
 }
 
+/*
+ * eye
+ */
+
 inline Matrix eye(unsigned size) {
   Matrix result(size, size, 0);
 
@@ -179,5 +223,3 @@ inline Matrix eye(unsigned size) {
 
   return result;
 }
-
-

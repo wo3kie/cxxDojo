@@ -327,6 +327,9 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 .................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.
 ...................................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,...```
 ```
+
+**matrix.cpp**  
+This task involves implementing a simple matrix class and providing essential functionality.
   
 **matrix_chain_multiplication.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) _the matrix chain multiplication_ is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
@@ -502,10 +505,7 @@ Implement a function to make a LU decomposition of a matrix. From [Wikipedia](ht
 
 **ode.cpp**  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
-
-**matrix.cpp**  
-Implement a simple matrix class. Provide a basic functionality for it.
-  
+    
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
 
