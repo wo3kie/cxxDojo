@@ -388,6 +388,9 @@ $ cat 1-10-file | ./par echo
 **partition.cpp**  
 Implement `partition` and `stable_partition` algorithms. 
   
+**qr.cpp**  
+Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -561,10 +564,7 @@ Implement Principal Component Analysis using gsl library. From [Wikipedia](https
   
 **gsl/page_rank.cpp**  
 Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
-    
-**qr.cpp**  
-Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
-    
+      
 **trie.cpp**  
 Implement TRIE data structure.  
     
