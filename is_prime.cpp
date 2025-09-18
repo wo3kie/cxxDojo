@@ -46,10 +46,26 @@ void isPrime_test() {
   assert(isPrime(3 * 11 * 17 /* 561 */) == true);
 }
 
+void rhoPollard_test() {
+  assert(rhoPollard(1) == 1);
+  assert(rhoPollard(2) == -1);
+  assert(rhoPollard(3) == -1);
+  assert(rhoPollard(5) == -1);
+  assert(rhoPollard(7) == -1);
+  assert(rhoPollard(9) == 3);
+  assert(rhoPollard(11) == -1);
+  assert(rhoPollard(13) == -1);
+  assert(rhoPollard(15) == 3);
+  assert(rhoPollard(17) == -1);
+
+  assert(rhoPollard(101 * 103 /*10403*/) == 101);
+}
+
 /*
  * main
  */
 
 int main() {
   isPrime_test();
+  rhoPollard_test();
 }

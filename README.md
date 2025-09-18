@@ -222,7 +222,7 @@ Implement a set of functions to calculate numerical integration for a function _
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
   
 **is_prime.cpp**  
-Implement a function to check whether a given number is prime using _Fermat's Little Theorem_.
+Implement a function to check whether a given number is prime using _Fermat's Little Theorem_ and _Rho-Pollard_ algorithm.
   
 **jaccard_index.cpp**  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
