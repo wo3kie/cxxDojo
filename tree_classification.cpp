@@ -20,7 +20,7 @@ struct Node {
   std::unique_ptr<Node> right;
 };
 
-bool isFullTree(std::unique_ptr<Node> const& node) {
+bool isFullTree(const std::unique_ptr<Node>& node) {
   if(node == nullptr) {
     return false;
   }
@@ -83,7 +83,7 @@ void isFullTree_test() {
   assert(isFullTree(root));
 }
 
-unsigned getLeftMostChildDepth(std::unique_ptr<Node> const& node) {
+unsigned getLeftMostChildDepth(const std::unique_ptr<Node>& node) {
   if(node == nullptr) {
     return 0;
   }
@@ -95,8 +95,7 @@ unsigned getLeftMostChildDepth(std::unique_ptr<Node> const& node) {
   return 1 + getLeftMostChildDepth(node->left);
 }
 
-bool isCompleteTreeImpl(
-    std::unique_ptr<Node> const& node, unsigned currentDepth, unsigned& expectedDepth, bool& oneLevelUp) {
+bool isCompleteTreeImpl(const std::unique_ptr<Node>& node, unsigned currentDepth, unsigned& expectedDepth, bool& oneLevelUp) {
   if(node == nullptr) {
     return false;
   }
@@ -125,7 +124,7 @@ bool isCompleteTreeImpl(
     }
   } else {
     if(node->right == nullptr) {
-      bool const result = isCompleteTreeImpl(node->left, currentDepth + 1, expectedDepth, oneLevelUp);
+      const bool result = isCompleteTreeImpl(node->left, currentDepth + 1, expectedDepth, oneLevelUp);
 
       oneLevelUp = true;
       expectedDepth -= 1;
@@ -138,7 +137,7 @@ bool isCompleteTreeImpl(
   }
 }
 
-bool isCompleteTree(std::unique_ptr<Node> const& node) {
+bool isCompleteTree(const std::unique_ptr<Node>& node) {
 
   bool oneLevelUp = false;
   unsigned expectedDepth = getLeftMostChildDepth(node);

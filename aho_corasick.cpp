@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
 
   aho_corasick::AhoCorasick ac;
 
-  auto const print = [](size_t const pos, std::string const& word) {
+  const auto print = [](const size_t pos, const std::string& word) {
     std::cout << "> " << std::string(pos, ' ') << word << std::endl;
   };
 

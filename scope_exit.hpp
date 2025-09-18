@@ -22,9 +22,9 @@ private:
   bool m_doIt;
 
 private:
-  scope_exit(scope_exit const&) = delete;
+  scope_exit(const scope_exit&) = delete;
 
-  scope_exit& operator=(scope_exit const&) = delete;
+  scope_exit& operator=(const scope_exit&) = delete;
   scope_exit& operator=(scope_exit&&) = delete;
 
 public:
@@ -58,4 +58,3 @@ template<typename F>
 scope_exit<typename std::remove_reference<F>::type> make_scope_exit(F&& f) {
   return scope_exit<typename std::remove_reference<F>::type>(std::forward<F>(f));
 }
-

@@ -25,15 +25,15 @@
  */
 
 struct S {
-    char doIt(int i, double d) {
-        return 's';
-    }
+  char doIt(int i, double d) {
+    return 's';
+  }
 };
 
 struct T {
-    char doIt(int i, double d){
-        return 't';
-    }
+  char doIt(int i, double d) {
+    return 't';
+  }
 };
 
 /*
@@ -41,21 +41,22 @@ struct T {
  */
 
 struct DoIt_TypeErasure {
-    template<typename R>
-    DoIt_TypeErasure(R& r)
-        : _ptr(&r)
-        , _doIt([this](void* ptr) -> std::function<char (int, double)> {
-            return [p = static_cast<R*>(this->_ptr)](int i, double d) -> char { return p->doIt(i, d); };
-        })
-    {
-    }
+  template<typename R>
+  DoIt_TypeErasure(R& r)
+      : _ptr(&r)
+      , _doIt([this](void* ptr) -> std::function<char(int, double)> {
+        return [p = static_cast<R*>(this->_ptr)](int i, double d) -> char {
+          return p->doIt(i, d);
+        };
+      }) {
+  }
 
-    char doIt(int i, double d) {
-        return _doIt(_ptr)(i, d);
-    }
+  char doIt(int i, double d) {
+    return _doIt(_ptr)(i, d);
+  }
 
-    void* _ptr;
-    std::function<std::function<char (int, double)> (void*)> _doIt;
+  void* _ptr;
+  std::function<std::function<char(int, double)>(void*)> _doIt;
 };
 
 /*
@@ -63,15 +64,15 @@ struct DoIt_TypeErasure {
  */
 
 char f(DoIt_TypeErasure r) {
-    return r.doIt(1, 2.3);
+  return r.doIt(1, 2.3);
 }
 
 void test() {
-    S s;
-    assert(f(DoIt_TypeErasure{s}) == 's');
-   
-    T t;
-    assert(f(DoIt_TypeErasure{t}) == 't');
+  S s;
+  assert(f(DoIt_TypeErasure{s}) == 's');
+
+  T t;
+  assert(f(DoIt_TypeErasure{t}) == 't');
 }
 
 /*

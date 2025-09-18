@@ -12,10 +12,10 @@
  *      $ ./crtp
  */
 
- /*
+/*
   * SafeBool
   */
- 
+
 template<typename T>
 struct SafeBool {
   operator bool() const {

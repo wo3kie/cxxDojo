@@ -62,20 +62,20 @@
  */
 
 Matrix blackScholes_FDM_Explicit(
-    double const r,    // risk free rate               (%)
-    double const o,    // annual volatility            (%)
-    double const tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
-    double const K,    // strike price                 ($)
-    double const sMax, // max stock price to consider  ($)
-    double const dT,   // time step                    (y) 1.0=1y, 0.25=3m
-    double const dS    // stock price step             ($)
+    const double r,    // risk free rate               (%)
+    const double o,    // annual volatility            (%)
+    const double tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
+    const double K,    // strike price                 ($)
+    const double sMax, // max stock price to consider  ($)
+    const double dT,   // time step                    (y) 1.0=1y, 0.25=3m
+    const double dS    // stock price step             ($)
 ) {
   /*
      * Stability criterion is given by the formula: dT/(dSdS) <= 1/2
      */
 
-  double const T = tMax / dT;
-  double const S = sMax / dS;
+  const double T = tMax / dT;
+  const double S = sMax / dS;
   Matrix f = Matrix(T + 1, S + 1, -1);
 
   // f(0, t) = 0
@@ -95,9 +95,9 @@ Matrix blackScholes_FDM_Explicit(
 
   for(int t = T - 1; t >= 0; t--) {
     for(int s = 1; s <= S - 1; s++) {
-      double const a = (dT / 2) * (o * o * s * s - r * s);
-      double const b = 1 - dT * (r + o * o * s * s);
-      double const c = (dT / 2) * (o * o * s * s + r * s);
+      const double a = (dT / 2) * (o * o * s * s - r * s);
+      const double b = 1 - dT * (r + o * o * s * s);
+      const double c = (dT / 2) * (o * o * s * s + r * s);
 
       f[t][s] = a * f[t + 1][s - 1] + b * f[t + 1][s] + c * f[t + 1][s + 1];
     }
@@ -125,17 +125,15 @@ Matrix blackScholes_FDM_Explicit(
  */
 
 double N(double x) {
-  double const a1 = 0.31938153;
-  double const a2 = -0.356563782;
-  double const a3 = 1.781477937;
-  double const a4 = -1.821255978;
-  double const a5 = 1.330274429;
+  const double a1 = 0.31938153;
+  const double a2 = -0.356563782;
+  const double a3 = 1.781477937;
+  const double a4 = -1.821255978;
+  const double a5 = 1.330274429;
 
-  double const L = fabs(x);
-  double const K = 1.0 / (1.0 + 0.2316419 * L);
-  double const w = 1.0
-                   - 1.0 / sqrt(2 * M_PI) * exp(-L * L / 2)
-                         * (a1 * K + a2 * K * K + a3 * pow(K, 3) + a4 * pow(K, 4) + a5 * pow(K, 5));
+  const double L = fabs(x);
+  const double K = 1.0 / (1.0 + 0.2316419 * L);
+  const double w = 1.0 - 1.0 / sqrt(2 * M_PI) * exp(-L * L / 2) * (a1 * K + a2 * K * K + a3 * pow(K, 3) + a4 * pow(K, 4) + a5 * pow(K, 5));
 
   if(x < 0) {
     return 1.0 - w;
@@ -145,26 +143,26 @@ double N(double x) {
 }
 
 Matrix blackScholes_Formula(
-    double const r,    // risk free rate               (%)
-    double const o,    // annual volatility            (%)
-    double const tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
-    double const K,    // strike price                 ($)
-    double const sMax, // max stock price to consider  ($)
-    double const dT,   // time step                    (y) 1.0=1y, 0.25=3m
-    double const dS    // stock price step             ($)
+    const double r,    // risk free rate               (%)
+    const double o,    // annual volatility            (%)
+    const double tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
+    const double K,    // strike price                 ($)
+    const double sMax, // max stock price to consider  ($)
+    const double dT,   // time step                    (y) 1.0=1y, 0.25=3m
+    const double dS    // stock price step             ($)
 ) {
-  double const T = tMax / dT;
-  double const S = sMax / dS;
+  const double T = tMax / dT;
+  const double S = sMax / dS;
   Matrix f = Matrix(T + 1, S + 1, -1);
 
   for(int t = 0; t <= T; ++t) {
     for(int s = 0; s <= S; s++) {
-      double const time = tMax - 1.0 * t * dT;
-      double const price = 1.0 * s * dS;
+      const double time = tMax - 1.0 * t * dT;
+      const double price = 1.0 * s * dS;
 
-      double const d1 = (1 / (o * std::sqrt(time))) * (std::log(price / K) + (r + o * o / 2) * time);
+      const double d1 = (1 / (o * std::sqrt(time))) * (std::log(price / K) + (r + o * o / 2) * time);
 
-      double const d2 = d1 - o * std::sqrt(time);
+      const double d2 = d1 - o * std::sqrt(time);
 
       f[t][s] = N(d1) * price - N(d2) * K * std::exp(-r * time);
     }
@@ -180,16 +178,16 @@ Matrix blackScholes_Formula(
 #include <random>
 
 Matrix monteCarlo(
-    double const r,    // risk free rate               (%)
-    double const o,    // annual volatility            (%)
-    double const tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
-    double const K,    // strike price                 ($)
-    double const sMax, // max stock price to consider  ($)
-    double const dT,   // time step                    (y) 1.0=1y, 0.25=3m
-    double const dS    // stock price step             ($)
+    const double r,    // risk free rate               (%)
+    const double o,    // annual volatility            (%)
+    const double tMax, // expiry date,                 (y) 1.0=1y, 0.25=3m
+    const double K,    // strike price                 ($)
+    const double sMax, // max stock price to consider  ($)
+    const double dT,   // time step                    (y) 1.0=1y, 0.25=3m
+    const double dS    // stock price step             ($)
 ) {
-  double const T = tMax / dT;
-  double const S = sMax / dS;
+  const double T = tMax / dT;
+  const double S = sMax / dS;
   Matrix f = Matrix(T + 1, S + 1, -1);
 
   std::random_device rd;
@@ -199,13 +197,13 @@ Matrix monteCarlo(
     for(int s = 0; s <= S; s++) {
       double N = 200;
       double runningSum = 0;
-      double const price = 1.0 * s * dS;
-      double const time = tMax - 1.0 * t * dT;
+      const double price = 1.0 * s * dS;
+      const double time = tMax - 1.0 * t * dT;
 
       for(unsigned long i = 0; i < N; i++) {
-        double const wt = std::sqrt(time) * std::normal_distribution<>(0, 1)(gen);
-        double const e = ((r - 0.5 * o * o) * time) + o * wt;
-        double const S = price * std::exp(e);
+        const double wt = std::sqrt(time) * std::normal_distribution<>(0, 1)(gen);
+        const double e = ((r - 0.5 * o * o) * time) + o * wt;
+        const double S = price * std::exp(e);
 
         runningSum += std::max(S - K, 0.0);
       }
@@ -222,9 +220,9 @@ Matrix monteCarlo(
  */
 
 int main(int argc, char** argv) {
-  Matrix const fdme = blackScholes_FDM_Explicit(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
-  Matrix const form = blackScholes_Formula(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
-  Matrix const mc = monteCarlo(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
+  const Matrix fdme = blackScholes_FDM_Explicit(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
+  const Matrix form = blackScholes_Formula(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
+  const Matrix mc = monteCarlo(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
 
   std::cout << (form + (fdme * -1)) << "\n\n" << (form + (mc * -1)) << "\n";
 

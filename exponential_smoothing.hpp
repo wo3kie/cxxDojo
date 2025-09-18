@@ -25,4 +25,3 @@ inline std::vector<double> exponentialSmoothing(const std::vector<double>& array
 
   return result;
 }
-

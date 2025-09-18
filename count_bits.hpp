@@ -8,7 +8,6 @@
  *      Lukasz Czerwinski
  */
 
-
 #include <boost/preprocessor/repetition/repeat.hpp>
 
 constexpr int countBits8(unsigned char i) {
@@ -17,16 +16,16 @@ constexpr int countBits8(unsigned char i) {
 
 #define COUNT_BITS_CALCULATE(z, n, data) countBits8(n),
 
-inline int countBits(unsigned char const* begin, unsigned char const* const end) {
+inline int countBits(const unsigned char* begin, const unsigned char* const end) {
   constexpr int bits[256] = {BOOST_PP_REPEAT(256, COUNT_BITS_CALCULATE, "")};
-  
+
   /*
    * g++ -E count_bits.hpp | less 
    *
    * inline int countBits(unsigned char const* begin, unsigned char const* const end) {
    *   constexpr int bits[256] = {countBits8(0), countBits8(1), ..., countBits8(255),};
    */
-  
+
   int result = 0;
 
   for(; begin != end; ++begin) {
@@ -37,7 +36,7 @@ inline int countBits(unsigned char const* begin, unsigned char const* const end)
 }
 
 template<typename T>
-int countBits(T const& t) {
-  unsigned char const* const begin = reinterpret_cast<unsigned char const*>(&t);
+int countBits(const T& t) {
+  const unsigned char* const begin = reinterpret_cast<const unsigned char*>(&t);
   return countBits(begin, begin + sizeof(T));
 }

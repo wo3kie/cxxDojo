@@ -62,7 +62,7 @@ struct TypeErasureBase {
     if(this != &other) {
       _destroy(_ptr);
       other._copy(&_ptr, other._ptr);
-      
+
       _destroy = other._destroy;
       _copy = other._copy;
     }
@@ -258,6 +258,6 @@ void IteratorTypeErasure_test_2() {
 int main() {
   IteratorTypeErasure_test_1();
   IteratorTypeErasure_test_2();
-  
+
   return 0;
 }

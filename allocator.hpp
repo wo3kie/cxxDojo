@@ -13,10 +13,10 @@
 template<typename T>
 struct Allocator {
   typedef T* pointer;
-  typedef T const* const_pointer;
+  typedef const T* const_pointer;
 
   typedef T& reference;
-  typedef T const& const_reference;
+  typedef const T& const_reference;
 
   typedef T value_type;
 
@@ -32,14 +32,14 @@ struct Allocator {
   }
 
   template<typename U>
-  Allocator(Allocator<U> const&) {
+  Allocator(const Allocator<U>&) {
   }
 
-  static pointer allocate(size_type n, void const* = 0) {
+  static pointer allocate(size_type n, const void* = 0) {
     return (pointer) new char[n * sizeof(T)];
   }
 
-  static void deallocate(pointer const p, size_type const) {
+  static void deallocate(const pointer p, const size_type) {
     delete[] p;
   }
 
@@ -71,5 +71,3 @@ struct Allocator {
     return false;
   }
 };
-
-

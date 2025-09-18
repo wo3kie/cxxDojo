@@ -19,24 +19,24 @@
 int main() {
   {
     std::vector<Point> points({{0, 1}, {2, 2}, {3, 4}});
-    std::pair<std::vector<double>, std::vector<double>> const xs_cs = newtonDividedDifference(points);
-    std::pair<std::vector<double>, std::vector<double>> const expected = {{0, 2, 3}, {1, 0.5, 0.5}};
+    const std::pair<std::vector<double>, std::vector<double>> xs_cs = newtonDividedDifference(points);
+    const std::pair<std::vector<double>, std::vector<double>> expected = {{0, 2, 3}, {1, 0.5, 0.5}};
 
     assert(xs_cs == expected);
 
-    for(Point const& point : points) {
+    for(const Point& point : points) {
       assert(newtonDividedDifferencePolynominal(xs_cs, point._x) == point._y);
     }
   }
 
   {
     std::vector<Point> points({{-1, -5}, {0, -1}, {2, 1}, {3, 11}});
-    std::pair<std::vector<double>, std::vector<double>> const xs_cs = newtonDividedDifference(points);
-    std::pair<std::vector<double>, std::vector<double>> const expected = {{-1, 0, 2, 3}, {-5, 4, -1, 1}};
+    const std::pair<std::vector<double>, std::vector<double>> xs_cs = newtonDividedDifference(points);
+    const std::pair<std::vector<double>, std::vector<double>> expected = {{-1, 0, 2, 3}, {-5, 4, -1, 1}};
 
     assert(xs_cs == expected);
 
-    for(Point const& point : points) {
+    for(const Point& point : points) {
       assert(newtonDividedDifferencePolynominal(xs_cs, point._x) == point._y);
     }
   }

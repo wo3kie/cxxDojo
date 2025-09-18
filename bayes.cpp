@@ -49,7 +49,7 @@ int main() {
     boost::tokenizer<> tokenizer(line);
     std::vector<std::string> items;
 
-    for(std::string const& token : tokenizer) {
+    for(const std::string& token : tokenizer) {
       items.push_back(boost::algorithm::to_lower_copy(token));
     }
 
@@ -67,7 +67,7 @@ int main() {
     boost::tokenizer<> tokenizer(line);
     std::vector<std::string> items;
 
-    for(std::string const& token : tokenizer) {
+    for(const std::string& token : tokenizer) {
       items.push_back(boost::algorithm::to_lower_copy(token));
     }
 
@@ -80,11 +80,11 @@ int main() {
     std::vector<std::string> items;
     boost::tokenizer<> tokenizer(line);
 
-    for(std::string const& token : tokenizer) {
+    for(const std::string& token : tokenizer) {
       items.push_back(boost::algorithm::to_lower_copy(token));
     }
 
-    std::map<std::string, double> const& classesProbability = bayes.classify(items);
+    const std::map<std::string, double>& classesProbability = bayes.classify(items);
     std::cout << classesProbability << std::endl;
 
     return 0;

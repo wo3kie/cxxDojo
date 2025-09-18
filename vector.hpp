@@ -6,24 +6,22 @@
  *      Lukasz Czerwinski
  */
 
-
 #pragma once
-
 
 class Vector {
 public:
   Vector() = default;
-  Vector(Vector const&) = default;
+  Vector(const Vector&) = default;
   Vector(Vector&&) = default;
 
-  Vector& operator=(Vector const&) = default;
+  Vector& operator=(const Vector&) = default;
   Vector& operator=(Vector&&) = default;
 
   Vector(unsigned size, double init = 0.0)
       : data_(size, init) {
   }
 
-  Vector(std::initializer_list<double> const& data)
+  Vector(const std::initializer_list<double>& data)
       : data_(data) {
   }
 
@@ -31,7 +29,7 @@ public:
     return data_.at(i);
   }
 
-  double const& operator[](unsigned i) const {
+  const double& operator[](unsigned i) const {
     return data_.at(i);
   }
 
@@ -43,7 +41,7 @@ private:
   std::vector<double> data_;
 };
 
-inline std::ostream& operator<<(std::ostream& out, Vector const& vector) {
+inline std::ostream& operator<<(std::ostream& out, const Vector& vector) {
   out << "[";
 
   if(vector.size() != 0) {
@@ -59,7 +57,7 @@ inline std::ostream& operator<<(std::ostream& out, Vector const& vector) {
   return out;
 }
 
-inline Vector operator+(Vector const& vector1, Vector const& vector2) {
+inline Vector operator+(const Vector& vector1, const Vector& vector2) {
   Vector result(vector1.size());
 
   for(unsigned i = 0; i < vector1.size(); ++i) {
@@ -69,7 +67,7 @@ inline Vector operator+(Vector const& vector1, Vector const& vector2) {
   return result;
 }
 
-inline Vector operator-(Vector const& vector1, Vector const& vector2) {
+inline Vector operator-(const Vector& vector1, const Vector& vector2) {
   Vector result(vector1.size());
 
   for(unsigned i = 0; i < vector1.size(); ++i) {
@@ -79,7 +77,7 @@ inline Vector operator-(Vector const& vector1, Vector const& vector2) {
   return result;
 }
 
-inline Vector operator*(double scalar, Vector const& vector) {
+inline Vector operator*(double scalar, const Vector& vector) {
   Vector result(vector.size());
 
   for(unsigned i = 0; i < vector.size(); ++i) {
@@ -89,7 +87,7 @@ inline Vector operator*(double scalar, Vector const& vector) {
   return result;
 }
 
-inline double dot(Vector const& vector1, Vector const vector2) {
+inline double dot(const Vector& vector1, const Vector vector2) {
   double result = 0;
 
   for(unsigned i = 0; i < vector1.size(); ++i) {
@@ -99,12 +97,12 @@ inline double dot(Vector const& vector1, Vector const vector2) {
   return result;
 }
 
-inline double norm2(Vector const& vector) {
+inline double norm2(const Vector& vector) {
   return sqrt(dot(vector, vector));
 }
 
 inline Vector unit(Vector vector) {
-  double const norm = norm2(vector);
+  const double norm = norm2(vector);
 
   if(norm == 0 || norm == 1) {
     return vector;
@@ -117,8 +115,6 @@ inline Vector unit(Vector vector) {
   return vector;
 }
 
-inline Vector projection(Vector const& what, Vector const& where) {
+inline Vector projection(const Vector& what, const Vector& where) {
   return dot(where, what) / dot(where, where) * where;
 }
-
-

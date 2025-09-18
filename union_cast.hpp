@@ -9,7 +9,7 @@
  */
 
 template<typename ToType, typename FromType>
-ToType union_cast(FromType const& fromValue) {
+ToType union_cast(const FromType& fromValue) {
   static_assert(sizeof(ToType) == sizeof(FromType), "union_cast");
 
   union {

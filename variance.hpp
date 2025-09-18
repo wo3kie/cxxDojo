@@ -20,15 +20,15 @@
  */
 
 template<typename Iterator>
-double variance(Iterator const begin, Iterator const end) {
-  double const meanValue = mean(begin, end);
+double variance(const Iterator begin, const Iterator end) {
+  const double meanValue = mean(begin, end);
   unsigned size = 0;
 
   double meanValueDiffSquareSum = 0;
 
   for(Iterator current = begin; current != end; ++current) {
     size += 1;
-    double const meanValueDiff = meanValue - *current;
+    const double meanValueDiff = meanValue - *current;
     meanValueDiffSquareSum += meanValueDiff * meanValueDiff;
   }
 
@@ -36,7 +36,7 @@ double variance(Iterator const begin, Iterator const end) {
 }
 
 template<typename T>
-double variance(std::vector<T> const& array) {
+double variance(const std::vector<T>& array) {
   return variance(array.begin(), array.end());
 }
 
@@ -47,12 +47,12 @@ double variance(std::vector<T> const& array) {
  * Covariance(x, x) = E(x - E(x)) * E(x - E(x)) = E(x - E(x))^2
  */
 template<typename Iterator>
-double variance2(Iterator begin, Iterator const end) {
+double variance2(Iterator begin, const Iterator end) {
   return covariance(begin, end, begin, end);
 }
 
 template<typename T>
-double variance2(std::vector<T> const& array) {
+double variance2(const std::vector<T>& array) {
   return variance2(array.begin(), array.end());
 }
 
@@ -64,7 +64,7 @@ double variance2(std::vector<T> const& array) {
  */
 
 template<typename Iterator>
-double variance3(Iterator const begin, Iterator const end) {
+double variance3(const Iterator begin, const Iterator end) {
   unsigned size = 0;
 
   double xSquareMean = 0;
@@ -82,7 +82,6 @@ double variance3(Iterator const begin, Iterator const end) {
 }
 
 template<typename T>
-double variance3(std::vector<T> const& array) {
+double variance3(const std::vector<T>& array) {
   return variance(array.begin(), array.end());
 }
-

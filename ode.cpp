@@ -17,8 +17,7 @@
 
 #include "./feq.hpp"
 
-double solveOdeImpl(
-    std::function<double(double, double, double)> approx, double x0, double const xN, double const h, double y0) {
+double solveOdeImpl(std::function<double(double, double, double)> approx, double x0, const double xN, const double h, double y0) {
   while(x0 + h <= xN) {
     y0 += approx(x0, x0 + h, y0);
     x0 += h;
@@ -29,7 +28,7 @@ double solveOdeImpl(
 
 double solveOdeEulerForward(std::function<double(double, double)> f, double x0, double xN, double h, double y0) {
   auto approx = [&f](double x0, double x1, double y) {
-    double const h = x1 - x0;
+    const double h = x1 - x0;
     return h * f(x0, y);
   };
 
@@ -38,9 +37,9 @@ double solveOdeEulerForward(std::function<double(double, double)> f, double x0, 
 
 double solveOdeEulerMidpoint(std::function<double(double, double)> f, double x0, double xN, double h, double y0) {
   auto approx = [&f](double x0, double x1, double y) {
-    double const h = (x1 - x0);
-    double const k1 = h * f(x0, y);
-    double const k2 = h * f(x0 + h / 2, y + h * k1 / 2);
+    const double h = (x1 - x0);
+    const double k1 = h * f(x0, y);
+    const double k2 = h * f(x0 + h / 2, y + h * k1 / 2);
     return k2;
   };
 
@@ -49,9 +48,9 @@ double solveOdeEulerMidpoint(std::function<double(double, double)> f, double x0,
 
 double solveOdeTrapezoid(std::function<double(double, double)> f, double x0, double xN, double h, double y0) {
   auto approx = [&f](double x0, double x1, double y) {
-    double const h = (x1 - x0);
-    double const x0Slope = h * f(x0, y);
-    double const x1Slope = h * f(x1, y + h * f(x0, y));
+    const double h = (x1 - x0);
+    const double x0Slope = h * f(x0, y);
+    const double x1Slope = h * f(x1, y + h * f(x0, y));
 
     return (x0Slope + x1Slope) / 2;
   };
@@ -61,11 +60,11 @@ double solveOdeTrapezoid(std::function<double(double, double)> f, double x0, dou
 
 double solveOdeRungeKutta4(std::function<double(double, double)> f, double x0, double xN, double h, double y0) {
   auto approx = [&f](double x0, double x1, double y) {
-    double const h = (x1 - x0);
-    double const k1 = h * f(x0, y);
-    double const k2 = h * f(x0 + h / 2, y + k1 / 2);
-    double const k3 = h * f(x0 + h / 2, y + k2 / 2);
-    double const k4 = h * f(x0 + h, y + k3);
+    const double h = (x1 - x0);
+    const double k1 = h * f(x0, y);
+    const double k2 = h * f(x0 + h / 2, y + k1 / 2);
+    const double k3 = h * f(x0 + h / 2, y + k2 / 2);
+    const double k4 = h * f(x0 + h, y + k3);
     return (k1 + 2 * k2 + 2 * k3 + k4) / 6;
   };
 

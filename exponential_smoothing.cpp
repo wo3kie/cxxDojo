@@ -18,8 +18,8 @@
 
 #include <vector>
 
-#include "./output.hpp"
 #include "./exponential_smoothing.hpp"
+#include "./output.hpp"
 
 /*
  * main
@@ -42,4 +42,3 @@ int main(int argc, char* argv[]) {
 
   std::cout << smoothed << std::endl;
 }
-

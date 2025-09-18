@@ -30,12 +30,12 @@ int main() {
     {INF, INF, INF,   7,   0},
   };
   // clang-format on
-  
+
   Matrix dist = matrix;
   Matrix prev = matrix;
-  
+
   std::tie(dist, prev) = floydWarshall(matrix);
-  
+
   // clang-format off
   assert((dist == Matrix{{ 0,  2,  5, 10,  4}, //
                          {16,  0,  3,  8,  4}, 

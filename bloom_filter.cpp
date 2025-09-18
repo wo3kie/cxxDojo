@@ -25,7 +25,7 @@
 int main() {
   BloomFilter<std::string> bf(32);
 
-  const auto hash1 = [](std::string const& s) {
+  const auto hash1 = [](const std::string& s) {
     int result = 0;
 
     for(char c : s) {
@@ -35,7 +35,7 @@ int main() {
     return result;
   };
 
-  const auto hash2 = [](std::string const& s) {
+  const auto hash2 = [](const std::string& s) {
     int result = 0;
 
     for(unsigned i = 0; i < s.size(); ++i) {
@@ -45,7 +45,7 @@ int main() {
     return result;
   };
 
-  const auto hash3 = [](std::string const& s) {
+  const auto hash3 = [](const std::string& s) {
     return std::hash<std::string>()(s);
   };
 

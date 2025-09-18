@@ -76,9 +76,7 @@ public:
     }
 
     bool operator==(const iterator& other) const {
-      return _ranges == other._ranges && 
-              _idx == other._idx && 
-              (_idx == sizeof...(Ranges) || _iterator == other._iterator);
+      return _ranges == other._ranges && _idx == other._idx && (_idx == sizeof...(Ranges) || _iterator == other._iterator);
     }
 
   private:

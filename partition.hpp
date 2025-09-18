@@ -16,7 +16,7 @@
 
 template<typename Iterator, typename UnaryPredicate>
 Iterator partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
-    /*
+  /*
      * isEven [1 2 3 4 5 6 7] ->
      *
      *  .            .       .          .       .         .   
@@ -29,16 +29,16 @@ Iterator partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
      *          [1 7 3 5 6 4 2] -> [1 7 3 5 6 4 2]
      */
 
-    while (begin != end){
-        if (pred(*begin)) {
-            ++begin;
-        } else {
-            --end;
-            std::iter_swap(begin, end);
-        }
+  while(begin != end) {
+    if(pred(*begin)) {
+      ++begin;
+    } else {
+      --end;
+      std::iter_swap(begin, end);
     }
+  }
 
-    return end;
+  return end;
 }
 
 /*
@@ -47,7 +47,7 @@ Iterator partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
 
 template<typename Container, typename UnaryPredicate>
 typename Container::iterator partition_if(Container& container, UnaryPredicate pred) {
-    return partition_if(container.begin(), container.end(), pred);
+  return partition_if(container.begin(), container.end(), pred);
 }
 
 /*
@@ -56,7 +56,7 @@ typename Container::iterator partition_if(Container& container, UnaryPredicate p
 
 template<typename Iterator, typename UnaryPredicate>
 Iterator stable_partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
-    /*
+  /*
      * isEven [1 2 3 4 5 6 7] ->
      *  |                \
      * sp[1 2 3]         sp[4 5 6 7]
@@ -74,28 +74,28 @@ Iterator stable_partition_if(Iterator begin, Iterator end, UnaryPredicate pred) 
      * [1 3 5 7 2 4 6]
      */
 
-    const std::size_t size = std::distance(begin, end);
+  const std::size_t size = std::distance(begin, end);
 
-    if (size == 0){
-        return end;
-    }
+  if(size == 0) {
+    return end;
+  }
 
-    const Iterator pivot = begin + size / 2;
+  const Iterator pivot = begin + size / 2;
 
-    if (size == 1){
-        if (pred(*begin)){
-            return end;
-        } else {
-            return begin;
-        }
+  if(size == 1) {
+    if(pred(*begin)) {
+      return end;
     } else {
-        const Iterator pivotL = stable_partition_if(begin, begin + size / 2, pred);
-        const Iterator pivotR = stable_partition_if(begin + size / 2, end, pred);
-
-        rotate_left(pivotL, begin + size / 2, pivotR);
-
-        return pivotL + (pivotR - pivot);
+      return begin;
     }
+  } else {
+    const Iterator pivotL = stable_partition_if(begin, begin + size / 2, pred);
+    const Iterator pivotR = stable_partition_if(begin + size / 2, end, pred);
+
+    rotate_left(pivotL, begin + size / 2, pivotR);
+
+    return pivotL + (pivotR - pivot);
+  }
 }
 
 /*
@@ -104,5 +104,5 @@ Iterator stable_partition_if(Iterator begin, Iterator end, UnaryPredicate pred) 
 
 template<typename Container, typename UnaryPredicate>
 typename Container::iterator stable_partition_if(Container& container, UnaryPredicate pred) {
-    return stable_partition_if(container.begin(), container.end(), pred);
+  return stable_partition_if(container.begin(), container.end(), pred);
 }

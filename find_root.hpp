@@ -62,7 +62,8 @@ inline double bisection(double begin, double end, const std::function<double(dou
  * newton
  */
 
-inline double newton(double x, const double end, const std::function<double(double)>& f, const std::function<double(double)>& fdx, const unsigned precision = 6) {
+inline double
+newton(double x, const double end, const std::function<double(double)>& f, const std::function<double(double)>& fdx, const unsigned precision = 6) {
   double xNext = 0;
   const double eps = std::pow(0.1, precision);
 

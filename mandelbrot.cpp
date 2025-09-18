@@ -27,24 +27,24 @@ char space(int iteration, int maxIteration) {
 }
 
 char asciiArt1(int iteration, int maxIteration) {
-  char const* const ascii = " .,:;^*&#@";
+  const char* const ascii = " .,:;^*&#@";
   return ascii[iteration % 10];
 }
 
 char asciiArt2(int iteration, int maxIteration) {
-  char const* const ascii = "@#&*^;:,. ";
+  const char* const ascii = "@#&*^;:,. ";
   return ascii[iteration % 10];
 }
 
-void mandelbrot(char (*getAscii)(int, int), unsigned const rows = 51, unsigned const columns = 2.5 * 50) {
-  int const maxIteration = 50;
+void mandelbrot(char (*getAscii)(int, int), const unsigned rows = 51, const unsigned columns = 2.5 * 50) {
+  const int maxIteration = 50;
 
   for(double r = -1.5; r < 1.5; r += (3.0 / rows)) {
     for(double c = -2.5; c < 1.5; c += (4.0 / columns)) {
       int iteration = 0;
 
       for(double x = 0, y = 0; x * x + y * y < 4 && iteration < maxIteration; ++iteration) {
-        double const temp = c + (x * x - y * y);
+        const double temp = c + (x * x - y * y);
         y = r + (2 * x * y);
         x = temp;
       }

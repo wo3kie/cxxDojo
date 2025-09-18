@@ -40,7 +40,7 @@ inline bool isPrime(unsigned long long value) {
  * Is prime using Rho Pollard algorithm
  */
 
- inline int f1(int x, int n) {
+inline int f1(int x, int n) {
   return (x * x + 1) % n;
 }
 

@@ -8,13 +8,12 @@
  *      Lukasz Czerwinski
  */
 
-
 #include <cmath>
 #include <iterator>
 #include <map>
 
 template<typename Iterator>
-double entropy(Iterator const begin, Iterator const end) {
+double entropy(const Iterator begin, const Iterator end) {
   typedef typename std::iterator_traits<Iterator>::value_type value_type;
 
   double entropy = 0.0;
@@ -27,10 +26,9 @@ double entropy(Iterator const begin, Iterator const end) {
     totalCount += 1;
   }
 
-  for(auto const& pair : histogram) {
+  for(const auto& pair : histogram) {
     entropy -= (1.0 * pair.second / totalCount) * log2(1.0 * pair.second / totalCount);
   }
 
   return entropy;
 }
-

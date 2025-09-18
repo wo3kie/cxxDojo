@@ -12,9 +12,9 @@
  *      $ ./std_dev
  */
 
- #include <cassert>
+#include <cassert>
 
- #include "./feq.hpp"
+#include "./feq.hpp"
 #include "./std_dev.hpp"
 
 /*

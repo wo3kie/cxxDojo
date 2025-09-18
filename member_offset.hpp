@@ -11,6 +11,6 @@
 #include "./union_cast.hpp"
 
 template<typename Type, typename Class>
-long long getMemberOffset(Type(Class::* member)) {
+long long getMemberOffset(Type(Class::*member)) {
   return union_cast<long long>(member);
 }

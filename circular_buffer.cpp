@@ -25,7 +25,7 @@ struct CircularBuffer {
   int end_ = 0;
   int size_ = 0;
 
-  void push(T const& t) {
+  void push(const T& t) {
     data_[end_] = t;
 
     end_ = (end_ + 1) % Size;
@@ -43,7 +43,7 @@ struct CircularBuffer {
       head = Size + head;
     }
 
-    T const result = data_[head];
+    const T result = data_[head];
     size_ -= 1;
 
     return result;
@@ -51,9 +51,8 @@ struct CircularBuffer {
 };
 
 template<typename T, int Size>
-std::ostream& operator<<(std::ostream& out, CircularBuffer<T, Size> const& buffer) {
-  out << "{E: " << buffer.end_ << ", "
-      << "S: " << buffer.size_ << " [";
+std::ostream& operator<<(std::ostream& out, const CircularBuffer<T, Size>& buffer) {
+  out << "{E: " << buffer.end_ << ", " << "S: " << buffer.size_ << " [";
 
   for(int i = 0; i < Size; ++i) {
     out << " " << buffer.data_[i];

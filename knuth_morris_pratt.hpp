@@ -70,4 +70,3 @@ inline std::vector<unsigned> kmp(const std::string& pattern, const std::string& 
 
   return result;
 }
-

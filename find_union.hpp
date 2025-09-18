@@ -17,8 +17,7 @@
 class FindUnion {
 public:
   FindUnion(int size)
-      : _data(size) 
-  {
+      : _data(size) {
     for(int i = 0; i < size; ++i) {
       _data[i] = i;
     }

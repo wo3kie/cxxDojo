@@ -48,6 +48,6 @@ int operator"" _bin(const char* text) {
  */
 
 int main() {
-  assert(561 == "1000110001"_bin);  // int operator"" _bin(const char* text, size_t length)
-  assert(561 == 1000110001_bin);    // int operator"" _bin(const char* text)
+  assert(561 == "1000110001"_bin); // int operator"" _bin(const char* text, size_t length)
+  assert(561 == 1000110001_bin);   // int operator"" _bin(const char* text)
 }

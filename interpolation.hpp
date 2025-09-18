@@ -57,7 +57,7 @@ inline std::pair<std::vector<double> /* xs */, std::vector<double> /* coefficien
  * newtonDividedDifferencePolynominal
  */
 
-inline double newtonDividedDifferencePolynominal(std::pair<std::vector<double> /* xs */, std::vector<double> /* cs */> xs_cs,double x) {
+inline double newtonDividedDifferencePolynominal(std::pair<std::vector<double> /* xs */, std::vector<double> /* cs */> xs_cs, double x) {
   double result = 0;
 
   for(unsigned i = 0; i < xs_cs.second.size(); ++i) {

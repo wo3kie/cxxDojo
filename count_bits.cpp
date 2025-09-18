@@ -47,7 +47,7 @@ void test_countBits() {
   }
 
   for(int i = 0; i < 1e4; ++i) {
-    int const random = std::rand();
+    const int random = std::rand();
     assert(countBits(random) == __builtin_popcount(random));
   }
 }

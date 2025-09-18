@@ -12,7 +12,6 @@
 #include <functional>
 #include <iterator>
 
-
 template<typename R, typename T, typename I>
 R _lfold(std::function<R(T, T)> f, R init, I begin, I end) {
   if(begin == end) {
@@ -95,7 +94,7 @@ Container& filter(Container& container, std::function<bool(typename Container::v
 }
 
 template<typename Container>
-Container filter_copy(Container const& container, std::function<bool(typename Container::value_type)> predicate) {
+Container filter_copy(const Container& container, std::function<bool(typename Container::value_type)> predicate) {
   Container result;
 
   for(const typename Container::value_type& item : container) {

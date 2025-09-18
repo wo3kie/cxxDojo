@@ -17,7 +17,7 @@ namespace aho_corasick {
 
 struct Node {
   void free() {
-    for(auto const pair : children_) {
+    for(const auto pair : children_) {
       pair.second->free();
     }
 
@@ -31,7 +31,7 @@ struct Node {
   std::map<char, Node*> children_;
 };
 
-inline std::ostream& operator<<(std::ostream& out, Node const& node) {
+inline std::ostream& operator<<(std::ostream& out, const Node& node) {
   if(node.parent_) {
     out << "(" << (&node) << ", " << node.letter_ << ", " << node.end_ << ", (" << node.failure_ << ", " << node.failure_->letter_ << "))";
   } else {
@@ -41,7 +41,7 @@ inline std::ostream& operator<<(std::ostream& out, Node const& node) {
   return out;
 }
 
-inline std::string getWord(Node const* const node) {
+inline std::string getWord(const Node* const node) {
   if(! node) {
     return "";
   }
@@ -59,7 +59,7 @@ struct AhoCorasick {
     root_->failure_ = root_;
   }
 
-  AhoCorasick(AhoCorasick const&) = delete;
+  AhoCorasick(const AhoCorasick&) = delete;
   AhoCorasick(AhoCorasick&& other)
       : AhoCorasick() {
     std::swap(root_, other.root_);
@@ -69,17 +69,17 @@ struct AhoCorasick {
     root_->free();
   }
 
-  AhoCorasick& operator=(AhoCorasick const&) = delete;
+  AhoCorasick& operator=(const AhoCorasick&) = delete;
   AhoCorasick& operator=(AhoCorasick&& other) {
     std::swap(root_, other.root_);
     return *this;
   }
 
-  void insert(std::string const& word) {
+  void insert(const std::string& word) {
     Node* node = root_;
 
-    for(char const letter : word) {
-      auto const found = node->children_.find(letter);
+    for(const char letter : word) {
+      const auto found = node->children_.find(letter);
 
       if(found == node->children_.end()) {
         Node* const newNode = new Node;
@@ -97,14 +97,14 @@ struct AhoCorasick {
     node->end_ = true;
   }
 
-  void search(std::string const& text, std::function<void(size_t const, std::string const&)> const& f) const {
-    Node const* node = root_;
+  void search(const std::string& text, const std::function<void(const size_t, const std::string&)>& f) const {
+    const Node* node = root_;
 
     for(size_t i = 0; i < text.size(); ++i) {
       node = move(node, text[i]);
 
       if(node->end_) {
-        std::string const word = getWord(node);
+        const std::string word = getWord(node);
 
         f(i + 1 - word.size(), word);
       }
@@ -116,9 +116,9 @@ struct AhoCorasick {
   }
 
 private:
-  Node const* move(Node const* node, char const letter) const {
+  const Node* move(const Node* node, const char letter) const {
     while(true) {
-      auto const found = node->children_.find(letter);
+      const auto found = node->children_.find(letter);
 
       if(found == node->children_.end()) {
         if(node == root_) {
@@ -132,12 +132,12 @@ private:
     }
   }
 
-  Node* getFailure(Node const* const node, char const letter) {
+  Node* getFailure(const Node* const node, const char letter) {
     Node* const parent = node->parent_;
     Node* parentsFailure = parent->failure_;
 
     while(true) {
-      auto const found = parentsFailure->children_.find(letter);
+      const auto found = parentsFailure->children_.find(letter);
 
       if(found != parentsFailure->children_.end()) {
         return found->second;
@@ -151,10 +151,10 @@ private:
     }
   }
 
-  static void dump_(int const indent, Node const* const node) {
+  static void dump_(const int indent, const Node* const node) {
     std::cout << std::string(indent, ' ') << *node << std::endl;
 
-    for(auto const pair : node->children_) {
+    for(const auto pair : node->children_) {
       dump_(indent + 4, pair.second);
     }
   }
@@ -163,4 +163,4 @@ private:
   Node* root_;
 };
 
-}  // namespace aho_corasick
+} // namespace aho_corasick

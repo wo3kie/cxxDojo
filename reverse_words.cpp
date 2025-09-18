@@ -29,7 +29,7 @@ std::string reverseWords(std::string string) {
 
   int wordBegin = 0;
   int wordEnd = 0;
-  int const end = string.size();
+  const int end = string.size();
 
   while(wordEnd < end) {
     while(wordEnd < end) {

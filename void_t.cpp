@@ -39,7 +39,7 @@ struct S {
 };
 
 struct T {
-  T& operator=(T const&) = delete;
+  T& operator=(const T&) = delete;
 };
 
 void HasMemberTest() {
@@ -52,7 +52,7 @@ void HasMemberTest() {
  */
 
 template<typename T>
-using CopyAssignableT = decltype(std::declval<T&>() = std::declval<T const&>());
+using CopyAssignableT = decltype(std::declval<T&>() = std::declval<const T&>());
 
 template<class T, class = void>
 struct CopyAssignable: std::false_type {};

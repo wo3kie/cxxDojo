@@ -18,7 +18,7 @@
 #include "./feq.hpp"
 #include "./matrix.hpp"
 
-void lu(Matrix const& A, Matrix& L, Matrix& U) {
+void lu(const Matrix& A, Matrix& L, Matrix& U) {
   /*
      *      major column
      *       |
@@ -38,13 +38,13 @@ void lu(Matrix const& A, Matrix& L, Matrix& U) {
      *      minor column
      */
 
-  unsigned const size = A.rows();
+  const unsigned size = A.rows();
 
   L = Matrix(size, size);
   U = A;
 
   for(unsigned majorColumn = 0; majorColumn < size; ++majorColumn) {
-    unsigned const majorRow = majorColumn;
+    const unsigned majorRow = majorColumn;
 
     if(U[majorColumn][majorColumn] == 0) {
       throw std::runtime_error("0 has been found on the main diagnonal, please use LUP algorithm instead");
@@ -53,7 +53,7 @@ void lu(Matrix const& A, Matrix& L, Matrix& U) {
     L[majorColumn][majorColumn] = 1;
 
     for(unsigned minorRow = majorColumn + 1; minorRow < size; ++minorRow) {
-      double const coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
+      const double coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
 
       for(unsigned minorColumn = majorColumn; minorColumn < size; ++minorColumn) {
         U[minorRow][minorColumn] -= coeff * U[majorRow][minorColumn];
@@ -64,14 +64,14 @@ void lu(Matrix const& A, Matrix& L, Matrix& U) {
   }
 }
 
-void lup(Matrix const& A, Matrix& L, Matrix& U, Matrix& P) {
-  unsigned const size = A.rows();
+void lup(const Matrix& A, Matrix& L, Matrix& U, Matrix& P) {
+  const unsigned size = A.rows();
 
   L = Matrix(size, size);
   U = A;
 
   for(unsigned majorColumn = 0; majorColumn < size; ++majorColumn) {
-    unsigned const majorRow = majorColumn;
+    const unsigned majorRow = majorColumn;
 
     { // partial pivoting
       unsigned maxRowId = majorRow;
@@ -96,7 +96,7 @@ void lup(Matrix const& A, Matrix& L, Matrix& U, Matrix& P) {
     L[majorColumn][majorColumn] = 1;
 
     for(unsigned minorRow = majorColumn + 1; minorRow < size; ++minorRow) {
-      double const coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
+      const double coeff = U[minorRow][majorColumn] / U[majorRow][majorRow];
 
       for(unsigned minorColumn = majorColumn; minorColumn < size; ++minorColumn) {
         U[minorRow][minorColumn] -= coeff * U[majorRow][minorColumn];
@@ -132,7 +132,7 @@ int main() {
 
       try {
         lu(A, L, U);
-      } catch(std::runtime_error const&) {
+      } catch(const std::runtime_error&) {
         break;
       }
 

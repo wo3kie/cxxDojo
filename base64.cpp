@@ -19,7 +19,7 @@
 #include "./base64.hpp"
 
 int main(int argc, char* argv[]) {
-  if (argc != 3) {
+  if(argc != 3) {
     std::cerr << "Usage:\n"
               << "  " << argv[0] << " --encode <string>\n"
               << "  " << argv[0] << " --decode <base64string>\n";
@@ -28,12 +28,12 @@ int main(int argc, char* argv[]) {
 
   const std::string& mode = argv[1];
 
-  if (mode != "--encode" && mode != "--decode") {
+  if(mode != "--encode" && mode != "--decode") {
     std::cerr << "Error: first argument must be --encode or --decode\n";
     return 1;
   }
 
-  if (mode == "--decode") {
+  if(mode == "--decode") {
     std::cout << base64decode(argv[2]) << std::endl;
   } else {
     std::cout << base64encode(argv[2]) << std::endl;

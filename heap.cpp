@@ -12,7 +12,7 @@
  *      $ ./heap
  */
 
- #include "./heap.hpp"
+#include "./heap.hpp"
 
 #include <cassert>
 #include <iostream>

@@ -36,7 +36,7 @@
  *
  */
 
- /*
+/*
   * InnerBase
   */
 
@@ -64,7 +64,7 @@ struct Inner: InnerBase {
     return _value;
   }
 
-  T const& get() const {
+  const T& get() const {
     return _value;
   }
 
@@ -81,12 +81,12 @@ struct Any {
       : _inner(new Inner<T>(t)) {
   }
 
-  Any(Any const& other)
+  Any(const Any& other)
       : _inner(other._inner->clone()) {
   }
 
   template<typename T>
-  Any& operator=(T const& t) {
+  Any& operator=(const T& t) {
     _inner = std::make_unique<Inner<T>>(t);
     return *this;
   }
@@ -103,7 +103,7 @@ struct Any {
   }
 
   template<typename T>
-  T const& cast() const {
+  const T& cast() const {
     return dynamic_cast<Inner<T>&>(*_inner).get();
   }
 
@@ -118,7 +118,7 @@ private:
 void test() {
   Any v{23};
   assert(v.cast<int>() == 23);
-  
+
   v = std::string("C++");
   assert(v.cast<std::string>() == "C++");
 }

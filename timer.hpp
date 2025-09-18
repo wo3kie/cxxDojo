@@ -4,7 +4,7 @@
 #include <iostream>
 
 template<typename T>
-void test(T const& t, int rep = 1) {
+void test(const T& t, int rep = 1) {
   // typedef ratio< 1,  1000000000000000000 > atto;
   // typedef ratio< 1,     1000000000000000 > femto;
   // typedef ratio< 1,        1000000000000 > pico;
@@ -37,13 +37,13 @@ void test(T const& t, int rep = 1) {
   duration bestTime = duration::zero();
 
   for(int i = 0; i < rep; ++i) {
-    time_point const& start = std::chrono::high_resolution_clock::now();
+    const time_point& start = std::chrono::high_resolution_clock::now();
 
     t();
 
-    time_point const& end = std::chrono::high_resolution_clock::now();
+    const time_point& end = std::chrono::high_resolution_clock::now();
 
-    duration const& diff = end - start;
+    const duration& diff = end - start;
 
     if(bestTime == duration::zero() || bestTime > diff) {
       bestTime = diff;

@@ -23,7 +23,7 @@ inline unsigned optimalNumberOfHashFunctions(long items, long bits) {
   using std::ceil;
   using std::log2;
 
- /*
+  /*
   * https://en.wikipedia.org/wiki/Bloom_filter
   */
 

@@ -18,11 +18,11 @@
 
 void mean_test() {
   {
-    std::vector<int> const array{1, 2, 3, 4, 5};
+    const std::vector<int> array{1, 2, 3, 4, 5};
     assert(mean(array) == 3);
   }
   {
-    std::vector<double> const array{1.5, 2.5, 3.5, 4.5, 5.5};
+    const std::vector<double> array{1.5, 2.5, 3.5, 4.5, 5.5};
     assert(mean(array) == 3.5);
   }
 }

@@ -14,12 +14,11 @@
  */
 
 typedef std::vector<std::vector<int>> Matrix;
-int const INF = 99; // infinity, 99 for readable output
+const int INF = 99; // infinity, 99 for readable output
 
 namespace impl {
 
-
-bool update(Matrix const& graph, std::vector<int>& dist, std::vector<int>& prev, int u, int v) {
+bool update(const Matrix& graph, std::vector<int>& dist, std::vector<int>& prev, int u, int v) {
   if(dist[v] > dist[u] + graph[u][v]) {
     dist[v] = dist[u] + graph[u][v];
     prev[v] = u;
@@ -30,10 +29,10 @@ bool update(Matrix const& graph, std::vector<int>& dist, std::vector<int>& prev,
   }
 }
 
-}
+} // namespace impl
 
-std::pair<std::vector<int> /* dist */, std::vector<int> /* prev */> bellmanFord(Matrix const& graph, int start = 0) {
-  int const size = graph.size();
+std::pair<std::vector<int> /* dist */, std::vector<int> /* prev */> bellmanFord(const Matrix& graph, int start = 0) {
+  const int size = graph.size();
 
   std::vector<int> dist(size, INF);
   std::vector<int> prev(size, -1);
@@ -76,7 +75,7 @@ std::pair<std::vector<int> /* dist */, std::vector<int> /* prev */> bellmanFord(
   return std::make_pair(dist, prev);
 }
 
-std::vector<int> decodeShortestPath(std::vector<int> const& prev, int const start, int end) {
+std::vector<int> decodeShortestPath(const std::vector<int>& prev, const int start, int end) {
   std::vector<int> path(1, end);
 
   while(prev[end] != -1) {
@@ -88,4 +87,3 @@ std::vector<int> decodeShortestPath(std::vector<int> const& prev, int const star
 
   return path;
 }
-
