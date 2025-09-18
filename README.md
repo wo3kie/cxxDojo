@@ -359,6 +359,9 @@ Implement a function to calculate struct/class member offert.
 **modexp.cpp**  
 Implement a function to perform modular exponentiation.
     
+**output.cpp**  
+Implement the output stream operator (`operator<<`) for basic STL containers such as `std::array`, `std::vector`, `std::list`...
+    
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -444,10 +447,7 @@ $ ./timer
 9
 702µs
 ```
-
-**output.cpp**  
-Implement an output operator (operator<<) for basic containers like std::array, std::vector, std::list...
-
+  
 **union_cast.cpp**  
 Implement union_cast.
   

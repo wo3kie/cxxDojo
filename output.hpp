@@ -21,49 +21,43 @@
 #include <vector>
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::vector<T> const& v);
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v);
 
 template<typename T, std::size_t Size>
-std::ostream& operator<<(std::ostream& out, std::array<T, Size> const& a);
+std::ostream& operator<<(std::ostream& out, const std::array<T, Size>& a);
 
 template<typename Iterator>
 std::ostream& printList(std::ostream& out, Iterator begin, Iterator end);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::list<T> const& v);
+std::ostream& operator<<(std::ostream& out, const std::list<T>& v);
 
 template<typename T1, typename T2>
-std::ostream& printPair(std::ostream& out, std::pair<T1, T2> const& p);
+std::ostream& printPair(std::ostream& out, const std::pair<T1, T2>& p);
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::pair<T1, T2> const& p);
+std::ostream& operator<<(std::ostream& out, const std::pair<T1, T2>& p);
 
 template<typename Iterator>
 std::ostream& printMap(std::ostream& out, Iterator begin, Iterator end);
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::map<T1, T2> const& m);
+std::ostream& operator<<(std::ostream& out, const std::map<T1, T2>& m);
 
 template<typename Iterator>
 std::ostream& printSet(std::ostream& out, Iterator begin, Iterator end);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::set<T> const& s);
+std::ostream& operator<<(std::ostream& out, const std::set<T>& s);
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::unordered_map<T1, T2> const& u);
+std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& u);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::unordered_set<T> const& s);
+std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& s);
 
 template<typename Iterator>
-std::ostream& printImpl(
-    std::ostream& out,
-    char const beginning,
-    Iterator begin,
-    char const* const separator,
-    Iterator const end,
-    char const ending) {
+std::ostream& printImpl(std::ostream& out, const char beginning, Iterator begin, const char* const separator, const Iterator end, const char ending) {
   out << beginning;
 
   if(begin != end) {
@@ -83,12 +77,12 @@ std::ostream& printVector(std::ostream& out, Iterator begin, Iterator end) {
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::vector<T> const& v) {
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
   return printVector(out, v.begin(), v.end());
 }
 
 template<typename T, std::size_t Size>
-std::ostream& operator<<(std::ostream& out, std::array<T, Size> const& a) {
+std::ostream& operator<<(std::ostream& out, const std::array<T, Size>& a) {
   return printVector(out, a.begin(), a.end());
 }
 
@@ -98,17 +92,17 @@ std::ostream& printList(std::ostream& out, Iterator begin, Iterator end) {
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::list<T> const& v) {
+std::ostream& operator<<(std::ostream& out, const std::list<T>& v) {
   return printList(out, v.begin(), v.end());
 }
 
 template<typename T1, typename T2>
-std::ostream& printPair(std::ostream& out, std::pair<T1, T2> const& p) {
+std::ostream& printPair(std::ostream& out, const std::pair<T1, T2>& p) {
   return out << '{' << p.first << ", " << p.second << '}';
 }
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::pair<T1, T2> const& p) {
+std::ostream& operator<<(std::ostream& out, const std::pair<T1, T2>& p) {
   return printPair(out, p);
 }
 
@@ -118,7 +112,7 @@ std::ostream& printMap(std::ostream& out, Iterator begin, Iterator end) {
 }
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::map<T1, T2> const& m) {
+std::ostream& operator<<(std::ostream& out, const std::map<T1, T2>& m) {
   return printMap(out, m.begin(), m.end());
 }
 
@@ -128,17 +122,17 @@ std::ostream& printSet(std::ostream& out, Iterator begin, Iterator end) {
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::set<T> const& s) {
+std::ostream& operator<<(std::ostream& out, const std::set<T>& s) {
   return printSet(out, s.begin(), s.end());
 }
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, std::unordered_map<T1, T2> const& u) {
+std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& u) {
   return printMap(out, u.begin(), u.end());
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, std::unordered_set<T> const& s) {
+std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& s) {
   return printSet(out, s.begin(), s.end());
 }
 
@@ -166,5 +160,3 @@ template<typename T1, typename T2, typename T3, typename T4, typename T5>
 void print(T1 const& t1, T2 const& t2, T3 const& t3, T4 const& t4, T5 const& t5, char end = '\n') {
   std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << ' ' << t5 << end;
 }
-
-

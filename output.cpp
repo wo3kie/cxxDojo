@@ -35,7 +35,6 @@ void output_tests() {
     oss << std::vector<int>{1, 2, 3};
     assert(std::string("[1,2,3]") == oss.str());
   }
-
   {
     std::ostringstream oss;
     oss << std::array<int, 0>();
