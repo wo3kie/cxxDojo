@@ -391,6 +391,9 @@ Implement `partition` and `stable_partition` algorithms.
 **qr.cpp**  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
   
+**quick_sort.cpp**  
+Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -490,10 +493,7 @@ Can you get a container type from its iterator?
     );
 }
 ```
-
-**quick_sort.cpp**  
-Implement the quick sort algorithm. Can you use any standard library function to do it?
-  
+    
 **gsl/interpolation.cpp**  
 Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?
 
