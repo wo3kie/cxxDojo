@@ -417,6 +417,21 @@ Implement a function to rotate the contents of a container around a pivot elemen
 **scaling.cpp**  
 Implement the functions for _mean scaling_ and _standard scaling_. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
   
+**scope_exit.cpp**  
+Implement a scope quard class.
+
+From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf), a *scope_exit* is a generic RAII wrapper class which ties zero or one resource to a clean-up/completion routine which is bound by scope, ensuring execution at scope exit.
+
+```{r, engine='cpp'}
+{
+  FILE * file = open("filename.txt", "r");
+  auto fileGuard = make_scope_exit(
+    [&file](){ close(file); }
+  );
+  ...
+}
+```
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -446,22 +461,7 @@ Verified OK
 $ echo "C--" | openssl dgst -sha1 -verify key.pub -signature signature
 Verification Failure
 ```
-
-**scope_exit.cpp**  
-Implement a scope quard class.
-
-From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf), a *scope_exit* is a generic RAII wrapper class which ties zero or one resource to a clean-up/completion routine which is bound by scope, ensuring execution at scope exit.
-
-```{r, engine='cpp'}
-{
-  FILE * file = open( "filename.txt", "r" );
-  auto fileGuard = make_scope_exit(
-    [ & file ](){ close( file ); }
-  );
-  ...
-}
-```
-    
+      
 **timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.
 

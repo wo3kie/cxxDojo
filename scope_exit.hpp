@@ -11,6 +11,10 @@
 #include <iostream>
 #include <type_traits>
 
+/*
+ * scope_exit
+ */
+
 template<typename F>
 struct scope_exit {
 private:
@@ -45,6 +49,10 @@ public:
     m_doIt = false;
   }
 };
+
+/*
+ * make_scope_exit
+ */
 
 template<typename F>
 scope_exit<typename std::remove_reference<F>::type> make_scope_exit(F&& f) {
