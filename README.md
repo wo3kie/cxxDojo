@@ -413,7 +413,10 @@ Implement a function to rotate the contents of a container around a pivot elemen
   rotate_left([1 2'3 4 5 6 7]) == [3 4 5 6 7 2 1]
   rotate_right([1 2'3 4 5 6 7]) == [6 7 1 2 3 4 5]
 ```
-
+  
+**scaling.cpp**  
+Implement the functions for _mean scaling_ and _standard scaling_. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -558,9 +561,6 @@ Implement simple examples of a `tuple` class using either composition or inherit
 **rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
   
-**scaling.cpp**  
-Implement functions for mean scaling and standard scaling. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
-
 **gsl/pca.cpp**  
 Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
   

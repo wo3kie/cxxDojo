@@ -12,44 +12,14 @@
  *      $ ./scaling
  */
 
-/*
- * From Wikipedia, https://en.wikipedia.org/wiki/Feature_scaling
- */
-
-#include <algorithm>
 #include <cassert>
-#include <tuple>
 
 #include "./feq.hpp"
-#include "./std_dev.hpp"
+#include "./scaling.hpp"
 
-template<typename IteratorIn, typename IteratorOut>
-void rescale(IteratorIn const begin, IteratorIn const end, IteratorOut out) {
-  typedef typename std::iterator_traits<IteratorIn>::value_type value_type;
-
-  if(begin == end) {
-    return;
-  }
-
-  IteratorIn minIt;
-  IteratorIn maxIt;
-
-  std::tie(minIt, maxIt) = std::minmax_element(begin, end);
-
-  value_type const min = *minIt;
-  value_type const max = *maxIt;
-
-  if(min == max) {
-    std::copy(begin, end, out);
-    return;
-  }
-
-  auto const f = [&min, &max](value_type x) -> double {
-    return 1.0 * (x - min) / (max - min);
-  };
-
-  std::transform(begin, end, out, f);
-}
+/*
+ * rescale_test
+ */
 
 void rescale_test() {
   {
@@ -78,32 +48,12 @@ void rescale_test() {
   }
 }
 
-template<typename IteratorIn, typename IteratorOut>
-void standardize(IteratorIn const begin, IteratorIn const end, IteratorOut out) {
-  typedef typename std::iterator_traits<IteratorIn>::value_type value_type;
-
-  if(begin == end) {
-    return;
-  }
-
-  double const sD = stdDev(begin, end);
-
-  if(sD == 0) {
-    std::copy(begin, end, out);
-    return;
-  }
-
-  double const m = mean(begin, end);
-
-  auto const f = [&sD, &m](value_type x) -> double {
-    return 1.0 * (x - m) / sD;
-  };
-
-  std::transform(begin, end, out, f);
-}
+/*
+ * standardize_test
+ */
 
 void standardize_test() {
-  auto const feqDouble = [](double d1, double d2) -> bool {
+  const auto feqDouble = [](double d1, double d2) -> bool {
     return feq(d1, d2);
   };
 
@@ -135,6 +85,10 @@ void standardize_test() {
     assert(std::equal(actual.begin(), actual.end(), expected.begin(), expected.end(), feqDouble));
   }
 }
+
+/*
+ * main
+ */
 
 int main() {
   rescale_test();
