@@ -406,6 +406,14 @@ Implement a program to rotate inplace matrix to right by 90 degrees
 7 8 9    9 6 3
 ```
   
+**rotate.cpp**  
+Implement a function to rotate the contents of a container around a pivot element.  
+  
+```{r, engine='bash'}
+  rotate_left([1 2'3 4 5 6 7]) == [3 4 5 6 7 2 1]
+  rotate_right([1 2'3 4 5 6 7]) == [6 7 1 2 3 4 5]
+```
+
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -480,9 +488,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor desi
 **xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?
   
-**rotate.cpp**  
-Implement 'rotate' function.
-
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
 
 **void_t.cpp**  

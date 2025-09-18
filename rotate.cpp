@@ -15,10 +15,14 @@
 #include <cassert>
 #include <vector>
 
-#include "./rotate.hpp"
 #include "./output.hpp"
+#include "./rotate.hpp"
 
 using VI = std::vector<int>;
+
+/*
+ * rotate_right_test
+ */
 
 template<typename Rotate>
 void rotate_right_test(Rotate r) {
@@ -57,6 +61,10 @@ void rotate_right_test(Rotate r) {
   assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 }
 
+/*
+ * rotate_left_test
+ */
+
 template<typename Rotate>
 void rotate_left_test(Rotate r) {
   VI array;
@@ -89,6 +97,10 @@ void rotate_left_test(Rotate r) {
   r(array.begin(), array.begin() + 6, array.end());
   assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
 }
+
+/*
+ * main
+ */
 
 int main() {
   rotate_left_test(rotate_left_1<VI::iterator>);
