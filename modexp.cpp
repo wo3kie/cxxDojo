@@ -18,6 +18,10 @@
 
 #include "./modexp.hpp"
 
+/*
+ * modexp_test
+ */
+
 void modexp_test() {
   for(unsigned a = 1; a < 10; ++a) {
     for(unsigned exp = 1; exp < 10; ++exp) {
@@ -27,6 +31,10 @@ void modexp_test() {
     }
   }
 }
+
+/*
+ * main
+ */
 
 int main() {
   modexp_test();

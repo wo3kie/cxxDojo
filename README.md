@@ -356,6 +356,9 @@ Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](h
 **member_offset.cpp**  
 Implement a function to calculate struct/class member offert.
   
+**modexp.cpp**  
+Implement a function to perform modular exponentiation.
+    
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -554,9 +557,6 @@ Find struct/class layout for the most common cases.
 **tuple.cpp**  
 Implement simple examples of a `tuple` class using either composition or inheritance.
     
-**modexp.cpp**  
-Implement a function to calculate quickly exponential function with modulo operation.
-  
 **rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
   
