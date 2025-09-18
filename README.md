@@ -529,14 +529,7 @@ Implement a program to rotate inplace matrix to right by 90 degrees
 4 5 6 -> 8 5 2
 7 8 9    9 6 3
 ```
-
-**parenthesis.cpp**  
-Implement a program to generate all strings correctly matched _n_ pairs of parenthesis, eg.:
-
-```{r, engine='bash'}
-3: , , (), ()(), ()()(), ()(()), (()), (())(), (()()), ((()))
-```
-
+  
 **typeErasure.*.cpp**  
 Implement a program representing the type erasure idiom.
 
