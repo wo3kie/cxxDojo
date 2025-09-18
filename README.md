@@ -394,6 +394,9 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 **quick_sort.cpp**  
 Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
   
+**reverse_words.cpp**  
+Implement a program that reverses the words in a given sentence.
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -520,10 +523,7 @@ Implement a function to solve a first order ordinary differential equation numer
     
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
-
-**reverse_words.cpp**  
-Implement a program to reverse words in a given sentence.
-
+  
 **rotate_matrix.cpp**  
 Implement a program to rotate inplace matrix to right by 90 degrees
 

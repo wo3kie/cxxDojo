@@ -20,6 +20,10 @@
 #include <string>
 #include <vector>
 
+/*
+ * reverseWords
+ */
+
 std::string reverseWords(std::string string) {
   std::reverse(string.begin(), string.end());
 
@@ -44,6 +48,10 @@ std::string reverseWords(std::string string) {
 
   return string;
 }
+
+/*
+ * main
+ */
 
 int main() {
   assert(reverseWords("This is a test") == "test a is This");
