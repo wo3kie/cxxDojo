@@ -35,10 +35,14 @@
 #include <queue>
 #include <thread>
 
+/*
+ * Buffer
+ */
+
 template<typename T>
 class Buffer {
 public:
-  void push(T const& t) {
+  void push(const T& t) {
     std::unique_lock<std::mutex> lock(m_mutex);
     m_queue.push(t);
   }
@@ -61,7 +65,11 @@ private:
   std::queue<T> m_queue;
 };
 
-bool exec(char const* const command, std::function<void(char const*)> const onRead) {
+/*
+ * exec
+ */
+
+bool exec(const char* const command, const std::function<void(const char*)> onRead) {
   FILE* const pipe = popen(command, "r");
 
   if(! pipe) {
@@ -81,6 +89,10 @@ bool exec(char const* const command, std::function<void(char const*)> const onRe
   return true;
 }
 
+/*
+ * producer
+ */
+
 void producer(Buffer<std::string>& buffer) {
   std::string line;
 
@@ -89,8 +101,12 @@ void producer(Buffer<std::string>& buffer) {
   }
 }
 
-void consumer(std::string const& command, Buffer<std::string>& buffer) {
-  auto const print = [](std::string const& text) {
+/*
+ * consumer
+ */
+
+void consumer(const std::string& command, Buffer<std::string>& buffer) {
+  const auto print = [](const std::string& text) {
     std::cout << std::this_thread::get_id() << ": " << text;
   };
 
@@ -109,6 +125,10 @@ void consumer(std::string const& command, Buffer<std::string>& buffer) {
   }
 }
 
+/*
+ * main
+ */
+
 int main(int argc, char* argv[]) {
   std::string command;
 
@@ -121,7 +141,7 @@ int main(int argc, char* argv[]) {
 
   threads.push_back(std::thread(&producer, std::ref(buffer)));
 
-  unsigned const cores = std::thread::hardware_concurrency();
+  const unsigned cores = std::thread::hardware_concurrency();
 
   for(unsigned i = 0; i < 2 * cores; ++i) {
     threads.push_back(std::thread(&consumer, command, std::ref(buffer)));

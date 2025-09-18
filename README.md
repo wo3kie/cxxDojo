@@ -364,7 +364,27 @@ Implement the output stream operator (`operator<<`) for basic STL containers suc
     
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
+  
+**par.cpp**  
+Create a function to execute shell commands in parallel, inspired by [GNU Parallel](http://www.gnu.org/software/parallel/).
 
+```{r, engine='bash'}
+$ echo {1..10} > 1-10-file
+$ sed -i 's/ /\n/g' 1-10-file
+$
+$ cat 1-10-file | ./par echo
+140556950165248: 1
+140556941772544: 2
+140556950165248: 3
+140556941772544: 4
+140556950165248: 5
+140556941772544: 6
+140556950165248: 7
+140556941772544: 8
+140556941772544: 10
+140556950165248: 9
+```
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -409,27 +429,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
-
-**par.cpp**  
-Implement a function to execute shell commands in parallel. As an example follow [GNU parallel](http://www.gnu.org/software/parallel/).
-
-```{r, engine='bash'}
-$ echo {1..10} > 1-10-file
-$ sed -i 's/ /\n/g' 1-10-file
-$
-$ cat 1-10-file | ./par echo
-140556950165248: 1
-140556941772544: 2
-140556950165248: 3
-140556941772544: 4
-140556950165248: 5
-140556941772544: 6
-140556950165248: 7
-140556941772544: 8
-140556941772544: 10
-140556950165248: 9
-```
-  
+    
 **timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.
 
