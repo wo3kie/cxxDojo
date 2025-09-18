@@ -431,6 +431,9 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
+
+**std_dev.cpp**  
+Implement a function to calculate the standard deviation of a given container of numbers.  
   
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
