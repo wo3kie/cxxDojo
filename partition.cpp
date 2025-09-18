@@ -20,6 +20,10 @@
 
 typedef std::vector<int> VI;
 
+/*
+ * partition_if_test
+ */
+
 void partition_if_test() {
     const auto isEven = [](int i) { return i % 2 == 0; };
     const auto isOdd = [](int i) { return i % 2 != 0; };
@@ -78,6 +82,10 @@ void partition_if_test() {
     }
 }
 
+/*
+ * stable_partition_if_test
+ */
+
 void stable_partition_if_test(){
     const auto isEven = [](int i) { return i % 2 == 0; };
     const auto isOdd = [](int i) { return i % 2 != 0; };
@@ -135,6 +143,10 @@ void stable_partition_if_test(){
         assert((array == VI{1, 3, 5, 7, 9, 0, 2, 4, 6, 8}));
     }
 }
+
+/*
+ * main
+ */
 
 int main() {
     partition_if_test();

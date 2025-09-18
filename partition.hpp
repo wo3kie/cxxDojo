@@ -1,7 +1,3 @@
-/*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
- *
 #pragma once
 
 /*
@@ -13,6 +9,10 @@
  */
 
 #include "./rotate.hpp"
+
+/*
+ * partition_if
+ */
 
 template<typename Iterator, typename UnaryPredicate>
 Iterator partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
@@ -41,10 +41,18 @@ Iterator partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
     return end;
 }
 
+/*
+ * partition_if
+ */
+
 template<typename Container, typename UnaryPredicate>
 typename Container::iterator partition_if(Container& container, UnaryPredicate pred) {
     return partition_if(container.begin(), container.end(), pred);
 }
+
+/*
+ * stable_partition_if
+ */
 
 template<typename Iterator, typename UnaryPredicate>
 Iterator stable_partition_if(Iterator begin, Iterator end, UnaryPredicate pred) {
@@ -90,9 +98,11 @@ Iterator stable_partition_if(Iterator begin, Iterator end, UnaryPredicate pred) 
     }
 }
 
+/*
+ * stable_partition_if
+ */
+
 template<typename Container, typename UnaryPredicate>
 typename Container::iterator stable_partition_if(Container& container, UnaryPredicate pred) {
     return stable_partition_if(container.begin(), container.end(), pred);
 }
-
-

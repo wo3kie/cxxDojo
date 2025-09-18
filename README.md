@@ -385,6 +385,9 @@ $ cat 1-10-file | ./par echo
 140556950165248: 9
 ```
   
+**partition.cpp**  
+Implement `partition` and `stable_partition` algorithms. 
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -571,9 +574,6 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 **trie.cpp**  
 Implement TRIE data structure.  
     
-**partition.cpp**  
-Implement partition and stable_partition algorithms.  
-  
 **tuple_utils.cpp**  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
       
