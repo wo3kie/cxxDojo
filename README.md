@@ -353,6 +353,9 @@ Implement a function to find the mean value of provided numbers.
 **mean_squared_error.cpp**
 Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) the MSE is the average squared difference between the estimated values and the true value. 
   
+**member_offset.cpp**  
+Implement a function to calculate struct/class member offert.
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
 
@@ -547,10 +550,7 @@ Implement a function to print a tuple content.
 
 **layout.cpp**  
 Find struct/class layout for the most common cases.
-
-**member_offset.cpp**  
-Implement a function to calculate struct/class member offert.
-
+  
 **tuple.cpp**  
 Implement simple examples of a `tuple` class using either composition or inheritance.
     

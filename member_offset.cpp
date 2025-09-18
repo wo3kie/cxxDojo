@@ -15,18 +15,20 @@
 #include <cassert>
 #include <iostream>
 
-#include "./union_cast.hpp"
+#include "./member_offset.hpp"
 
-template<typename Type, typename Class>
-long long getMemberOffset(Type(Class::*member)) {
-  return union_cast<long long>(member);
-}
-
+/*
+ * struct S
+ */
 struct S {
   int i;
   float f;
   char c;
 };
+
+/*
+ * main
+ */
 
 int main() {
   assert(getMemberOffset(&S::i) == 0LL);
