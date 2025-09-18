@@ -397,6 +397,15 @@ Write a `quicksort` implementation. Can any STL utilities be used to simplify th
 **reverse_words.cpp**  
 Implement a program that reverses the words in a given sentence.
   
+**rotate_matrix.cpp**  
+Implement a program to rotate inplace matrix to right by 90 degrees
+
+```{r, engine='bash'}
+1 2 3    7 4 1
+4 5 6 -> 8 5 2
+7 8 9    9 6 3
+```
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -523,16 +532,7 @@ Implement a function to solve a first order ordinary differential equation numer
     
 **ssl/https.cpp**  
 Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
-  
-**rotate_matrix.cpp**  
-Implement a program to rotate inplace matrix to right by 90 degrees
-
-```{r, engine='bash'}
-1 2 3    7 4 1
-4 5 6 -> 8 5 2
-7 8 9    9 6 3
-```
-  
+    
 **typeErasure.*.cpp**  
 Implement a program representing the type erasure idiom.
 
