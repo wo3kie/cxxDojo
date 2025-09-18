@@ -347,6 +347,9 @@ pnm: 1738803µs
 pmn: 962802µs
 ```
   
+**mean.cpp**  
+Implement a function to find the mean value of provided numbers.  
+  
 **mean_squared_error.cpp**
 Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) the MSE is the average squared difference between the estimated values and the true value. 
   

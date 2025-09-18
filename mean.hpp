@@ -10,8 +10,12 @@
 
 #include <vector>
 
+/*
+ * mean
+ */
+
 template<typename Iterator>
-double mean(Iterator begin, Iterator const end) {
+double mean(Iterator begin, const Iterator end) {
   double totalSum = 0;
   unsigned counter = 0;
 
@@ -24,6 +28,6 @@ double mean(Iterator begin, Iterator const end) {
 }
 
 template<typename T>
-double mean(std::vector<T> const& array) {
+double mean(const std::vector<T>& array) {
   return mean(array.begin(), array.end());
 }
