@@ -469,10 +469,7 @@ From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rota
 
 **void_t.cpp**  
 What is a void_t and how it can be useful?
-
-**pi.cpp**  
-Estimate PI number using Monte-Carlo method.
-
+ 
 From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo method is a computational algorithm that relies on repeated random sampling to obtain numerical results.
   
 **get_container_type.cpp**  
