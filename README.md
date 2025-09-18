@@ -540,10 +540,7 @@ Check if a tree is a full tree or a complete tree. A full tree is a tree in whic
 
 **circular_buffer.cpp**  
 Implement a circular buffer.
-
-**print_tuple.cpp**  
-Implement a function to print a tuple content.
-
+  
 **layout.cpp**  
 Find struct/class layout for the most common cases.
   
