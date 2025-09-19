@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 mean.cpp -o mean -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 mean.cpp -o mean -lgsl -lgslcblas
  *
  * Usage:
  *      $ ./mean
@@ -16,8 +16,8 @@
 
 #include <gsl/gsl_statistics.h>
 
-#include "./feq.hpp"
-#include "./mean.hpp"
+#include "../feq.hpp"
+#include "../mean.hpp"
 
 int main() {
   std::vector<double> const array1{1.0, 2.0, 3.0};

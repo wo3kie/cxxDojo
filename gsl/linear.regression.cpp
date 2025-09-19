@@ -15,8 +15,8 @@
 #include <cmath>
 #include <iostream>
 
-#include "../linear.regression.hpp"
-#include "./feq.hpp"
+#include "../linear_regression.hpp"
+#include "../feq.hpp"
 
 #include <gsl/gsl_fit.h>
 

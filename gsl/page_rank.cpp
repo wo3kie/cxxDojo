@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 page_rank.cpp -o page_rank -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 page_rank.cpp -o page_rank -lgsl -lgslcblas
  *
  * Usage:
  *      $ ./page_rank

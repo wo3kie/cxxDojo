@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 variance.cpp -o variance -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 variance.cpp -o variance -lgsl -lgslcblas
  *
  * Usage:
  *      $ ./variance
@@ -16,8 +16,12 @@
 
 #include <gsl/gsl_statistics.h>
 
-#include "./feq.hpp"
-#include "./variance.hpp"
+#include "../feq.hpp"
+#include "../variance.hpp"
+
+/*
+ * main
+ */
 
 int main() {
   {

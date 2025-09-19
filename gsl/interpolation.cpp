@@ -6,7 +6,7 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 interpolation.cpp -o interpolation -lgsl -lgslcblas -lm
+ *      g++ --std=c++20 interpolation.cpp -o interpolation -lgsl -lgslcblas
  *
  * Usage:
  *      $ ./interpolation
@@ -22,7 +22,7 @@
 
 #include <gsl/gsl_linalg.h>
 
-#include "./feq.hpp"
+#include "../feq.hpp"
 
 namespace ublas = boost::numeric::ublas;
 
