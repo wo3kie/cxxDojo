@@ -13,7 +13,6 @@
 #include <map>
 #include <string>
 
-namespace aho_corasick {
 
 struct Node {
   void free() {
@@ -162,5 +161,3 @@ private:
 private:
   Node* _root;
 };
-
-} // namespace aho_corasick
