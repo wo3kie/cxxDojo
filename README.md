@@ -7,23 +7,20 @@ Implementation of some programmic puzzles
 https://github.com/wo3kie/cxxdojo
 
 ## Requirements
-C++11
+C++20
 boost
-xml2
-openssl
-lua
 gsl
-
+  
 ## How to build it?
 make
-
+  
 ## List of puzzles
-
+  
 **aho_corasick.cpp**  
 Implement the Aho-Corasick algorithm.
-
+  
 From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), the Aho-Corasick algorithm can be used to locate elements of a finite set of strings (the "dictionary") within an input text.
-
+  
 ```
 $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 --------------------------------------------------------------------------------
@@ -36,43 +33,42 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 >                                                                   or
 --------------------------------------------------------------------------------
 ```
-
+  
 **allocator.cpp**  
 Implement a simple allocator. Follow std::allocator as an example.
-
+  
 **apply.cpp**  
 Implement a simple version of `std::apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
-
+  
 ```{r, engine='cpp'}
 void f(int, float, char){ /* ... */ }
 auto t = std::make_tuple(1, 2.2, '3');
 apply(f, t);
 ```
-
+  
 **async.cpp**  
 Implement a recursive `min_max` function that leverages `std::async` to concurrently compute the minimum and maximum values within a given range.
-
   
 ```{r, engine='cpp'}
 assert(min_max({1, 2, 3, 4, 5}) == {1, 5});
 ```
-
+  
 **base64.cpp**  
 Implement a program to do _base64_ encoding/decoding. From [Wikipedia](https://en.wikipedia.org/wiki/Base64) _base64_ is encoding scheme that transforms binary data into a sequence of printable characters, limited to a set of 64 unique characters.
   
 ```{r, engine='bash'}
 $ ./base64.encode "Hello World"
 SGVsbG8gV29ybGQ
-
+  
 $ ./base64.decode SGVsbG8gV29ybGQ
 Hello World
 ```
-
+  
 **bayes.cpp**  
 Implement a simple program for _ham_/_spam_ messages classification. Use the naive Bayes approach.
-
+  
 From [Wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier), naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes theorem with strong (naive) independence assumptions between the features.
-
+  
 **bellman_ford.cpp**  
 Implement the Bellman-Ford algorithm.  
   
@@ -93,15 +89,21 @@ Implement the Box-Muller algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
   
+**circular_buffer.cpp**  
+Implement a circular buffer.
+  
 **concurent_queue.cpp**  
 Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
+  
+**concat_view.cpp**  
+Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges. 
   
 **concepts.cpp**  
 Implement some C++ `std`-like concepts examples demonstrating some different syntax. 
   
 **convert_base.cpp**  
 Implement a function that converts a number from one numeric base to another.
-
+  
 ```
 assert(convertBase("101010", 2, 8) == "52");
 assert(convertBase("52", 8, 10) == "42");
@@ -153,6 +155,9 @@ Implement a function to perform exponential smoothing average (EMA) on a given s
 **fdm.cpp**  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.
   
+**feq.cpp**  
+Create a function to compare two floating-point values within a given tolerance.
+  
 **find_union.cpp**  
 Implement a find-union algorithm.  
   
@@ -184,9 +189,30 @@ Implement a function to calculate the greatest common divisor.
 **gramSchmidt.cpp**  
 Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
   
+**gsl/correlation.cpp**  
+Implement a function to calculate the correlation between two collections using gsl library.
+
+**gsl/covariance.cpp**  
+Implement a function to calculate the covariance between two collections using gsl library.
+  
+**gsl/interpolation.cpp**  
+Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?
+
+**gsl/mean.cpp**  
+Implement a function to calculate a mean value from a collection.
+
+**gsl/page_rank.cpp**  
+Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
+  
+**gsl/pca.cpp**  
+Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
+  
+**gsl/variance.cpp**  
+Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
+  
 **gzip.cpp**  
 Implement a function to compress and decompress text using the _gzip_ algorithm.
-    
+  
 **hanoi.cpp**  
 Implement a program to solve the Tower of Hanoi problem.
 
@@ -358,10 +384,13 @@ Implement a function to calculate struct/class member offert.
   
 **modexp.cpp**  
 Implement a function to perform modular exponentiation.
-    
+  
+**ode.cpp**  
+Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
+  
 **output.cpp**  
 Implement the output stream operator (`operator<<`) for basic STL containers such as `std::array`, `std::vector`, `std::list`...
-    
+  
 **parameter_pack.cpp**  
 "Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
   
@@ -431,52 +460,10 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
-
+  
 **std_dev.cpp**  
 Implement a function to calculate the standard deviation of a given container of numbers.  
   
-**union_cast.cpp**  
-Implement union_cast.
-  
-**variance.cpp**
-Implement the `variance` function.
-  
-**visitor.cpp**  
-Implement an example of the visitor design pattern.
-  
-**void_t.cpp**  
-What is a `void_t` and how it can be useful?
-  
-**xml/xpath.cpp**  
-Implement a program to print nodes from xml matching a given XPath.
-```{r, engine='bash'}
-$ ./xpath xpath.xml "/doc/name/@first"
-David
-Shane
-Joseph
-Stephen
-```
-
-**feq.cpp**  
-Create a function to compare two floating-point values within a given tolerance.
-    
-**ssl/sign.verify.cpp**  
-Write a program to sign/verify a message with a RSA key.
-
-```{r, engine='bash'}
-$ openssl genrsa -des3 -out private.key 1024
-
-$ openssl rsa -in private.key -pubout > key.pub
-
-$ echo "C++" | openssl dgst -sha1 -sign private.key -out signature
-
-$ echo "C++" | openssl dgst -sha1 -verify key.pub -signature signature
-Verified OK
-
-$ echo "C--" | openssl dgst -sha1 -verify key.pub -signature signature
-Verification Failure
-```
-      
 **timer.cpp**  
 Implement a function to measure an execution time of a some piece of code.
 
@@ -494,88 +481,33 @@ $ ./timer
 9
 702µs
 ```
-    
-From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
-    
-**xml/xml.cpp**  
-Implement a program to parse an xml document. Can you use only boost for it?
   
-From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
-   
-**get_container_type.cpp**  
-Can you get a container type from its iterator?
-
-```{r, engine='cpp'}
-{
-    std::vector< int >::iterator vectorIterator;
-
-    static_assert(
-        std::is_same<
-            decltype( getContainerType( vectorIterator ) ) ),
-            std::vector< int >
-        >::value
-    );
-}
-```
-    
-**gsl/interpolation.cpp**  
-Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?
-
-**gsl/mean.cpp**  
-Implement a function to calculate a mean value from a collection.
-
-**gsl/variance.cpp**  
-Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
-
-**standardDeviation.cpp**  
-Implement a function to calculate a standard deviation. From [Wikipedia](https://en.wikipedia.org/wiki/Standard_deviation), standard deviation indicates how the data values tend to be close to the mean.
-
-**gsl/correlation.cpp**  
-Implement a function to calculate the correlation between two collections using gsl library.
-
-**gsl/covariance.cpp**  
-Implement a function to calculate the covariance between two collections using gsl library.
-  
-**lu.cpp**  
-Implement a function to make a LU decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/LU_decomposition) LU decomposition factors a matrix _A_ into a product _A_=_LU_ of a lower triangular matrix _L_ and an upper trianguar matrix _U_.
-
-**ode.cpp**  
-Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
-    
-**ssl/https.cpp**  
-Implement a function to make secure connection with https server. Use can use Bing Web Search API as a use case.
-    
-**typeErasure.*.cpp**  
-Implement a program representing the type erasure idiom.
-
-From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
-
 **tree_classification.cpp**  
 Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-
-**circular_buffer.cpp**  
-Implement a circular buffer.
   
-**layout.cpp**  
-Find struct/class layout for the most common cases.
+**trie.cpp**  
+Implement TRIE data structure.  
   
 **tuple.cpp**  
 Implement simple examples of a `tuple` class using either composition or inheritance.  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`. 
-    
-**rho_pollard.cpp**  
-Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
   
-**gsl/pca.cpp**  
-Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
+**typeErasure.*.cpp**  
+Implement a program representing the type erasure idiom.
+
+From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
   
-**gsl/page_rank.cpp**  
-Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
-      
-**trie.cpp**  
-Implement TRIE data structure.  
-          
-**concat_view.cpp**  
-Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
- 
+**union_cast.cpp**  
+Implement union_cast.
+  
+**variance.cpp**
+Implement the `variance` function.
+  
+**visitor.cpp**  
+Implement an example of the visitor design pattern.
+  
+From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
+  
+**void_t.cpp**  
+What is a `void_t` and how it can be useful?
   
