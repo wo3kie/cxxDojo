@@ -435,6 +435,9 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 **std_dev.cpp**  
 Implement a function to calculate the standard deviation of a given container of numbers.  
   
+**union_cast.cpp**  
+Implement union_cast.
+  
 **variance.cpp**
 Implement the `variance` function.
   
@@ -491,10 +494,7 @@ $ ./timer
 9
 702µs
 ```
-  
-**union_cast.cpp**  
-Implement union_cast.
-  
+    
 From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
     
 **xml/xml.cpp**  

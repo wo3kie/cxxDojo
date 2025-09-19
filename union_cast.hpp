@@ -8,6 +8,10 @@
  *      Lukasz Czerwinski
  */
 
+ /*
+  * union_cast
+  */
+
 template<typename ToType, typename FromType>
 ToType union_cast(const FromType& fromValue) {
   static_assert(sizeof(ToType) == sizeof(FromType), "union_cast");
