@@ -21,6 +21,7 @@ struct Bird;
 /*
  * IVisitor
  */
+
 struct IVisitor {
   virtual void visit(Human& human) = 0;
   virtual void visit(Fish& fish) = 0;
@@ -30,6 +31,7 @@ struct IVisitor {
 /*
  * IVisitable
  */
+
 struct IVisitable {
   virtual void accept(IVisitor& visitor) = 0;
 };
@@ -37,6 +39,11 @@ struct IVisitable {
 /*
  * Concrete classes, Human, Fish, Bird, with no common interface 
  */
+
+ /*
+ * Human
+ */
+
 struct Human: public IVisitable {
   void accept(IVisitor& visitor) override {
     visitor.visit(*this);
@@ -47,6 +54,10 @@ struct Human: public IVisitable {
   }
 };
 
+/*
+ * Fish
+ */
+
 struct Fish: public IVisitable {
   void accept(IVisitor& visitor) override {
     visitor.visit(*this);
@@ -56,6 +67,10 @@ struct Fish: public IVisitable {
     std::cout << "Fish::swim" << std::endl;
   }
 };
+
+/*
+ * Bird
+ */
 
 struct Bird: public IVisitable {
   void accept(IVisitor& visitor) override {
@@ -70,6 +85,7 @@ struct Bird: public IVisitable {
 /*
  * GoVisitor
  */
+
 struct GoVisitor: public IVisitor {
   void visit(Human& human) override {
     human.walk();
@@ -87,6 +103,7 @@ struct GoVisitor: public IVisitor {
 /*
  * main
  */
+
 int main() {
   GoVisitor v;
 
