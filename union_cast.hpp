@@ -17,10 +17,10 @@ ToType union_cast(const FromType& fromValue) {
   static_assert(sizeof(ToType) == sizeof(FromType), "union_cast");
 
   union {
-    ToType toValue_;
-    FromType fromValue_;
-  } union_;
+    ToType _toValue;
+    FromType _fromValue;
+  } _union;
 
-  union_.fromValue_ = fromValue;
-  return union_.toValue_;
+  _union._fromValue = fromValue;
+  return _union._toValue;
 }

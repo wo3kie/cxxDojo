@@ -17,23 +17,23 @@ namespace aho_corasick {
 
 struct Node {
   void free() {
-    for(const auto pair : children_) {
+    for(const auto pair : _children) {
       pair.second->free();
     }
 
     delete this;
   }
 
-  char letter_ = 0;
-  bool end_ = false;
-  Node* parent_ = nullptr;
-  Node* failure_ = nullptr;
-  std::map<char, Node*> children_;
+  char _letter = 0;
+  bool _end = false;
+  Node* _parent = nullptr;
+  Node* _failure = nullptr;
+  std::map<char, Node*> _children;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Node& node) {
-  if(node.parent_) {
-    out << "(" << (&node) << ", " << node.letter_ << ", " << node.end_ << ", (" << node.failure_ << ", " << node.failure_->letter_ << "))";
+  if(node._parent) {
+    out << "(" << (&node) << ", " << node._letter << ", " << node._end << ", (" << node._failure << ", " << node._failure->_letter << "))";
   } else {
     out << "(" << (&node) << ", , , (,)))";
   }
@@ -46,64 +46,64 @@ inline std::string getWord(const Node* const node) {
     return "";
   }
 
-  if(! node->parent_) {
+  if(! node->_parent) {
     return "";
   }
 
-  return getWord(node->parent_) + std::string(1, node->letter_);
+  return getWord(node->_parent) + std::string(1, node->_letter);
 }
 
 struct AhoCorasick {
   AhoCorasick()
-      : root_(new Node()) {
-    root_->failure_ = root_;
+      : _root(new Node()) {
+    _root->_failure = _root;
   }
 
   AhoCorasick(const AhoCorasick&) = delete;
   AhoCorasick(AhoCorasick&& other)
       : AhoCorasick() {
-    std::swap(root_, other.root_);
+    std::swap(_root, other._root);
   }
 
   ~AhoCorasick() {
-    root_->free();
+    _root->free();
   }
 
   AhoCorasick& operator=(const AhoCorasick&) = delete;
   AhoCorasick& operator=(AhoCorasick&& other) {
-    std::swap(root_, other.root_);
+    std::swap(_root, other._root);
     return *this;
   }
 
   void insert(const std::string& word) {
-    Node* node = root_;
+    Node* node = _root;
 
     for(const char letter : word) {
-      const auto found = node->children_.find(letter);
+      const auto found = node->_children.find(letter);
 
-      if(found == node->children_.end()) {
+      if(found == node->_children.end()) {
         Node* const newNode = new Node;
-        newNode->letter_ = letter;
-        newNode->parent_ = node;
-        newNode->failure_ = getFailure(newNode, letter);
+        newNode->_letter = letter;
+        newNode->_parent = node;
+        newNode->_failure = getFailure(newNode, letter);
 
-        node->children_.insert(std::make_pair(letter, newNode));
+        node->_children.insert(std::make_pair(letter, newNode));
         node = newNode;
       } else {
         node = found->second;
       }
     }
 
-    node->end_ = true;
+    node->_end = true;
   }
 
   void search(const std::string& text, const std::function<void(const size_t, const std::string&)>& f) const {
-    const Node* node = root_;
+    const Node* node = _root;
 
     for(size_t i = 0; i < text.size(); ++i) {
       node = move(node, text[i]);
 
-      if(node->end_) {
+      if(node->_end) {
         const std::string word = getWord(node);
 
         f(i + 1 - word.size(), word);
@@ -112,19 +112,19 @@ struct AhoCorasick {
   }
 
   void dump() const {
-    dump_(0, root_);
+    _dump(0, _root);
   }
 
 private:
   const Node* move(const Node* node, const char letter) const {
     while(true) {
-      const auto found = node->children_.find(letter);
+      const auto found = node->_children.find(letter);
 
-      if(found == node->children_.end()) {
-        if(node == root_) {
+      if(found == node->_children.end()) {
+        if(node == _root) {
           return node;
         } else {
-          node = node->failure_;
+          node = node->_failure;
         }
       } else {
         return found->second;
@@ -133,34 +133,34 @@ private:
   }
 
   Node* getFailure(const Node* const node, const char letter) {
-    Node* const parent = node->parent_;
-    Node* parentsFailure = parent->failure_;
+    Node* const parent = node->_parent;
+    Node* parentsFailure = parent->_failure;
 
     while(true) {
-      const auto found = parentsFailure->children_.find(letter);
+      const auto found = parentsFailure->_children.find(letter);
 
-      if(found != parentsFailure->children_.end()) {
+      if(found != parentsFailure->_children.end()) {
         return found->second;
       }
 
-      if(parentsFailure == root_) {
-        return root_;
+      if(parentsFailure == _root) {
+        return _root;
       }
 
-      parentsFailure = parentsFailure->failure_;
+      parentsFailure = parentsFailure->_failure;
     }
   }
 
-  static void dump_(const int indent, const Node* const node) {
+  static void _dump(const int indent, const Node* const node) {
     std::cout << std::string(indent, ' ') << *node << std::endl;
 
-    for(const auto pair : node->children_) {
-      dump_(indent + 4, pair.second);
+    for(const auto pair : node->_children) {
+      _dump(indent + 4, pair.second);
     }
   }
 
 private:
-  Node* root_;
+  Node* _root;
 };
 
 } // namespace aho_corasick

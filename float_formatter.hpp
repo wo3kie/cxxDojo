@@ -20,8 +20,8 @@ inline double round(double value, int place = 1) {
 
 struct FloatFormatter {
   FloatFormatter(double value, int length = 6 /*-1e-01*/)
-      : value_(value)
-      , length_(length) {
+      : _value(value)
+      , _length(length) {
   }
 
   std::ostream& toStream(std::ostream& out) const {
@@ -31,15 +31,15 @@ struct FloatFormatter {
   std::string toString() const {
     std::ostringstream oss;
 
-    if(value_ < 0) {
-      toStreamImpl(oss, value_, length_ - 1);
+    if(_value < 0) {
+      toStreamImpl(oss, _value, _length - 1);
     } else {
-      toStreamImpl(oss, value_, length_);
+      toStreamImpl(oss, _value, _length);
     }
 
     const std::string string = oss.str();
 
-    return std::string(length_ - string.length(), ' ') + string;
+    return std::string(_length - string.length(), ' ') + string;
   }
 
 private:
@@ -83,8 +83,8 @@ private:
   }
 
 private:
-  double value_;
-  int length_;
+  double _value;
+  int _length;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const FloatFormatter& floatFormatter) {

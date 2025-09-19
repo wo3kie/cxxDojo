@@ -11,34 +11,34 @@ namespace iostreams = boost::iostreams;
 
 struct GzipCompressor {
   explicit GzipCompressor(std::ostream& output)
-      : ostream_(&buffer_) {
-    buffer_.push(iostreams::gzip_compressor());
-    buffer_.push(output);
+      : _ostream(&_buffer) {
+    _buffer.push(iostreams::gzip_compressor());
+    _buffer.push(output);
   }
 
   std::ostream& getStream() noexcept {
-    return ostream_;
+    return _ostream;
   }
 
 private:
-  std::ostream ostream_;
-  iostreams::filtering_streambuf<iostreams::output> buffer_;
+  std::ostream _ostream;
+  iostreams::filtering_streambuf<iostreams::output> _buffer;
 };
 
 struct GzipDecompressor {
   explicit GzipDecompressor(std::istream& input)
-      : istream_(&buffer_) {
-    buffer_.push(iostreams::gzip_decompressor());
-    buffer_.push(input);
+      : _istream(&_buffer) {
+    _buffer.push(iostreams::gzip_decompressor());
+    _buffer.push(input);
   }
 
   std::istream& getStream() noexcept {
-    return istream_;
+    return _istream;
   }
 
 private:
-  std::istream istream_;
-  iostreams::filtering_streambuf<iostreams::input> buffer_;
+  std::istream _istream;
+  iostreams::filtering_streambuf<iostreams::input> _buffer;
 };
 
 int main() {

@@ -20,27 +20,27 @@ public:
   Vector& operator=(Vector&&) = default;
 
   Vector(unsigned size, double init = 0.0)
-      : data_(size, init) {
+      : _data(size, init) {
   }
 
   Vector(const std::initializer_list<double>& data)
-      : data_(data) {
+      : _data(data) {
   }
 
   double& operator[](unsigned i) {
-    return data_.at(i);
+    return _data.at(i);
   }
 
   const double& operator[](unsigned i) const {
-    return data_.at(i);
+    return _data.at(i);
   }
 
   unsigned size() const {
-    return data_.size();
+    return _data.size();
   }
 
 private:
-  std::vector<double> data_;
+  std::vector<double> _data;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Vector& vector) {

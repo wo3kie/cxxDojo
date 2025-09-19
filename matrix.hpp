@@ -32,23 +32,23 @@ public:
   Matrix& operator=(Matrix&&) = default;
 
   Matrix(unsigned rows, unsigned columns, double init = 0.0)
-      : matrix_(rows, Vector(columns, init)) {
+      : _matrix(rows, Vector(columns, init)) {
   }
 
   Matrix(const std::initializer_list<std::initializer_list<double>>& data)
-      : matrix_(data.begin(), data.end()) {
+      : _matrix(data.begin(), data.end()) {
   }
 
   Vector& operator[](unsigned i) {
-    return matrix_.at(i);
+    return _matrix.at(i);
   }
 
   const Vector& operator[](unsigned i) const {
-    return matrix_.at(i);
+    return _matrix.at(i);
   }
 
   unsigned rows() const {
-    return matrix_.size();
+    return _matrix.size();
   }
 
   unsigned columns() const {
@@ -56,11 +56,11 @@ public:
       return 0;
     }
 
-    return matrix_[0].size();
+    return _matrix[0].size();
   }
 
 private:
-  std::vector<Vector> matrix_;
+  std::vector<Vector> _matrix;
 };
 
 /*

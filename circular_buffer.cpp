@@ -21,30 +21,30 @@ template<typename T, int Size>
 struct CircularBuffer {
   static_assert(Size > 0, ":(");
 
-  T data_[Size];
-  int end_ = 0;
-  int size_ = 0;
+  T _data[Size];
+  int _end = 0;
+  int _size = 0;
 
   void push(const T& t) {
-    data_[end_] = t;
+    _data[_end] = t;
 
-    end_ = (end_ + 1) % Size;
-    size_ = std::min(size_ + 1, Size);
+    _end = (_end + 1) % Size;
+    _size = std::min(_size + 1, Size);
   }
 
   T get() {
-    if(size_ == 0) {
+    if(_size == 0) {
       throw std::out_of_range(":(");
     }
 
-    int head = end_ - size_;
+    int head = _end - _size;
 
     if(head < 0) {
       head = Size + head;
     }
 
-    const T result = data_[head];
-    size_ -= 1;
+    const T result = _data[head];
+    _size -= 1;
 
     return result;
   }
@@ -52,10 +52,10 @@ struct CircularBuffer {
 
 template<typename T, int Size>
 std::ostream& operator<<(std::ostream& out, const CircularBuffer<T, Size>& buffer) {
-  out << "{E: " << buffer.end_ << ", " << "S: " << buffer.size_ << " [";
+  out << "{E: " << buffer._end << ", " << "S: " << buffer._size << " [";
 
   for(int i = 0; i < Size; ++i) {
-    out << " " << buffer.data_[i];
+    out << " " << buffer._data[i];
   }
 
   return out << "]}";
