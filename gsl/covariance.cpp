@@ -25,7 +25,7 @@ int main() {
   std::vector<double> const array2{3.4, 3.3, 3.0, 5.5, 1.2, 2.4, 3.2, 3.1, 2.9, 3.2};
 
   {
-    double const covarianceValue = covariance<double>(array1, array2);
+    double const covarianceValue = covariance(array1, array2);
     assert(feq(covarianceValue, -0.108889));
   }
 
