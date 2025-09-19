@@ -560,7 +560,8 @@ Implement a circular buffer.
 Find struct/class layout for the most common cases.
   
 **tuple.cpp**  
-Implement simple examples of a `tuple` class using either composition or inheritance.
+Implement simple examples of a `tuple` class using either composition or inheritance.  
+Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`. 
     
 **rho_pollard.cpp**  
 Implement the Pollard's rho algorithm. From [Wikipedia](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm) Pollard's rho algorithm is a integer factorization algorithm.
@@ -573,10 +574,7 @@ Implement the Page Rank algorithm using eigenvalues and eigenvectors.
       
 **trie.cpp**  
 Implement TRIE data structure.  
-    
-**tuple_utils.cpp**  
-Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`.  
-      
+          
 **concat_view.cpp**  
 Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.  
  

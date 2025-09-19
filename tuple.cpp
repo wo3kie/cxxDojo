@@ -6,71 +6,23 @@
  *      Lukasz Czerwinski
  *
  * Compilation:
- *      g++ --std=c++20 cxxTuple.cpp -o cxxTuple
+ *      g++ --std=c++20 tuple.cpp -o tuple
  *
  * Usage:
- *      $ ./cxxTuple
+ *      $ ./tuple
  */
 
 #include <cassert>
 #include <iostream>
 #include <string>
 
+#include "./tuple.hpp"
+
+/*
+ * test
+ */
+
 namespace composition {
-
-template<typename T, typename... Ts>
-struct Tuple {
-  Tuple(T t, Ts... ts)
-      : _t(t)
-      , _ts(ts...) {
-  }
-
-  T _t;
-  Tuple<Ts...> _ts;
-};
-
-template<typename T>
-struct Tuple<T> {
-  Tuple(T t)
-      : _t(t) {
-  }
-
-  T _t;
-};
-
-template<typename... Ts>
-Tuple<Ts...> makeTuple(Ts&&... ts) {
-  return Tuple<Ts...>(std::forward<Ts>(ts)...);
-}
-
-template<int N, typename T, typename... Ts>
-struct Get {
-  static auto get(Tuple<T, Ts...> tuple) {
-    return Get<N - 1, Ts...>::get(tuple._ts);
-  }
-};
-
-template<typename T, typename... Ts>
-struct Get<0, T, Ts...> {
-  static auto get(Tuple<T, Ts...> tuple) {
-    return tuple._t;
-  }
-};
-
-template<int N, typename T, typename... Ts>
-auto get(Tuple<T, Ts...> tuple) {
-  return Get<N, T, Ts...>::get(tuple);
-}
-
-template<typename T, typename... Ts>
-int size(const Tuple<T, Ts...>& tuple) {
-  return 1 + size(tuple._ts);
-}
-
-template<typename T>
-int size(const Tuple<T>& tuple) {
-  return 1;
-}
 
 void test() {
   auto tuple = makeTuple(0, 1.0, '2');
@@ -86,55 +38,6 @@ void test() {
 
 namespace inheritance {
 
-template<typename T, typename... Ts>
-struct Tuple: Tuple<Ts...> {
-  Tuple(T t, Ts... ts)
-      : Tuple<Ts...>(ts...)
-      , _t(t) {
-  }
-
-  T _t;
-};
-
-template<typename T>
-struct Tuple<T> {
-  Tuple(T t)
-      : _t(t) {
-  }
-
-  T _t;
-};
-
-template<typename T, typename... Ts>
-Tuple<T, Ts...> makeTuple(T t, Ts... ts) {
-  return Tuple<T, Ts...>(t, ts...);
-}
-
-template<int N, typename T, typename... Ts>
-struct Get {
-  static auto get(Tuple<T, Ts...> tuple) {
-    // object slicing, Tuple<T, Ts...> --{sliced to base class}-->  Tuple<Ts...>
-    return Get<N - 1, Ts...>::get(tuple);
-  }
-};
-
-template<typename T, typename... Ts>
-struct Get<0, T, Ts...> {
-  static auto get(Tuple<T, Ts...> tuple) {
-    return tuple._t;
-  }
-};
-
-template<int N, typename T, typename... Ts>
-auto get(Tuple<T, Ts...> tuple) {
-  return Get<N, T, Ts...>::get(tuple);
-}
-
-template<typename T, typename... Ts>
-int size(const Tuple<T, Ts...>& tuple) {
-  return 1 + sizeof...(Ts);
-}
-
 void test() {
   auto tuple = makeTuple(0, 1.0, '2');
 
@@ -147,7 +50,85 @@ void test() {
 
 } // namespace inheritance
 
+namespace stl {
+
+void foldl_test() {
+  std::tuple<bool, int, double> tcid{true, 2, 3.3};
+
+  const auto fl = [](int acc, auto a) -> int {
+    return acc + int(a);
+  };
+
+  assert(foldl(fl, 0, tcid) == 1 + 2 + 3);
+}
+
+void foldr_test() {
+  std::tuple<bool, int, double> tcid{true, 2, 3.3};
+
+  const auto fr = [](auto a, int acc) -> int {
+    return int(a) + acc;
+  };
+
+  assert(foldr(fr, 0, tcid) == 1 + 2 + 3);
+}
+
+void hash_test() {
+  std::tuple<bool> tb{false};
+  hash(tb);
+
+  std::tuple<bool, int> tbi{false, 1};
+  hash(tbi);
+
+  std::tuple<bool, int, float> tbif{false, 1, 1.11};
+  hash(tbif);
+}
+
+template<typename T>
+struct IsBig: std::conditional_t<(sizeof(T) > 4), std::true_type, std::false_type> {};
+
+void IsBig_test() {
+  static_assert(IsBig<char>::value == false);
+  static_assert(IsBig<double>::value == true);
+}
+
+void All_test() {
+  static_assert(All<IsBig, std::tuple<char, int, float>>::value == false);
+  static_assert(All<IsBig, std::tuple<double, long, long double>>::value == true);
+}
+
+void Any_test() {
+  static_assert(Any<IsBig, std::tuple<char, int, float>>::value == false);
+  static_assert(Any<IsBig, std::tuple<char, int, double>>::value == true);
+}
+
+void None_test() {
+  static_assert(None<IsBig, std::tuple<char, int, float>>::value == true);
+  static_assert(None<IsBig, std::tuple<char, int, double>>::value == false);
+}
+
+void Foldl_test() {
+  std::tuple<bool, int, float> tbif{false, 1, 1.11};
+
+  static_assert(std::is_same_v<int, Foldl<std::common_type, std::tuple<short, int>>::type>);
+  static_assert(std::is_same_v<double, Foldl<std::common_type, std::tuple<short, int, double>>::type>);
+}
+
+} // namespace stl
+
+/*
+ * main
+ */
+
 int main() {
   composition::test();
   inheritance::test();
+
+  stl::foldl_test();
+  stl::foldr_test();
+  stl::hash_test();
+  stl::IsBig_test();
+  stl::All_test();
+  stl::Any_test();
+  stl::None_test();
+  stl::Foldl_test();
 }
