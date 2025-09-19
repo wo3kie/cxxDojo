@@ -392,7 +392,7 @@ Implement a function to solve a first order ordinary differential equation numer
 Implement the output stream operator (`operator<<`) for basic STL containers such as `std::array`, `std::vector`, `std::list`...
   
 **parameter_pack.cpp**  
-"Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
+Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
   
 **par.cpp**  
 Create a function to execute shell commands in parallel, inspired by [GNU Parallel](http://www.gnu.org/software/parallel/).
