@@ -435,6 +435,15 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 **std_dev.cpp**  
 Implement a function to calculate the standard deviation of a given container of numbers.  
   
+**variance.cpp**
+Implement the `variance` function.
+  
+**visitor.cpp**  
+Implement an example of the visitor design pattern.
+  
+**void_t.cpp**  
+What is a `void_t` and how it can be useful?
+  
 **xml/xpath.cpp**  
 Implement a program to print nodes from xml matching a given XPath.
 ```{r, engine='bash'}
@@ -486,21 +495,13 @@ $ ./timer
 **union_cast.cpp**  
 Implement union_cast.
   
-**visitor.cpp**  
-Implement an example of the visitor design pattern.
-
 From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor design pattern is a way of separating an algorithm from an object structure on which it operates.
     
 **xml/xml.cpp**  
 Implement a program to parse an xml document. Can you use only boost for it?
   
 From [cppreference](http://en.cppreference.com/w/cpp/algorithm/rotate) std::rotate performs a left rotation on a range of elements.
-
-**void_t.cpp**  
-What is a void_t and how it can be useful?
- 
-From [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method) Monte-Carlo method is a computational algorithm that relies on repeated random sampling to obtain numerical results.
-  
+   
 **get_container_type.cpp**  
 Can you get a container type from its iterator?
 

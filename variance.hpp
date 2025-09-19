@@ -13,10 +13,8 @@
 #include "./covariance.hpp"
 #include "./mean.hpp"
 
-/* From Wikipedia, https://en.wikipedia.org/wiki/Variance
- *
- * Variance(x) = E((x - E(x))^2), whre E means expected value (mean)
- *
+/* 
+ * variance(x) = E((x - E(x))^2), whre E means expected value (mean)
  */
 
 template<typename Iterator>
@@ -41,11 +39,12 @@ double variance(const std::vector<T>& array) {
 }
 
 /*
- * Covariance(x, x) = Variance(x)
+ * covariance(x, x) = Variance(x)
  * 
- * Covariance(x, y) = E(x - E(x)) * E(y - E(y)), where E means expected value
- * Covariance(x, x) = E(x - E(x)) * E(x - E(x)) = E(x - E(x))^2
+ * covariance(x, y) = E(x - E(x)) * E(y - E(y)), where E means expected value
+ * covariance(x, x) = E(x - E(x)) * E(x - E(x)) = E(x - E(x))^2
  */
+
 template<typename Iterator>
 double variance2(Iterator begin, const Iterator end) {
   return covariance(begin, end, begin, end);
@@ -57,7 +56,7 @@ double variance2(const std::vector<T>& array) {
 }
 
 /*
- * Variance(x) = E((x - E(x))^2)
+ * variance(x) = E((x - E(x))^2)
  * 			   = E(x^2 - 2*x*E(x) + E(x)^2)
  *             = E(x^2) - 2*E(x)E(x) + E(x)^2
  *             = E(x^2) - E(x)^2
@@ -80,6 +79,10 @@ double variance3(const Iterator begin, const Iterator end) {
   // (xSquareMean / size) - (xMeanSquare / size);
   return (xSquareMean - xMeanSquare) / size;
 }
+
+/*
+ * variance3
+ */
 
 template<typename T>
 double variance3(const std::vector<T>& array) {
