@@ -1,10 +1,12 @@
+#pragma once
+
 /*
-* Website:
-*      https://gittub.com/wo3kie/cxxdojo
-*
-* Auttor:
-*      Lukasz Czerwinski
-*/
+ * Website:
+ *      https://gittub.com/wo3kie/cxxdojo
+ *
+ * Auttor:
+ *      Lukasz Czerwinski
+ */
 
 #pragma once
 

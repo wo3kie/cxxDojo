@@ -22,7 +22,7 @@ Implement the Aho-Corasick algorithm.
 From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), the Aho-Corasick algorithm can be used to locate elements of a finite set of strings (the "dictionary") within an input text.
   
 ```
-$ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
+$ ./aho_corasick aho_corasick.dct aho_corasick.cpp
 --------------------------------------------------------------------------------
 >     auto const print = []( size_t const pos, std::string const & word ){
 >     auto
@@ -35,7 +35,7 @@ $ ./ahoCorasick ahoCorasick.dct ahoCorasick.cpp
 ```
   
 **allocator.cpp**  
-Implement a simple allocator. Follow std::allocator as an example.
+Implement a simple allocator. Follow `std::allocator` as an example.
   
 **apply.cpp**  
 Implement a simple version of `std::apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
@@ -120,13 +120,13 @@ Implement a function to calculate the correlation between two collections using.
 **covariance.cpp**  
 Implement a function to calculate the covariance between two collections.
   
-**countBits.cpp**  
+**count_bits.cpp**  
 Implement a program to count the number of `1` bits in a given integer.  
 Can you use `constexpr` to achieve this?  
 Can you use `preprocessor` to achieve this?  
   
 **crtp.cpp**  
-Implement a CRTP pattern example.  
+Implement the CRTP pattern example.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) the Curiously Recurring Template Pattern is a C++ idiom to express static polymorphism. More formally is it known as F-bound polymorphism.
   
@@ -158,13 +158,19 @@ Implement a program demonstrating a Finite Difference Method to calculate differ
 **feq.cpp**  
 Create a function to compare two floating-point values within a given tolerance.
   
+```{r, engine='cpp'}
+assert(feq(0.1f + 0.2f, 0.3f));
+assert(feq(0.1 + 0.2, 0.3));
+assert(feq(0.1l + 0.2l, 0.3l));
+```
+  
 **find_union.cpp**  
 Implement a find-union algorithm.  
   
 **find.root.cpp**  
 Implement a program to find the root of a function using the bisection and Newton's methods.
   
-**floatFormatter.cpp**  
+**float_formatter.cpp**  
 Implement a function that formats a floating-point number to fit within a fixed number of characters.
   
 ```{r, engine='cpp'}
@@ -186,7 +192,7 @@ Implement higher-order functions such as `fold`, `reduce`, and `filter`.
 **gcd.cpp**  
 Implement a function to calculate the greatest common divisor.
   
-**gramSchmidt.cpp**  
+**gram_schmidt.cpp**  
 Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
   
 **gsl/correlation.cpp**  
@@ -253,7 +259,7 @@ Implement a function to check whether a given number is prime using _Fermat's Li
 **jaccard_index.cpp**  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
   
-**kmp.cpp**  
+**knuth_morris_pratt.cpp**  
 Implement the Knuth-Morris-Pratt text searching algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), the Knuth-Morris-Pratt algorithm searches ofr occurences od a "word" W within a main "text string" S by employing the observation that when a mismatch occurs, the word itself embodies sufficient information to determine where the next match could begin, thus bypassing re-examination of previously matched characters.
@@ -271,7 +277,7 @@ Implement the _Levenstein distance_ function.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
   
-**linear.regression.cpp**  
+**linear_regression.cpp**  
 Implement a function to calcuate linear regression using least squares approach.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Linear_regression) linear regression is an approach for modelling the relationship between a scalar dependent variable _Y_ and one or more explanatory variables (or independent variables) denoted _X_.
@@ -360,7 +366,7 @@ This task involves implementing a simple matrix class and providing essential fu
 **matrix_chain_multiplication.cpp**  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) _the matrix chain multiplication_ is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
   
-**matrix.mul.perf.cpp**  
+**matrix_mul_perf.cpp**  
 Design a performance benchmark for matrix multiplication, considering various loop nesting orders.
 
 ```
@@ -492,7 +498,7 @@ Implement TRIE data structure.
 Implement simple examples of a `tuple` class using either composition or inheritance.  
 Implement simple `std::tuple` utilities, working on values like `head`, `tail`, `merge`, `foldl`, `foldr` `hash`, and working on types like `All`, `Any`, `None`, `Foldl`. 
   
-**typeErasure.*.cpp**  
+**type_erasure.*.cpp**  
 Implement a program representing the type erasure idiom.
 
 From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
