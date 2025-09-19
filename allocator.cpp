@@ -13,6 +13,10 @@
 
 #include "./allocator.hpp"
 
+/*
+ * main
+ */
+
 int main() {
   std::vector<int, Allocator<int>> vector;
 }

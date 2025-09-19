@@ -119,6 +119,10 @@ S&& get_Srefref__return_Srefref(S&& s) {
   return std::move(s);
 }
 
+/*
+ * main
+ */
+
 int main() {
   {
     S::reset();

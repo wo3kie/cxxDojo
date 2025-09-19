@@ -58,6 +58,10 @@ std::ostream& operator<<(std::ostream& out, const CircularBuffer<T, Size>& buffe
   return out << "]}";
 }
 
+/*
+ * main
+ */
+
 int main() {
   {
     CircularBuffer<int, 4> cb;

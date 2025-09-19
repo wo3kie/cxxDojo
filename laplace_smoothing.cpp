@@ -28,8 +28,9 @@ void laplaceSmoothing_test() {
 }
 
 /*
- *
+ * main
  */
+
 int main() {
   laplaceSmoothing_test();
 }

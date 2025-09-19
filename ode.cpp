@@ -76,6 +76,10 @@ double f(double x, double y) {
 
 #include <iostream>
 
+/*
+ * main
+ */
+
 int main() {
   assert(feq(8.6950, solveOdeEulerForward(f, 0, 3, 0.3, 1)));
   assert(feq(10.045, solveOdeTrapezoid(f, 0, 3, 0.3, 1)));

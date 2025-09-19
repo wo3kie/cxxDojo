@@ -114,8 +114,8 @@ void test5() {
 }
 
 /*
-  * main
-  */
+ * main
+ */
 
 int main() {
   test1();

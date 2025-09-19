@@ -15,6 +15,10 @@
 #include "./feq.hpp"
 #include "./integration.hpp"
 
+/*
+ * main
+ */
+
 int main() {
   assert((feq(1.67873, quadratureIntegration(sin, 0.5, 2.5, 100))));
   assert((feq(1.67873, trapezoidalIntegration(sin, 0.5, 2.5, 100))));

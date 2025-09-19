@@ -81,6 +81,10 @@ void test() {
   assert(std::equal(actual.begin(), actual.end(), expected.begin()));
 }
 
+/*
+ * main
+ */
+
 int main() {
   test();
 }

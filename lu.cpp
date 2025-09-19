@@ -104,6 +104,10 @@ void lup(const Matrix& A, Matrix& L, Matrix& U, Matrix& P) {
   }
 }
 
+/*
+ * main
+ */
+
 int main() {
   Matrix L;
   Matrix U;

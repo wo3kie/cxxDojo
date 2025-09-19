@@ -17,6 +17,10 @@
 
 #include <gsl/gsl_fit.h>
 
+/*
+ * main
+ */
+
 int main() {
   {
     double const xs[]{1, 2, 3, 3, 4};

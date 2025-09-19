@@ -41,6 +41,10 @@ private:
   iostreams::filtering_streambuf<iostreams::input> _buffer;
 };
 
+/*
+ * main
+ */
+
 int main() {
   std::string text("Overview\n"
                    "\n"

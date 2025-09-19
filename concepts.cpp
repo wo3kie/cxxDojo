@@ -41,6 +41,10 @@ T div(T a, T b) {
   return a / b;
 }
 
+/*
+ * main
+ */
+
 int main() {
   static_assert(Numeric<int>);
   static_assert(Numeric<double>);

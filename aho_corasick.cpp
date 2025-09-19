@@ -25,6 +25,10 @@
 
 #include "./aho_corasick.hpp"
 
+/*
+ * main
+ */
+
 int main(int argc, char* argv[]) {
   if(argc != 3) {
     std::cerr << "Usage: " << argv[0] << " dictionary_file text_file" << std::endl;

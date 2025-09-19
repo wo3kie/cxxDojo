@@ -21,6 +21,10 @@ void qr(const Matrix& a, Matrix& q, Matrix& r) {
   r = transpose(q) * a;
 }
 
+/*
+ * main
+ */
+
 int main() {
   {
     Matrix q;

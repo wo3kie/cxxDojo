@@ -46,6 +46,7 @@ void dijkstra_test() {
 /*
  * main
  */
+
 int main() {
   dijkstra_test();
 }

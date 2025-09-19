@@ -170,5 +170,9 @@ struct Struct_Diamond: Struct_Virtual_1, Struct_Virtual_2 {
 static_assert(sizeof(Struct_Diamond) == 48, "");
 static_assert(alignof(Struct_Diamond) == 8, "");
 
+/*
+ * main
+ */
+
 int main() {
 }

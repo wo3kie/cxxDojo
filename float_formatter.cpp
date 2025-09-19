@@ -13,6 +13,10 @@
 
 #include "./float_formatter.hpp"
 
+/*
+ * main
+ */
+
 int main() {
   assert(FloatFormatter(0, 1).toString() == "0");
   assert(FloatFormatter(0, 2).toString() == " 0");

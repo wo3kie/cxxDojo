@@ -255,6 +255,10 @@ void isCompleteTree_test() {
   assert(! isCompleteTree(root));
 }
 
+/*
+ * main
+ */
+
 int main() {
   isFullTree_test();
   isCompleteTree_test();

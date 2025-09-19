@@ -43,8 +43,8 @@ void enumerate_test() {
 }
 
 /*
-  * main
-  */
+ * main
+ */
 
 int main() {
   enumerate_view_test();

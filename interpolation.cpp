@@ -13,6 +13,10 @@
 
 #include "./interpolation.hpp"
 
+/*
+ * main
+ */
+
 int main() {
   {
     std::vector<Point> points({{0, 1}, {2, 2}, {3, 4}});

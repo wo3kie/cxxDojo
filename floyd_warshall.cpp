@@ -17,6 +17,10 @@
 
 const int INF = 99;
 
+/*
+ * main
+ */
+
 int main() {
   // clang-format off
   Matrix matrix{

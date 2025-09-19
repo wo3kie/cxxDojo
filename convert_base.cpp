@@ -34,6 +34,10 @@ void convertBase_test() {
   assert(convertBase("2A", 16, 10) == "42");
 }
 
+/*
+ * main
+ */
+
 int main(int argc, char* argv[]) {
   convertBase_test();
 
