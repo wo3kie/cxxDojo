@@ -3,13 +3,10 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 correlation.cpp -o correlation
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./correlation
+ *      $ ./build/bin/correlation
  */
 
 #include "./correlation.hpp"

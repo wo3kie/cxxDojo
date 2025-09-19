@@ -1,18 +1,15 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Named operators:
  *      https://github.com/klmr/named-operator
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 in.cpp -o in
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./in
+ *      $ ./build/bin/in
  */
 
 #include <algorithm>

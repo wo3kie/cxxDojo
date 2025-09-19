@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 visitor.cpp -o visitor
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./visitor
+ *      $ ./build/bin/visitor
  */
 
 #include <iostream>

@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 fdm.cpp -o fdm
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./fdm | gnuplot5 -p
+ *      $ ./build/bin/fdm | gnuplot5 -p
  */
 
 /*

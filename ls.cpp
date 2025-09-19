@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 ls.cpp -o ls -lboost_filesystem -lboost_system
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./ls .
+ *      $ ./build/bin/ls .
  *      F "./get.request.cpp"
  *      F "./par.cpp"
  *      F "./barrier.cpp"

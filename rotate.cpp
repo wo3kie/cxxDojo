@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 rotate.cpp -o rotate
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./rotate
+ *      $ ./build/bin/rotate
  */
 
 #include <cassert>

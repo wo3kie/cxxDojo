@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 boxMuller.cpp -o boxMuller
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./boxMuller
+ *      $ ./build/bin/boxMuller
  * 
  * Uniform distrution
  *  0 ************

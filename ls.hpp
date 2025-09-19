@@ -1,11 +1,11 @@
 #pragma once
 
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
 #include <iostream>

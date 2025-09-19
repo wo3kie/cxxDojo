@@ -3,13 +3,10 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 concat_view.cpp -o concat_view
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./concat_view
+ *      $ ./build/bin/concat_view
  */
 
 /*

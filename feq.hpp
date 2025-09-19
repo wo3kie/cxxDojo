@@ -1,11 +1,11 @@
 #pragma once
 
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
 inline constexpr bool feq(const float lhs, const float rhs, const float eps = 0.0001f) {

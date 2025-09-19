@@ -1,18 +1,15 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 exponential_smoothing.cpp -o exponential_smoothing
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./exponential_smoothing alpha value1 value2 ...
+ *      $ ./build/bin/exponential_smoothing alpha value1 value2 ...
  * 
  * Example:
- *      $ ./exponential_smoothing 0.8 9 1 8 2 7 3 6 4 5
+ *      $ ./build/bin/exponential_smoothing 0.8 9 1 8 2 7 3 6 4 5
  *      [9, 2.6, 6.92, 2.984, 6.1968, 3.63936, 5.52787, 4.30557]
  */
 

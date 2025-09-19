@@ -1,16 +1,13 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
- * Compilation:
- *      g++ --std=c++20 struct.cpp -o struct
- *      clang++ -cc1 -fdump-record-layouts -std=c++11 struct.cpp
  *
  * Usage:
- *      $ ./struct
+ *      $ ./build/bin/struct
  */
 
 // clang++ -cc1 -fdump-record-layouts -std=c++11 struct.cpp

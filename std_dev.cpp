@@ -1,15 +1,12 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski strongly based on:
- *
- * Compilation:
- *      g++ --std=c++20 std_dev.cpp -o std_dev
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/) strongly based on:
  *
  * Usage:
- *      $ ./std_dev
+ *      $ ./build/bin/std_dev
  */
 
 #include <cassert>

@@ -3,13 +3,10 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 enumerate.cpp -o enumerate
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./enumerate
+ *      $ ./build/bin/enumerate
  */
 
 #include <cassert>

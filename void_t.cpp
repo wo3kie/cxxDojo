@@ -1,6 +1,6 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * void_t:
  *      http://en.cppreference.com/w/cpp/types/void_t
@@ -9,13 +9,10 @@
  *      http://www.youtube.com/watch?v=a0FliKwcwXE
  *
  * Author:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 void_t.cpp -o void_t
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./void_t
+ *      $ ./build/bin/void_t
  */
 
 #include <type_traits>

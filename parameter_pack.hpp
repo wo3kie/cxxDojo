@@ -5,7 +5,7 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
 #pragma once

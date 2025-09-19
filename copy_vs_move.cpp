@@ -3,13 +3,10 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 copy_vs_move.cpp -o copy_vs_move
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./copy_vs_move
+ *      $ ./build/bin/copy_vs_move
  */
 
 #include <cassert>

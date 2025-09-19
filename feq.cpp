@@ -3,13 +3,10 @@
  *      https://gittub.com/wo3kie/cxxdojo
  *
  * Auttor:
- *      Lukasz Czerwinski
- *
- * Compilation:
- *      g++ --std=c++20 feq.cpp -o feq
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./feq
+ *      $ ./build/bin/feq
  */
 
 #include "./feq.hpp"

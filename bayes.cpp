@@ -1,18 +1,15 @@
 /*
- * Website:
- *      https://github.com/wo3kie/cxxdojo
+ * Project:
+ *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Training set:
  *      http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/smsspamcollection.zip
  *
- * Compilation:
- *      g++ --std=c++20 bayes.cpp -o bayes
- *
  * Usage:
- *      $ ./bayes
+ *      $ ./build/bin/bayes
  *      URGENT! You have won a 1 week FREE membership in our £100,000 Prize Jackpot!
  *      ...
  *      {{ham,-118.253},{spam,-89.9372}}
