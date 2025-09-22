@@ -503,6 +503,16 @@ Implement TRIE data structure.
 ### tuple.cpp  
 Implement simple example of a `tuple` class using either composition or inheritance. Next, add some `std::tuple` utilities like `head`, `tail`, `merge`, `foldl`, `foldr`, `hash`, `print`...
   
+### type.cpp  
+Implement _named type_ utility. The _named type_ is strongly-typed wrappers around existing types to improve code clarity, safety, and maintainability.  
+  
+```{r, engine='cpp'}
+  typedef Type<int> Int;
+  typedef Type<int> Age;
+
+  static_assert(std::is_assignable<Int, Age>::value == false);
+```
+  
 ### type_erasure.*.cpp  
 Implement a program representing the type erasure idiom.
 
