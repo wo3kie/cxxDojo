@@ -44,7 +44,7 @@ $ ./aho_corasick aho_corasick.dct aho_corasick.cpp
 Implement a simple allocator. Follow `std::allocator` as an example.
   
 ### apply.cpp  
-Implement a simple version of `std::apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
+Demonstrates usage of a custom `apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
   
 ```{r, engine='cpp'}
 void f(int, float, char){ /* ... */ }
@@ -53,7 +53,7 @@ apply(f, t);
 ```
   
 ### async.cpp  
-Implement a recursive `min_max` function that leverages `std::async` to concurrently compute the minimum and maximum values within a given range.
+Demonstrates parallel computation using `std::async` to find the minimum and maximum elements in a range.
   
 ```{r, engine='cpp'}
 assert(min_max({1, 2, 3, 4, 5}) == {1, 5});

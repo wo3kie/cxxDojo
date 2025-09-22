@@ -58,6 +58,6 @@ struct Apply<0, Return, Function, Tuple> {
  */
 
 template<typename Function, typename... Args>
-auto apply(Function function, std::tuple<Args...> tuple) -> typename std::result_of<Function(Args...)>::type {
-  return impl::Apply<sizeof...(Args), typename std::result_of<Function(Args...)>::type, Function, std::tuple<Args...>>::apply(function, tuple);
+auto apply(Function function, std::tuple<Args...> tuple) -> std::invoke_result_t<Function, Args...> {
+  return impl::Apply<sizeof...(Args), std::invoke_result_t<Function, Args...>, Function, std::tuple<Args...>>::apply(function, tuple);
 }

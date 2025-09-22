@@ -11,23 +11,16 @@
 #include <functional>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 
 
 struct Node {
-  void free() {
-    for(const auto pair : _children) {
-      pair.second->free();
-    }
-
-    delete this;
-  }
-
   char _letter = 0;
   bool _end = false;
-  Node* _parent = nullptr;
-  Node* _failure = nullptr;
-  std::map<char, Node*> _children;
+  std::shared_ptr<Node> _parent = nullptr;
+  std::shared_ptr<Node> _failure = nullptr;
+  std::unordered_map<char, std::shared_ptr<Node>> _children;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Node& node) {
@@ -40,7 +33,7 @@ inline std::ostream& operator<<(std::ostream& out, const Node& node) {
   return out;
 }
 
-inline std::string getWord(const Node* const node) {
+inline std::string getWord(std::shared_ptr<Node> node) {
   if(! node) {
     return "";
   }
@@ -54,7 +47,7 @@ inline std::string getWord(const Node* const node) {
 
 struct AhoCorasick {
   AhoCorasick()
-      : _root(new Node()) {
+      : _root(std::make_shared<Node>()) {
     _root->_failure = _root;
   }
 
@@ -65,7 +58,6 @@ struct AhoCorasick {
   }
 
   ~AhoCorasick() {
-    _root->free();
   }
 
   AhoCorasick& operator=(const AhoCorasick&) = delete;
@@ -75,13 +67,13 @@ struct AhoCorasick {
   }
 
   void insert(const std::string& word) {
-    Node* node = _root;
+    std::shared_ptr<Node> node = _root;
 
     for(const char letter : word) {
       const auto found = node->_children.find(letter);
 
       if(found == node->_children.end()) {
-        Node* const newNode = new Node;
+        std::shared_ptr<Node> newNode = std::make_shared<Node>();
         newNode->_letter = letter;
         newNode->_parent = node;
         newNode->_failure = getFailure(newNode, letter);
@@ -97,7 +89,7 @@ struct AhoCorasick {
   }
 
   void search(const std::string& text, const std::function<void(const size_t, const std::string&)>& f) const {
-    const Node* node = _root;
+    std::shared_ptr<Node> node = _root;
 
     for(size_t i = 0; i < text.size(); ++i) {
       node = move(node, text[i]);
@@ -115,7 +107,7 @@ struct AhoCorasick {
   }
 
 private:
-  const Node* move(const Node* node, const char letter) const {
+  std::shared_ptr<Node> move(std::shared_ptr<Node> node, const char letter) const {
     while(true) {
       const auto found = node->_children.find(letter);
 
@@ -131,9 +123,9 @@ private:
     }
   }
 
-  Node* getFailure(const Node* const node, const char letter) {
-    Node* const parent = node->_parent;
-    Node* parentsFailure = parent->_failure;
+  std::shared_ptr<Node> getFailure(std::shared_ptr<Node> node, const char letter) {
+    std::shared_ptr<Node> const parent = node->_parent;
+    std::shared_ptr<Node> parentsFailure = parent->_failure;
 
     while(true) {
       const auto found = parentsFailure->_children.find(letter);
@@ -150,7 +142,7 @@ private:
     }
   }
 
-  static void _dump(const int indent, const Node* const node) {
+  static void _dump(const int indent, std::shared_ptr<Node> node) {
     std::cout << std::string(indent, ' ') << *node << std::endl;
 
     for(const auto pair : node->_children) {
@@ -159,5 +151,5 @@ private:
   }
 
 private:
-  Node* _root;
+  std::shared_ptr<Node> _root;
 };
