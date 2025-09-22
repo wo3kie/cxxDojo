@@ -12,6 +12,7 @@
 #include <cassert>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "./tuple.hpp"
 
@@ -110,6 +111,12 @@ void Foldl_test() {
   static_assert(std::is_same_v<double, Foldl<std::common_type, std::tuple<short, int, double>>::type>);
 }
 
+void print_test() {
+  std::ostringstream oss;
+  print(oss, std::make_tuple(1, 'b', 3.3), ", ");
+  assert(oss.str() == "1, b, 3.3");
+}
+
 } // namespace stl
 
 /*
@@ -128,4 +135,5 @@ int main() {
   stl::Any_test();
   stl::None_test();
   stl::Foldl_test();
+  stl::print_test();
 }

@@ -20,6 +20,8 @@
 #include <unordered_set>
 #include <vector>
 
+#include "./tuple.hpp"
+
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const std::vector<T>& v);
 
@@ -51,10 +53,10 @@ template<typename T>
 std::ostream& operator<<(std::ostream& out, const std::set<T>& s);
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& u);
+std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& um);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& s);
+std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& us);
 
 template<typename Iterator>
 std::ostream& printImpl(std::ostream& out, const char beginning, Iterator begin, const char* const separator, const Iterator end, const char ending) {
@@ -127,36 +129,19 @@ std::ostream& operator<<(std::ostream& out, const std::set<T>& s) {
 }
 
 template<typename T1, typename T2>
-std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& u) {
-  return printMap(out, u.begin(), u.end());
+std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& um) {
+  return printMap(out, um.begin(), um.end());
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& s) {
-  return printSet(out, s.begin(), s.end());
+std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& us) {
+  return printSet(out, us.begin(), us.end());
 }
 
-template<typename T1>
-void print(T1 const& t1, char end = '\n') {
-  std::cout << t1 << end;
-}
-
-template<typename T1, typename T2>
-void print(T1 const& t1, T2 const& t2, char end = '\n') {
-  std::cout << t1 << ' ' << t2 << end;
-}
-
-template<typename T1, typename T2, typename T3>
-void print(T1 const& t1, T2 const& t2, T3 const& t3, char end = '\n') {
-  std::cout << t1 << ' ' << t2 << ' ' << t3 << end;
-}
-
-template<typename T1, typename T2, typename T3, typename T4>
-void print(T1 const& t1, T2 const& t2, T3 const& t3, T4 const& t4, char end = '\n') {
-  std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << end;
-}
-
-template<typename T1, typename T2, typename T3, typename T4, typename T5>
-void print(T1 const& t1, T2 const& t2, T3 const& t3, T4 const& t4, T5 const& t5, char end = '\n') {
-  std::cout << t1 << ' ' << t2 << ' ' << t3 << ' ' << t4 << ' ' << t5 << end;
+template<typename... Ts>
+std::ostream& operator<<(std::ostream& out, const std::tuple<Ts...>& tuple) {
+  out << '(';
+  stl::print(out, tuple, ", ");
+  out << ')';
+  return out;
 }
