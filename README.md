@@ -52,6 +52,24 @@ auto t = std::make_tuple(1, 2.2, '3');
 apply(f, t);
 ```
   
+### assert.cpp  
+Implement an improved `assert` utility that accepts a simple conditional expression (`==`, `!=`, `<=`, `<`, `>=`, `>`) and, upon failure, prints both the _actual_ and _expected_ values.
+  
+```{r, engine='bash'}
+$ cat assert.cpp
+#include "./assert.hpp"
+int main() {
+  int a = 1;
+  int b = 2;
+  Assert(a == b);
+}
+
+$ make assert
+
+$ ./bin/assert 
+cxxDojo/assert.cpp:5 Assertion failed 1 == 2
+```
+  
 ### async.cpp  
 Demonstrates parallel computation using `std::async` to find the minimum and maximum elements in a range.
   
