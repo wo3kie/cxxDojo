@@ -11,7 +11,6 @@
 #include <cassert>
 #include <functional>
 #include <iostream>
-#include <memory>
 
 namespace impl {
 
@@ -136,4 +135,8 @@ inline _ExpressionDecomposerResult<bool, bool> operator<<(const _ExpressionDecom
  * Assert
  */
 
-#define Assert(__expression__) (impl::_ExpressionDecomposerStart(__FILE__, __LINE__) << __expression__)
+#ifdef NDEBUG
+  #define Assert(__expression__) (static_cast<void>(0))
+#else
+  #define Assert(__expression__) (impl::_ExpressionDecomposerStart(__FILE__, __LINE__) << __expression__)
+#endif
