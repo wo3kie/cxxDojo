@@ -50,7 +50,7 @@ void rescale_test() {
 
 void standardize_test() {
   const auto feqDouble = [](double d1, double d2) -> bool {
-    return feq(d1, d2);
+    return d1 == approx(d2);
   };
 
   {

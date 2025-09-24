@@ -36,12 +36,12 @@ void entropy_test() {
 
   {
     std::vector<int> array({1, 2, 2, 2});
-    Assert(feq(entropy(array.begin(), array.end()), 0.811278));
+    Assert(entropy(array.begin(), array.end()) == approx(0.811278));
   }
 
   {
     std::vector<int> array({1, 1, 1, 1, 1});
-    Assert(feq(entropy(array.begin(), array.end()), 0));
+    Assert(entropy(array.begin(), array.end()) == approx(0));
   }
 }
 

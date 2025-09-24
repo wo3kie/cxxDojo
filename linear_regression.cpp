@@ -28,12 +28,12 @@ int main() {
     const std::vector<Point> points{{1, 10}, {2, 20}, {3, 20}, {3, 25}, {4, 30}};
 
     Assert(linearRegression(points, a, b));
-    Assert(feq(a, 6.1539, 0.0001));
-    Assert(feq(b, 5.0000, 0.0001));
+    Assert(a == approx(6.1539));
+    Assert(b == approx(5.0000));
 
     Assert(linearRegression2(points, a, b));
-    Assert(feq(a, 6.1539, 0.0001));
-    Assert(feq(b, 5.0000, 0.0001));
+    Assert(a == approx(6.1539));
+    Assert(b == approx(5.0000));
   }
 
   {
@@ -42,12 +42,12 @@ int main() {
     const std::vector<Point> points{{1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}};
 
     Assert(linearRegression(points, a, b));
-    Assert(feq(a, 0.0000, 0.0001));
-    Assert(feq(b, 1.0000, 0.0001));
+    Assert(a == approx(0.0000));
+    Assert(b == approx(1.0000));
 
     Assert(linearRegression2(points, a, b));
-    Assert(feq(a, 0.0000, 0.0001));
-    Assert(feq(b, 1.0000, 0.0001));
+    Assert(a == approx(0.0000));
+    Assert(b == approx(1.0000));
   }
 
   {

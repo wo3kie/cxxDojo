@@ -81,8 +81,8 @@ double f(double x, double y) {
  */
 
 int main() {
-  Assert(feq(8.6950, solveOdeEulerForward(f, 0, 3, 0.3, 1)));
-  Assert(feq(10.045, solveOdeTrapezoid(f, 0, 3, 0.3, 1)));
-  Assert(feq(9.9775, solveOdeEulerMidpoint(f, 0, 3, 0.3, 1)));
-  Assert(feq(10.000, solveOdeRungeKutta4(f, 0, 3, 0.3, 1)));
+  Assert(8.6950 == approx(solveOdeEulerForward(f, 0, 3, 0.3, 1)));
+  Assert(10.045 == approx(solveOdeTrapezoid(f, 0, 3, 0.3, 1)));
+  Assert(9.9775 == approx(solveOdeEulerMidpoint(f, 0, 3, 0.3, 1)));
+  Assert(10.000 == approx(solveOdeRungeKutta4(f, 0, 3, 0.3, 1)));
 }

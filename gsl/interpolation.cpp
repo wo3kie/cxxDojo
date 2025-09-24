@@ -126,7 +126,7 @@ void linear_interpolation_ublas_test() {
   ublas::vector<double> const actual = linear_interpolation_ublas(std::vector<Point>{{5, 6}, {7, 11}});
 
   auto feqDouble = [](double d1, double d2) {
-    return feq(d1, d2);
+    return d1 == approx(d2);
   };
 
   Assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
@@ -141,7 +141,7 @@ void polynominal_interpolation_ublas_test() {
   ublas::vector<double> const actual = polynominal_interpolation_ublas(std::vector<Point>{{1, 12}, {2, 15}, {3, 16}});
 
   auto feqDouble = [](double d1, double d2) {
-    return feq(d1, d2);
+    return d1 == approx(d2);
   };
 
   Assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
@@ -155,7 +155,7 @@ void linear_interpolation_gsl_test() {
   gsl_vector* actual = linear_interpolation_gsl(std::vector<Point>{{5, 6}, {7, 11}});
 
   for(std::size_t i = 0; i < 2; ++i) {
-    Assert(feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i)));
+    Assert(gsl_vector_get(actual, i) == approx(gsl_vector_get(expected, i)));
   }
 
   gsl_vector_free(actual);
@@ -171,7 +171,7 @@ void polynominal_interpolation_gsl_test() {
   gsl_vector* actual = polynominal_interpolation_gsl(std::vector<Point>{{1, 12}, {2, 15}, {3, 16}});
 
   for(std::size_t i = 0; i < 3; ++i) {
-    Assert(feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i)));
+    Assert(gsl_vector_get(actual, i) == approx(gsl_vector_get(expected, i)));
   }
 
   gsl_vector_free(actual);

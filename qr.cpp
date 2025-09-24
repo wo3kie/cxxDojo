@@ -12,7 +12,6 @@
 #include <cmath>
 #include <vector>
 
-#include "./feq.hpp"
 #include "./gram_schmidt.hpp"
 #include "./matrix.hpp"
 

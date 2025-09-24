@@ -186,6 +186,10 @@ Create a function to compare two floating-point values within a given tolerance.
 assert(feq(0.1f + 0.2f, 0.3f));
 assert(feq(0.1 + 0.2, 0.3));
 assert(feq(0.1l + 0.2l, 0.3l));
+
+assert(0.1f + 0.2f == approx(0.3f));
+assert(0.1 + 0.2 == approx(0.3));
+assert(0.1l + 0.2l == approx(0.3l));
 ```
   
 ### find_union.cpp  

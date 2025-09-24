@@ -27,11 +27,11 @@ int main() {
 
   {
     const double correlationValue = correlation(array1, array2);
-    Assert(feq(correlationValue, -0.050601));
+    Assert(correlationValue == approx(-0.050601));
   }
 
   {
     const double correlationValue = gsl_stats_correlation(&array1.front(), 1, &array2.front(), 1, array2.size());
-    Assert(feq(correlationValue, -0.050601));
+    Assert(correlationValue == approx(-0.050601));
   }
 }

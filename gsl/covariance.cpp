@@ -25,11 +25,11 @@ int main() {
 
   {
     double const covarianceValue = covariance(array1, array2);
-    Assert(feq(covarianceValue, -0.108889));
+    Assert(covarianceValue == approx(-0.108889));
   }
 
   {
     double const covarianceValue = gsl_stats_covariance(&array1.front(), 1, &array2.front(), 1, array2.size());
-    Assert(feq(covarianceValue, -0.108889));
+    Assert(covarianceValue == approx(-0.108889));
   }
 }

@@ -18,8 +18,8 @@
  */
 
 void stdDev_test() {
-  Assert(feq(stdDev<int>({1, 1, 1, 1, 1}), 0.0));
-  Assert(feq(stdDev<int>({1, 2, 3, 4, 5}), 1.58114));
+  Assert(stdDev<int>({1, 1, 1, 1, 1}) == approx(0.0));
+  Assert(stdDev<int>({1, 2, 3, 4, 5}) == approx(1.58114));
 }
 
 /*

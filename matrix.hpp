@@ -105,7 +105,7 @@ inline bool operator==(const Matrix& matrix1, const Matrix& matrix2) {
     }
 
     for(unsigned column = 0; column < columns1; ++column) {
-      if(! feq(matrix1[row][column], matrix2[row][column])) {
+      if(! matrix1[row][column] == approx(matrix2[row][column])) {
         return false;
       }
     }

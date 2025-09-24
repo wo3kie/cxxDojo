@@ -19,8 +19,8 @@
  */
 
 void variance_test() {
-  Assert(feq(variance<int>({1, 1, 1, 1, 1, 1, 1, 1, 1, 1}), 0));
-  Assert(feq(variance<int>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}), 9.16667));
+  Assert(variance<int>({1, 1, 1, 1, 1, 1, 1, 1, 1, 1}) == approx(0));
+  Assert(variance<int>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}) == approx(9.16667));
 }
 
 /*

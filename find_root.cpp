@@ -15,14 +15,7 @@
 #include "./find_root.hpp"
 
 void bisection_test() {
-  assert(
-      feq(bisection(
-              0,
-              1,
-              [](double x) {
-                return x * x * x + x - 1;
-              }),
-          0.6823));
+  assert(bisection(0, 1, [](double x) {return x * x * x + x - 1;}) == approx(0.6823));
 }
 
 void bisectionNumberOfIteration_test() {
@@ -30,27 +23,8 @@ void bisectionNumberOfIteration_test() {
 }
 
 void newton_test() {
-  assert(
-      feq(newton(
-              0,
-              1,
-              [](double x) {
-                return x * x * x + x - 1;
-              },
-              [](double x) {
-                return 3 * x * x + 1;
-              }),
-          0.6823));
-
-  assert(
-      feq(newton(
-              0,
-              1,
-              [](double x) {
-                return x * x * x + x - 1;
-              }),
-          0.6823));
-}
+  assert(newton(0, 1, [](double x) {return x * x * x + x - 1;}, [](double x) {return 3 * x * x + 1;}) == approx(0.6823));
+  assert(newton(0, 1, [](double x) {return x * x * x + x - 1;}) == approx(0.6823));}
 
 /*
  * main

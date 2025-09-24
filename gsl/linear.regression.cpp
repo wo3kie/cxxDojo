@@ -30,8 +30,8 @@ int main() {
 
     gsl_fit_linear(xs, 1, ys, 1, sizeof(xs) / sizeof(xs[0]), &b, &a, &cov00, &cov01, &cov11, &sumsg);
 
-    Assert(feq(a, 6.1539, 0.0001));
-    Assert(feq(b, 5.0000, 0.0001));
+    Assert(a == approx(0.1539));
+    Assert(b == approx(0.0));
   }
 
   {
@@ -42,7 +42,7 @@ int main() {
 
     gsl_fit_linear(xs, 1, ys, 1, sizeof(xs) / sizeof(xs[0]), &b, &a, &cov00, &cov01, &cov11, &sumsg);
 
-    Assert(feq(a, 0.0000, 0.0001));
-    Assert(feq(b, 1.0000, 0.0001));
+    Assert(a == approx(0.0));
+    Assert(b == approx(0.0));
   }
 }

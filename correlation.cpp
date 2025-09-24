@@ -24,14 +24,14 @@ void correlation_test_1() {
 
   double d = correlation(xs, ys);
 
-  Assert(feq(correlation(xs, ys), -1.0));
+  Assert(correlation(xs, ys) == approx(-1.0));
 }
 
 void correlation_test_2() {
   std::vector<double> xs = {1, 2, 3, 4, 5};
   std::vector<double> ys = {1, 2, 3, 4, 5};
 
-  Assert(feq(correlation(xs, ys), 1.0));
+  Assert(correlation(xs, ys) == approx(1.0));
 }
 
 /*

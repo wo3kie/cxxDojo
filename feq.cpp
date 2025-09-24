@@ -21,6 +21,10 @@ void feq_test() {
   Assert(feq(0.1f + 0.2f, 0.3f));
   Assert(feq(0.1 + 0.2, 0.3));
   Assert(feq(0.1l + 0.2l, 0.3l));
+  
+  Assert(0.1f + 0.2f == approx(0.3f));
+  Assert(0.1 + 0.2 == approx(0.3));
+  Assert(0.1l + 0.2l == approx(0.3l));
 }
 
 /*
