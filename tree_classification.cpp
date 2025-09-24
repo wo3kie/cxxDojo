@@ -9,13 +9,22 @@
  *      $ ./build/bin/treeClassification
  */
 
-#include <cassert>
 #include <memory>
+
+#include "./assert.hpp"
+
+/*
+ * Node
+ */
 
 struct Node {
   std::unique_ptr<Node> left;
   std::unique_ptr<Node> right;
 };
+
+/*
+ * isFullTree
+ */
 
 bool isFullTree(const std::unique_ptr<Node>& node) {
   if(node == nullptr) {
@@ -36,48 +45,51 @@ bool isFullTree(const std::unique_ptr<Node>& node) {
     }
   }
 }
+/*
+ * isFullTree_test
+ */
 
 void isFullTree_test() {
   std::unique_ptr<Node> root;
-  assert(! isFullTree(root));
+  Assert(! isFullTree(root));
 
   // N
   root = std::make_unique<Node>();
-  assert(isFullTree(root));
+  Assert(isFullTree(root));
 
   //   N
   // N
   root->left = std::make_unique<Node>();
-  assert(! isFullTree(root));
+  Assert(! isFullTree(root));
 
   //   N
   // N   N
   root->right = std::make_unique<Node>();
-  assert(isFullTree(root));
+  Assert(isFullTree(root));
 
   //     N
   //   N   N
   // N
   root->left->left = std::make_unique<Node>();
-  assert(! isFullTree(root));
+  Assert(! isFullTree(root));
 
   //      N
   //   N     N
   // N   N
   root->left->right = std::make_unique<Node>();
-  assert(isFullTree(root));
+  Assert(isFullTree(root));
 
   //       N
   //   N      N
   // N   N      N
   root->right->right = std::make_unique<Node>();
-  assert(! isFullTree(root));
+  Assert(! isFullTree(root));
 
   //       N
   //   N        N
   // N   N   N    N
   root->right->left = std::make_unique<Node>();
-  assert(isFullTree(root));
+  Assert(isFullTree(root));
 }
 
 unsigned getLeftMostChildDepth(const std::unique_ptr<Node>& node) {
@@ -144,115 +156,115 @@ bool isCompleteTree(const std::unique_ptr<Node>& node) {
 
 void isCompleteTree_test() {
   std::unique_ptr<Node> root;
-  assert(! isFullTree(root));
+  Assert(! isFullTree(root));
 
   // N
   root = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //   N
   // N
   root->left = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //   N
   // N   N
   root->right = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //     N
   //   N   N
   // N
   root->left->left = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //      N
   //   N     N
   // N   N
   root->left->right = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //       N
   //   N      N
   // N   N      N
   root->right->right = std::make_unique<Node>();
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //       N
   //   N       N
   // N   N   N   N
   root->right->left = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //         N
   //     N       N
   //   N   N   N   N
   // N
   root->left->left->left = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //          N
   //     N         N
   //   N   N     N   N
   // N         N
   root->right->left->left = std::make_unique<Node>();
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N     N      N     N
   // N   N        N
   root->left->left->right = std::make_unique<Node>();
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N     N      N     N
   // N   N N      N
   root->left->right->left = std::make_unique<Node>();
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N     N      N     N
   // N   N N   N  N
   root->left->right->right = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //            N
   //      N            N
   //   N     N      N     N
   // N   N N   N  N     N
   root->right->right->left = std::make_unique<Node>();
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N     N      N     N
   // N   N N   N  N   N N
   root->right->left->right = std::make_unique<Node>();
-  assert(isCompleteTree(root));
+  Assert(isCompleteTree(root));
 
   //            N
   //      N            N
   //   N            N     N
   // N   N        N   N N
   root->left->right = nullptr;
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N            N
   // N   N        N   N
   root->right->right = nullptr;
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 
   //            N
   //      N            N
   //   N
   // N   N
   root->right->left = nullptr;
-  assert(! isCompleteTree(root));
+  Assert(! isCompleteTree(root));
 }
 
 /*

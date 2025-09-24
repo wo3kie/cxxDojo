@@ -10,13 +10,13 @@
  */
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./output.hpp"
 
 /*

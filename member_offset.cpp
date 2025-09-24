@@ -9,9 +9,9 @@
  *      $ ./build/bin/member_offset
  */
 
-#include <cassert>
 #include <iostream>
 
+#include "./assert.hpp"
 #include "./member_offset.hpp"
 
 /*
@@ -28,7 +28,7 @@ struct S {
  */
 
 int main() {
-  assert(getMemberOffset(&S::i) == 0LL);
-  assert(getMemberOffset(&S::f) == 4LL);
-  assert(getMemberOffset(&S::c) == 8LL);
+  Assert(getMemberOffset(&S::i) == 0LL);
+  Assert(getMemberOffset(&S::f) == 4LL);
+  Assert(getMemberOffset(&S::c) == 8LL);
 }

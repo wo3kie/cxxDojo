@@ -9,8 +9,7 @@
  *      $ ./build/bin/matrix
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./matrix.hpp"
 
 /*

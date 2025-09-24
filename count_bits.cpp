@@ -9,9 +9,9 @@
  *      $ ./build/bin/countBits
  */
 
-#include <cassert>
 #include <random>
 
+#include "./assert.hpp"
 #include "./count_bits.hpp"
 
 /*
@@ -19,15 +19,15 @@
  */
 
 void test_countBits8() {
-  assert(countBits8(0b00000000) == 0);
-  assert(countBits8(0b00000001) == 1);
-  assert(countBits8(0b00000010) == 1);
-  assert(countBits8(0b00000011) == 2);
-  assert(countBits8(0b00000100) == 1);
-  assert(countBits8(0b00000101) == 2);
-  assert(countBits8(0b00000110) == 2);
-  assert(countBits8(0b00000111) == 3);
-  assert(countBits8(0b11111111) == 8);
+  Assert(countBits8(0b00000000) == 0);
+  Assert(countBits8(0b00000001) == 1);
+  Assert(countBits8(0b00000010) == 1);
+  Assert(countBits8(0b00000011) == 2);
+  Assert(countBits8(0b00000100) == 1);
+  Assert(countBits8(0b00000101) == 2);
+  Assert(countBits8(0b00000110) == 2);
+  Assert(countBits8(0b00000111) == 3);
+  Assert(countBits8(0b11111111) == 8);
 }
 
 /*
@@ -36,16 +36,16 @@ void test_countBits8() {
 
 void test_countBits() {
   for(int i = 0; i < 256; ++i) {
-    assert(countBits8(i) == __builtin_popcount(i));
+    Assert(countBits8(i) == __builtin_popcount(i));
   }
 
   for(int i = 0; i < 256; ++i) {
-    assert(countBits(i) == __builtin_popcount(i));
+    Assert(countBits(i) == __builtin_popcount(i));
   }
 
   for(int i = 0; i < 1e4; ++i) {
     const int random = std::rand();
-    assert(countBits(random) == __builtin_popcount(random));
+    Assert(countBits(random) == __builtin_popcount(random));
   }
 }
 

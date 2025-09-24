@@ -10,10 +10,11 @@
 
 #pragma once
 
-#include <cassert>
 #include <deque>
 #include <string>
 #include <vector>
+
+#include "./assert.hpp"
 
 /*
  * Vector based implementation on TRIE data structure
@@ -128,7 +129,7 @@ private:
         /* 256 */
     };
 
-    assert(ids[letter] != -1);
+    Assert(ids[letter] != -1);
 
     return ids[letter];
   }

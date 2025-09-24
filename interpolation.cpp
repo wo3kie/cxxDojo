@@ -9,8 +9,7 @@
  *      $ ./build/bin/interpolation
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./interpolation.hpp"
 
 /*

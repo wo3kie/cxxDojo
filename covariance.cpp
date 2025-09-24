@@ -12,7 +12,7 @@
 #include "./covariance.hpp"
 #include "./feq.hpp"
 
-#include <cassert>
+#include "./assert.hpp"
 
 /*
  * covariance_test
@@ -21,14 +21,14 @@ void covariance_test_1() {
   std::vector<double> xs = {1, 2, 3, 4, 5};
   std::vector<double> ys = {5, 4, 3, 2, 1};
 
-  assert(feq(covariance(xs, ys), -2.5));
+  Assert(feq(covariance(xs, ys), -2.5));
 }
 
 void covariance_test_2() {
   std::vector<double> xs = {1, 2, 3, 4, 5};
   std::vector<double> ys = {1, 2, 3, 4, 5};
 
-  assert(feq(covariance(xs, ys), 2.5));
+  Assert(feq(covariance(xs, ys), 2.5));
 }
 
 /*

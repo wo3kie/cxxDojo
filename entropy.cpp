@@ -18,10 +18,10 @@
 
 #include "./entropy.hpp"
 
-#include <cassert>
 #include <iostream>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./feq.hpp"
 
 /*
@@ -31,17 +31,17 @@
 void entropy_test() {
   {
     std::vector<int> array({1, 2});
-    assert(entropy(array.begin(), array.end()) == 1);
+    Assert(entropy(array.begin(), array.end()) == 1);
   }
 
   {
     std::vector<int> array({1, 2, 2, 2});
-    assert(feq(entropy(array.begin(), array.end()), 0.811278));
+    Assert(feq(entropy(array.begin(), array.end()), 0.811278));
   }
 
   {
     std::vector<int> array({1, 1, 1, 1, 1});
-    assert(feq(entropy(array.begin(), array.end()), 0));
+    Assert(feq(entropy(array.begin(), array.end()), 0));
   }
 }
 

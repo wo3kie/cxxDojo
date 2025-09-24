@@ -13,7 +13,6 @@
  */
 
 #include <algorithm>
-#include <cassert>
 #include <iostream>
 #include <list>
 #include <map>
@@ -21,6 +20,8 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
+
+#include "./assert.hpp"
 
 /*
  * <in>
@@ -33,37 +34,37 @@ struct In {
 
 template<typename T>
 In operator<(const T& t, In in) {
-  assert(in._type = typeid(T).hash_code());
+  Assert(in._type == typeid(T).hash_code());
   in._ptr = &t;
   return in;
 }
 
 template<typename T>
 bool operator>(const In& in, const std::vector<T>& v) {
-  assert(in._type == typeid(T).hash_code());
+  Assert(in._type == typeid(T).hash_code());
   return std::find(v.begin(), v.end(), *(const T*)(in._ptr)) != v.end();
 }
 
 template<typename T>
 bool operator>(const In& in, const std::list<T>& l) {
-  assert(in._type == typeid(T).hash_code());
+  Assert(in._type == typeid(T).hash_code());
   return std::find(l.begin(), l.end(), *(const T*)(in._ptr)) != l.end();
 }
 
 template<typename T>
 bool operator>(const In& in, const std::set<T>& s) {
-  assert(in._type == typeid(T).hash_code());
+  Assert(in._type == typeid(T).hash_code());
   return s.count(*(const T*)(in._ptr)) == 1;
 }
 
 template<typename K, typename V>
 bool operator>(const In& in, const std::map<K, V>& m) {
-  assert(in._type == typeid(K).hash_code());
+  Assert(in._type == typeid(K).hash_code());
   return m.count(*(const K*)(in._ptr)) == 1;
 }
 
 bool operator>(const In& in, const std::string& s) {
-  assert(in._type == typeid(std::string).hash_code());
+  Assert(in._type == typeid(std::string).hash_code());
   return std::find(s.begin(), s.end(), *(const char*)(in._ptr)) != s.end();
 }
 

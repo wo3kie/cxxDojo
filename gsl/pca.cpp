@@ -18,12 +18,13 @@
   * Inspired with, https://gist.github.com/microo8/4065693
   */
 
-#include <cassert>
-
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_eigen.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_statistics.h>
+
+#include "../assert.hpp"
+
 
 gsl_matrix* pca(gsl_matrix const* const matrix /* (points, dim) */, unsigned newDimension) {
   /* `points' is a number of points
@@ -172,15 +173,15 @@ int main(){
 
   gsl_matrix* const result = pca(&view.matrix, 1);
 
-  assert(gsl_matrix_get(result, 0, 0) == 1);
-  assert(gsl_matrix_get(result, 1, 0) == 2);
-  assert(gsl_matrix_get(result, 2, 0) == 3);
-  assert(gsl_matrix_get(result, 3, 0) == 4);
-  assert(gsl_matrix_get(result, 4, 0) == 5);
-  assert(gsl_matrix_get(result, 5, 0) == 6);
-  assert(gsl_matrix_get(result, 6, 0) == 7);
-  assert(gsl_matrix_get(result, 7, 0) == 8);
-  assert(gsl_matrix_get(result, 8, 0) == 9);
+  Assert(gsl_matrix_get(result, 0, 0) == 1);
+  Assert(gsl_matrix_get(result, 1, 0) == 2);
+  Assert(gsl_matrix_get(result, 2, 0) == 3);
+  Assert(gsl_matrix_get(result, 3, 0) == 4);
+  Assert(gsl_matrix_get(result, 4, 0) == 5);
+  Assert(gsl_matrix_get(result, 5, 0) == 6);
+  Assert(gsl_matrix_get(result, 6, 0) == 7);
+  Assert(gsl_matrix_get(result, 7, 0) == 8);
+  Assert(gsl_matrix_get(result, 8, 0) == 9);
 
   gsl_matrix_free(result);
 }

@@ -9,7 +9,7 @@
  *      $ ./build/bin/timer
  */
 
-#include "timer.hpp"
+#include "./timer.hpp"
 
 /*
  * main

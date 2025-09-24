@@ -8,10 +8,11 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <cassert>
 #include <cmath>
 #include <functional>
 #include <vector>
+
+#include "./assert.hpp"
 
 enum { None = 0, Maybe = 1 };
 

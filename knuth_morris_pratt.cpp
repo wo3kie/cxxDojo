@@ -10,9 +10,9 @@
  *      5 9 11 
  */
 
-#include <cassert>
 #include <iostream>
 
+#include "./assert.hpp"
 #include "./knuth_morris_pratt.hpp"
 
 /*

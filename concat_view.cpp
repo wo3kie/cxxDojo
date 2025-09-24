@@ -13,13 +13,13 @@
  * test
  */
 
-#include <cassert>
 #include <deque>
 #include <iostream>
 #include <list>
 #include <vector>
 
-#include "concat_view.hpp"
+#include "./assert.hpp"
+#include "./concat_view.hpp"
 
 void concat_view_test_1() {
   std::list<int> lst = {1, 2, 3};

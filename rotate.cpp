@@ -9,9 +9,9 @@
  *      $ ./build/bin/rotate
  */
 
-#include <cassert>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./output.hpp"
 #include "./rotate.hpp"
 
@@ -27,35 +27,35 @@ void rotate_right_test(Rotate r) {
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 0, array.end());
-  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
+  Assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 1, array.end());
-  assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
+  Assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 2, array.end());
-  assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
+  Assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 3, array.end());
-  assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
+  Assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 4, array.end());
-  assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
+  Assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 5, array.end());
-  assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
+  Assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 6, array.end());
-  assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
+  Assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 7, array.end());
-  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
+  Assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 }
 
 /*
@@ -68,31 +68,31 @@ void rotate_left_test(Rotate r) {
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 0, array.end());
-  assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
+  Assert((array == VI{1, 2, 3, 4, 5, 6, 7}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 1, array.end());
-  assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
+  Assert((array == VI{2, 3, 4, 5, 6, 7, 1}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 2, array.end());
-  assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
+  Assert((array == VI{3, 4, 5, 6, 7, 1, 2}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 3, array.end());
-  assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
+  Assert((array == VI{4, 5, 6, 7, 1, 2, 3}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 4, array.end());
-  assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
+  Assert((array == VI{5, 6, 7, 1, 2, 3, 4}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 5, array.end());
-  assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
+  Assert((array == VI{6, 7, 1, 2, 3, 4, 5}));
 
   array = {1, 2, 3, 4, 5, 6, 7};
   r(array.begin(), array.begin() + 6, array.end());
-  assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
+  Assert((array == VI{7, 1, 2, 3, 4, 5, 6}));
 }
 
 /*

@@ -1,56 +1,56 @@
 #include <iostream>
 #include <set>
 
-#include "trie.hpp"
+#include "./trie.hpp"
 
 void test() {
   Trie trie;
-  assert(! trie.getOrCreate(""));
-  assert(trie.getOrCreate("A"));
-  assert(trie.getOrCreate("Z"));
-  assert(trie.getOrCreate("_"));
-  assert(trie.getOrCreate("0"));
-  assert(trie.getOrCreate("9"));
+  Assert(! trie.getOrCreate(""));
+  Assert(trie.getOrCreate("A"));
+  Assert(trie.getOrCreate("Z"));
+  Assert(trie.getOrCreate("_"));
+  Assert(trie.getOrCreate("0"));
+  Assert(trie.getOrCreate("9"));
 
-  assert(! trie.getOrCreate(""));
-  assert(! trie.getOrCreate("A"));
-  assert(! trie.getOrCreate("Z"));
-  assert(! trie.getOrCreate("_"));
-  assert(! trie.getOrCreate("0"));
-  assert(! trie.getOrCreate("9"));
+  Assert(! trie.getOrCreate(""));
+  Assert(! trie.getOrCreate("A"));
+  Assert(! trie.getOrCreate("Z"));
+  Assert(! trie.getOrCreate("_"));
+  Assert(! trie.getOrCreate("0"));
+  Assert(! trie.getOrCreate("9"));
 
-  assert(! trie.getOrCreate("A"));
-  assert(trie.getOrCreate("AL"));
-  assert(trie.getOrCreate("ALA"));
-  assert(trie.getOrCreate("ALAN"));
-  assert(trie.getOrCreate("ALANEK"));
+  Assert(! trie.getOrCreate("A"));
+  Assert(trie.getOrCreate("AL"));
+  Assert(trie.getOrCreate("ALA"));
+  Assert(trie.getOrCreate("ALAN"));
+  Assert(trie.getOrCreate("ALANEK"));
 
-  assert(! trie.getOrCreate("A"));
-  assert(! trie.getOrCreate("AL"));
-  assert(! trie.getOrCreate("ALA"));
-  assert(! trie.getOrCreate("ALAN"));
-  assert(! trie.getOrCreate("ALANEK"));
+  Assert(! trie.getOrCreate("A"));
+  Assert(! trie.getOrCreate("AL"));
+  Assert(! trie.getOrCreate("ALA"));
+  Assert(! trie.getOrCreate("ALAN"));
+  Assert(! trie.getOrCreate("ALANEK"));
 
-  assert(trie.getOrCreate("ALANE"));
-  assert(! trie.getOrCreate("ALANE"));
+  Assert(trie.getOrCreate("ALANE"));
+  Assert(! trie.getOrCreate("ALANE"));
 
-  assert(trie.getOrCreate("A1B2C3D4"));
-  assert(trie.getOrCreate("A1B2C3D"));
-  assert(trie.getOrCreate("A1B2C3"));
-  assert(trie.getOrCreate("A1B2C"));
-  assert(trie.getOrCreate("A1B2"));
-  assert(trie.getOrCreate("A1B"));
-  assert(trie.getOrCreate("A1"));
-  assert(! trie.getOrCreate("A"));
+  Assert(trie.getOrCreate("A1B2C3D4"));
+  Assert(trie.getOrCreate("A1B2C3D"));
+  Assert(trie.getOrCreate("A1B2C3"));
+  Assert(trie.getOrCreate("A1B2C"));
+  Assert(trie.getOrCreate("A1B2"));
+  Assert(trie.getOrCreate("A1B"));
+  Assert(trie.getOrCreate("A1"));
+  Assert(! trie.getOrCreate("A"));
 
-  assert(! trie.getOrCreate("A1B2C3D4"));
-  assert(! trie.getOrCreate("A1B2C3D"));
-  assert(! trie.getOrCreate("A1B2C3"));
-  assert(! trie.getOrCreate("A1B2C"));
-  assert(! trie.getOrCreate("A1B2"));
-  assert(! trie.getOrCreate("A1B"));
-  assert(! trie.getOrCreate("A1"));
-  assert(! trie.getOrCreate("A"));
+  Assert(! trie.getOrCreate("A1B2C3D4"));
+  Assert(! trie.getOrCreate("A1B2C3D"));
+  Assert(! trie.getOrCreate("A1B2C3"));
+  Assert(! trie.getOrCreate("A1B2C"));
+  Assert(! trie.getOrCreate("A1B2"));
+  Assert(! trie.getOrCreate("A1B"));
+  Assert(! trie.getOrCreate("A1"));
+  Assert(! trie.getOrCreate("A"));
 
   std::set<std::string> actual;
 
@@ -78,7 +78,7 @@ void test() {
       "ALANEK",
   };
 
-  assert(std::equal(actual.begin(), actual.end(), expected.begin()));
+  Assert(std::equal(actual.begin(), actual.end(), expected.begin()));
 }
 
 /*

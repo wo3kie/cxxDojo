@@ -12,7 +12,7 @@
 #include "./correlation.hpp"
 #include "./feq.hpp"
 
-#include <cassert>
+#include "./assert.hpp"
 
 /*
  * correlation_test
@@ -24,14 +24,14 @@ void correlation_test_1() {
 
   double d = correlation(xs, ys);
 
-  assert(feq(correlation(xs, ys), -1.0));
+  Assert(feq(correlation(xs, ys), -1.0));
 }
 
 void correlation_test_2() {
   std::vector<double> xs = {1, 2, 3, 4, 5};
   std::vector<double> ys = {1, 2, 3, 4, 5};
 
-  assert(feq(correlation(xs, ys), 1.0));
+  Assert(feq(correlation(xs, ys), 1.0));
 }
 
 /*

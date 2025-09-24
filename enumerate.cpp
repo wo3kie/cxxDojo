@@ -9,10 +9,10 @@
  *      $ ./build/bin/enumerate
  */
 
-#include <cassert>
 #include <iostream>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./enumerate.hpp"
 
 /*
@@ -37,8 +37,8 @@ void enumerate_test() {
   std::vector<char> vec{'a'};
 
   for(auto [idx, value] : enumerate(vec)) {
-    assert(idx == 0);
-    assert(value == 'a');
+    Assert(idx == 0);
+    Assert(value == 'a');
   }
 }
 

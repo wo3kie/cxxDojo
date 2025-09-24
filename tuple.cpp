@@ -9,11 +9,11 @@
  *      $ ./build/bin/tuple
  */
 
-#include <cassert>
 #include <iostream>
 #include <string>
 #include <sstream>
 
+#include "./assert.hpp"
 #include "./tuple.hpp"
 
 /*
@@ -25,11 +25,11 @@ namespace composition {
 void test() {
   auto tuple = makeTuple(0, 1.0, '2');
 
-  assert(get<0>(tuple) == 0);
-  assert(get<1>(tuple) == 1.0);
-  assert(get<2>(tuple) == '2');
+  Assert(get<0>(tuple) == 0);
+  Assert(get<1>(tuple) == 1.0);
+  Assert(get<2>(tuple) == '2');
 
-  assert(size(tuple) == 3);
+  Assert(size(tuple) == 3);
 }
 
 } // namespace composition
@@ -39,11 +39,11 @@ namespace inheritance {
 void test() {
   auto tuple = makeTuple(0, 1.0, '2');
 
-  assert(get<0>(tuple) == 0);
-  assert(get<1>(tuple) == 1.0);
-  assert(get<2>(tuple) == '2');
+  Assert(get<0>(tuple) == 0);
+  Assert(get<1>(tuple) == 1.0);
+  Assert(get<2>(tuple) == '2');
 
-  assert(size(tuple) == 3);
+  Assert(size(tuple) == 3);
 }
 
 } // namespace inheritance
@@ -57,7 +57,7 @@ void foldl_test() {
     return acc + int(a);
   };
 
-  assert(foldl(fl, 0, tcid) == 1 + 2 + 3);
+  Assert(foldl(fl, 0, tcid) == 1 + 2 + 3);
 }
 
 void foldr_test() {
@@ -67,7 +67,7 @@ void foldr_test() {
     return int(a) + acc;
   };
 
-  assert(foldr(fr, 0, tcid) == 1 + 2 + 3);
+  Assert(foldr(fr, 0, tcid) == 1 + 2 + 3);
 }
 
 void hash_test() {
@@ -114,7 +114,7 @@ void Foldl_test() {
 void print_test() {
   std::ostringstream oss;
   print(oss, std::make_tuple(1, 'b', 3.3), ", ");
-  assert(oss.str() == "1, b, 3.3");
+  Assert(oss.str() == "1, b, 3.3");
 }
 
 } // namespace stl

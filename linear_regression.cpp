@@ -9,11 +9,11 @@
  *      $ ./build/bin/linear_regression
  */
 
-#include <cassert>
 #include <cmath>
 #include <iostream>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./feq.hpp"
 #include "./linear_regression.hpp"
 
@@ -27,13 +27,13 @@ int main() {
     double b;
     const std::vector<Point> points{{1, 10}, {2, 20}, {3, 20}, {3, 25}, {4, 30}};
 
-    assert(linearRegression(points, a, b));
-    assert(feq(a, 6.1539, 0.0001));
-    assert(feq(b, 5.0000, 0.0001));
+    Assert(linearRegression(points, a, b));
+    Assert(feq(a, 6.1539, 0.0001));
+    Assert(feq(b, 5.0000, 0.0001));
 
-    assert(linearRegression2(points, a, b));
-    assert(feq(a, 6.1539, 0.0001));
-    assert(feq(b, 5.0000, 0.0001));
+    Assert(linearRegression2(points, a, b));
+    Assert(feq(a, 6.1539, 0.0001));
+    Assert(feq(b, 5.0000, 0.0001));
   }
 
   {
@@ -41,13 +41,13 @@ int main() {
     double b;
     const std::vector<Point> points{{1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}};
 
-    assert(linearRegression(points, a, b));
-    assert(feq(a, 0.0000, 0.0001));
-    assert(feq(b, 1.0000, 0.0001));
+    Assert(linearRegression(points, a, b));
+    Assert(feq(a, 0.0000, 0.0001));
+    Assert(feq(b, 1.0000, 0.0001));
 
-    assert(linearRegression2(points, a, b));
-    assert(feq(a, 0.0000, 0.0001));
-    assert(feq(b, 1.0000, 0.0001));
+    Assert(linearRegression2(points, a, b));
+    Assert(feq(a, 0.0000, 0.0001));
+    Assert(feq(b, 1.0000, 0.0001));
   }
 
   {
@@ -55,7 +55,7 @@ int main() {
     double b;
     const std::vector<Point> points{{1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}};
 
-    assert(! linearRegression(points, a, b));
-    assert(! linearRegression2(points, a, b));
+    Assert(! linearRegression(points, a, b));
+    Assert(! linearRegression2(points, a, b));
   }
 }

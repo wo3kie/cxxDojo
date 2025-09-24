@@ -9,11 +9,11 @@
  *      $ ./build/bin/bloom_filter
  */
 
-#include <cassert>
 #include <iostream>
 #include <string>
 
 #include "./bloom_filter.hpp"
+#include "./assert.hpp"
 
 /*
  * main
@@ -54,35 +54,35 @@ int main() {
   bf.insert("python");
   bf.insert("haskell");
 
-  assert(bf.find("c++") == Maybe);
-  assert(bf.find("python") == Maybe);
-  assert(bf.find("haskell") == Maybe);
+  Assert(bf.find("c++") == Maybe);
+  Assert(bf.find("python") == Maybe);
+  Assert(bf.find("haskell") == Maybe);
 
-  assert(bf.find("java") == None);
-  assert(bf.find("c#") == None);
-  assert(bf.find("perl") == None);
+  Assert(bf.find("java") == None);
+  Assert(bf.find("c#") == None);
+  Assert(bf.find("perl") == None);
 
-  assert(optimalNumberOfBits(1e3, 0.01) == 9586 /* 1.2kB */);
-  assert(optimalNumberOfBits(1e3, 0.001) == 14378 /* 1.7kB */);
-  assert(optimalNumberOfBits(1e3, 0.0001) == 19171 /* 2.3kB */);
+  Assert(optimalNumberOfBits(1e3, 0.01) == 9586 /* 1.2kB */);
+  Assert(optimalNumberOfBits(1e3, 0.001) == 14378 /* 1.7kB */);
+  Assert(optimalNumberOfBits(1e3, 0.0001) == 19171 /* 2.3kB */);
 
-  assert(optimalNumberOfHashFunctions(1e3, 9586) == 7);
-  assert(optimalNumberOfHashFunctions(1e3, 14378) == 10);
-  assert(optimalNumberOfHashFunctions(1e3, 19171) == 14);
+  Assert(optimalNumberOfHashFunctions(1e3, 9586) == 7);
+  Assert(optimalNumberOfHashFunctions(1e3, 14378) == 10);
+  Assert(optimalNumberOfHashFunctions(1e3, 19171) == 14);
 
-  assert(optimalNumberOfBits(1e6, 0.001) == 14377578 /* 1.7MB */);
-  assert(optimalNumberOfBits(1e6, 0.0001) == 19170104 /* 2.3MB */);
-  assert(optimalNumberOfBits(1e6, 0.00001) == 23962630 /* 2.9MB */);
+  Assert(optimalNumberOfBits(1e6, 0.001) == 14377578 /* 1.7MB */);
+  Assert(optimalNumberOfBits(1e6, 0.0001) == 19170104 /* 2.3MB */);
+  Assert(optimalNumberOfBits(1e6, 0.00001) == 23962630 /* 2.9MB */);
 
-  assert(optimalNumberOfHashFunctions(1e6, 14377578) == 10);
-  assert(optimalNumberOfHashFunctions(1e6, 19170104) == 14);
-  assert(optimalNumberOfHashFunctions(1e6, 23962630) == 17);
+  Assert(optimalNumberOfHashFunctions(1e6, 14377578) == 10);
+  Assert(optimalNumberOfHashFunctions(1e6, 19170104) == 14);
+  Assert(optimalNumberOfHashFunctions(1e6, 23962630) == 17);
 
-  assert(optimalNumberOfBits(1e9, 0.001) == 1492676007 /* 177MB */);
-  assert(optimalNumberOfBits(1e9, 0.0001) == 1990234676 /* 237MB */);
-  assert(optimalNumberOfBits(1e9, 0.00001) == 2487793345 /* 296MB */);
+  Assert(optimalNumberOfBits(1e9, 0.001) == 1492676007 /* 177MB */);
+  Assert(optimalNumberOfBits(1e9, 0.0001) == 1990234676 /* 237MB */);
+  Assert(optimalNumberOfBits(1e9, 0.00001) == 2487793345 /* 296MB */);
 
-  assert(optimalNumberOfHashFunctions(1e9, 1492676007) == 2);
-  assert(optimalNumberOfHashFunctions(1e9, 1990234676) == 2);
-  assert(optimalNumberOfHashFunctions(1e9, 2487793345) == 2);
+  Assert(optimalNumberOfHashFunctions(1e9, 1492676007) == 2);
+  Assert(optimalNumberOfHashFunctions(1e9, 1990234676) == 2);
+  Assert(optimalNumberOfHashFunctions(1e9, 2487793345) == 2);
 }

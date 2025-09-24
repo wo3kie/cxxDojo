@@ -9,8 +9,7 @@
  *      $ ./build/bin/gram_schmidt
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./gram_schmidt.hpp"
 
 /*
@@ -27,5 +26,5 @@ int main() {
 
   const Matrix orthonormal = gramSchmidt(matrix);
 
-  assert((dot(transpose(orthonormal), orthonormal) == eye(matrix.rows())));
+  Assert((dot(transpose(orthonormal), orthonormal) == eye(matrix.rows())));
 }

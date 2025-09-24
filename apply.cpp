@@ -9,9 +9,8 @@
  *      $ ./build/bin/apply
  */
 
-#include "apply.hpp"
-
-#include <cassert>
+#include "./apply.hpp"
+#include "./assert.hpp"
 
 /*
  * test
@@ -30,6 +29,6 @@ const auto add2 = [](int i, float f, double d) -> double { //
  */
 
 int main() {
-  assert(apply(add, std::make_tuple(1, 2.f, 3.0)) == 1 + 2.f + 3.0);
-  assert(apply(add2, std::make_tuple(1, 2.f, 3.0)) == 1 + 2.f + 3.0);
+  Assert(apply(add, std::make_tuple(1, 2.f, 3.0)) == 1 + 2.f + 3.0);
+  Assert(apply(add2, std::make_tuple(1, 2.f, 3.0)) == 1 + 2.f + 3.0);
 }

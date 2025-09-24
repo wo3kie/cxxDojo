@@ -9,8 +9,7 @@
  *      $ ./build/bin/find_union
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./find_union.hpp"
 #include "./output.hpp"
 

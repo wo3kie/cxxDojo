@@ -9,7 +9,6 @@
  */
 
 #include <array>
-#include <cassert>
 #include <iostream>
 #include <list>
 #include <map>
@@ -20,6 +19,7 @@
 #include <unordered_set>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./tuple.hpp"
 
 template<typename T>

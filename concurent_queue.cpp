@@ -10,11 +10,11 @@
  *      OK
  */
 
-#include <cassert>
 #include <iostream>
 #include <thread>
 
 #include "./concurent_queue.hpp"
+#include "./assert.hpp"
 
 /*
  * producer
@@ -37,7 +37,7 @@ void consumer(concurent_queue<int>& queue) {
     sum += queue.get();
   }
 
-  assert(sum == (0 + 999) * (1000 / 2));
+  Assert(sum == (0 + 999) * (1000 / 2));
 
   std::cout << "OK" << std::endl;
 }

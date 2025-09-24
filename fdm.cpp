@@ -17,10 +17,11 @@
   * Centered difference:    d2f(x, t)/dx2 ~ (f(x+h, t) - 2*f(x, t) + f(x-h, t))/h^2
   */
 
-#include <cassert>
-#include <cmath>
-#include <iomanip>
-#include <iostream>
+ #include <cmath>
+ #include <iomanip>
+ #include <iostream>
+
+ #include "./assert.hpp"
 
 template<int N, int M>
 void print(double (&f)[N][M]) {

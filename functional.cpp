@@ -9,11 +9,11 @@
  *      $ ./build/bin/functional
  */
 
-#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./functional.hpp"
 
 /*

@@ -9,8 +9,7 @@
  *      $ ./build/bin/scaling
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./feq.hpp"
 #include "./scaling.hpp"
 

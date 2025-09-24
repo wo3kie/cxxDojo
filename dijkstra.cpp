@@ -33,14 +33,14 @@ void dijkstra_test() {
 
   typedef std::vector<int> VI;
 
-  assert((dist == VI{0, 3, 2, 5, 6}));
-  assert((prev == VI{-1, 2, 0, 1, 1}));
+  Assert((dist == VI{0, 3, 2, 5, 6}));
+  Assert((prev == VI{-1, 2, 0, 1, 1}));
 
-  assert((decodeShortestPath(prev, 0, 0) == VI{0}));
-  assert((decodeShortestPath(prev, 0, 1) == VI{0, 2, 1}));
-  assert((decodeShortestPath(prev, 0, 2) == VI{0, 2}));
-  assert((decodeShortestPath(prev, 0, 3) == VI{0, 2, 1, 3}));
-  assert((decodeShortestPath(prev, 0, 4) == VI{0, 2, 1, 4}));
+  Assert((decodeShortestPath(prev, 0, 0) == VI{0}));
+  Assert((decodeShortestPath(prev, 0, 1) == VI{0, 2, 1}));
+  Assert((decodeShortestPath(prev, 0, 2) == VI{0, 2}));
+  Assert((decodeShortestPath(prev, 0, 3) == VI{0, 2, 1, 3}));
+  Assert((decodeShortestPath(prev, 0, 4) == VI{0, 2, 1, 4}));
 }
 
 /*

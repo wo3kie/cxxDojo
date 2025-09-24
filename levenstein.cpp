@@ -13,20 +13,20 @@
  *      2
  */
 
-#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./levenstein.hpp"
 
 /*
- *levensteinDistance_test_1
+ * levensteinDistance_test_1
  */
 
 void levensteinDistance_test_1() {
-  assert(0 == levensteinDistance<std::string>("", ""));
-  assert(0 == levensteinDistance<std::string>("euler", "euler"));
+  Assert(0 == levensteinDistance<std::string>("", ""));
+  Assert(0 == levensteinDistance<std::string>("euler", "euler"));
 }
 
 /*
@@ -34,26 +34,26 @@ void levensteinDistance_test_1() {
  */
 
 void levensteinDistance_test_2() {
-  assert(1 == levensteinDistance<std::string>("", "e"));
+  Assert(1 == levensteinDistance<std::string>("", "e"));
 
-  assert(1 == levensteinDistance<std::string>("euler", "uler"));
-  assert(1 == levensteinDistance<std::string>("euler", "eler"));
-  assert(1 == levensteinDistance<std::string>("euler", "euer"));
-  assert(1 == levensteinDistance<std::string>("euler", "eulr"));
-  assert(1 == levensteinDistance<std::string>("euler", "eule"));
+  Assert(1 == levensteinDistance<std::string>("euler", "uler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "euer"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eulr"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eule"));
 
-  assert(1 == levensteinDistance<std::string>("euler", "_euler"));
-  assert(1 == levensteinDistance<std::string>("euler", "e_uler"));
-  assert(1 == levensteinDistance<std::string>("euler", "eu_ler"));
-  assert(1 == levensteinDistance<std::string>("euler", "eul_er"));
-  assert(1 == levensteinDistance<std::string>("euler", "eule_r"));
-  assert(1 == levensteinDistance<std::string>("euler", "euler_"));
+  Assert(1 == levensteinDistance<std::string>("euler", "_euler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "e_uler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eu_ler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eul_er"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eule_r"));
+  Assert(1 == levensteinDistance<std::string>("euler", "euler_"));
 
-  assert(1 == levensteinDistance<std::string>("euler", "_uler"));
-  assert(1 == levensteinDistance<std::string>("euler", "e_ler"));
-  assert(1 == levensteinDistance<std::string>("euler", "eu_er"));
-  assert(1 == levensteinDistance<std::string>("euler", "eul_r"));
-  assert(1 == levensteinDistance<std::string>("euler", "eule_"));
+  Assert(1 == levensteinDistance<std::string>("euler", "_uler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "e_ler"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eu_er"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eul_r"));
+  Assert(1 == levensteinDistance<std::string>("euler", "eule_"));
 }
 
 /*
@@ -61,15 +61,15 @@ void levensteinDistance_test_2() {
  */
 
 void levensteinDistance_test_3() {
-  assert(2 == levensteinDistance<std::string>("c++", "c++++"));
-  assert(2 == levensteinDistance<std::string>("c++", "++c++"));
+  Assert(2 == levensteinDistance<std::string>("c++", "c++++"));
+  Assert(2 == levensteinDistance<std::string>("c++", "++c++"));
 
-  assert(2 == levensteinDistance<std::string>("c++", "c"));
-  assert(2 == levensteinDistance<std::string>("c++", "+"));
+  Assert(2 == levensteinDistance<std::string>("c++", "c"));
+  Assert(2 == levensteinDistance<std::string>("c++", "+"));
 
-  assert(2 == levensteinDistance<std::string>("c++", "c__"));
-  assert(2 == levensteinDistance<std::string>("c++", "_+_"));
-  assert(2 == levensteinDistance<std::string>("c++", "__+"));
+  Assert(2 == levensteinDistance<std::string>("c++", "c__"));
+  Assert(2 == levensteinDistance<std::string>("c++", "_+_"));
+  Assert(2 == levensteinDistance<std::string>("c++", "__+"));
 }
 
 /*
@@ -77,8 +77,8 @@ void levensteinDistance_test_3() {
  */
 
 void levensteinDistance_test_4() {
-  assert(3 == levensteinDistance<std::string>("c++", "___"));
-  assert(3 == levensteinDistance<std::string>("Levenshtein", "Le_ensteins"));
+  Assert(3 == levensteinDistance<std::string>("c++", "___"));
+  Assert(3 == levensteinDistance<std::string>("Levenshtein", "Le_ensteins"));
 }
 
 /*

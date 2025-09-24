@@ -10,11 +10,12 @@
  */
 
 #include <algorithm>
-#include <cassert>
 #include <future>
 #include <optional>
 #include <utility>
 #include <vector>
+
+#include "./assert.hpp"
 
 /*
  * min_max
@@ -69,8 +70,8 @@ void min_max_test() {
     auto actual = min_max(array.begin(), array.end());
     auto expected = std::minmax_element(array.begin(), array.end());
 
-    assert(*actual.first == *expected.first);
-    assert(*actual.second == *expected.second);
+    Assert(*actual.first == *expected.first);
+    Assert(*actual.second == *expected.second);
   }
 }
 

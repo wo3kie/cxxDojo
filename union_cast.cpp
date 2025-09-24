@@ -9,8 +9,7 @@
  *      $ ./build/bin/union_cast
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./union_cast.hpp"
 
 /*
@@ -36,13 +35,13 @@ struct S2 {
 int main() {
   {
     S1 s1{123};
-    assert(union_cast<S1>(union_cast<S2>(s1))._i == 123);
+    Assert(union_cast<S1>(union_cast<S2>(s1))._i == 123);
   }
 
   {
     S1 const s1{123};
-    assert(union_cast<S1>(union_cast<S2>(s1))._i == 123);
+    Assert(union_cast<S1>(union_cast<S2>(s1))._i == 123);
   }
 
-  { assert(union_cast<S1>(union_cast<S2>(S1{123}))._i == 123); }
+  { Assert(union_cast<S1>(union_cast<S2>(S1{123}))._i == 123); }
 }

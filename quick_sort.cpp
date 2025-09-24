@@ -9,9 +9,9 @@
  *      $ ./build/bin/quickSort
  */
 
-#include <cassert>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./quick_sort.hpp"
 
 /*

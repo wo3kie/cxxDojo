@@ -9,7 +9,7 @@
  *      $ ./build/bin/fold_expression
  */
 
-#include <cassert>
+#include "./assert.hpp"
 
 template<typename... Ts>
 auto right_1(Ts... ts) {
@@ -53,24 +53,24 @@ auto left_2(Ts... ts) {
  */
 
 int main() {
-  assert(left_1(1, 2, 3, 4) == ((1 - 2) - 3) - 4);
-  assert(left_1(1, 2, 3, 4) == (-1 - 3) - 4);
-  assert(left_1(1, 2, 3, 4) == -4 - 4);
-  assert(left_1(1, 2, 3, 4) == -8);
+  Assert(left_1(1, 2, 3, 4) == ((1 - 2) - 3) - 4);
+  Assert(left_1(1, 2, 3, 4) == (-1 - 3) - 4);
+  Assert(left_1(1, 2, 3, 4) == -4 - 4);
+  Assert(left_1(1, 2, 3, 4) == -8);
 
-  assert(left_2(1, 2, 3, 4) == (((0 - 1) - 2) - 3) - 4);
-  assert(left_2(1, 2, 3, 4) == ((-1 - 2) - 3) - 4);
-  assert(left_2(1, 2, 3, 4) == (-3 - 3) - 4);
-  assert(left_2(1, 2, 3, 4) == -6 - 4);
-  assert(left_2(1, 2, 3, 4) == -10);
+  Assert(left_2(1, 2, 3, 4) == (((0 - 1) - 2) - 3) - 4);
+  Assert(left_2(1, 2, 3, 4) == ((-1 - 2) - 3) - 4);
+  Assert(left_2(1, 2, 3, 4) == (-3 - 3) - 4);
+  Assert(left_2(1, 2, 3, 4) == -6 - 4);
+  Assert(left_2(1, 2, 3, 4) == -10);
 
-  assert(right_1(1, 2, 3, 4) == (1 - (2 - (3 - 4))));
-  assert(right_1(1, 2, 3, 4) == (1 - (2 + 1)));
-  assert(right_1(1, 2, 3, 4) == (1 - 3));
-  assert(right_1(1, 2, 3, 4) == -2);
+  Assert(right_1(1, 2, 3, 4) == (1 - (2 - (3 - 4))));
+  Assert(right_1(1, 2, 3, 4) == (1 - (2 + 1)));
+  Assert(right_1(1, 2, 3, 4) == (1 - 3));
+  Assert(right_1(1, 2, 3, 4) == -2);
 
-  assert(right_2(1, 2, 3, 4) == (1 - (2 - (3 - (4 - 0)))));
-  assert(right_2(1, 2, 3, 4) == (1 - (2 + 1)));
-  assert(right_2(1, 2, 3, 4) == (1 - 3));
-  assert(right_2(1, 2, 3, 4) == -2);
+  Assert(right_2(1, 2, 3, 4) == (1 - (2 - (3 - (4 - 0)))));
+  Assert(right_2(1, 2, 3, 4) == (1 - (2 + 1)));
+  Assert(right_2(1, 2, 3, 4) == (1 - 3));
+  Assert(right_2(1, 2, 3, 4) == -2);
 }

@@ -9,18 +9,17 @@
  *      $ ./build/bin/mean
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./mean.hpp"
 
 void mean_test() {
   {
     const std::vector<int> array{1, 2, 3, 4, 5};
-    assert(mean(array) == 3);
+    Assert(mean(array) == 3);
   }
   {
     const std::vector<double> array{1.5, 2.5, 3.5, 4.5, 5.5};
-    assert(mean(array) == 3.5);
+    Assert(mean(array) == 3.5);
   }
 }
 

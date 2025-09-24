@@ -30,5 +30,10 @@ void hanoi(int size, int from, int to) {
  */
 
 int main(int argc, char* argv[]) {
+  if(argc != 2) {
+    std::cerr << "Usage: " << argv[0] << " number";
+    return 1;
+  }
+
   hanoi(atoi(argv[1]), 1, 2);
 }

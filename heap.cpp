@@ -9,10 +9,10 @@
  *      $ ./build/bin/heap
  */
 
-#include "./heap.hpp"
-
-#include <cassert>
 #include <iostream>
+
+#include "./assert.hpp"
+#include "./heap.hpp"
 
 /*
  * stl_Heap_test
@@ -27,22 +27,22 @@ void stl_Heap_test() {
   heap.push(5);
   heap.push(4);
 
-  assert(heap.top() == 5);
+  Assert(heap.top() == 5);
   heap.pop();
 
-  assert(heap.top() == 4);
+  Assert(heap.top() == 4);
   heap.pop();
 
-  assert(heap.top() == 3);
+  Assert(heap.top() == 3);
   heap.pop();
 
-  assert(heap.top() == 2);
+  Assert(heap.top() == 2);
   heap.pop();
 
-  assert(heap.top() == 1);
+  Assert(heap.top() == 1);
   heap.pop();
 
-  assert(heap.empty() == true);
+  Assert(heap.empty() == true);
 }
 
 /*
@@ -58,22 +58,22 @@ void cxxdojo_Heap_test() {
   heap.push(5);
   heap.push(4);
 
-  assert(heap.top() == 5);
+  Assert(heap.top() == 5);
   heap.pop();
 
-  assert(heap.top() == 4);
+  Assert(heap.top() == 4);
   heap.pop();
 
-  assert(heap.top() == 3);
+  Assert(heap.top() == 3);
   heap.pop();
 
-  assert(heap.top() == 2);
+  Assert(heap.top() == 2);
   heap.pop();
 
-  assert(heap.top() == 1);
+  Assert(heap.top() == 1);
   heap.pop();
 
-  assert(heap.empty() == true);
+  Assert(heap.empty() == true);
 }
 
 /*

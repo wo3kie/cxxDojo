@@ -8,10 +8,11 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <cassert>
 #include <cmath>
 #include <exception>
 #include <functional>
+
+#include "./assert.hpp"
 
 /*
  * bisectionNumberOfIteration

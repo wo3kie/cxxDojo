@@ -9,10 +9,9 @@
  *      $ ./build/bin/gsl_correlation
  */
 
-#include <cassert>
-
 #include <gsl/gsl_statistics.h>
 
+#include "../assert.hpp"
 #include "../covariance.hpp"
 #include "../feq.hpp"
 
@@ -26,11 +25,11 @@ int main() {
 
   {
     double const covarianceValue = covariance(array1, array2);
-    assert(feq(covarianceValue, -0.108889));
+    Assert(feq(covarianceValue, -0.108889));
   }
 
   {
     double const covarianceValue = gsl_stats_covariance(&array1.front(), 1, &array2.front(), 1, array2.size());
-    assert(feq(covarianceValue, -0.108889));
+    Assert(feq(covarianceValue, -0.108889));
   }
 }

@@ -8,9 +8,9 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <cassert>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./feq.hpp"
 
 struct Point {

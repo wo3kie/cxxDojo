@@ -9,8 +9,7 @@
  *      $ ./build/bin/std_dev
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./feq.hpp"
 #include "./std_dev.hpp"
 
@@ -19,8 +18,8 @@
  */
 
 void stdDev_test() {
-  assert(feq(stdDev<int>({1, 1, 1, 1, 1}), 0.0));
-  assert(feq(stdDev<int>({1, 2, 3, 4, 5}), 1.58114));
+  Assert(feq(stdDev<int>({1, 1, 1, 1, 1}), 0.0));
+  Assert(feq(stdDev<int>({1, 2, 3, 4, 5}), 1.58114));
 }
 
 /*

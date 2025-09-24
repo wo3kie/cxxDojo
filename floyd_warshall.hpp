@@ -9,9 +9,9 @@
  */
 
 #include <algorithm>
-#include <cassert>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./output.hpp"
 
 /*

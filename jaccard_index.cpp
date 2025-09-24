@@ -9,8 +9,7 @@
  *      $ ./build/bin/jaccard_index
  */
 
-#include <cassert>
-
+#include "./assert.hpp"
 #include "./feq.hpp"
 #include "./jaccard_index.hpp"
 
@@ -19,9 +18,9 @@
  */
 
 void jaccardIndex_test() {
-  assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}) == 1);
-  assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {6, 7, 8, 9}) == 0);
-  assert(feq(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 3, 5, 7, 9}), 3.0 / 7));
+  Assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}) == 1);
+  Assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {6, 7, 8, 9}) == 0);
+  Assert(feq(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 3, 5, 7, 9}), 3.0 / 7));
 }
 
 /*

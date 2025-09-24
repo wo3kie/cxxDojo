@@ -10,12 +10,13 @@
  */
 
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
+
+#include "./assert.hpp"
 
 /*
  * reverseWords
@@ -51,5 +52,5 @@ std::string reverseWords(std::string string) {
  */
 
 int main() {
-  assert(reverseWords("This is a test") == "test a is This");
+  Assert(reverseWords("This is a test") == "test a is This");
 }

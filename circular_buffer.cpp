@@ -9,10 +9,11 @@
  *      $ ./build/bin/circular_buffer
  */
 
-#include <cassert>
 #include <exception>
 #include <iostream>
 #include <tuple>
+
+#include "./assert.hpp"
 
 template<typename T, int Size>
 struct CircularBuffer {
@@ -66,23 +67,23 @@ int main() {
   {
     CircularBuffer<int, 4> cb;
     cb.push(1);
-    assert(cb.get() == 1);
+    Assert(cb.get() == 1);
   }
   {
     CircularBuffer<int, 4> cb;
     cb.push(1);
     cb.push(2);
-    assert(cb.get() == 1);
-    assert(cb.get() == 2);
+    Assert(cb.get() == 1);
+    Assert(cb.get() == 2);
   }
   {
     CircularBuffer<int, 4> cb;
     cb.push(1);
     cb.push(2);
     cb.push(3);
-    assert(cb.get() == 1);
-    assert(cb.get() == 2);
-    assert(cb.get() == 3);
+    Assert(cb.get() == 1);
+    Assert(cb.get() == 2);
+    Assert(cb.get() == 3);
   }
   {
     CircularBuffer<int, 4> cb;
@@ -90,10 +91,10 @@ int main() {
     cb.push(2);
     cb.push(3);
     cb.push(4);
-    assert(cb.get() == 1);
-    assert(cb.get() == 2);
-    assert(cb.get() == 3);
-    assert(cb.get() == 4);
+    Assert(cb.get() == 1);
+    Assert(cb.get() == 2);
+    Assert(cb.get() == 3);
+    Assert(cb.get() == 4);
   }
   {
     CircularBuffer<int, 4> cb;
@@ -102,10 +103,10 @@ int main() {
     cb.push(3);
     cb.push(4);
     cb.push(5);
-    assert(cb.get() == 2);
-    assert(cb.get() == 3);
-    assert(cb.get() == 4);
-    assert(cb.get() == 5);
+    Assert(cb.get() == 2);
+    Assert(cb.get() == 3);
+    Assert(cb.get() == 4);
+    Assert(cb.get() == 5);
   }
   {
     CircularBuffer<int, 4> cb;
@@ -115,10 +116,10 @@ int main() {
     cb.push(4);
     cb.push(5);
     cb.push(6);
-    assert(cb.get() == 3);
-    assert(cb.get() == 4);
-    assert(cb.get() == 5);
-    assert(cb.get() == 6);
+    Assert(cb.get() == 3);
+    Assert(cb.get() == 4);
+    Assert(cb.get() == 5);
+    Assert(cb.get() == 6);
   }
   {
     CircularBuffer<int, 4> cb;
@@ -129,10 +130,10 @@ int main() {
     cb.push(5);
     cb.push(6);
     cb.push(7);
-    assert(cb.get() == 4);
-    assert(cb.get() == 5);
-    assert(cb.get() == 6);
-    assert(cb.get() == 7);
+    Assert(cb.get() == 4);
+    Assert(cb.get() == 5);
+    Assert(cb.get() == 6);
+    Assert(cb.get() == 7);
   }
   {
     CircularBuffer<int, 4> cb;
@@ -144,24 +145,24 @@ int main() {
     cb.push(6);
     cb.push(7);
     cb.push(8);
-    assert(cb.get() == 5);
-    assert(cb.get() == 6);
-    assert(cb.get() == 7);
-    assert(cb.get() == 8);
+    Assert(cb.get() == 5);
+    Assert(cb.get() == 6);
+    Assert(cb.get() == 7);
+    Assert(cb.get() == 8);
   }
   {
     CircularBuffer<int, 4> cb;
     cb.push(1);            // [1, , , ]
     cb.push(2);            // [1,2, , ]
-    assert(cb.get() == 1); // [ ,2, , ]
+    Assert(cb.get() == 1); // [ ,2, , ]
     cb.push(3);            // [ ,2,3, ]
     cb.push(4);            // [ ,2,3,4]
-    assert(cb.get() == 2); // [ , ,3,4]
+    Assert(cb.get() == 2); // [ , ,3,4]
     cb.push(5);            // [5, ,3,4]
     cb.push(6);            // [5,6,3,4]
-    assert(cb.get() == 3); // [5,6, ,4]
+    Assert(cb.get() == 3); // [5,6, ,4]
     cb.push(7);            // [5,6,7,4]
     cb.push(8);            // [5,6,7,8]
-    assert(cb.get() == 5); // [ ,6,7,8]
+    Assert(cb.get() == 5); // [ ,6,7,8]
   }
 }

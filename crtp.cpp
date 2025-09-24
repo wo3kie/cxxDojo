@@ -36,13 +36,13 @@ struct MyClass: SafeBool<MyClass> {
   bool b_;
 };
 
-#include <cassert>
+#include "./assert.hpp"
 
 /*
  * main
  */
 
 int main() {
-  assert(MyClass(true) == true);
-  assert(MyClass(false) == false);
+  Assert(MyClass(true) == true);
+  Assert(MyClass(false) == false);
 }

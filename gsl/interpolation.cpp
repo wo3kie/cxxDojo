@@ -19,6 +19,7 @@
 
 #include <gsl/gsl_linalg.h>
 
+#include "../assert.hpp"
 #include "../feq.hpp"
 
 namespace ublas = boost::numeric::ublas;
@@ -29,7 +30,7 @@ struct Point {
 };
 
 ublas::vector<double> linear_interpolation_ublas(std::vector<Point> const& points) {
-  assert(points.size() == 2);
+  Assert(points.size() == 2);
 
   ublas::vector<double> X(2);
 
@@ -70,7 +71,7 @@ ublas::vector<double> polynominal_interpolation_ublas(std::vector<Point> const& 
 }
 
 gsl_vector* linear_interpolation_gsl(std::vector<Point> const& points) {
-  assert(points.size() == 2);
+  Assert(points.size() == 2);
 
   gsl_vector* X = gsl_vector_alloc(2);
 
@@ -128,7 +129,7 @@ void linear_interpolation_ublas_test() {
     return feq(d1, d2);
   };
 
-  assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
+  Assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
 }
 
 void polynominal_interpolation_ublas_test() {
@@ -143,7 +144,7 @@ void polynominal_interpolation_ublas_test() {
     return feq(d1, d2);
   };
 
-  assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
+  Assert(std::equal(actual.begin(), actual.end(), expected.begin(), feqDouble));
 }
 
 void linear_interpolation_gsl_test() {
@@ -154,7 +155,7 @@ void linear_interpolation_gsl_test() {
   gsl_vector* actual = linear_interpolation_gsl(std::vector<Point>{{5, 6}, {7, 11}});
 
   for(std::size_t i = 0; i < 2; ++i) {
-    assert((feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i))));
+    Assert(feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i)));
   }
 
   gsl_vector_free(actual);
@@ -170,7 +171,7 @@ void polynominal_interpolation_gsl_test() {
   gsl_vector* actual = polynominal_interpolation_gsl(std::vector<Point>{{1, 12}, {2, 15}, {3, 16}});
 
   for(std::size_t i = 0; i < 3; ++i) {
-    assert((feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i))));
+    Assert(feq(gsl_vector_get(actual, i), gsl_vector_get(expected, i)));
   }
 
   gsl_vector_free(actual);

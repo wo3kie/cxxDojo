@@ -9,9 +9,9 @@
  *      $ ./build/bin/partition
  */
 
-#include <cassert>
 #include <vector>
 
+#include "./assert.hpp"
 #include "./output.hpp"
 #include "./partition.hpp"
 

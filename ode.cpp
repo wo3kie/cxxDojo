@@ -9,9 +9,9 @@
  *      $ ./build/bin/ode.euler
  */
 
-#include <cassert>
 #include <functional>
 
+#include "./assert.hpp"
 #include "./feq.hpp"
 
 double solveOdeImpl(std::function<double(double, double, double)> approx, double x0, const double xN, const double h, double y0) {
@@ -81,8 +81,8 @@ double f(double x, double y) {
  */
 
 int main() {
-  assert(feq(8.6950, solveOdeEulerForward(f, 0, 3, 0.3, 1)));
-  assert(feq(10.045, solveOdeTrapezoid(f, 0, 3, 0.3, 1)));
-  assert(feq(9.9775, solveOdeEulerMidpoint(f, 0, 3, 0.3, 1)));
-  assert(feq(10.000, solveOdeRungeKutta4(f, 0, 3, 0.3, 1)));
+  Assert(feq(8.6950, solveOdeEulerForward(f, 0, 3, 0.3, 1)));
+  Assert(feq(10.045, solveOdeTrapezoid(f, 0, 3, 0.3, 1)));
+  Assert(feq(9.9775, solveOdeEulerMidpoint(f, 0, 3, 0.3, 1)));
+  Assert(feq(10.000, solveOdeRungeKutta4(f, 0, 3, 0.3, 1)));
 }

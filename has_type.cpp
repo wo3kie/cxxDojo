@@ -9,8 +9,9 @@
  *      $ ./build/bin/has_type
  */
 
-#include <cassert>
 #include <type_traits>
+
+#include "./assert.hpp"
 
 struct S {};
 struct T {

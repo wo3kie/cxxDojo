@@ -9,8 +9,9 @@
  *      $ ./build/bin/copy_vs_move
  */
 
-#include <cassert>
 #include <utility>
+
+#include "./assert.hpp"
 
 struct S {
   static int m_copy;
@@ -144,9 +145,9 @@ int main() {
     S s2 = get_S__return_S(s);
   }
 
-  assert(S::m_copy == 1);
-  assert(S::m_move == 1);
-  assert(S::m_destroyed == 3);
+  Assert(S::m_copy == 1);
+  Assert(S::m_move == 1);
+  Assert(S::m_destroyed == 3);
 
   {
     S::reset();
@@ -170,9 +171,9 @@ int main() {
     S s2 = get_S__return_S(std::move(s));
   }
 
-  assert(S::m_copy == 0);
-  assert(S::m_move == 2);
-  assert(S::m_destroyed == 3);
+  Assert(S::m_copy == 0);
+  Assert(S::m_move == 2);
+  Assert(S::m_destroyed == 3);
 
   {
     S::reset();
@@ -193,9 +194,9 @@ int main() {
     S s2 = get_S__return_move_S(s);
   }
 
-  assert(S::m_copy == 1);
-  assert(S::m_move == 1);
-  assert(S::m_destroyed == 3);
+  Assert(S::m_copy == 1);
+  Assert(S::m_move == 1);
+  Assert(S::m_destroyed == 3);
 
   {
     S::reset();
@@ -218,9 +219,9 @@ int main() {
     S s2 = get_S__return_move_S(std::move(s));
   }
 
-  assert(S::m_copy == 0);
-  assert(S::m_move == 2);
-  assert(S::m_destroyed == 3);
+  Assert(S::m_copy == 0);
+  Assert(S::m_move == 2);
+  Assert(S::m_destroyed == 3);
 
   {
     S::reset();
@@ -241,9 +242,9 @@ int main() {
     S s2 = get_Srefref__return_S(std::move(s));
   }
 
-  assert(S::m_copy == 1);
-  assert(S::m_move == 0);
-  assert(S::m_destroyed == 2);
+  Assert(S::m_copy == 1);
+  Assert(S::m_move == 0);
+  Assert(S::m_destroyed == 2);
 
   {
     S::reset();
@@ -264,9 +265,9 @@ int main() {
     S s2 = get_Srefref__return_move_S(std::move(s));
   }
 
-  assert(S::m_copy == 0);
-  assert(S::m_move == 1);
-  assert(S::m_destroyed == 2);
+  Assert(S::m_copy == 0);
+  Assert(S::m_move == 1);
+  Assert(S::m_destroyed == 2);
 
   {
     S::reset();
@@ -284,7 +285,7 @@ int main() {
     S s2 = get_Srefref__return_Srefref(std::move(s));
   }
 
-  assert(S::m_copy == 0);
-  assert(S::m_move == 1);
-  assert(S::m_destroyed == 2);
+  Assert(S::m_copy == 0);
+  Assert(S::m_move == 1);
+  Assert(S::m_destroyed == 2);
 }

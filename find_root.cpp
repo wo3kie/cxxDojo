@@ -9,7 +9,7 @@
  *      $ ./build/bin/find_root
  */
 
-#include <cassert>
+#include "./assert.hpp"
 
 #include "./feq.hpp"
 #include "./find_root.hpp"

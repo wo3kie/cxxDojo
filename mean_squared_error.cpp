@@ -9,10 +9,10 @@
  *      $ ./build/bin/mean_squared_error
  */
 
-#include "./mean_squared_error.hpp"
-
-#include <cassert>
 #include <vector>
+
+#include "./assert.hpp"
+#include "./mean_squared_error.hpp"
 
 /*
  * meanSquaredError_test
@@ -23,21 +23,21 @@ void meanSquaredError_test() {
     const std::vector<double> expected{1, 2, 3};
     const std::vector<double> actual{1, 2, 3};
 
-    assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == 0);
+    Assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == 0);
   }
 
   {
     const std::vector<double> expected{1, 2, 3};
     const std::vector<double> actual{2, 3, 4};
 
-    assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == 1);
+    Assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == 1);
   }
 
   {
     const std::vector<double> expected{1, 2, 3};
     const std::vector<double> actual{3, 2, 1};
 
-    assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == (4 + 4) / 3);
+    Assert(meanSquaredError(expected.begin(), expected.end(), actual.begin()) == (4.0 + 4.0) / 3.0);
   }
 }
 

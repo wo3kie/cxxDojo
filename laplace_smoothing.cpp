@@ -9,9 +9,9 @@
  *      $ ./build/bin/laplace_smoothing
  */
 
-#include <cassert>
 #include <string>
 
+#include "./assert.hpp"
 #include "./laplace_smoothing.hpp"
 
 /*

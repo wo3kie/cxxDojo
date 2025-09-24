@@ -9,29 +9,29 @@
  *      $ ./build/bin/convert_base number fromBase toBase
  */
 
-#include <cassert>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 
+#include "./assert.hpp"
 #include "./convert_base.hpp"
 
 void convertBase_test() {
-  assert(convertBase("101010", 2, 8) == "52");
-  assert(convertBase("101010", 2, 10) == "42");
-  assert(convertBase("101010", 2, 16) == "2A");
+  Assert(convertBase("101010", 2, 8) == "52");
+  Assert(convertBase("101010", 2, 10) == "42");
+  Assert(convertBase("101010", 2, 16) == "2A");
 
-  assert(convertBase("52", 8, 2) == "101010");
-  assert(convertBase("52", 8, 10) == "42");
-  assert(convertBase("52", 8, 16) == "2A");
+  Assert(convertBase("52", 8, 2) == "101010");
+  Assert(convertBase("52", 8, 10) == "42");
+  Assert(convertBase("52", 8, 16) == "2A");
 
-  assert(convertBase("42", 10, 2) == "101010");
-  assert(convertBase("42", 10, 8) == "52");
-  assert(convertBase("42", 10, 16) == "2A");
+  Assert(convertBase("42", 10, 2) == "101010");
+  Assert(convertBase("42", 10, 8) == "52");
+  Assert(convertBase("42", 10, 16) == "2A");
 
-  assert(convertBase("2A", 16, 2) == "101010");
-  assert(convertBase("2A", 16, 8) == "52");
-  assert(convertBase("2A", 16, 10) == "42");
+  Assert(convertBase("2A", 16, 2) == "101010");
+  Assert(convertBase("2A", 16, 8) == "52");
+  Assert(convertBase("2A", 16, 10) == "42");
 }
 
 /*
