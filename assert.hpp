@@ -37,7 +37,11 @@ struct _ExpressionDecomposerResult {
       , _first(first)
       , _second(second) {
     on_error([](const char* file, int line, const char* op, const First& first, const Second& second) -> void {
-      std::cerr << file << ':' << line << " Assertion failed " << first << ' ' << op << ' ' << second << std::endl;
+      if constexpr (requires { std::cerr << first << second; }) {
+        std::cerr << file << ':' << line << " Assertion failed " << first << ' ' << op << ' ' << second << std::endl;
+      } else {
+        std::cerr << file << ':' << line << " Assertion failed" << std::endl;
+      }
       std::abort();
     });
   }

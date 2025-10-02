@@ -20,6 +20,24 @@ int main() {
   Assert(! false);
 
   {
+    struct S {
+      int i;
+
+      bool operator==(const S& other) const {
+        return i == other.i;
+      }
+    };
+
+    /*
+     * Not implemented
+     *
+     * std::ostream& operator<<(std::ostream&, const S&)
+     */
+
+    Assert(S{1} == S{1});
+  }
+
+  {
     /*
      * Print ".../cxxDojo/assert.cpp:22 Assertion failed 1 == 2"
      */
