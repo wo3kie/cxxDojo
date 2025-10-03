@@ -120,7 +120,7 @@ Implement a circular buffer.
 Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
   
 ### concat_view.cpp  
-Implement a simple version of `std::concat_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html). The `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges. 
+Implement a simple version of `std::concat_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html) the `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges. 
   
 ### concepts.cpp  
 Implement some C++ `std`-like concepts examples demonstrating some different syntax. 
@@ -167,8 +167,8 @@ Write a program to compute the entropy of a given sequence.
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Entropy_(information_theory)) the entropy of a random variable quantifies the average level of uncertainty or information associated with the variable's potential states or possible outcomes.
   
-### enumerate.cpp  
-Implement a simple version of `std::enumerate_view` [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html). The `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
+### enumerate_view.cpp  
+Implement a simple version of `std::enumerate_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html) the `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
   
 ### exec.cpp  
 Implement a function to run shell commands and capture their output, including support for long-running processes.
@@ -178,6 +178,14 @@ Implement a function to perform exponential smoothing average (EMA) on a given s
   
 ### fdm.cpp  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.
+  
+### filter_view.cpp  
+Implement a simple version of `std::filter_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/filter_view.html) the `filter_view` is a range adaptor that represents view of an underlying sequence with only the elements that satisfy the predicate. 
+  
+```{r, engine='cpp'}
+// pseudocode
+assert(filter_view({1, 2, 3, 4, 5}, isEven) == {2, 4});
+```
   
 ### feq.cpp  
 Create a function to compare two floating-point values within a given tolerance.
