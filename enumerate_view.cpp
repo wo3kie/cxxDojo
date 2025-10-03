@@ -6,20 +6,20 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./build/bin/enumerate
+ *      $ ./build/bin/enumerate_view
  */
 
 #include <iostream>
 #include <vector>
 
 #include "./assert.hpp"
-#include "./enumerate.hpp"
+#include "./enumerate_view.hpp"
 
 /*
- * enumrate_view_test
+ * enumerate_view_test_1
  */
 
-void enumerate_view_test() {
+void enumerate_view_test_1() {
   std::vector<char> vec{'a', 'b', 'c'};
   enumerate_view e(vec);
 
@@ -30,13 +30,13 @@ void enumerate_view_test() {
 }
 
 /*
- * enumerate_test
+ * enumerate_view_test_2
  */
 
-void enumerate_test() {
+void enumerate_view_test_2() {
   std::vector<char> vec{'a'};
 
-  for(auto [idx, value] : enumerate(vec)) {
+  for(auto [idx, value] : enumerate_view(vec)) {
     Assert(idx == 0);
     Assert(value == 'a');
   }
@@ -47,7 +47,6 @@ void enumerate_test() {
  */
 
 int main() {
-  enumerate_view_test();
-
-  return 0;
+  enumerate_view_test_1();
+  enumerate_view_test_2();
 }

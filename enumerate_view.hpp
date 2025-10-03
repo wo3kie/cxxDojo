@@ -85,12 +85,3 @@ public:
 private:
   Range& _range;
 };
-
-/*
- * enumerate
- */
-
-template<std::ranges::range Range>
-auto enumerate(Range&& range) {
-  return enumerate_view<Range>(range);
-}
