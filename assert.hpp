@@ -12,6 +12,8 @@
 #include <functional>
 #include <iostream>
 
+#include "./output.hpp"
+
 namespace impl {
 
 /*
@@ -38,7 +40,9 @@ struct _ExpressionDecomposerResult {
       , _second(second) {
     on_error([](const char* file, int line, const char* op, const First& first, const Second& second) -> void {
       if constexpr (requires { std::cerr << first << second; }) {
-        std::cerr << file << ':' << line << " Assertion failed " << first << ' ' << op << ' ' << second << std::endl;
+        std::cerr << file << ':' << line << " Assertion failed" 
+          "\n\tactual  : " << first << 
+          "\n\texpected: " << second << std::endl;
       } else {
         std::cerr << file << ':' << line << " Assertion failed" << std::endl;
       }
