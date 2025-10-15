@@ -58,6 +58,9 @@ std::ostream& operator<<(std::ostream& out, const std::unordered_map<T1, T2>& um
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& us);
 
+template<typename... Ts>
+std::ostream& operator<<(std::ostream& out, const std::tuple<Ts...>& tuple);
+
 template<typename Iterator>
 std::ostream& printImpl(std::ostream& out, const char beginning, Iterator begin, const char* const separator, const Iterator end, const char ending) {
   out << beginning;
