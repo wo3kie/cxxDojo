@@ -185,6 +185,42 @@ Acc foldr(F f, Acc acc, const std::tuple<T, Ts...>& t) {
 }
 
 /*
+ * all
+ */
+
+template<size_t I, typename F, typename T, typename... Ts>
+bool _all(F f, const std::tuple<T, Ts...>& t) {
+  if constexpr(I < std::tuple_size<std::tuple<T, Ts...>>::value) {
+    return f(std::get<I>(t)) && _all<I+1>(f, t);
+  } else {
+    return true;
+  }
+}
+
+template<typename F, typename T, typename... Ts>
+bool all(F f, const std::tuple<T, Ts...>& t) {
+  return _all<0>(f, t);
+}
+
+/*
+ * any
+ */
+
+template<size_t I, typename F, typename T, typename... Ts>
+bool _any(F f, const std::tuple<T, Ts...>& t) {
+  if constexpr(I < std::tuple_size<std::tuple<T, Ts...>>::value) {
+    return f(std::get<I>(t)) || _any<I+1>(f, t);
+  } else {
+    return false;
+  }
+}
+
+template<typename F, typename T, typename... Ts>
+bool any(F f, const std::tuple<T, Ts...>& t) {
+  return _any<0>(f, t);
+}
+
+/*
  * merge : ((a, b), (c, d)) -> (a, b, c, d)
  */
 

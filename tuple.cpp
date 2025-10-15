@@ -81,6 +81,20 @@ void hash_test() {
   hash(tbif);
 }
 
+void all_test() {
+  Assert(!stl::all([](auto a) -> bool { return a != 0; }, std::make_tuple(0, 1, 1.1)));
+  Assert(!stl::all([](auto a) -> bool { return a != 0; }, std::make_tuple(true, 0, 1.1)));
+  Assert(!stl::all([](auto a) -> bool { return a != 0; }, std::make_tuple(true, 1, 0.0)));
+  Assert(stl::all([](auto a) -> bool { return a != 0; }, std::make_tuple(true, 1, 1.1)));
+}
+
+void any_test() {
+  Assert(stl::any([](auto a) -> bool { return a != 0; }, std::make_tuple(0, 1, 1.1)));
+  Assert(stl::any([](auto a) -> bool { return a != 0; }, std::make_tuple(true, 0, 1.1)));
+  Assert(stl::any([](auto a) -> bool { return a != 0; }, std::make_tuple(true, 1, 0.0)));
+  Assert(!stl::any([](auto a) -> bool { return a != 0; }, std::make_tuple(false, 0, 0.0)));
+}
+
 template<typename T>
 struct IsBig: std::conditional_t<(sizeof(T) > 4), std::true_type, std::false_type> {};
 
@@ -130,6 +144,8 @@ int main() {
   stl::foldl_test();
   stl::foldr_test();
   stl::hash_test();
+  stl::all_test();
+  stl::any_test();
   stl::IsBig_test();
   stl::All_test();
   stl::Any_test();
