@@ -153,7 +153,7 @@ std::tuple<Tail...> tail(const std::tuple<Head, Tail...>& tuple) {
  */
 
 template<typename Acc, typename F, typename T>
-Acc foldl(F f, Acc acc, std::tuple<T> t) {
+Acc foldl(F f, Acc acc, const std::tuple<T>& t) {
   return f(acc, std::get<0>(t));
 }
 
@@ -162,7 +162,7 @@ Acc foldl(F f, Acc acc, std::tuple<T> t) {
  */
 
 template<typename Acc, typename F, typename T, typename... Ts>
-Acc foldl(F f, Acc acc, std::tuple<T, Ts...> t) {
+Acc foldl(F f, Acc acc, const std::tuple<T, Ts...>& t) {
   return foldl(f, f(acc, head(t)), tail(t));
 }
 
@@ -171,7 +171,7 @@ Acc foldl(F f, Acc acc, std::tuple<T, Ts...> t) {
  */
 
 template<typename Acc, typename F, typename T>
-Acc foldr(F f, Acc acc, std::tuple<T> t) {
+Acc foldr(F f, Acc acc, const std::tuple<T>& t) {
   return f(acc, std::get<0>(t));
 }
 
@@ -180,7 +180,7 @@ Acc foldr(F f, Acc acc, std::tuple<T> t) {
  */
 
 template<typename Acc, typename F, typename T, typename... Ts>
-Acc foldr(F f, Acc acc, std::tuple<T, Ts...> t) {
+Acc foldr(F f, Acc acc, const std::tuple<T, Ts...>& t) {
   return f(head(t), foldr(f, acc, tail(t)));
 }
 
