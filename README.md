@@ -558,3 +558,15 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Visitor_pattern) the visitor desi
 ### void_t.cpp  
 What is a `void_t` and how it can be useful?
   
+### zip_view.cpp  
+Implement a simple version of `std::zip_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/zip_view.html) the `zip_view` is a range adaptor that takes one or more views, and produces a view whose *i*th element is a tuple-like value consisting of the *i*th elements of all views. All ranges have to be equal size.
+  
+```{r, engine='cpp'}
+  // pseudocode
+
+  list<int> lst = {1, 2, 3};
+  deque<int> deq = {4, 5, 6};
+  vector<int> vec = {7, 8, 9};
+  assert(zip_view{lst, deq, vec} == {{1, 4, 7}, {2, 5, 8}, {3, 6, 9}});
+```
+  
