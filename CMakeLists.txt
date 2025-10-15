@@ -8,6 +8,10 @@ cmake_minimum_required(VERSION 3.10)
 # Set the project name
 project(cxxDojo)
 
+# debug information
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g")
+
 # Set output directory for all executables
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
