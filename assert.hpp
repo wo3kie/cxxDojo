@@ -29,20 +29,20 @@ struct _ExpressionDecomposerStart {
  * _ExpressionDecomposerResult
  */
 
-template<typename First, typename Second>
+template<typename Actual, typename Expected>
 struct _ExpressionDecomposerResult {
-  _ExpressionDecomposerResult(const char* const file, int line, const char* const op, bool result, const First& first, const Second& second)
+  _ExpressionDecomposerResult(const char* const file, int line, const char* const op, bool result, Actual actual, Expected expected)
       : _file(file)
       , _line(line)
       , _op(op)
       , _result(result)
-      , _first(first)
-      , _second(second) {
-    on_error([](const char* file, int line, const char* op, const First& first, const Second& second) -> void {
-      if constexpr (requires { std::cerr << first << second; }) {
+      , _actual(actual)
+      , _expected(expected) {
+    on_error([](const char* file, int line, const char* op, Actual actual, Expected expected) -> void {
+      if constexpr (requires { std::cerr << actual << expected; }) {
         std::cerr << file << ':' << line << " Assertion failed" 
-          "\n\tactual  : " << first << 
-          "\n\texpected: " << second << std::endl;
+          "\n\tactual  : " << actual << 
+          "\n\texpected: " << expected << std::endl;
       } else {
         std::cerr << file << ':' << line << " Assertion failed" << std::endl;
       }
@@ -52,7 +52,7 @@ struct _ExpressionDecomposerResult {
 
   ~_ExpressionDecomposerResult() {
     if(! *this) {
-      _f(_file, _line, _op, _first, _second);
+      _f(_file, _line, _op, _actual, _expected);
     }
   }
 
@@ -60,7 +60,7 @@ struct _ExpressionDecomposerResult {
     return _result;
   }
 
-  void on_error(std::function<void(const char* /* file */, int /* line */, const char* /* op */, const First& /* first */, const Second& /* second */)> f) {
+  void on_error(std::function<void(const char* /* file */, int /* line */, const char* /* op */, Actual /* actual */, Expected /* expected */)> f) {
     _f = f;
   }
 
@@ -68,73 +68,73 @@ struct _ExpressionDecomposerResult {
   int _line;
   const char* const _op;
   bool _result;
-  const First& _first;
-  const Second& _second;
-  std::function<void(const char*, int, const char*, const First&, const Second&)> _f;
+  Actual _actual;
+  Expected _expected;
+  std::function<void(const char*, int, const char*, Actual, Expected)> _f;
 };
 
 /*
  * _ExpressionDecomposer
  */
 
-template<typename First>
+template<typename Actual>
 struct _ExpressionDecomposer {
-  _ExpressionDecomposer(const char* const file, int line, const First& first)
+  _ExpressionDecomposer(const char* const file, int line, Actual actual)
       : _file(file)
       , _line(line)
-      , _first(first) {
+      , _actual(actual) {
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator==(const Second& second) {
-    return {_file, _line, "==", _first == second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator==(Expected expected) {
+    return {_file, _line, "==", _actual == expected, _actual, expected};
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator!=(const Second& second) {
-    return {_file, _line, "!=", _first == second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator!=(Expected expected) {
+    return {_file, _line, "!=", _actual == expected, _actual, expected};
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator<(const Second& second) {
-    return {_file, _line, "<", _first < second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator<(Expected expected) {
+    return {_file, _line, "<", _actual < expected, _actual, expected};
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator<=(const Second& second) {
-    return {_file, _line, "<=", _first <= second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator<=(Expected expected) {
+    return {_file, _line, "<=", _actual <= expected, _actual, expected};
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator>(const Second& second) {
-    return {_file, _line, ">", _first > second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator>(Expected expected) {
+    return {_file, _line, ">", _actual > expected, _actual, expected};
   }
 
-  template<typename Second>
-  _ExpressionDecomposerResult<First, Second> operator>=(const Second& second) {
-    return {_file, _line, ">=", _first >= second, _first, second};
+  template<typename Expected>
+  _ExpressionDecomposerResult<Actual, Expected> operator>=(Expected expected) {
+    return {_file, _line, ">=", _actual >= expected, _actual, expected};
   }
 
   const char* const _file;
   int _line;
-  const First& _first;
+  Actual _actual;
 };
 
 /*
  * operator<<
  */
 
-template<typename First>
-_ExpressionDecomposer<First> operator<<(const _ExpressionDecomposerStart& e, const First& value) {
-  return _ExpressionDecomposer<First>(e._file, e._line, value);
+template<typename Actual>
+_ExpressionDecomposer<Actual> operator<<(const _ExpressionDecomposerStart& e, Actual value) {
+  return _ExpressionDecomposer<Actual>(e._file, e._line, value);
 }
 
 /*
  * operator<<
  */
 
-inline _ExpressionDecomposerResult<bool, bool> operator<<(const _ExpressionDecomposerStart& e, const bool& b) {
-  return {e._file, e._line, b ? "!!" : "!", b, b, b};
+inline _ExpressionDecomposerResult<bool, bool> operator<<(const _ExpressionDecomposerStart& e, bool b) {
+  return {e._file, e._line, "==", b, b, true};
 }
 
 } // namespace impl
@@ -144,7 +144,7 @@ inline _ExpressionDecomposerResult<bool, bool> operator<<(const _ExpressionDecom
  */
 
 #ifdef NDEBUG
-  #define Assert(__expression__) (static_cast<void>(0))
+#define Assert(__expression__) (static_cast<void>(0))
 #else
-  #define Assert(__expression__) (impl::_ExpressionDecomposerStart(__FILE__, __LINE__) << __expression__)
+#define Assert(__expression__) (impl::_ExpressionDecomposerStart(__FILE__, __LINE__) << __expression__)
 #endif

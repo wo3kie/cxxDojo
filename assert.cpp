@@ -39,11 +39,27 @@ int main() {
 
   {
     /*
+     * Print ".../cxxDojo/assert.cpp:22 Assertion failed 0 == 1"
+     */
+
+    Assert(false).on_error([](const char* file, int line, const char* op, const auto& actual, const auto& expected) -> void {
+      std::cerr << file << ':' << line << " Assertion failed " << actual << ' ' << op << ' ' << expected << std::endl;
+
+      /*
+       * Do not terminate the program yet
+       *
+       * std::abort();
+       */
+    });
+  }
+
+  {
+    /*
      * Print ".../cxxDojo/assert.cpp:22 Assertion failed 1 == 2"
      */
 
-    Assert(1 == 2).on_error([](const char* file, int line, const char* op, const auto& first, const auto& second) -> void {
-      std::cerr << file << ':' << line << " Assertion failed " << first << ' ' << op << ' ' << second << std::endl;
+    Assert(1 == 2).on_error([](const char* file, int line, const char* op, const auto& actual, const auto& expected) -> void {
+      std::cerr << file << ':' << line << " Assertion failed " << actual << ' ' << op << ' ' << expected << std::endl;
 
       /*
        * Do not terminate the program yet
