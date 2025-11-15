@@ -19,6 +19,9 @@ int main() {
   Assert(true);
   Assert(! false);
 
+  Assert(2==2);
+  Assert((2==2));
+
   {
     struct S {
       int i;
@@ -29,9 +32,7 @@ int main() {
     };
 
     /*
-     * Not implemented
-     *
-     * std::ostream& operator<<(std::ostream&, const S&)
+     * No `std::ostream& operator<<(std::ostream&, const S&)` defined
      */
 
     Assert(S{1} == S{1});
