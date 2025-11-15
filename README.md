@@ -484,6 +484,9 @@ Implement a function to rotate the contents of a container around a pivot elemen
 ### scaling.cpp  
 Implement the functions for _mean scaling_ and _standard scaling_. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
   
+### set_utils.cpp  
+Implement `std::set` and `std::unordered_set` utility functions like _union_, _difference_, _intersection_ and _symmetric difference_.  
+  
 ### scope_exit.cpp  
 Implement a scope quard class.
 
