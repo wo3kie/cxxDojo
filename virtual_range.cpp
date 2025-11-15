@@ -84,14 +84,13 @@ struct TypeErasureBase {
 };
 
 /*
- * IteratorTypeErasure<V>
- * IteratorTypeErasure<const V>
+ * IteratorTypeErasure<V>         - const iterator returning by value
+ * IteratorTypeErasure<V&>        -       iterator returning by reference
+ * IteratorTypeErasure<const V&>  - const iterator returning by const reference
  */
 
-template<typename V>
+template<typename Value>
 struct IteratorTypeErasure: TypeErasureBase {
-  using Value = std::conditional_t<std::is_const_v<V>, V, V&>;
-
   template<typename Iterator>
   IteratorTypeErasure(const Iterator& iterator)
       : TypeErasureBase(iterator) {
@@ -151,8 +150,8 @@ struct IteratorTypeErasure: TypeErasureBase {
  * Virtual function + std::range
  */
 
-using IntIterator = IteratorTypeErasure<int>;
-using ConstIntIterator = IteratorTypeErasure<const int>;
+using IntIterator = IteratorTypeErasure<int&>;
+using ConstIntIterator = IteratorTypeErasure<int>;
 
 struct Runner {
   virtual void print(ConstIntIterator begin, ConstIntIterator end) {
