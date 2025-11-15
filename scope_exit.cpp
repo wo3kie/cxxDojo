@@ -3,7 +3,7 @@
  *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/) strongly based on:
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  *      Peter Sommerland and Andrew L. Sandoval
  *      http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pdf

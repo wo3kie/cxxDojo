@@ -3,7 +3,7 @@
  *      CxxDojo (https://github.com/wo3kie/cxxdojo)
  *
  * Author:
- *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/) strongly based on:
+ *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
  *      $ ./build/bin/std_dev
