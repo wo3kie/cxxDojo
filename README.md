@@ -553,6 +553,9 @@ Implement union_cast.
 ### variance.cpp
 Implement the `variance` function.
   
+### virtual_range.cpp  
+Implement a program that demonstrates how to integrate C++20 `std::ranges` concepts with _virtual functions_. Since `std::ranges` concepts operate at compile time, while _virtual functions_ enable runtime polymorphism, a direct combination is not possible. To bridge this gap, apply _type erasure_ as a technique for enabling runtime dispatch over range-based constructs.  
+  
 ### visitor.cpp  
 Implement an example of the visitor design pattern.
   
