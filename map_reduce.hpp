@@ -39,6 +39,6 @@ struct _Reduce {
 };
 
 template<typename T, typename Op = std::plus<>>
-constexpr auto Reduce(T init, Op op = {}) {
+constexpr _Reduce<T, Op> Reduce(T init, Op op = {}) {
   return _Reduce<T, Op>{.init = init, .op = op};
 }
