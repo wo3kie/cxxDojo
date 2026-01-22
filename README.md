@@ -388,7 +388,17 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 .............................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,..
 ...............................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,....
 ```
+  
+### map_reduce.cpp  
+Implement `map` and `reduce` functions. Use `std::views::transform` for `map`. For `reduce`, provide a wrapper around `std::accumulate` that can be composed in a pipeline expression.
+  
+```{r, engine='cpp'}
+  // pseudocode
 
+  list<int> lst = {1, 2, 3};
+  assert(list | Map(square) | Reduce(0) == 1 + 4 + 9);
+```
+  
 ### matrix.cpp  
 This task involves implementing a simple matrix class and providing essential functionality.
   
