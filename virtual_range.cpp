@@ -33,7 +33,7 @@ struct TypeErasureBase {
       }
     };
   }
-
+    
   TypeErasureBase(const TypeErasureBase& other) {
     other._copy(&_ptr, other._ptr);
 
@@ -71,7 +71,10 @@ struct TypeErasureBase {
       other._ptr = nullptr;
 
       _destroy = other._destroy;
+      other._destroy = nullptr;
+
       _copy = other._copy;
+      other._copy = nullptr;
     }
 
     return *this;
