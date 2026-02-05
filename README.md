@@ -231,6 +231,9 @@ Implement a function to calculate the greatest common divisor.
 ### gram_schmidt.cpp  
 Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
   
+### group_by.cpp  
+Implement a `group_by` function, for aggregating data into a dictionary by a given key.
+
 ### gsl/correlation.cpp  
 Implement a function to calculate the correlation between two collections using gsl library.
 
