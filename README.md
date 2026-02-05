@@ -390,13 +390,16 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 ```
   
 ### map_reduce.cpp  
-Implement `map` and `reduce` functions. Use `std::views::transform` for `map`. For `reduce`, provide a wrapper around `std::accumulate` that can be composed in a pipeline expression.
+Implement `map`, `reduce`, `filter` and `to` functions. Follow `std::ranges` and `std::views` patterns, that all can be composed in a pipeline expression.
   
 ```{r, engine='cpp'}
   // pseudocode
 
-  list<int> lst = {1, 2, 3};
+  list<int> list = {1, 2, 3};
   assert(list | Map(square) | Reduce(0) == 1 + 4 + 9);
+
+  map<string, int> map{{"a", 1}, {"bb", 2}, {"ccc", 3}};
+  assert(map | Map([](const auto& p) { return p.second; }) | To<std::vector>() == {1, 2, 3})
 ```
   
 ### matrix.cpp  

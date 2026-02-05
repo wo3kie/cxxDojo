@@ -44,6 +44,12 @@ constexpr _Reduce<T, Op> Reduce(T init, Op op = {}) {
 }
 
 /*
+ * Filter
+ */
+
+inline constexpr decltype(std::views::filter) Filter;
+
+/*
  * To
  */
 
