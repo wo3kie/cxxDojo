@@ -433,6 +433,9 @@ Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](h
 ### member_offset.cpp  
 Implement a function to calculate struct/class member offert.
   
+### metasort.cpp  
+Implement a program that demonstrates how to sort numbers inside a `TypeList` using template metaprogramming.  
+  
 ### modexp.cpp  
 Implement a function to perform modular exponentiation.
   
