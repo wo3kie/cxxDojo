@@ -34,16 +34,16 @@ void map_test() {
 
 void map_test_2() {
   std::map<std::string, int> m{
-    {"one", 1},
-    {"two", 2},
-    {"three", 3},
+    {"a", 1},
+    {"bb", 2},
+    {"ccc", 3},
   };
 
   {
     const std::vector<std::string> keys = m | Map([](const auto& p) { return p.first; }) | To<std::vector>();
   
     const std::vector<std::string> actual{keys.begin(), keys.end()};
-    const std::vector<std::string> expected{"one", "two", "three"};
+    const std::vector<std::string> expected{"a", "bb", "ccc"};
     Assert(actual == expected);
   }
 
@@ -109,6 +109,7 @@ void map_reduce_test() {
 
 int main() {
   map_test();
+  map_test_2();
   reduce_test();
   map_reduce_test();
 
