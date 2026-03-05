@@ -8,10 +8,12 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
+#include <array>
 #include <cassert>
 #include <mutex>
 #include <optional>
 #include <stdexcept>
+#include <shared_mutex>
 #include <string>
 #include <unordered_map>
 
@@ -19,16 +21,23 @@
  * BucketPolicy
  */
 
-struct BucketPolicy {
-  constexpr static size_t SIZE = ('Z' - 'A' + 1) + ('9' - '0' + 1);
+struct OneBucketPolicy {
+  constexpr static size_t SIZE = 1;
 
-  constexpr static size_t get(const char key) {
-    assert(std::isupper(key) || std::isdigit(key));
+  static size_t get(const std::string&) {
+    return 0;
+  }
+};
 
-    if(key >= 'A' && key <= 'Z') {
-      return key - 'A';
-    } else if(key >= '0' && key <= '9') {
-      return ('Z' - 'A' + 1) + (key - '0');
+struct AZBucketPolicy {
+  constexpr static size_t SIZE = ('Z' - 'A' + 1);
+
+  static size_t get(const std::string& key) {
+    assert(!key.empty());
+    assert(std::isupper(key[0]));
+
+    if(key[0] >= 'A' && key[0] <= 'Z') {
+      return key[0] - 'A';
     } else {
       assert(false);
     }
@@ -36,29 +45,47 @@ struct BucketPolicy {
 };
 
 /*
+ * MutexPolicy
+ */
+
+struct MutexPolicy {
+  using MutexType = std::mutex;
+  using ReadLockType = std::lock_guard<std::mutex>;
+  using WriteLockType = std::lock_guard<std::mutex>;
+};
+
+struct SharedMutexPolicy {
+  using MutexType = std::shared_mutex;
+  using ReadLockType = std::shared_lock<std::shared_mutex>;
+  using WriteLockType = std::unique_lock<std::shared_mutex>;
+};
+
+/*
  * MTMap (Multi-Threaded Map)
  */
 
-template<typename V, typename B = BucketPolicy>
+template<typename V, typename TBucketPolicy = AZBucketPolicy, typename TMutexPolicy = MutexPolicy>
 struct MTMap {
 private:
-  using TKey = std::string;
-  using TValue = V;
-  using TBucketPolicy = B;
-  using TMap = std::unordered_map<TKey, TValue>;
+  using KeyType = std::string;
+  using ValueType = V;
+  using MapType = std::unordered_map<KeyType, ValueType>;
+
+  using MutexType = typename TMutexPolicy::MutexType;
+  using ReadLockType = typename TMutexPolicy::ReadLockType;
+  using WriteLockType = typename TMutexPolicy::WriteLockType;
 
 private:
   struct Bucket {
-    std::mutex mtx;
-    TMap map;
+    MutexType mtx;
+    MapType map;
   };
 
-  Bucket buckets[TBucketPolicy::SIZE];
+  std::array<Bucket, TBucketPolicy::SIZE> buckets;
 
 public:
-  using key_type = TKey;
-  using mapped_type = TValue;
-  using value_type = std::pair<const TKey, TValue>;
+  using key_type = KeyType;
+  using value_type = ValueType;
 
 public:
   MTMap() = default;
@@ -71,50 +98,81 @@ public:
   MTMap& operator=(const MTMap&) = delete;
 
 public:
-  bool insert(const TKey& key, const TValue& value) {
-    assert(key.size() > 0);
-
-    const size_t bucket_index = TBucketPolicy::get(key[0]);
-    std::lock_guard<std::mutex> lock(buckets[bucket_index].mtx);
-    auto& bucket_map = buckets[bucket_index].map;
-
-    return _insert(bucket_map, key, value);
+  bool insert(const KeyType& key, const ValueType& value) {
+    Bucket& bucket = buckets[_index(key)];
+    MutexType& mtx = bucket.mtx;
+    MapType& map = bucket.map;
+    
+    WriteLockType lock(mtx);
+    return _insert(map, key, value);
   }
 
-  size_t erase(const TKey& key) {
-    const size_t bucket_index = TBucketPolicy::get(key[0]);
-    std::lock_guard<std::mutex> lock(buckets[bucket_index].mtx);
-    auto& bucket_map = buckets[bucket_index].map;
-
-    return _erase(bucket_map, key);
+  bool update(const KeyType& key, const ValueType& value) {
+    Bucket& bucket = buckets[_index(key)];
+    MutexType& mtx = bucket.mtx;
+    MapType& map = bucket.map;
+    
+    WriteLockType lock(mtx);
+    return _update(map, key, value);
   }
 
-  std::optional<TValue> get(const TKey& key) {
-    const size_t bucket_index = TBucketPolicy::get(key[0]);
-    std::lock_guard<std::mutex> lock(buckets[bucket_index].mtx);
-    auto& bucket_map = buckets[bucket_index].map;
-
-    return _get(bucket_map, key);
+  size_t erase(const KeyType& key) {
+    Bucket& bucket = buckets[_index(key)];
+    MutexType& mtx = bucket.mtx;
+    MapType& map = bucket.map;
+    
+    WriteLockType lock(mtx);
+    return _erase(map, key);
   }
 
-  bool update(const TKey& key, const TValue& value) {
-    const size_t bucket_index = TBucketPolicy::get(key[0]);
-    std::lock_guard<std::mutex> lock(buckets[bucket_index].mtx);
-    auto& bucket_map = buckets[bucket_index].map;
+  std::optional<ValueType> get(const KeyType& key) {
+    Bucket& bucket = buckets[_index(key)];
+    MutexType& mtx = bucket.mtx;
+    MapType& map = bucket.map;
+    
+    ReadLockType lock(mtx);
+    return _get(map, key);
+  }
 
-    return _update(bucket_map, key, value);
+  size_t size() {
+    size_t total_size = 0;
+
+    for(Bucket& bucket : buckets) {
+      MutexType& mtx = bucket.mtx;
+      MapType& map = bucket.map;
+
+      ReadLockType lock(mtx);
+      total_size += _size(map);
+    }
+
+    return total_size;
   }
 
 private:
-  static bool _insert(TMap& map, const TKey& key, const TValue& value) {
+  static size_t _index(const KeyType& key) {
+    return TBucketPolicy::get(key);
+  }
+
+  static bool _insert(MapType& map, const KeyType& key, const ValueType& value) {
     return map.insert({key, value}).second;
   }
 
-  static size_t _erase(TMap& map, const TKey& key) {
+  static size_t _erase(MapType& map, const KeyType& key) {
     return map.erase(key);
   }
 
-  static std::optional<TValue> _get(TMap& map, const TKey& key) {
+  static bool _update(MapType& map, const KeyType& key, const ValueType& value) {
+    auto it = map.find(key);
+
+    if(it == map.end()) {
+      return false;
+    } else {
+      it->second = value;
+      return true;
+    }
+  }
+
+  static std::optional<ValueType> _get(MapType& map, const KeyType& key) {
     auto it = map.find(key);
 
     if(it == map.end()) {
@@ -124,14 +182,7 @@ private:
     }
   }
 
-  static bool _update(TMap& map, const TKey& key, const TValue& value) {
-    auto it = map.find(key);
-
-    if(it == map.end()) {
-      return false;
-    } else {
-      it->second = value;
-      return true;
-    }
+  static size_t _size(MapType& map) {
+    return map.size();
   }
 };

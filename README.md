@@ -442,6 +442,12 @@ Implement a function to perform modular exponentiation.
 ### mt_map.cpp  
 Implement a thread-safe map with a fixed number of buckets. The map should support concurrent access from multiple threads, allowing them to read and write key-value pairs without data races.  
   
+```{r, engine='bash'}
+$ ./mt_map
+OneBucketPolicy: 195972µs
+ AZBucketPolicy: 34203µs
+```
+  
 ### ode.cpp  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
   
