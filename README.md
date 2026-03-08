@@ -298,6 +298,9 @@ Implement a function to check whether a given number is prime using _Fermat's Li
 ### jaccard_index.cpp  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
   
+### join.cpp  
+Implement a function to join a collection of strings with a given separator. The function should also support an option to skip empty strings. Make a variadic template  and a range-based versions.
+  
 ### knuth_morris_pratt.cpp  
 Implement the Knuth-Morris-Pratt text searching algorithm.
 
