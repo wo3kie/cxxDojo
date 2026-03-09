@@ -51,7 +51,9 @@ struct _ExpressionDecomposerResult {
   }
 
   ~_ExpressionDecomposerResult() {
-    if(! *this) {
+    if(*this) {
+      // empty
+    } else {
       _f(_file, _line, _op, _actual, _expected);
     }
   }
@@ -80,44 +82,84 @@ struct _ExpressionDecomposerResult {
 template<typename Actual>
 struct _ExpressionDecomposer {
   _ExpressionDecomposer(const char* const file, int line, Actual actual)
-      : _file(file)
+      : _unary{true}
+      , _actual(actual) 
       , _line(line)
-      , _actual(actual) {
+      , _file(file)
+  {
+    on_error([](const char* file, int line, Actual actual) -> void {
+      if constexpr (requires { std::cerr << actual; }) {
+        std::cerr << file << ':' << line << " Assertion failed" 
+          "\n\tactual  : " << actual << 
+          "\n\texpected: true" << std::endl;
+      } else {
+        std::cerr << file << ':' << line << " Assertion failed" << std::endl;
+      }
+      std::abort();
+    });
+  }
+
+  ~_ExpressionDecomposer(){
+    if (_unary) {
+      if constexpr (std::is_convertible_v<Actual, bool>) {
+        if (_actual) {
+          // empty
+        } else {
+          _f(_file, _line, _actual);
+        }
+      } else {
+      }
+    }
+
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator==(Expected expected) {
+    _unary = false;
     return {_file, _line, "==", _actual == expected, _actual, expected};
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator!=(Expected expected) {
+    _unary = false;
     return {_file, _line, "!=", _actual == expected, _actual, expected};
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator<(Expected expected) {
+    _unary = false;
     return {_file, _line, "<", _actual < expected, _actual, expected};
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator<=(Expected expected) {
+    _unary = false;
     return {_file, _line, "<=", _actual <= expected, _actual, expected};
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator>(Expected expected) {
+    _unary = false;
     return {_file, _line, ">", _actual > expected, _actual, expected};
   }
 
   template<typename Expected>
   _ExpressionDecomposerResult<Actual, Expected> operator>=(Expected expected) {
+    _unary = false;
     return {_file, _line, ">=", _actual >= expected, _actual, expected};
   }
 
-  const char* const _file;
-  int _line;
+  void on_error(std::function<void(const char* /* file */, int /* line */, Actual /* actual */)> f) {
+    _f = f;
+  }
+
+  std::function<void(const char*, int, Actual)> _f;
+
+  bool _unary;
   Actual _actual;
+  
+  int _line;
+  const char* const _file;
 };
 
 /*
@@ -132,10 +174,6 @@ _ExpressionDecomposer<Actual> operator<<(const _ExpressionDecomposerStart& e, Ac
 /*
  * operator<<
  */
-
-inline _ExpressionDecomposerResult<bool, bool> operator<<(const _ExpressionDecomposerStart& e, bool b) {
-  return {e._file, e._line, "==", b, b, true};
-}
 
 } // namespace impl
 

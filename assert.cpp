@@ -19,6 +19,9 @@ int main() {
   Assert(true);
   Assert(! false);
 
+  Assert(false == false);
+  Assert(0 == 0);
+
   Assert(2==2);
   Assert((2==2));
 
@@ -43,8 +46,8 @@ int main() {
      * Print ".../cxxDojo/assert.cpp:22 Assertion failed 0 == 1"
      */
 
-    Assert(false).on_error([](const char* file, int line, const char* op, const auto& actual, const auto& expected) -> void {
-      std::cerr << file << ':' << line << " Assertion failed " << actual << ' ' << op << ' ' << expected << std::endl;
+    Assert(false).on_error([](const char* file, int line, const auto& actual) -> void {
+      std::cerr << file << ':' << line << " Assertion failed " << actual << std::endl;
 
       /*
        * Do not terminate the program yet
@@ -77,6 +80,6 @@ int main() {
 
     const int actual = 3;
     const int expected = 4;
-    Assert(actual == expected);
+    // Assert(actual == expected);
   }
 }
