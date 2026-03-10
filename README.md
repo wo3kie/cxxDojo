@@ -536,6 +536,21 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 ### std_dev.cpp  
 Implement a function to calculate the standard deviation of a given container of numbers.  
   
+### store.cpp  
+Implement `StoreIf`, a single‑value container that conditionally stores a new item based on a sequence of user‑provided predicates.  
+Each predicate may be unary — evaluated only on the new value or binary — evaluated on the new value and the currently stored value (if present).
+This enables incremental selection of a “best” value according to arbitrary user‑defined policies (filters, ordering relations, scoring rules, etc.).
+  
+```{r, engine='cpp'}
+  auto st = make_store_if<int>(notZero, isEven, greater);
+  assert((accU << 0) == false);
+  assert((accU << 2) == true);
+  assert((accU << 1) == false);
+  assert((accU << 6) == true);
+  assert((accU << 4) == false);
+  Assert(accU.value() == 6);
+```
+
 ### timer.cpp  
 Implement a function to measure an execution time of a some piece of code.
 
