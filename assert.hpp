@@ -26,12 +26,12 @@ struct _ExpressionDecomposerStart {
 };
 
 /*
- * _ExpressionDecomposerResult
+ * _ExpressionDecomposerBinary
  */
 
 template<typename Actual, typename Expected>
-struct _ExpressionDecomposerResult {
-  _ExpressionDecomposerResult(const char* const file, int line, const char* const op, bool result, Actual actual, Expected expected)
+struct _ExpressionDecomposerBinary {
+  _ExpressionDecomposerBinary(const char* const file, int line, const char* const op, bool result, Actual actual, Expected expected)
       : _file(file)
       , _line(line)
       , _op(op)
@@ -50,7 +50,7 @@ struct _ExpressionDecomposerResult {
     });
   }
 
-  ~_ExpressionDecomposerResult() {
+  ~_ExpressionDecomposerBinary() {
     if(*this) {
       // empty
     } else {
@@ -76,12 +76,12 @@ struct _ExpressionDecomposerResult {
 };
 
 /*
- * _ExpressionDecomposer
+ * _ExpressionDecomposerUnary
  */
 
 template<typename Actual>
-struct _ExpressionDecomposer {
-  _ExpressionDecomposer(const char* const file, int line, Actual actual)
+struct _ExpressionDecomposerUnary {
+  _ExpressionDecomposerUnary(const char* const file, int line, Actual actual)
       : _unary{true}
       , _actual(actual) 
       , _line(line)
@@ -99,7 +99,7 @@ struct _ExpressionDecomposer {
     });
   }
 
-  ~_ExpressionDecomposer(){
+  ~_ExpressionDecomposerUnary(){
     if (_unary) {
       if constexpr (std::is_convertible_v<Actual, bool>) {
         if (_actual) {
@@ -114,37 +114,37 @@ struct _ExpressionDecomposer {
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator==(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator==(Expected expected) {
     _unary = false;
     return {_file, _line, "==", _actual == expected, _actual, expected};
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator!=(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator!=(Expected expected) {
     _unary = false;
     return {_file, _line, "!=", _actual == expected, _actual, expected};
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator<(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator<(Expected expected) {
     _unary = false;
     return {_file, _line, "<", _actual < expected, _actual, expected};
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator<=(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator<=(Expected expected) {
     _unary = false;
     return {_file, _line, "<=", _actual <= expected, _actual, expected};
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator>(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator>(Expected expected) {
     _unary = false;
     return {_file, _line, ">", _actual > expected, _actual, expected};
   }
 
   template<typename Expected>
-  _ExpressionDecomposerResult<Actual, Expected> operator>=(Expected expected) {
+  _ExpressionDecomposerBinary<Actual, Expected> operator>=(Expected expected) {
     _unary = false;
     return {_file, _line, ">=", _actual >= expected, _actual, expected};
   }
@@ -167,8 +167,8 @@ struct _ExpressionDecomposer {
  */
 
 template<typename Actual>
-_ExpressionDecomposer<Actual> operator<<(const _ExpressionDecomposerStart& e, Actual value) {
-  return _ExpressionDecomposer<Actual>(e._file, e._line, value);
+_ExpressionDecomposerUnary<Actual> operator<<(const _ExpressionDecomposerStart& e, Actual value) {
+  return _ExpressionDecomposerUnary<Actual>(e._file, e._line, value);
 }
 
 /*
