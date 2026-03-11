@@ -492,6 +492,16 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 ### quick_sort.cpp  
 Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
   
+### reshuffle.cpp  
+Implement a function to reshuffle elements in a container. The function should take a container, the `stddev` parameter to control the amount of randomness in the reshuffling.  
+  
+```{r, engine='cpp'}
+  // PSEUDOCODE
+  reshuffle(v, 0) == {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19}
+  reshuffle(v, 3) == {0, 1, 2, 5, 6, 4, 8, 3, 9, 7, 12, 10, 13, 15, 19, 16, 17, 11, 18, 14}
+  reshuffle(v, 9) == {4, 19, 9, 7, 0, 3, 8, 12, 11, 1, 15, 5, 18, 6, 14, 10, 16, 2, 17, 13}
+```
+  
 ### reverse_words.cpp  
 Implement a program that reverses the words in a given sentence.
   
@@ -537,9 +547,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
 Implement a function to calculate the standard deviation of a given container of numbers.  
   
 ### store.cpp  
-Implement `StoreIf`, a single‑value container that conditionally stores a new item based on a sequence of user‑provided predicates.  
-Each predicate may be unary — evaluated only on the new value or binary — evaluated on the new value and the currently stored value (if present).
-This enables incremental selection of a “best” value according to arbitrary user‑defined policies (filters, ordering relations, scoring rules, etc.).
+Implement `StoreIf`, a single‑value container that conditionally stores a new item based on a sequence of user‑provided predicates. Each predicate may be unary — evaluated only on the new value or binary — evaluated on the new value and the currently stored value (if present). This enables incremental selection of a “best” value according to arbitrary user‑defined policies (filters, ordering relations, scoring rules, etc.).
   
 ```{r, engine='cpp'}
   auto st = make_store_if<int>(notZero, isEven, greater);
