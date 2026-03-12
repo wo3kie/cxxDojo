@@ -17,28 +17,55 @@ namespace stl {
  * Simple implementation of a heap using STL algorithms
  */
 
-template<typename T>
+/*
+ * Using `std::greater<T>` would cause the smallest element to appear as the `top()`
+ */
+
+template<typename TValue, typename TLess = std::less<TValue>>
 struct Heap {
-  void push(const T& t) {
-    _data.push_back(t);
-    std::make_heap(_data.begin(), _data.end());
+  Heap(TLess compare = TLess())
+      : _less(compare) {
   }
 
-  const T& top() const {
+  void push(const TValue& t) {
+    _data.push_back(t);
+    std::push_heap(_data.begin(), _data.end(), _less);
+  }
+
+  const TValue& top() const {
+    /*
+     * Precondition
+     */
+    Assert(!_data.empty());
+    
     return _data.front();
   }
 
   void pop() {
-    std::pop_heap(_data.begin(), _data.end());
+    /*
+     * Precondition
+     */
+    Assert(!_data.empty());
+
+    std::pop_heap(_data.begin(), _data.end(), _less);
     _data.pop_back();
   }
 
-  bool empty() const {
+  [[nodiscard]] bool empty() const {
     return _data.empty();
   }
 
+  [[nodiscard]] size_t size() const {
+    return _data.size();
+  }
+
+  void clear() {
+    _data.clear();
+  }
+
 private:
-  std::vector<T> _data;
+  TLess _less;
+  std::vector<TValue> _data;
 };
 
 } // namespace stl
@@ -49,94 +76,119 @@ namespace cxxdojo {
  * Hand made implementation of a heap
  */
 
-template<typename T>
+/*
+ * Using `std::greater<T>` would cause the smallest element to appear as the `top()`
+ */
+
+template<typename TValue, typename TLess = std::less<TValue>>
 struct Heap {
-  void push(const T& t) {
-    _data.push_back(t);
-    heapifyUp(_data, _data.size() - 1);
+  Heap(TLess compare = TLess())
+      : _less(compare) {
   }
 
-  const T& top() const {
+  void push(const TValue& t) {
+    _data.push_back(t);
+    heapifyUp(_data, _data.size() - 1);
+
+    /*
+     * Postcondition
+     */
+    Assert(std::is_heap(_data.begin(), _data.end(), _less));
+  }
+
+  const TValue& top() const {
+    /*
+     * Precondition
+     */
+    Assert(!_data.empty());
+
     return _data.front();
   }
 
   void pop() {
+    /*
+     * Precondition
+     */
+    Assert(!_data.empty());
+
     std::swap(_data.front(), _data.back());
     _data.pop_back();
     heapifyDown(_data, 0);
+
+    /*
+     * Postcondition
+     */
+    Assert(std::is_heap(_data.begin(), _data.end(), _less));
   }
 
-  bool empty() const {
+  [[nodiscard]] bool empty() const {
     return _data.empty();
   }
 
+  [[nodiscard]] size_t size() const {
+    return _data.size();
+  }
+
+  void clear() {
+    _data.clear();
+  }
+
 private:
-  static void heapifyUp(std::vector<T>& data, int currentIndex) {
-    for(; currentIndex != 0; currentIndex /= 2) {
-      const int parentIndex = getParentIndex(currentIndex);
+  void heapifyUp(std::vector<TValue>& data, size_t currentIndex) {
+    while(currentIndex != 0) {
+      const size_t parentIndex = getParent(currentIndex);
 
-      T& current = data[currentIndex];
-      T& parent = data[parentIndex];
+      TValue& current = data[currentIndex];
+      TValue& parent = data[parentIndex];
 
-      if(parent >= current) {
+      if(_less(current, parent)) {
         return;
       }
 
       std::swap(current, parent);
+      currentIndex = parentIndex;
     }
   }
 
-  static void heapifyDown(std::vector<T>& data, int currentIndex) {
+  void heapifyDown(std::vector<TValue>& data, size_t current) {
     while(true) {
-      const int leftChildIndex = getLeftChildIndex(currentIndex);
+      size_t max = current;
+      size_t left = getLeft(current);
+      size_t right = getRight(current);
 
-      if(leftChildIndex >= data.size()) {
+      if(left < data.size() && _less(data[max], data[left])) {
+          max = left;
+      }
+
+      if(right < data.size() && _less(data[max], data[right])) {
+          max = right;
+      }
+
+      if(max == current) {
         return;
       }
 
-      T& current = data[currentIndex];
-      T& leftChild = data[leftChildIndex];
-
-      int maxItemIndex = currentIndex;
-
-      if(leftChild > current) {
-        maxItemIndex = leftChildIndex;
-      }
-
-      const int rightChildIndex = getRightChildIndex(currentIndex);
-
-      if(rightChildIndex < data.size()) {
-        T& rightChild = data[rightChildIndex];
-
-        if(rightChild > leftChild) {
-          maxItemIndex = rightChildIndex;
-        }
-      }
-
-      if(maxItemIndex == currentIndex) {
-        return;
-      }
-
-      std::swap(data[maxItemIndex], data[currentIndex]);
-
-      currentIndex = maxItemIndex;
+      std::swap(data[max], data[current]);
+      current = max;
     }
   }
 
-  static int getParentIndex(int index) {
-    return index == 0 ? 0 : (index - 1) / 2;
+  static size_t getParent(size_t index) {
+    Assert(index != 0);
+    return (index - 1) / 2;
   }
 
-  static int getLeftChildIndex(int index) {
+  static size_t getLeft(size_t index) {
     return 2 * index + 1;
   }
 
-  static int getRightChildIndex(int index) {
+  static size_t getRight(size_t index) {
     return 2 * index + 2;
   }
 
 private:
-  std::vector<T> _data;
+  TLess _less;
+  std::vector<TValue> _data;
 };
 
 } // namespace cxxdojo

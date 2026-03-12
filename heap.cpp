@@ -13,67 +13,46 @@
 
 #include "./assert.hpp"
 #include "./heap.hpp"
+#include "./reshuffle.hpp"
 
 /*
  * stl_Heap_test
  */
 
-void stl_Heap_test() {
-  stl::Heap<int> heap;
+template<typename TCompare>
+void test_heap(size_t size) {
+  /*
+   * Assuming STL implementation of a heap is correct, 
+   * we can compare hand-made implementation with it
+   */
 
-  heap.push(2);
-  heap.push(1);
-  heap.push(3);
-  heap.push(5);
-  heap.push(4);
+  stl::Heap<int, TCompare> stl_heap;
+  cxxdojo::Heap<int, TCompare> dojo_heap;
 
-  Assert(heap.top() == 5);
-  heap.pop();
+  std::vector<int> array;
 
-  Assert(heap.top() == 4);
-  heap.pop();
+  for(size_t i = 0; i < size; ++i) {
+    array.push_back(i);
+  }
 
-  Assert(heap.top() == 3);
-  heap.pop();
+  reshuffle(array, /* stddev */ 3);
 
-  Assert(heap.top() == 2);
-  heap.pop();
+  for(const auto& value : array) {
+    stl_heap.push(value);
+    dojo_heap.push(value);
 
-  Assert(heap.top() == 1);
-  heap.pop();
+    Assert(stl_heap.top() == dojo_heap.top());
+  }
 
-  Assert(heap.empty() == true);
-}
+  for(size_t i = 0; i < size; ++i) {
+    const int stl_top = stl_heap.top();
+    const int dojo_top = dojo_heap.top();
 
-/*
- * cxxdojo_Heap_test
- */
+    Assert(stl_top == dojo_top);
 
-void cxxdojo_Heap_test() {
-  cxxdojo::Heap<int> heap;
-
-  heap.push(2);
-  heap.push(1);
-  heap.push(3);
-  heap.push(5);
-  heap.push(4);
-
-  Assert(heap.top() == 5);
-  heap.pop();
-
-  Assert(heap.top() == 4);
-  heap.pop();
-
-  Assert(heap.top() == 3);
-  heap.pop();
-
-  Assert(heap.top() == 2);
-  heap.pop();
-
-  Assert(heap.top() == 1);
-  heap.pop();
-
-  Assert(heap.empty() == true);
+    stl_heap.pop();
+    dojo_heap.pop();
+  }
 }
 
 /*
@@ -81,6 +60,12 @@ void cxxdojo_Heap_test() {
  */
 
 int main() {
-  stl_Heap_test();
-  cxxdojo_Heap_test();
+  test_heap<std::greater<int>>(10);
+  test_heap<std::less<int>>(10);
+
+  test_heap<std::greater<int>>(100);
+  test_heap<std::less<int>>(100);
+
+  test_heap<std::greater<int>>(1000);
+  test_heap<std::less<int>>(1000);
 }
