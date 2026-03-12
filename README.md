@@ -116,7 +116,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), th
 ### circular_buffer.cpp  
 Implement a circular buffer.
   
-### concurent_queue.cpp  
+### MTQueue.cpp  
 Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
   
 ### concat_view.cpp  
@@ -488,6 +488,9 @@ Implement `partition` and `stable_partition` algorithms.
   
 ### qr.cpp  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
+  
+### queue.cpp  
+Implement a simple queue data structure with fixed capacity. The queue should support basic operations such as `push`, `pop`, and `front`. Additionally, implement a test function to validate the correctness of your queue implementation.  
   
 ### quick_sort.cpp  
 Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
