@@ -122,7 +122,7 @@ struct _ExpressionDecomposerUnary {
   template<typename Expected>
   _ExpressionDecomposerBinary<Actual, Expected> operator!=(Expected expected) {
     _unary = false;
-    return {_file, _line, "!=", _actual == expected, _actual, expected};
+    return {_file, _line, "!=", _actual != expected, _actual, expected};
   }
 
   template<typename Expected>
