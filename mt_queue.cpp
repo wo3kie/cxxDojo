@@ -6,21 +6,21 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
- *      $ ./build/bin/concurent_queue
+ *      $ ./build/bin/MTQueue
  *      OK
  */
 
 #include <iostream>
 #include <thread>
 
-#include "./concurent_queue.hpp"
 #include "./assert.hpp"
+#include "./mt_queue.hpp"
 
 /*
  * producer
  */
 
-void producer(concurent_queue<int>& queue) {
+void producer(MTQueue<int>& queue) {
   for(int i = 0; i < 1000; ++i) {
     queue.push(i);
   }
@@ -30,11 +30,11 @@ void producer(concurent_queue<int>& queue) {
  * consumer
  */
 
-void consumer(concurent_queue<int>& queue) {
+void consumer(MTQueue<int>& queue) {
   int sum = 0;
 
   for(int i = 0; i < 1000; ++i) {
-    sum += queue.get();
+    sum += queue.pop();
   }
 
   Assert(sum == (0 + 999) * (1000 / 2));
@@ -47,7 +47,7 @@ void consumer(concurent_queue<int>& queue) {
  */
 
 int main() {
-  concurent_queue<int> buffer(100);
+  MTQueue<int> buffer(100);
 
   std::thread p(&producer, std::ref(buffer));
   std::thread c(&consumer, std::ref(buffer));

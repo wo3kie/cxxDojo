@@ -451,6 +451,9 @@ OneBucketPolicy: 195972µs
  AZBucketPolicy: 34203µs
 ```
   
+### mt_queue.cpp  
+Implement a thread-safe queue with fixed capacity. The queue should support concurrent access from multiple threads, allowing them to push and pop items without data races.  
+    
 ### ode.cpp  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
   
