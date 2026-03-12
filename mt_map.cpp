@@ -108,6 +108,9 @@ int main() {
   std::cout << "OneBucketPolicy: ";
   test([]() -> void { mt_map_test<OneBucketPolicy>(); });
 
-  std::cout << " AZBucketPolicy: ";
+  std::cout << "AZBucketPolicy: ";
   test([]() -> void { mt_map_test<AZBucketPolicy>(); });
+
+  std::cout << "AZBucketPolicy/NoMutexPolicy: ";
+  test([]() -> void { mt_map_test<AZBucketPolicy, NoMutexPolicy>(); });
 }

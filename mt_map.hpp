@@ -62,6 +62,15 @@ struct AZBucketPolicy {
  * MutexPolicy
  */
 
+struct NoMutexPolicy {
+  using MutexType = void*;
+  using ReadLockType = void*;
+  using WriteLockType = void*;
+
+  NoMutexPolicy(void*) {
+  }
+};
+
 struct MutexPolicy {
   using MutexType = std::mutex;
   using ReadLockType = std::lock_guard<std::mutex>;
