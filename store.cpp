@@ -12,71 +12,49 @@
 #include "./store.hpp"
 #include "./assert.hpp"
 
-void test_store_if_unary() {
-  auto unary = [](int newValue) -> bool { //
-    return newValue % 2 == 0;
-  };
-
-  StoreIf<int, decltype(unary)> storeU(unary);
-  storeU << 0;
-  storeU << 1;
-  storeU << 2;
-  storeU << 3;
-  storeU << 4;
-  storeU << 5;
-  Assert(storeU.value() == 4);
-}
-
-void test_store_if_binary() {
-  auto binary = [](int newValue, int oldValue) -> bool {
-    return newValue < oldValue;
-  };
-
-  StoreIf<int, decltype(binary)> storeB(binary);
-  storeB << 1;
-  storeB << 3;
-  storeB << 0;
-  storeB << 2;
-  Assert(storeB.value() == 0);
-}
-
-void test_store_if_mixed() {
-  auto unary = [](int newValue) -> bool { //
+void test_store1() {
+  auto predicate = [](int newValue) -> bool { //
     return newValue % 2 == 1;
   };
 
-  auto binary = [](int newValue, int oldValue) -> bool {
+  auto compare = [](int newValue, int oldValue) -> bool {
     return newValue < oldValue;
   };
 
-  StoreIf<int, decltype(unary), decltype(binary)> storeM(unary, binary);
-  storeM << 0;
-  storeM << 2;
-  storeM << 1;
-  storeM << 3;
-  Assert(storeM.value() == 1);
+  auto store1 = make_store<int>(compare, predicate);
+  store1 << 0;
+  store1 << 2;
+  store1 << 1;
+  store1 << 3;
+  Assert(store1.value() == 1);
 }
 
-void test_make_store_if() {
-  auto unary = [](int newValue) -> bool { //
+void test_storeN() {
+  auto predicate = [](int newValue) -> bool { //
     return newValue % 2 == 1;
   };
 
-  auto binary = [](int newValue, int oldValue) -> bool {
+  auto compare = [](int newValue, int oldValue) -> bool {
     return newValue < oldValue;
   };
 
-  auto storeM = make_store_if<int>(unary, binary);
-  storeM << 0;
-  storeM << 2;
-  storeM << 1;
-  storeM << 3;
-  Assert(storeM.value() == 1);
+  auto storeN = make_store_n<int>(3, compare, predicate);
+  storeN << 0;
+  storeN << 1;
+  storeN << 2;
+  storeN << 3;
+  storeN << 4;
+  storeN << 5;
+  storeN << 6;
+  storeN << 7;
+  storeN << 8;
+
+  const std::set<int> actual(storeN.begin(), storeN.end());
+  const std::set<int> expected{1, 3, 5};
+  Assert(actual == expected);
 }
 
 int main() {
-  test_store_if_unary();
-  test_store_if_binary();
-  test_store_if_mixed();
-  test_make_store_if();
+  test_store1();
+  test_storeN();
 }

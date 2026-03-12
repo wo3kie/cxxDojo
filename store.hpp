@@ -11,31 +11,45 @@
 #include <functional>
 #include <optional>
 
-template<typename TValue, typename... TPredicates>
-class StoreIf {
+#include <functional>
+#include <memory>
+#include <optional>
+#include <queue>
+#include <tuple>
+
+template<typename TValue, typename TCompare, typename... TPredicates>
+class Store {
 public:
-  explicit StoreIf(TPredicates... preds)
-  : m_preds(std::move(preds)...)
-  {}
+  explicit Store(TCompare compare, TPredicates... preds)
+      : m_compare(std::move(compare))
+      , m_preds(std::move(preds)...) {
+  }
 
-  StoreIf(StoreIf&&) = default;
-  StoreIf& operator=(StoreIf&&) = default;
+  Store(Store&&) = default;
+  Store& operator=(Store&&) = default;
 
-  ~StoreIf() = default;
+  ~Store() = default;
 
-  StoreIf& operator=(const StoreIf&) = default;
-  StoreIf(const StoreIf&) = default;
+  Store& operator=(const Store&) = default;
+  Store(const Store&) = default;
 
 public:
   bool insert(TValue value) {
-    return std::apply(
-      [&](auto&... preds) {
-        return (check_predicate(preds, value) && ...) 
-                ? (m_data = std::move(value), true) 
-                : false;
-      },
-      m_preds
-    );
+    if(! std::apply([&](auto&... preds) { return (preds(value) && ...); }, m_preds)) {
+      return false;
+    }
+
+    if(! m_data) {
+      m_data = std::move(value);
+      return true;
+    }
+
+    if (! m_compare(value, *m_data)) {
+      return false;
+    }
+
+    m_data = std::move(value);
+    return true;
   }
 
   bool operator<<(TValue value) {
@@ -67,23 +81,112 @@ public:
   }
 
 private:
-  template<typename P>
-  bool check_predicate(P& p, const TValue& value) {
-    if constexpr (std::predicate<P, TValue>) {
-      return p(value);
-    } else if constexpr (std::predicate<P, TValue, TValue>) {
-      return !m_data || p(value, *m_data);
-    } else {
-      static_assert(sizeof(P) == 0, "Predicate must be unary or binary");
-    }
-  }
-
-private:
   std::optional<TValue> m_data;
+
+  TCompare m_compare;
   std::tuple<TPredicates...> m_preds;
 };
 
-template<typename TValue, typename... TPredicates>
-auto make_store_if(TPredicates... preds) -> StoreIf<TValue, TPredicates...> {
-  return StoreIf<TValue, TPredicates...>(std::move(preds)...);
+template<typename TValue, typename TCompare, typename... TPredicates>
+auto make_store(TCompare compare, TPredicates... preds) -> Store<TValue, TCompare, TPredicates...> {
+  return Store<TValue, TCompare, TPredicates...>(std::move(compare), std::move(preds)...);
+}
+
+template<typename TValue, typename TCompare, typename... TPredicates>
+struct StoreN {
+public:
+  using const_reference = const TValue&;
+  using const_iterator = const TValue*;
+
+public:
+  explicit StoreN(size_t n, TCompare compare = TCompare(), TPredicates... preds)
+      : _size(0)
+      , _capacity(n)
+      , _data(std::make_unique<TValue[]>(n))
+      , _compare(std::move(compare))
+      , _predicates(std::move(preds)...) {
+  }
+
+  StoreN(StoreN&&) = default;
+  StoreN(const StoreN&) = delete;
+
+  ~StoreN() = default;
+
+  StoreN& operator=(StoreN&&) = default;
+  StoreN& operator=(const StoreN&) = delete;
+
+public:
+  bool insert(TValue value) {
+    if(! std::apply([&](auto&... preds) { return (preds(value) && ...); }, _predicates)) {
+      return false;
+    }
+
+    if(_size < _capacity) {
+      _data[_size] = std::move(value);
+      heapify(_data.get(), _size++);
+      return true;
+    }
+
+    if(! _compare(value, _data[_capacity - 1])) {
+      return false;
+    }
+
+    _data[_size - 1] = std::move(value);
+    heapify(_data.get(), _size - 1);
+    return true;
+  }
+
+  bool operator<<(TValue value) {
+    return insert(std::move(value));
+  }
+
+  [[nodiscard]] size_t size() const {
+    return _size;
+  }
+
+  [[nodiscard]] size_t capacity() const {
+    return _capacity;
+  }
+
+  const_iterator begin() const {
+    return &_data[0];
+  }
+
+  const_iterator end() const {
+    return &_data[_size];
+  }
+
+private:
+  void heapify(TValue* data, size_t currentIndex) {
+    while(currentIndex != 0) {
+      const size_t parentIndex = getParentIndex(currentIndex);
+
+      TValue& current = data[currentIndex];
+      TValue& parent = data[parentIndex];
+
+      if(_compare(parent, current)) {
+        return;
+      }
+
+      std::swap(current, parent);
+      currentIndex = parentIndex;
+    }
+  }
+
+  static int getParentIndex(size_t index) {
+    return (index - 1) / 2;
+  }
+
+private:
+  size_t _size;
+  size_t _capacity;
+
+  std::unique_ptr<TValue[]> _data;
+  TCompare _compare;
+  std::tuple<TPredicates...> _predicates;
+};
+
+template<typename TValue, typename TCompare, typename... TPredicates>
+auto make_store_n(size_t n, TCompare compare, TPredicates... preds) -> StoreN<TValue, TCompare, TPredicates...> {
+  return StoreN<TValue, TCompare, TPredicates...>(n, std::move(compare), std::move(preds)...);
 }
