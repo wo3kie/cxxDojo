@@ -92,6 +92,49 @@ auto make_store(TCompare compare, TPredicates... preds) -> Store<TValue, TCompar
   return Store<TValue, TCompare, TPredicates...>(std::move(compare), std::move(preds)...);
 }
 
+template<typename TValue>
+auto make_store_min() {
+  return Store<TValue, std::less<TValue>>(std::less<TValue>());
+}
+
+template<typename TValue>
+auto make_store_max() {
+  return Store<TValue, std::greater<TValue>>(std::greater<TValue>());
+}
+
+template<typename TValue, typename... TPredicates>
+auto make_store_first(TPredicates... preds) {
+  auto compare = [](bool, bool) -> bool { //
+    return false;
+  };
+
+  return Store<TValue, decltype(compare), TPredicates...>(compare, std::move(preds)...);
+}
+
+auto make_store_true() {
+  auto compare = [](bool, bool) -> bool { //
+    return false;
+  };
+
+  auto predicate = [](bool newValue) -> bool { //
+    return newValue;
+  };
+
+  return Store<bool, decltype(compare), decltype(predicate)>(compare, predicate);
+}
+
+auto make_store_false() {
+  auto compare = [](bool, bool) -> bool { //
+    return false;
+  };
+
+  auto predicate = [](bool newValue) -> bool { //
+    return !newValue;
+  };
+
+  return Store<bool, decltype(compare), decltype(predicate)>(compare, predicate);
+}
+
 template<typename TValue, typename TCompare, typename... TPredicates>
 struct StoreN {
 public:

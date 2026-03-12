@@ -12,7 +12,7 @@
 #include "./store.hpp"
 #include "./assert.hpp"
 
-void test_store1() {
+void test_store() {
   auto predicate = [](int newValue) -> bool { //
     return newValue % 2 == 1;
   };
@@ -27,6 +27,57 @@ void test_store1() {
   store1 << 1;
   store1 << 3;
   Assert(store1.value() == 1);
+}
+
+void test_store_min() {
+  auto storeMin = make_store_min<int>();
+  storeMin << 5;
+  storeMin << 3;
+  storeMin << 1;
+  storeMin << 2;
+  storeMin << 4;
+  Assert(storeMin.value() == 1);
+}
+
+void test_store_max() {
+  auto storeMax = make_store_max<int>();
+  storeMax << 1;
+  storeMax << 3;
+  storeMax << 5;
+  storeMax << 4;
+  storeMax << 2;
+  Assert(storeMax.value() == 5);
+}
+
+void test_store_first() {
+  auto store = make_store_first<int>();
+  store << 1;
+  store << 2;
+  store << 3;
+  store << 0;
+  Assert(store.value() == 1);
+}
+
+void test_make_store_true() {
+  auto store = make_store_true();
+  store << false;
+  store << false;
+  Assert(!store.has_value());
+
+  store << true;
+  store << false;
+  Assert(store.value());
+}
+
+void test_make_store_false() {
+  auto store = make_store_false();
+  store << true;
+  store << true;
+  Assert(!store.has_value());
+
+  store << false;
+  store << true;
+  Assert(!store.value());
 }
 
 void test_storeN() {
@@ -55,6 +106,12 @@ void test_storeN() {
 }
 
 int main() {
-  test_store1();
+  test_store();
+  test_store_min();
+  test_store_max();
+  test_store_first();
+  test_make_store_true();
+  test_make_store_false();
+  
   test_storeN();
 }
