@@ -4,7 +4,7 @@
 #include <iostream>
 
 template<typename T>
-void test(const T& t, int rep = 1) {
+void timer(const T& t, int rep = 1) {
   // typedef ratio< 1,  1000000000000000000 > atto;
   // typedef ratio< 1,     1000000000000000 > femto;
   // typedef ratio< 1,        1000000000000 > pico;
