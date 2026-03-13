@@ -10,21 +10,31 @@
 
 #include <exception>
 
-template<typename T, size_t Size>
-struct CircularBuffer {
-  static_assert(Size > 0, ":(");
+template<typename T, size_t Capacity>
+struct RingBuffer(Capacity > 0, ":(");
+public:
 
-  T _data[Size];
-  size_t _end = 0;
-  size_t _size = 0;
+  RingBuffer() = default;
 
-  void push(T t) {
-    _data[_end] = std::move(t);
-    _end = (_end + 1) % Size;
+  
 
-    if (_size < Size) {
-      _size += 1;
+public:
+  bool push(T t) {
+    if (full()) {
+      return false;
     }
+    _data[_end] = std::move(t);
+    _inc(_end);
+
+    return true;
+  }
+
+  T pop() {
+    if(empty()) {
+      throw std::out_of_range(":(");
+    }
+
+    return std::move(_data[_begin++]);
   }
 
   const T& front() const {
@@ -35,29 +45,35 @@ struct CircularBuffer {
     return _data[0];
   }
 
-  T pop() {
-    if(_size == 0) {
-      throw std::out_of_range(":(");
-    }
-
-    const size_t head = (_end + Size - _size) % Size;
-    _size -= 1;
-    return std::move(_data[head]);
-  }
-
-  [[nodiscard]] bool empty() const noexcept {
-    return _size == 0;
-  }
-
-  [[nodiscard]] bool full() const noexcept {
-    return _size == Size;
+  [[nodiscard]] size_t capacity() const noexcept {
+    return Capacity; 
   }
 
   [[nodiscard]] size_t size() const noexcept {
-    return _size;
+    if (_begin - _end) {
+      return _end - _begin;
+    } else {
+      return _Capacity - (_begin - _end);
+    }
   }
 
-  [[nodiscard]] size_t capacity() const noexcept {
-    return Size; 
+  [[nodiscard]] bool empty() const {
+    return _begin == _end;
   }
+
+  [[nodiscard]] bool full() const {
+    return _inc(_end) == _begin;
+  }
+
+private:
+  size_t _inc(size_t n) const {
+    return (n + 1) % Capacity;
+  }
+
+private:
+  size_t _begin = 0;
+  size_t _end = 0;
+
+  // N-1 trick
+  T _data[Capacity + 1];
 };
