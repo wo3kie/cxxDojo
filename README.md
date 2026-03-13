@@ -502,6 +502,9 @@ Implement a function to reshuffle elements in a container. The function should t
 ### reverse_words.cpp  
 Implement a program that reverses the words in a given sentence.
   
+### ring_buffer.cpp  
+Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, and `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques.  
+  
 ### rotate_matrix.cpp  
 Implement a program to rotate inplace matrix to right by 90 degrees
 
