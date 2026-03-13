@@ -105,12 +105,15 @@ void mt_map_test() {
 }
 
 int main() {
-  std::cout << "OneBucketPolicy: ";
-  timer([]() -> void { mt_map_test<OneBucketPolicy>(); });
+  timer([]() -> void { mt_map_test<OneBucketPolicy>(); }).log([](long int /* ns */, const std::string& fmt) {
+    std::cout << "OneBucketPolicy: " << fmt << std::endl;
+  });
 
-  std::cout << "AZBucketPolicy: ";
-  timer([]() -> void { mt_map_test<AZBucketPolicy>(); });
+  timer([]() -> void { mt_map_test<AZBucketPolicy>(); }).log([](long int /* ns */, const std::string& fmt) {
+    std::cout << "AZBucketPolicy: " << fmt << std::endl;
+  });
 
-  std::cout << "AZBucketPolicy/NoMutexPolicy: ";
-  timer([]() -> void { mt_map_test<AZBucketPolicy, NoMutexPolicy>(); });
+  timer([]() -> void { mt_map_test<AZBucketPolicy, NoMutexPolicy>(); }).log([](long int /* ns */, const std::string& fmt) {
+    std::cout << "AZBucketPolicy/NoMutexPolicy: " << fmt << std::endl;
+  });
 }

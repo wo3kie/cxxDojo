@@ -503,7 +503,30 @@ Implement a function to reshuffle elements in a container. The function should t
 Implement a program that reverses the words in a given sentence.
   
 ### ring_buffer.cpp  
-Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, and `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques.  
+Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, and `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques, and check the performance of all implementations.  
+
+```{r, engine='bash'}
+$ ./ring_buffer
+RingBufferMT<int, 2>: 8ms
+RingBufferSPSC<int, 2>: 533µs
+RingBuffer<int, 2>: 278µs
+
+RingBufferMT<int, 4>: 7ms
+RingBufferSPSC<int, 4>: 1ms
+RingBuffer<int, 4>: 201µs
+
+RingBufferMT<int, 8>: 6ms
+RingBufferSPSC<int, 8>: 323µs
+RingBuffer<int, 8>: 277µs
+
+RingBufferMT<int, 1024>: 43ms
+RingBufferSPSC<int, 1024>: 16ms
+RingBuffer<int, 1024>: 6ms
+
+RingBufferMT<int, 32*1024>: 776ms
+RingBufferSPSC<int, 32*1024>: 458ms
+RingBuffer<int, 32*1024>: 171ms
+```
   
 ### rotate_matrix.cpp  
 Implement a program to rotate inplace matrix to right by 90 degrees
