@@ -490,7 +490,7 @@ Implement a function to do a QR decomposition of a matrix. From [Wikipedia](http
 Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
   
 ### reshuffle.cpp  
-Implement a function to reshuffle elements in a container. The function should take a container, the `stddev` parameter to control the amount of randomness in the reshuffling.  
+Implement a function to reshuffle elements in a container. The function should take a container, and the `stddev` parameter to control the amount of randomness in the reshuffling.  
   
 ```{r, engine='cpp'}
   // PSEUDOCODE
