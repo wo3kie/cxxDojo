@@ -112,13 +112,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is 
 Implement the Box-Muller algorithm.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
-  
-### circular_buffer.cpp  
-Implement a circular buffer.
-  
-### MTQueue.cpp  
-Design and implement a thread-safe queue with bounded capacity. The queue should support concurrent access from multiple threads. If a thread attempts to enqueue an item when the queue is full, it must be blocked until space becomes available. Similarly, if a thread tries to dequeue an item from an empty queue, it should be blocked until an item is available.
-  
+    
 ### concat_view.cpp  
 Implement a simple version of `std::concat_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html) the `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges. 
   
@@ -156,6 +150,9 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Curiously_recurring_template_patt
   
 ### ctad.cpp  
 Implement some examples showing class template argument deduction (CTAD) usage.  
+  
+### demangle.cpp  
+Implement a function to demangle C++ type names. From [cppreference](https://en.cppreference.com/w/cpp/types/type_info/name) the `std::type_info::name` function returns an implementation-defined string representing the type. In many implementations, this string is a mangled name, which is not human-readable. The demangling process converts the mangled name back into a human-readable form, making it easier to understand the type information.
   
 ### dijkstra.cpp  
 Implement Dijkstra algorithm.  
@@ -451,9 +448,6 @@ OneBucketPolicy: 195972µs
  AZBucketPolicy: 34203µs
 ```
   
-### mt_queue.cpp  
-Implement a thread-safe queue with fixed capacity. The queue should support concurrent access from multiple threads, allowing them to push and pop items without data races.  
-    
 ### ode.cpp  
 Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
   
@@ -491,10 +485,7 @@ Implement `partition` and `stable_partition` algorithms.
   
 ### qr.cpp  
 Implement a function to do a QR decomposition of a matrix. From [Wikipedia](https://en.wikipedia.org/wiki/QR_decomposition) QR decomposition is a decomposition of a matrix _A_ into a product _A_=_QR_ of an orthogonal matrix _Q_ and an upper triangular matrix _R_.  
-  
-### queue.cpp  
-Implement a simple queue data structure with fixed capacity. The queue should support basic operations such as `push`, `pop`, and `front`. Additionally, implement a test function to validate the correctness of your queue implementation.  
-  
+    
 ### quick_sort.cpp  
 Write a `quicksort` implementation. Can any STL utilities be used to simplify the task?
   
