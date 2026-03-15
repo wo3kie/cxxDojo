@@ -14,7 +14,7 @@ class RingBufferSPSC {
   static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be 2^N");
 
 public:
-using value_type = TValue;
+  using value_type = TValue;
 
 public:
   RingBufferSPSC() = default;
@@ -94,13 +94,13 @@ private:
   * _begin: stored only by a consumer thread, so: - the consumer thread may read it as `relaxed` order
   *                                               - other threads have to read it as `acquire` order
   */
-  std::atomic<size_t> _begin{0};
+  alignas(64) std::atomic<size_t> _begin{0};
 
   /*
    * _end: stored only by a producer thread, so: - the producer thread may read it as `relaxed` order
    *                                             - other threads have to read it as `acquire` order
    */
-  std::atomic<size_t> _end{0};
+  alignas(64) std::atomic<size_t> _end{0};
  
   std::array<TValue, /* N+1 trick */ Capacity> _buffer;
 };

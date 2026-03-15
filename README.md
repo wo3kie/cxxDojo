@@ -503,7 +503,7 @@ Implement a function to reshuffle elements in a container. The function should t
 Implement a program that reverses the words in a given sentence.
   
 ### ring_buffer.cpp  
-Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, and `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques, and check the performance of all implementations.  
+Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques and `ring_buffer_spmc` should be a single-producer multiple-consumer version using lock-free programming techniques. Check the performance of all implementations.  
 
 ```{r, engine='bash'}
 $ ./ring_buffer
