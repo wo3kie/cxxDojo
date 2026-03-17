@@ -114,6 +114,5 @@ public:
 private:
   alignas(64) std::atomic<std::size_t> _pushed; 
   alignas(64) std::atomic<std::size_t> _popped;
-
-  TValue _buffer[Capacity];
+  alignas(64) TValue _buffer[Capacity];
 };
