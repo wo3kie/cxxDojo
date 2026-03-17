@@ -298,6 +298,9 @@ Implement a function to compute the Jaccard Index for two given sets. From [Wiki
 ### join.cpp  
 Implement a function to join a collection of strings with a given separator. The function should also support an option to skip empty strings. Make a variadic template  and a range-based versions.
   
+### load_balancer.cpp  
+Implement a simple load balancer that distributes incoming tasks across a fixed number of worker threads. The load balancer should use a round-robin scheduling algorithm to assign tasks to workers and should be able to handle concurrent task submissions from multiple threads.  
+    
 ### knuth_morris_pratt.cpp  
 Implement the Knuth-Morris-Pratt text searching algorithm.
 
