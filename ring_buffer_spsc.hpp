@@ -102,5 +102,5 @@ private:
    */
   alignas(64) std::atomic<size_t> _end{0};
  
-  std::array<TValue, /* N+1 trick */ Capacity> _buffer;
+  alignas(64) std::array<TValue, /* N+1 trick */ Capacity> _buffer;
 };
