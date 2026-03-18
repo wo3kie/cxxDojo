@@ -10,34 +10,35 @@
 
 #include <array>
 #include <functional>
+#include <optional>
 #include <thread>
 
 #include "./assert.hpp"
 #include "./ring_buffer_spsc.hpp"
 
 /*
- * Single Producer, Multiple Consumer/Worker Load Balancer
+ * RingBuffer Load Balancer (RingBufferLB) is a single-producer multi-consumer queue.
  */
 
 template<
   typename TValue, //
   size_t NumBuffers,
-  size_t Capacity = NumBuffers
+  size_t Capacity = NumBuffers * NumBuffers
 >
-struct LoadBalancer {
+struct RingBufferLB {
 public:
   using value_type = TValue;
 
 public:
-  LoadBalancer() = default;
+  RingBufferLB() = default;
 
-  LoadBalancer(LoadBalancer&&) = delete;
-  LoadBalancer(const LoadBalancer&) = delete;
+  RingBufferLB(RingBufferLB&&) = delete;
+  RingBufferLB(const RingBufferLB&) = delete;
 
-  ~LoadBalancer() = default;
+  ~RingBufferLB() = default;
 
-  LoadBalancer& operator=(LoadBalancer&&) = delete;
-  LoadBalancer& operator=(const LoadBalancer&) = delete;
+  RingBufferLB& operator=(RingBufferLB&&) = delete;
+  RingBufferLB& operator=(const RingBufferLB&) = delete;
 
 public:
   bool push(const TValue& value, size_t queue_id) {
@@ -52,9 +53,9 @@ public:
 
   bool push(const TValue& value) {
     for(size_t i = 0; i < NumBuffers; ++i) {
-      const size_t index = _increment(_round_robin_push_id);
+      const size_t index = _index(_increment(_round_robin_push_id));
 
-      if (push(value, _index(index))) {
+      if (push(value, index)) {
         return true;
       }
     }
@@ -74,9 +75,9 @@ public:
 
   bool pop(TValue& out) {
      for(size_t i = 0; i < NumBuffers; ++i) {
-      const size_t index = _increment(_round_robin_pop_id);
+      const size_t index = _index(_increment(_round_robin_pop_id));
 
-      if (pop(out, _index(index))) {
+      if (pop(out, index)) {
         return true;
       }
     }

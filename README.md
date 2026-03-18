@@ -297,10 +297,7 @@ Implement a function to compute the Jaccard Index for two given sets. From [Wiki
   
 ### join.cpp  
 Implement a function to join a collection of strings with a given separator. The function should also support an option to skip empty strings. Make a variadic template  and a range-based versions.
-  
-### load_balancer.cpp  
-Implement a simple load balancer that distributes incoming tasks across a fixed number of worker threads. The load balancer should use a round-robin scheduling algorithm to assign tasks to workers and should be able to handle concurrent task submissions from multiple threads.  
-    
+      
 ### knuth_morris_pratt.cpp  
 Implement the Knuth-Morris-Pratt text searching algorithm.
 
@@ -529,6 +526,18 @@ RingBuffer<int, 1024>: 6ms
 RingBufferMT<int, 32*1024>: 776ms
 RingBufferSPSC<int, 32*1024>: 458ms
 RingBuffer<int, 32*1024>: 171ms
+```
+  
+### ring_buffer_lb.cpp  
+Implement a single-producer multiple-consumer container with round robin load balancer that distributes incoming values across a fixed number of queues.
+
+```{r, engine='bash'}
+$ ./ring_buffer_lb
+Producer0 inserted: 100000
+Consumer1 popped:    25176
+Consumer2 popped:    25214
+Consumer3 popped:    24923
+Consumer4 popped:    24687
 ```
   
 ### rotate_matrix.cpp  
