@@ -15,24 +15,24 @@
  * feq
  */
 
-inline constexpr bool feq(const float lhs, const float rhs, const float eps = 0.0001f) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
+inline constexpr bool feq(const float lhs, const float rhs, const float atol = 0.0001f) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
 }
 
 /*
  * feq
  */
 
-inline constexpr bool feq(const double lhs, const double rhs, const double eps = 0.0001) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
+inline constexpr bool feq(const double lhs, const double rhs, const double atol = 0.0001) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
 }
 
 /*
  * feq
  */
 
-inline constexpr bool feq(const long double lhs, const long double rhs, const long double eps = 0.0001) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < eps;
+inline constexpr bool feq(const long double lhs, const long double rhs, const long double atol = 0.0001) {
+  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
 }
 
 /*
@@ -42,9 +42,9 @@ inline constexpr bool feq(const long double lhs, const long double rhs, const lo
 template<typename T = double>
 struct approx {
 public:
-  explicit approx(T d, T eps = T(0.0001))
+  explicit approx(T d, T atol = T(0.0001))
       : _d(d)
-      , _eps(eps) {
+      , _atol(atol) {
   }
 
   T get() const {
@@ -55,12 +55,22 @@ public:
     return _d;
   }
 
-  T eps() const {
-    return _eps;
+  T atol() const {
+    return _atol;
   }
 
   bool operator==(T d) const {
-    return std::fabs(_d - d) <= _eps;
+    bool result;
+    
+    if constexpr (std::is_floating_point_v<T>) {
+      result = std::fabs(_d - d) <= _atol;
+    } else if constexpr (std::is_integral_v<T>) {
+      result = std::abs(_d - d) <= _atol;
+    } else {
+      static_assert(false, "T must be a floating point or integral type");
+    }
+    
+    return result;
   }
 
   bool operator!=(T d) const {
@@ -69,7 +79,7 @@ public:
 
 private:
   T _d;
-  T _eps;
+  T _atol;
 };
 
 /*

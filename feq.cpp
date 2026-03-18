@@ -25,6 +25,10 @@ void feq_test() {
   Assert(0.1f + 0.2f == approx(0.3f));
   Assert(0.1 + 0.2 == approx(0.3));
   Assert(0.1l + 0.2l == approx(0.3l));
+
+  Assert(10 == approx(10, 10));
+  Assert(10 == approx(20, 10));
+  Assert(20 == approx(10, 10));
 }
 
 /*
