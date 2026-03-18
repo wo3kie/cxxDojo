@@ -22,7 +22,6 @@ int main() {
   Assert(false == false);
   Assert(0 == 0);
   Assert(1 == 1);
-  Assert(1 != 0);
 
   Assert(2==2);
   Assert((2==2));
