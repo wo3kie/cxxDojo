@@ -17,11 +17,8 @@ void hanoi(int size, int from, int to) {
   }
 
   const int middle = 1 + 2 + 3 - from - to;
-
   hanoi(size - 1, from, middle);
-
   std::cout << "Move from " << from << " to " << to << std::endl;
-
   hanoi(size - 1, middle, to);
 }
 
