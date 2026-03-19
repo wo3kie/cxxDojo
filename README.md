@@ -131,10 +131,7 @@ assert(convertBase("2A", 16, 2) == "101010");
   
 ### copy_vs_move.cpp  
 Compare function calls passing arguments by value, by reference, and by ref ref.
-  
-### correlation.cpp  
-Implement a function to calculate the correlation between two collections using.
-  
+    
 ### covariance.cpp  
 Implement a function to calculate the covariance between two collections.
   
@@ -230,10 +227,7 @@ Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikiped
   
 ### group_by.cpp  
 Implement a `group_by` function, for aggregating data into a dictionary by a given key.
-
-### gsl/correlation.cpp  
-Implement a function to calculate the correlation between two collections using gsl library.
-
+  
 ### gsl/covariance.cpp  
 Implement a function to calculate the covariance between two collections using gsl library.
   
