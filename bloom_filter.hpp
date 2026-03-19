@@ -22,7 +22,7 @@ enum { None = 0, Maybe = 1 };
 
 inline unsigned optimalNumberOfHashFunctions(long items, long bits) {
   using std::ceil;
-  using std::log2;
+  using std::log;
 
   /*
   * https://en.wikipedia.org/wiki/Bloom_filter
@@ -37,7 +37,7 @@ inline unsigned optimalNumberOfHashFunctions(long items, long bits) {
 
 inline unsigned optimalNumberOfBits(int items, double probFalsePositive) {
   using std::ceil;
-  using std::log2;
+  using std::log;
   using std::pow;
 
   const double e = 2.71828;
@@ -53,9 +53,10 @@ inline unsigned optimalNumberOfBits(int items, double probFalsePositive) {
    * ln(pe) = (b/i*ln(2))*ln(1-e^ln(2))
    * (b/i*ln(2) = ln(pe)/ln(1-e^ln(2))
    * b = i/ln(2)*ln(pe)/ln(1-e^ln(2))
+   * b = i * ln(pe) / (ln(2) * ln(2))
    */
 
-  return ceil(items / log(2.0) * log(probFalsePositive) / log(1.0 - pow(e, -log(2.0))));
+  return ceil(-items * log(probFalsePositive) / (log(2.0) * log(2.0)));
 }
 
 /*
@@ -68,7 +69,7 @@ public:
   typedef std::function<size_t(const T&)> HashFunction;
 
 public:
-  BloomFilter(size_t numberOfBits = 1024)
+  explicit BloomFilter(size_t numberOfBits = 1024)
       : m_bits(numberOfBits) {
   }
 
@@ -108,12 +109,7 @@ public:
   }
 
   void clear() {
-    m_bits.clear();
-    m_filters.clear();
-  }
-
-  bool empty() const {
-    return m_bits.empty() && m_filters.empty();
+    std::fill(m_bits.begin(), m_bits.end(), false);
   }
 
 private:

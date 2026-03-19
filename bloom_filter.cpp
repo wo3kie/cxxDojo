@@ -70,17 +70,17 @@ int main() {
   Assert(optimalNumberOfHashFunctions(1e3, 14378) == 10);
   Assert(optimalNumberOfHashFunctions(1e3, 19171) == 14);
 
-  Assert(optimalNumberOfBits(1e6, 0.001) == 14377578 /* 1.7MB */);
-  Assert(optimalNumberOfBits(1e6, 0.0001) == 19170104 /* 2.3MB */);
-  Assert(optimalNumberOfBits(1e6, 0.00001) == 23962630 /* 2.9MB */);
+  Assert(optimalNumberOfBits(1e6, 0.001) == 14377588 /* 1.7MB */);
+  Assert(optimalNumberOfBits(1e6, 0.0001) == 19170117 /* 2.3MB */);
+  Assert(optimalNumberOfBits(1e6, 0.00001) == 23962646 /* 2.9MB */);
 
-  Assert(optimalNumberOfHashFunctions(1e6, 14377578) == 10);
-  Assert(optimalNumberOfHashFunctions(1e6, 19170104) == 14);
+  Assert(optimalNumberOfHashFunctions(1e6, 14377588) == 10);
+  Assert(optimalNumberOfHashFunctions(1e6, 19170117) == 14);
   Assert(optimalNumberOfHashFunctions(1e6, 23962630) == 17);
 
-  Assert(optimalNumberOfBits(1e9, 0.001) == 1492676007 /* 177MB */);
-  Assert(optimalNumberOfBits(1e9, 0.0001) == 1990234676 /* 237MB */);
-  Assert(optimalNumberOfBits(1e9, 0.00001) == 2487793345 /* 296MB */);
+  Assert(optimalNumberOfBits(1e9, 0.001) == 1492685679 /* 177MB */);
+  Assert(optimalNumberOfBits(1e9, 0.0001) == 1990247571 /* 237MB */);
+  Assert(optimalNumberOfBits(1e9, 0.00001) == 2487809464 /* 296MB */);
 
   Assert(optimalNumberOfHashFunctions(1e9, 1492676007) == 2);
   Assert(optimalNumberOfHashFunctions(1e9, 1990234676) == 2);
