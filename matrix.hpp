@@ -225,3 +225,11 @@ inline Matrix eye(unsigned size) {
 
   return result;
 }
+
+/*
+ * operator-
+ */
+
+inline Matrix operator-(const Matrix& matrix1, const Matrix& matrix2) {
+  return matrix1 + (matrix2 * -1);
+}

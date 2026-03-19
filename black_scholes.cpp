@@ -4,9 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/black_scholes
  */
 
 #include <cmath>
@@ -49,7 +46,7 @@
  *
  * f[t][s] = a[s] * f[t+1][s-1] + b[s] * f[t+1][s] + c[s] * f[t+1][s+1], where
  *   a[s] = (k/2) * (o * o * s * s - r * s)
- *   b[s] = (1-k) * (r * o * o * m * m)
+ *   b[s] = (1-k) * (r * o * o * s * s)
  *   c[s] = (k/2) * (o * o * s * s + r * s)
  *
  * Further reading:
@@ -157,8 +154,12 @@ Matrix blackScholes_Formula(
       const double time = tMax - 1.0 * t * dT;
       const double price = 1.0 * s * dS;
 
-      const double d1 = (1 / (o * std::sqrt(time))) * (std::log(price / K) + (r + o * o / 2) * time);
+      if(price == 0) {
+        f[t][s] = 0;
+        continue;
+      }
 
+      const double d1 = (1 / (o * std::sqrt(time))) * (std::log(price / K) + (r + o * o / 2) * time);
       const double d2 = d1 - o * std::sqrt(time);
 
       f[t][s] = N(d1) * price - N(d2) * K * std::exp(-r * time);
@@ -200,12 +201,12 @@ Matrix monteCarlo(
       for(unsigned long i = 0; i < N; i++) {
         const double wt = std::sqrt(time) * std::normal_distribution<>(0, 1)(gen);
         const double e = ((r - 0.5 * o * o) * time) + o * wt;
-        const double S = price * std::exp(e);
+        const double ST = price * std::exp(e);
 
-        runningSum += std::max(S - K, 0.0);
+        runningSum += std::max(ST - K, 0.0);
       }
 
-      f[t][s] = exp(-r * time) * (runningSum / N);
+      f[t][s] = std::exp(-r * time) * (runningSum / N);
     }
   }
 
@@ -221,7 +222,7 @@ int main(int argc, char** argv) {
   const Matrix form = blackScholes_Formula(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
   const Matrix mc = monteCarlo(0.1, 0.4, 0.25, 10, 30, 0.001, 0.5);
 
-  std::cout << (form + (fdme * -1)) << "\n\n" << (form + (mc * -1)) << "\n";
+  std::cout << (form - fdme) << "\n\n" << (form - mc) << "\n";
 
   return 0;
 }
