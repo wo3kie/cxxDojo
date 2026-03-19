@@ -15,24 +15,10 @@
  * feq
  */
 
-inline constexpr bool feq(const float lhs, const float rhs, const float atol = 0.0001f) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
-}
-
-/*
- * feq
- */
-
-inline constexpr bool feq(const double lhs, const double rhs, const double atol = 0.0001) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
-}
-
-/*
- * feq
- */
-
-inline constexpr bool feq(const long double lhs, const long double rhs, const long double atol = 0.0001) {
-  return ((lhs - rhs) >= 0 ? (lhs - rhs) : (rhs - lhs)) < atol;
+template<typename T>
+inline constexpr bool feq(T lhs, T rhs, T atol = T(0.0001)) {
+    static_assert(std::is_floating_point_v<T>);
+    return std::fabs(lhs - rhs) < atol;
 }
 
 /*
@@ -41,6 +27,8 @@ inline constexpr bool feq(const long double lhs, const long double rhs, const lo
 
 template<typename T = double>
 struct approx {
+  static_assert(std::is_arithmetic_v<T>);
+
 public:
   explicit approx(T d, T atol = T(0.0001))
       : _d(d)
@@ -60,16 +48,7 @@ public:
   }
 
   bool operator==(T d) const {
-    bool result;
-    
-    if constexpr (std::is_floating_point_v<T>) {
-      result = std::fabs(_d - d) <= _atol;
-    } else if constexpr (std::is_integral_v<T>) {
-      result = std::abs(_d - d) <= _atol;
-    } else {
-      static_assert(false, "T must be a floating point or integral type");
-    }
-    
+    const bool result = std::abs(_d - d) <= _atol;
     return result;
   }
 
@@ -105,6 +84,6 @@ bool operator!=(double d, approx<T> approx) {
  */
 
 template<typename T>
-std::ostream& operator<<(std::ostream& out, approx<T> a) {
+std::ostream& operator<<(std::ostream& out, const approx<T>& a) {
   return (out << *a);
 }

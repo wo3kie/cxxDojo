@@ -4,9 +4,6 @@
  *
  * Auttor:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/feq
  */
 
 #include "./feq.hpp"
