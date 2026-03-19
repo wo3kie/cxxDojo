@@ -4,9 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/bellman_ford
  */
 
 #include <tuple>
@@ -22,7 +19,7 @@
 int main() {
   // clang-format off
   Matrix matrix{
-    // S   A   B   C   D   E   F   G
+    //  S,   A,   B,   C,   D,   E,   F,   G
     {   0,  10, INF, INF, INF, INF, INF,   8},  // S
     { INF,   0, INF, INF, INF,   2, INF, INF},  // A
     { INF,   1,   0,   1, INF, INF, INF, INF},  // B
@@ -35,18 +32,17 @@ int main() {
   // clang-format on
 
   typedef std::vector<int> VI;
-  VI dist;
-  VI prev;
 
-  std::tie(dist, prev) = bellmanFord(matrix, 0);
-
-  assert((dist == VI{0, 5, 5, 6, 9, 7, 9, 8}));
-  assert((decodeShortestPath(prev, 0, 0) == VI{0}));
-  assert((decodeShortestPath(prev, 0, 1) == VI{0, 7, 6, 1}));
-  assert((decodeShortestPath(prev, 0, 2) == VI{0, 7, 6, 1, 5, 2}));
-  assert((decodeShortestPath(prev, 0, 3) == VI{0, 7, 6, 1, 5, 2, 3}));
-  assert((decodeShortestPath(prev, 0, 4) == VI{0, 7, 6, 1, 5, 2, 3, 4}));
-  assert((decodeShortestPath(prev, 0, 5) == VI{0, 7, 6, 1, 5}));
-  assert((decodeShortestPath(prev, 0, 6) == VI{0, 7, 6}));
-  assert((decodeShortestPath(prev, 0, 7) == VI{0, 7}));
+  BellmanFordResult result = bellman_ford(matrix, 0);
+  
+  Assert(! result.hasNegativeCycle);
+  Assert((result.dist == VI{0, 5, 5, 6, 9, 7, 9, 8}));
+  Assert((result.path(0, 0) == VI{0}));
+  Assert((result.path(0, 1) == VI{0, 7, 6, 1}));
+  Assert((result.path(0, 2) == VI{0, 7, 6, 1, 5, 2}));
+  Assert((result.path(0, 3) == VI{0, 7, 6, 1, 5, 2, 3}));
+  Assert((result.path(0, 4) == VI{0, 7, 6, 1, 5, 2, 3, 4}));
+  Assert((result.path(0, 5) == VI{0, 7, 6, 1, 5}));
+  Assert((result.path(0, 6) == VI{0, 7, 6}));
+  Assert((result.path(0, 7) == VI{0, 7}));
 }

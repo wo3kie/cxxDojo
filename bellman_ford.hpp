@@ -15,77 +15,75 @@
  * S. Dasgupta, C. Papadimitrioui U. Vazirani, Algorithms
  */
 
-typedef std::vector<std::vector<int>> Matrix;
-const int INF = 99; // infinity, 99 for readable output
+#include <algorithm>
+#include <limits>
+#include <vector>
 
-namespace impl {
+#include "./assert.hpp"
 
-bool update(const Matrix& graph, std::vector<int>& dist, std::vector<int>& prev, int u, int v) {
-  if(dist[v] > dist[u] + graph[u][v]) {
-    dist[v] = dist[u] + graph[u][v];
-    prev[v] = u;
+using Matrix = std::vector<std::vector<int>>;
+constexpr int INF = std::numeric_limits<int>::max() / 4;
 
-    return true;
-  } else {
+struct BellmanFordResult {
+  std::vector<int> dist;
+  std::vector<int> prev;
+  bool hasNegativeCycle = false;
+
+  std::vector<int> path(int start, int end) const {
+    Assert(! hasNegativeCycle);
+
+    std::vector<int> path;
+
+    if(prev[end] == -1 && start != end)
+      return path;
+
+    for(int v = end; v != -1; v = prev[v]) {
+      path.push_back(v);
+    }
+
+    std::reverse(path.begin(), path.end());
+
+    return path;
+  }
+};
+
+bool _bellman_ford_update(const Matrix& graph, std::vector<int>& dist, std::vector<int>& prev, int u, int v) {
+  if(graph[u][v] == INF) {
     return false;
   }
+
+  if(dist[u] == INF) {
+    return false;
+  }
+
+  const int candidate = dist[u] + graph[u][v];
+
+  if(candidate < dist[v]) {
+    dist[v] = candidate;
+    prev[v] = u;
+    return true;
+  }
+
+  return false;
 }
 
-} // namespace impl
+BellmanFordResult bellman_ford(const Matrix& graph, int start = 0) {
+  const int n = graph.size();
 
-std::pair<std::vector<int> /* dist */, std::vector<int> /* prev */> bellmanFord(const Matrix& graph, int start = 0) {
-  const int size = graph.size();
-
-  std::vector<int> dist(size, INF);
-  std::vector<int> prev(size, -1);
+  std::vector<int> dist(n, INF);
+  std::vector<int> prev(n, -1);
   dist[start] = 0;
 
-  for(int repetition = 0; repetition < size - 1; ++repetition) {
-    for(int u = 0; u < size; ++u) {
-      for(int v = 0; v < size; ++v) {
-        if(u == v) {
-          continue;
-        }
+  for(int i = 0; i < n - 1; ++i)
+    for(int u = 0; u < n; ++u)
+      for(int v = 0; v < n; ++v)
+        _bellman_ford_update(graph, dist, prev, u, v);
 
-        if(graph[u][v] == INF) {
-          continue;
-        }
+  // detect negative cycle
+  for(int u = 0; u < n; ++u)
+    for(int v = 0; v < n; ++v)
+      if(_bellman_ford_update(graph, dist, prev, u, v))
+        return {dist, prev, true};
 
-        impl::update(graph, dist, prev, u, v);
-      }
-    }
-  }
-
-  { // one more time to detect a cycle
-    for(int u = 0; u < size; ++u) {
-      for(int v = 0; v < size; ++v) {
-        if(u == v) {
-          continue;
-        }
-
-        if(graph[u][v] == INF) {
-          continue;
-        }
-
-        if(impl::update(graph, dist, prev, u, v) == true) {
-          return std::pair<std::vector<int>, std::vector<int>>();
-        }
-      }
-    }
-  }
-
-  return std::make_pair(dist, prev);
-}
-
-std::vector<int> decodeShortestPath(const std::vector<int>& prev, const int start, int end) {
-  std::vector<int> path(1, end);
-
-  while(prev[end] != -1) {
-    path.push_back(prev[end]);
-    end = prev[end];
-  }
-
-  std::reverse(path.begin(), path.end());
-
-  return path;
+  return {dist, prev, false};
 }
