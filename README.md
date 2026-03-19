@@ -185,10 +185,7 @@ assert(0.1l + 0.2l == approx(0.3l));
   
 ### find_union.cpp  
 Implement a find-union algorithm.  
-  
-### find.root.cpp  
-Implement a program to find the root of a function using the bisection and Newton's methods.
-  
+    
 ### float_formatter.cpp  
 Implement a function that formats a floating-point number to fit within a fixed number of characters.
   
