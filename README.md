@@ -159,9 +159,6 @@ Implement a simple version of `std::enumerate_view`. From [cppreference](https:/
 ### exec.cpp  
 Implement a function to run shell commands and capture their output, including support for long-running processes.
   
-### exponential_smoothing.cpp  
-Implement a function to perform exponential smoothing average (EMA) on a given sequence using a specified alpha parameter. From [Wikipedia](https://en.wikipedia.org/wiki/Exponential_smoothing) the EMA is a technique for smoothing time series data using the exponential window function, where exponential functions are used to assign exponentially decreasing weights over time.
-  
 ### fdm.cpp  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.
   
