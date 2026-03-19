@@ -152,12 +152,7 @@ Implement a function to demangle C++ type names. From [cppreference](https://en.
 Implement Dijkstra algorithm.  
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijkstra algorithm is a procedure for finding the shortest paths between nodes in a weighted graph.
-  
-### entropy.cpp  
-Write a program to compute the entropy of a given sequence.  
-  
-From [Wikipedia](https://en.wikipedia.org/wiki/Entropy_(information_theory)) the entropy of a random variable quantifies the average level of uncertainty or information associated with the variable's potential states or possible outcomes.
-  
+    
 ### enumerate_view.cpp  
 Implement a simple version of `std::enumerate_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html) the `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
   
