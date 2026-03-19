@@ -14,13 +14,13 @@
 #include "./jaccard_index.hpp"
 
 /*
- * jaccardIndex_test
+ * jaccard_index_test
  */
 
-void jaccardIndex_test() {
-  Assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}) == 1);
-  Assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {6, 7, 8, 9}) == 0);
-  Assert(jaccardIndex<int>({1, 2, 3, 4, 5}, {1, 3, 5, 7, 9}) == approx(3.0 / 7.0));
+void jaccard_index_test() {
+  Assert(jaccard_index<int>({1, 2, 3, 4, 5}, {1, 2, 3, 4, 5}) == 1);
+  Assert(jaccard_index<int>({1, 2, 3, 4, 5}, {6, 7, 8, 9}) == 0);
+  Assert(jaccard_index<int>({1, 2, 3, 4, 5}, {1, 3, 5, 7, 9}) == approx(3.0 / 7.0));
 }
 
 /*
@@ -28,5 +28,5 @@ void jaccardIndex_test() {
  */
 
 int main() {
-  jaccardIndex_test();
+  jaccard_index_test();
 }
