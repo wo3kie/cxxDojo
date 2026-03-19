@@ -132,9 +132,6 @@ assert(convertBase("2A", 16, 2) == "101010");
 ### copy_vs_move.cpp  
 Compare function calls passing arguments by value, by reference, and by ref ref.
     
-### covariance.cpp  
-Implement a function to calculate the covariance between two collections.
-  
 ### count_bits.cpp  
 Implement a program to count the number of `1` bits in a given integer.  
 Can you use `constexpr` to achieve this?  
