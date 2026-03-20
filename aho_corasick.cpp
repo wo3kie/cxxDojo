@@ -30,17 +30,15 @@
  */
 
 int main(int argc, char* argv[]) {
+  constexpr const char* GREEN = "\033[32m";
+  constexpr const char* RESET = "\033[0m";
+
   if(argc != 3) {
     std::cerr << "Usage: " << argv[0] << " dictionary_file text_file" << std::endl;
     return 1;
   }
 
   AhoCorasick ac;
-
-  const auto print = [](const size_t pos, const std::string& word) {
-    std::cout << "> " << std::string(pos, ' ') << word << std::endl;
-  };
-
   std::string line;
   std::ifstream dictFile(argv[1]);
   std::ifstream textFile(argv[2]);
@@ -49,9 +47,20 @@ int main(int argc, char* argv[]) {
     ac.insert(line);
   }
 
+  ac.build();
+
   while(std::getline(textFile, line)) {
-    std::cout << "> " << line << "\n";
-    ac.search(line, print);
-    std::cout << std::string(80, '-') << "\n";
+    const auto print = [&](const size_t pos, const std::string& word) {
+      std::cout << "> " << std::string(pos, ' ') << word << "\n";
+      std::cout << "> " << line << "\n\n";
+    };
+
+    auto print_green = [&](size_t pos, const std::string& word) {
+      const size_t start = pos;
+      const size_t end = pos + word.size();
+      std::cout << line.substr(0, start) << GREEN << line.substr(start, word.size()) << RESET << line.substr(end) << "\n";
+    };
+
+    ac.search(line, print_green);
   }
 }

@@ -7,42 +7,34 @@
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
+#pragma once
 
 #include <functional>
 #include <iostream>
-#include <map>
 #include <memory>
+#include <queue>
 #include <string>
-
+#include <unordered_map>
+#include <vector>
 
 struct Node {
   char _letter = 0;
   bool _end = false;
+
   std::shared_ptr<Node> _parent = nullptr;
   std::shared_ptr<Node> _failure = nullptr;
+
   std::unordered_map<char, std::shared_ptr<Node>> _children;
+  std::vector<std::string> _outputs;
 };
 
 inline std::ostream& operator<<(std::ostream& out, const Node& node) {
-  if(node._parent) {
-    out << "(" << (&node) << ", " << node._letter << ", " << node._end << ", (" << node._failure << ", " << node._failure->_letter << "))";
-  } else {
-    out << "(" << (&node) << ", , , (,)))";
-  }
-
+  out << "Node(" << static_cast<const void*>(&node)
+      << ", letter=" << (node._letter ? node._letter : '_')
+      << ", end=" << node._end
+      << ", children=" << node._children.size()
+      << ")";
   return out;
-}
-
-inline std::string getWord(std::shared_ptr<Node> node) {
-  if(! node) {
-    return "";
-  }
-
-  if(! node->_parent) {
-    return "";
-  }
-
-  return getWord(node->_parent) + std::string(1, node->_letter);
 }
 
 struct AhoCorasick {
@@ -52,16 +44,14 @@ struct AhoCorasick {
   }
 
   AhoCorasick(const AhoCorasick&) = delete;
-  AhoCorasick(AhoCorasick&& other)
+  AhoCorasick& operator=(const AhoCorasick&) = delete;
+
+  AhoCorasick(AhoCorasick&& other) noexcept
       : AhoCorasick() {
     std::swap(_root, other._root);
   }
 
-  ~AhoCorasick() {
-  }
-
-  AhoCorasick& operator=(const AhoCorasick&) = delete;
-  AhoCorasick& operator=(AhoCorasick&& other) {
+  AhoCorasick& operator=(AhoCorasick&& other) noexcept {
     std::swap(_root, other._root);
     return *this;
   }
@@ -70,34 +60,77 @@ struct AhoCorasick {
     std::shared_ptr<Node> node = _root;
 
     for(const char letter : word) {
-      const auto found = node->_children.find(letter);
+      const auto it = node->_children.find(letter);
 
-      if(found == node->_children.end()) {
-        std::shared_ptr<Node> newNode = std::make_shared<Node>();
-        newNode->_letter = letter;
-        newNode->_parent = node;
-        newNode->_failure = getFailure(newNode, letter);
-
-        node->_children.insert(std::make_pair(letter, newNode));
-        node = newNode;
+      if(it == node->_children.end()) {
+        std::shared_ptr<Node> child = std::make_shared<Node>();
+        child->_letter = letter;
+        child->_parent = node;
+        node->_children.insert({letter, child});
+        node = child;
       } else {
-        node = found->second;
+        node = it->second;
       }
     }
 
     node->_end = true;
+    node->_outputs.push_back(word);
   }
 
-  void search(const std::string& text, const std::function<void(const size_t, const std::string&)>& f) const {
+  void build() {
+    std::queue<std::shared_ptr<Node>> q;
+
+    for(auto& [c, child] : _root->_children) {
+      child->_failure = _root;
+      q.push(child);
+    }
+
+    while(! q.empty()) {
+      std::shared_ptr<Node> node = q.front();
+      q.pop();
+
+      for(auto& [c, child] : node->_children) {
+        q.push(child);
+
+        std::shared_ptr<Node> f = node->_failure;
+
+        while(f != _root && ! f->_children.count(c)) {
+          f = f->_failure;
+        }
+
+        if(f->_children.count(c)) {
+          child->_failure = f->_children[c];
+        } else {
+          child->_failure = _root;
+        }
+
+        for(const auto& w : child->_failure->_outputs) {
+          child->_outputs.push_back(w);
+        }
+      }
+    }
+  }
+
+  void search(
+      const std::string& text,
+      const std::function<void(size_t, const std::string&)>& on_match
+  ) const {
     std::shared_ptr<Node> node = _root;
 
     for(size_t i = 0; i < text.size(); ++i) {
-      node = move(node, text[i]);
+      const char c = text[i];
 
-      if(node->_end) {
-        const std::string word = getWord(node);
+      while(node != _root && ! node->_children.count(c)) {
+        node = node->_failure;
+      }
 
-        f(i + 1 - word.size(), word);
+      if(node->_children.count(c)) {
+        node = node->_children.at(c);
+      }
+
+      for(const auto& word : node->_outputs) {
+        const size_t pos = i + 1 - word.size();
+        on_match(pos, word);
       }
     }
   }
@@ -107,46 +140,11 @@ struct AhoCorasick {
   }
 
 private:
-  std::shared_ptr<Node> move(std::shared_ptr<Node> node, const char letter) const {
-    while(true) {
-      const auto found = node->_children.find(letter);
-
-      if(found == node->_children.end()) {
-        if(node == _root) {
-          return node;
-        } else {
-          node = node->_failure;
-        }
-      } else {
-        return found->second;
-      }
-    }
-  }
-
-  std::shared_ptr<Node> getFailure(std::shared_ptr<Node> node, const char letter) {
-    std::shared_ptr<Node> const parent = node->_parent;
-    std::shared_ptr<Node> parentsFailure = parent->_failure;
-
-    while(true) {
-      const auto found = parentsFailure->_children.find(letter);
-
-      if(found != parentsFailure->_children.end()) {
-        return found->second;
-      }
-
-      if(parentsFailure == _root) {
-        return _root;
-      }
-
-      parentsFailure = parentsFailure->_failure;
-    }
-  }
-
-  static void _dump(const int indent, std::shared_ptr<Node> node) {
+  static void _dump(const int indent, const std::shared_ptr<Node>& node) {
     std::cout << std::string(indent, ' ') << *node << std::endl;
 
-    for(const auto pair : node->_children) {
-      _dump(indent + 4, pair.second);
+    for(const auto& [c, child] : node->_children) {
+      _dump(indent + 2, child);
     }
   }
 
