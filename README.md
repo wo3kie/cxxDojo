@@ -291,10 +291,10 @@ $ ./kmp 5 3.14159265359
 ### laplace_smoothing.cpp  
 Implement a function to perform _the Laplace smoothing_. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) the Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
   
-### levenstein.cpp  
-Implement the _Levenstein distance_ function.
+### levenshtein.cpp  
+Implement the _Levenshtein distance_ function.
 
-From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenstein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
+From [Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance), the Levenshtein distance is a string metric for measuring the difference between two sequences. Informally, the Levenshtein distance between two words is the minimum number of single-character edits (i.e. insertions, deletions or substitutions) required to change one word into the other.
   
 ### linear_regression.cpp  
 Implement a function to calcuate linear regression using least squares approach.
@@ -403,13 +403,7 @@ mpn: 793389µs
 pnm: 1738803µs
 pmn: 962802µs
 ```
-  
-### mean.cpp  
-Implement a function to find the mean value of provided numbers.  
-  
-### mean_squared_error.cpp
-Implement a function to calculate _mean squared error (MSE)_. From [Wikipedia](https://en.wikipedia.org/wiki/Mean_squared_error) the MSE is the average squared difference between the estimated values and the true value. 
-  
+    
 ### member_offset.cpp  
 Implement a function to calculate struct/class member offert.
   
@@ -537,9 +531,6 @@ Implement a function to rotate the contents of a container around a pivot elemen
   rotate_right([1 2'3 4 5 6 7]) == [6 7 1 2 3 4 5]
 ```
   
-### scaling.cpp  
-Implement the functions for _mean scaling_ and _standard scaling_. From [Wikipedia](https://en.wikipedia.org/wiki/Feature_scaling) scaling is a method used to standardize the range of independent variables of features of data.
-  
 ### set_utils.cpp  
 Implement `std::set` and `std::unordered_set` utility functions like _union_, _difference_, _intersection_ and _symmetric difference_.  
   
@@ -557,10 +548,7 @@ From [open-std](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4189.pd
   ...
 }
 ```
-  
-### std_dev.cpp  
-Implement a function to calculate the standard deviation of a given container of numbers.  
-  
+    
 ### store.cpp  
 Implement `StoreIf`, a single‑value container that conditionally stores a new item based on a sequence of user‑provided predicates. Each predicate may be unary — evaluated only on the new value or binary — evaluated on the new value and the currently stored value (if present). This enables incremental selection of a “best” value according to arbitrary user‑defined policies (filters, ordering relations, scoring rules, etc.).
   
@@ -618,10 +606,7 @@ From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure)
   
 ### union_cast.cpp  
 Implement union_cast.
-  
-### variance.cpp
-Implement the `variance` function.
-  
+    
 ### virtual_range.cpp  
 Implement a program that demonstrates how to integrate C++20 `std::ranges` concepts with _virtual functions_. Since `std::ranges` concepts operate at compile time, while _virtual functions_ enable runtime polymorphism, a direct combination is not possible. To bridge this gap, apply _type erasure_ as a technique for enabling runtime dispatch over range-based constructs.  
   
