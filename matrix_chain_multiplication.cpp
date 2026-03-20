@@ -7,7 +7,7 @@
  *
  *
  * Usage:
- *      $ ./build/bin/matrixChainMultiplication
+ *      $ ./build/bin/matrix_chain_multiplication
  */
 
 #include <limits>
@@ -17,56 +17,50 @@
 #include "./output.hpp"
 
 struct Node {
-  int rows = 0;
-  int columns = 0;
-  int score = 99999;
-  std::string solution;
+    int rows = 0;
+    int columns = 0;
+    int score = std::numeric_limits<int>::max();
+    std::string solution;
 };
 
-std::ostream& operator<<(std::ostream& out, const Node& node) {
-  return out << "{" << node.rows << ", " << node.columns << ", " << node.score << ", " << node.solution << "}";
+std::ostream& operator<<(std::ostream& out, const Node& n) {
+    return out << "{" << n.rows << ", " << n.columns << ", " << n.score << ", " << n.solution << "}";
 }
 
-/*
- * matrixChainMultiplication
- */
+Node matrix_chain_multiplication(const std::vector<std::pair<int,int>>& m) {
+    const int n = m.size();
+    std::vector<std::vector<Node>> dp(n, std::vector<Node>(n));
 
-Node matrixChainMultiplication(std::vector<std::pair<int, int>> matrices) {
-  const int n = matrices.size();
-
-  std::vector<std::vector<Node>> C(n, std::vector<Node>(n));
-
-  for(int i = 0; i != n; ++i) {
-    C[0][i].rows = matrices[i].first;
-    C[0][i].columns = matrices[i].second;
-    C[0][i].score = 0;
-    C[0][i].solution = std::to_string(i);
-  }
-
-  for(int i = 1; i != n; ++i) {
-    for(int j = i; j != n; ++j) {
-      int from = j - i;
-      int to = j;
-
-      for(int k = from; k < to; ++k) {
-        const Node& first = C[k - from][k];
-        const Node& second = C[to - k - 1][to];
-
-        const int score = first.score + second.score + first.rows * first.columns * second.columns;
-
-        if(C[i][j].score > score) {
-          C[i][j].score = score;
-          C[i][j].rows = first.rows;
-          C[i][j].columns = second.columns;
-
-          C[i][j].solution = "(" + first.solution + ")" + "*(" + second.solution + ")";
-        }
-      }
+    for(int i = 0; i < n; ++i) {
+        dp[i][i].rows = m[i].first;
+        dp[i][i].columns = m[i].second;
+        dp[i][i].score = 0;
+        dp[i][i].solution = std::to_string(i);
     }
-  }
 
-  return C.back().back();
+    for(int len = 2; len <= n; ++len) {
+        for(int i = 0; i + len - 1 < n; ++i) {
+            int j = i + len - 1;
+
+            for(int k = i; k < j; ++k) {
+                const Node& left = dp[i][k];
+                const Node& right = dp[k+1][j];
+
+                const int cost = left.score + right.score + left.rows * left.columns * right.columns;
+
+                if(cost < dp[i][j].score) {
+                    dp[i][j].score = cost;
+                    dp[i][j].rows = left.rows;
+                    dp[i][j].columns = right.columns;
+                    dp[i][j].solution = "(" + left.solution + ")*(" + right.solution + ")";
+                }
+            }
+        }
+    }
+
+    return dp[0][n-1];
 }
+
 
 /*
  * main
@@ -78,9 +72,13 @@ int main() {
         * S. Dasgupta, C. Papadimitrioui U. Vazirani, Algorithms
         */
 
-    std::vector<std::pair<int, int>> matrices{{50, 20}, {20, 1}, {1, 10}, {10, 100}};
+    std::vector<std::pair<int, int>> matrices{
+        {50, 20}, //
+        {20, 1},
+        {1, 10},
+        {10, 100}};
 
-    std::cout << matrixChainMultiplication(matrices) << std::endl;
+    std::cout << matrix_chain_multiplication(matrices) << std::endl;
   }
 
   {
@@ -89,8 +87,14 @@ int main() {
          *  Introduction to Algorithms
          */
 
-    std::vector<std::pair<int, int>> matrices{{30, 35}, {35, 15}, {15, 5}, {5, 10}, {10, 20}, {20, 25}};
+    std::vector<std::pair<int, int>> matrices{
+        {30, 35}, //
+        {35, 15},
+        {15, 5},
+        {5, 10},
+        {10, 20},
+        {20, 25}};
 
-    std::cout << matrixChainMultiplication(matrices) << std::endl;
+    std::cout << matrix_chain_multiplication(matrices) << std::endl;
   }
 }
