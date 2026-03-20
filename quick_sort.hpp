@@ -11,13 +11,13 @@
 #include <algorithm>
 #include <iterator>
 
-template<typename Iterator>
-void quickSort(const Iterator begin, const Iterator end) {
-  if(begin == end) {
+template<std::random_access_iterator Iterator>
+void quick_sort(const Iterator begin, const Iterator end) {
+  using value_type = typename std::iterator_traits<Iterator>::value_type;
+
+  if(end - begin <= 1) {
     return;
   }
-
-  typedef typename std::iterator_traits<Iterator>::value_type value_type;
 
   const value_type pivot = *(begin + (end - begin) / 2);
 
@@ -32,6 +32,7 @@ void quickSort(const Iterator begin, const Iterator end) {
   const Iterator middle1 = std::partition(begin, end, lessThanPivot);
   const Iterator middle2 = std::partition(middle1, end, equalPivot);
 
-  quickSort(begin, middle1);
-  quickSort(middle2, end);
+  quick_sort(begin, middle1);
+  quick_sort(middle2, end);
 }
+
