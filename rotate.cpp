@@ -100,9 +100,9 @@ void rotate_left_test(Rotate r) {
  */
 
 int main() {
-  rotate_left_test(rotate_left_1<VI::iterator>);
-  rotate_left_test(rotate_left_2<VI::iterator>);
+  rotate_left_test(rotate_left_cycle<VI::iterator>);
+  rotate_left_test(rotate_left_reverse<VI::iterator>);
 
-  rotate_right_test(rotate_right_1<VI::iterator>);
-  rotate_right_test(rotate_right_2<VI::iterator>);
+  rotate_right_test(rotate_right_cycle<VI::iterator>);
+  rotate_right_test(rotate_right_reverse<VI::iterator>);
 }

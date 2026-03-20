@@ -11,11 +11,10 @@
 #include <algorithm>
 #include <iterator>
 #include <stddef.h>
+#include <concepts>
 
-template<typename Iterator>
-void rotate_left_1(Iterator begin, Iterator pivot, Iterator end) {
-  Iterator next = pivot;
-
+template<std::random_access_iterator Iterator>
+void rotate_left_cycle(Iterator begin, Iterator pivot, Iterator end) {
   /*
    * [1 2'3 4 5 6 7] ->
    *    [3 4] + [1 2'5 6 7] ->
@@ -25,6 +24,12 @@ void rotate_left_1(Iterator begin, Iterator pivot, Iterator end) {
    *                    [3 4] + [5 6] + [7] + [2'1] ->
    *                        [3 4 5 6 7 2 1]
    */
+
+  if(begin == pivot || pivot == end) {
+    return;
+  }
+
+  Iterator next = pivot;
 
   while(begin != end) {
     std::swap(*begin++, *next++);
@@ -37,36 +42,36 @@ void rotate_left_1(Iterator begin, Iterator pivot, Iterator end) {
   }
 }
 
-template<typename Iterator>
-void rotate_left_2(Iterator begin, Iterator pivot, Iterator end) {
-  pivot = begin + (end - pivot);
+template<std::random_access_iterator Iterator>
+void rotate_left_reverse(Iterator begin, Iterator pivot, Iterator end) {
+  if(begin == pivot || pivot == end) {
+    return;
+  }
 
   /*
-     * [1 2 3'4 5 6 7] -> [7 6 5 4 3 2 1]
-     */
+   * [1 2 3'4 5 6 7] -> [7 6 5 4 3 2 1]
+   */
   std::reverse(begin, end);
 
   /*
-     * [7 6 5 4'3 2 1] -> [4 5 6 7] + [3 2 1]
-     */
-  std::reverse(begin, pivot);
+   * [7 6 5 4'3 2 1] -> [4 5 6 7] + [3 2 1]
+   */
+  Iterator newPivot = begin + (end - pivot);
+  std::reverse(begin, newPivot);
 
   /*
-     * [4 5 6 7'3 2 1] -> [4 5 6 7] + [1 2 3]
-     */
-  std::reverse(pivot, end);
+   * [4 5 6 7'3 2 1] -> [4 5 6 7] + [1 2 3]
+   */
+  std::reverse(newPivot, end);
 }
 
-template<typename Iterator>
+template<std::random_access_iterator Iterator>
 void rotate_left(Iterator begin, Iterator pivot, Iterator end) {
-  /*
-     * Default implementation
-     */
-  return rotate_left_2(begin, pivot, end);
+  return rotate_left_reverse(begin, pivot, end);
 }
 
-template<typename Iterator>
-void rotate_right_1(Iterator begin, Iterator pivot, Iterator end) {
+template<std::random_access_iterator Iterator>
+void rotate_right_cycle(Iterator begin, Iterator pivot, Iterator end) {
   const size_t leftSize = std::distance(begin, pivot);
   const size_t rightSize = std::distance(pivot, end);
 
@@ -85,7 +90,7 @@ void rotate_right_1(Iterator begin, Iterator pivot, Iterator end) {
      *          [1] + [5 6 7 2 3 4] ->
      *              [1 5 6 7 2 3 4]
      */
-    rotate_right_1(begin + (rightSize - leftSize), pivot + (rightSize - leftSize), end);
+    rotate_right_cycle(begin + (rightSize - leftSize), pivot + (rightSize - leftSize), end);
 
     /*
      * [1 5 6'7 2 3 4] ->
@@ -93,7 +98,7 @@ void rotate_right_1(Iterator begin, Iterator pivot, Iterator end) {
      *          [5 6 7'1] + [2 3 4] ->
      *              [5 6 7 1 2 3 4]
      */
-    rotate_right_1(begin, pivot, pivot + (rightSize - leftSize));
+    rotate_right_cycle(begin, pivot, pivot + (rightSize - leftSize));
   } else {
     /*
      * [1 2 3 4'5 6 7] ->
@@ -101,19 +106,23 @@ void rotate_right_1(Iterator begin, Iterator pivot, Iterator end) {
      *          [4'1 2 3] + [5 6 7] ->
      *              [4 1 2 3 5 6 7]
      */
-    rotate_right_1(begin, begin + (leftSize - rightSize), pivot);
+    rotate_right_cycle(begin, begin + (leftSize - rightSize), pivot);
 
     /*
      * [4] + [1 2 3'5 6 7] ->
      *      [4] + [5 6 7'1 2 3] ->
      *          [4 5 6 7 1 2 3]
      */
-    rotate_right_1(begin + (leftSize - rightSize), pivot, end);
+    rotate_right_cycle(begin + (leftSize - rightSize), pivot, end);
   }
 }
 
-template<typename Iterator>
-void rotate_right_2(Iterator begin, Iterator pivot, Iterator end) {
+template<std::random_access_iterator Iterator>
+void rotate_right_reverse(Iterator begin, Iterator pivot, Iterator end) {
+  if(begin == pivot || pivot == end) {
+    return;
+  }
+
   /*
    * [1 2 3'4 5 6 7] -> [7 6 5 4 3 2 1]
    */
@@ -129,14 +138,11 @@ void rotate_right_2(Iterator begin, Iterator pivot, Iterator end) {
   /*
    * [5 6 7'4 3 2 1] -> [5 6 7] + [1 2 3 4]
    */
-
+  
   std::reverse(pivot, end);
 }
 
-template<typename Iterator>
-void rorate_right(Iterator begin, Iterator pivot, Iterator end) {
-  /*
-     * Default implementation
-     */
-  return rotate_right_2(begin, pivot, end);
+template<std::random_access_iterator Iterator>
+void rotate_right(Iterator begin, Iterator pivot, Iterator end) {
+  return rotate_right_reverse(begin, pivot, end);
 }
