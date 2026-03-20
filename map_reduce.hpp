@@ -33,7 +33,7 @@ struct _Reduce {
   }
 
   template<std::ranges::input_range R>
-  friend auto operator|(R&& r, const _Reduce& self) {
+  friend constexpr T operator|(R&& r, const _Reduce& self) {
     return self(r);
   }
 };
