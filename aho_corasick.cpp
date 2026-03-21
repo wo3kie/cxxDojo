@@ -30,13 +30,22 @@
  */
 
 int main(int argc, char* argv[]) {
-  constexpr const char* GREEN = "\033[32m";
-  constexpr const char* RESET = "\033[0m";
-
   if(argc != 3) {
     std::cerr << "Usage: " << argv[0] << " dictionary_file text_file" << std::endl;
     return 1;
   }
+
+  constexpr const char* RED_DARK    = "\033[31m";
+  constexpr const char* RED_LIGHT   = "\033[91m";
+
+  constexpr const char* GREEN_DARK  = "\033[32m";
+  constexpr const char* GREEN_LIGHT = "\033[92m";
+
+  constexpr const char* BLUE_DARK   = "\033[34m";
+  constexpr const char* BLUE_LIGHT  = "\033[94m";
+
+  constexpr const char* RESET       = "\033[0m";
+
 
   AhoCorasick ac;
   std::string line;
@@ -55,12 +64,14 @@ int main(int argc, char* argv[]) {
       std::cout << "> " << line << "\n\n";
     };
 
-    auto print_green = [&](size_t pos, const std::string& word) {
-      const size_t start = pos;
-      const size_t end = pos + word.size();
-      std::cout << line.substr(0, start) << GREEN << line.substr(start, word.size()) << RESET << line.substr(end) << "\n";
+    auto print_color = [&](const char* color) {
+      return [&, color](const size_t pos, const std::string& word) {
+        const size_t start = pos;
+        const size_t end = pos + word.size();
+        std::cout << line.substr(0, start) << color << line.substr(start, word.size()) << RESET << line.substr(end) << "\n";
+      };
     };
 
-    ac.search(line, print_green);
+    ac.search(line, print_color(GREEN_LIGHT));
   }
 }
