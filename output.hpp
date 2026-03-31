@@ -20,7 +20,6 @@
 #include <vector>
 
 #include "./assert.hpp"
-#include "./tuple.hpp"
 
 template<typename T>
 std::ostream& operator<<(std::ostream& out, const std::vector<T>& v);
@@ -141,10 +140,13 @@ std::ostream& operator<<(std::ostream& out, const std::unordered_set<T>& us) {
   return printSet(out, us.begin(), us.end());
 }
 
+template<typename Tuple, std::size_t... Is>
+std::ostream& _print_impl(std::ostream& out, const Tuple& tuple, const std::string& delim, std::index_sequence<Is...>) {
+    ((out << (Is == 0 ? "" : delim) << std::get<Is>(tuple)), ...);
+    return out;
+}
+
 template<typename... Ts>
 std::ostream& operator<<(std::ostream& out, const std::tuple<Ts...>& tuple) {
-  out << '(';
-  stl::print(out, tuple, ", ");
-  out << ')';
-  return out;
+    return _print_impl(out, tuple, ", ", std::index_sequence_for<Ts...>{});
 }

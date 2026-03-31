@@ -17,13 +17,13 @@
 #include <deque>
 #include <iostream>
 #include <list>
+#include <map>
 #include <tuple>
 #include <vector>
 
 #include "./assert.hpp"
-#include "./zip_view.hpp"
-
 #include "./output.hpp"
+#include "./zip_view.hpp"
 
 /*
  * zip_view_test_1
@@ -56,10 +56,42 @@ void zip_view_test_2() {
 }
 
 /*
+ * zip_view_test_3
+ */
+
+void zip_view_test_3() {
+  std::list<int> lst1 = {1, 2, 3};
+  std::list<int> lst2 = {4, 5, 6};
+  zip_view zip{lst1, lst2};
+
+  const std::vector<std::tuple<int, int>> actual(zip.begin(), zip.end());
+  const std::vector<std::tuple<int, int>> expected({{1, 4}, {2, 5}, {3, 6}});
+  Assert(actual == expected);
+}
+
+/*
+ * zip_view_test_4
+ */
+
+void zip_view_test_4() {
+  std::map<std::string, int> map1 = {{"a", 1}, {"b", 2}};
+  std::map<std::string, int> map2 = {{"c", 3}, {"d", 4}};
+  zip_view zip{map1, map2};
+
+  using value = std::pair<const std::string, int>;
+
+  std::vector<std::tuple<value, value>> actual(zip.begin(), zip.end());
+  const std::vector<std::tuple<value, value>> expected({{{"a", 1}, {"c", 3}}, {{"b", 2}, {"d", 4}}});
+  Assert(actual == expected);
+}
+
+/*
  * main
  */
 
 int main() {
   zip_view_test_1();
   zip_view_test_2();
+  zip_view_test_3();
+  zip_view_test_4();
 }

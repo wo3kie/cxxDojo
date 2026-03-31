@@ -12,6 +12,8 @@
 #include <functional>
 #include <tuple>
 
+#include "./output.hpp"
+
 namespace composition {
 
 template<typename T, typename... Ts>
@@ -240,20 +242,6 @@ std::size_t hash(const std::tuple<T, Ts...>& tuple) {
   };
 
   return foldl(combine, 0, tuple);
-}
-
-/*
- * print(std::cout, make_tuple(1, 'b', 3.3), ',');
- */
-
-template<typename... Ts>
-std::ostream& print(std::ostream& out, const std::tuple<Ts...>& tuple, const std::string& delim=", ") {
-    const auto f = [&delim](std::reference_wrapper<std::ostream> out, const auto& a) -> std::reference_wrapper<std::ostream> { 
-        out.get() << delim << a; 
-        return out; 
-    };
-
-    return out << head(tuple), foldl(f, std::ref(out), tail(tuple));
 }
 
 /*

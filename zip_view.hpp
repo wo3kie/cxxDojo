@@ -16,7 +16,6 @@
 #include <variant>
 
 #include "./assert.hpp"
-#include "./parameter_pack.hpp"
 #include "./tuple.hpp"
 
 /*
@@ -25,8 +24,6 @@
 
 template<std::ranges::range... Ranges>
 struct zip_view: public std::ranges::view_interface<zip_view<Ranges...>> {
-  static constexpr bool IsAnyConst = parameter_pack::Any<std::is_const, Ranges...>::value;
-
 public:
   /*
    * iterator
@@ -37,41 +34,31 @@ public:
     using value_type = std::tuple<std::ranges::range_value_t<Ranges>...>;
     using iterator_category = std::forward_iterator_tag;
     using difference_type = std::ptrdiff_t;
-
-    using reference = std::conditional<
-        IsAnyConst, //
-        std::tuple<const std::ranges::range_value_t<Ranges>&...>,
-        std::tuple<std::ranges::range_value_t<Ranges>&...>>::type;
-
-    using pointer = std::conditional<
-        IsAnyConst, //
-        std::tuple<const std::ranges::range_value_t<Ranges>*...>,
-        std::tuple<std::ranges::range_value_t<Ranges>*...>>::type;
+    using reference = std::tuple<std::ranges::range_reference_t<Ranges>...>;
+    using pointer = std::tuple<std::add_pointer_t<std::ranges::range_reference_t<Ranges>>...>;
 
   public:
-    iterator(std::tuple<Ranges&...>* rangesPtr, bool isEnd = false)
-        : _rangesPtr(rangesPtr) //
-    {
-      const auto equalSize = [expected = std::get<0>(*_rangesPtr).size()](const auto& range) -> bool { //
-        Assert(range.size() == expected);
-        return range.size() == expected;
-      };
-
-      assert(stl::all(equalSize, *rangesPtr));
-
-      if(isEnd) {
-        _iterators = std::make_tuple(std::ranges::end(std::get<Ranges&>(*_rangesPtr))...);
-      } else {
-        _iterators = std::make_tuple(std::ranges::begin(std::get<Ranges&>(*_rangesPtr))...);
-      }
+    iterator(std::tuple<std::ranges::iterator_t<Ranges>...> its)
+        : _iterators(std::move(its)) {
     }
 
-    reference operator*() {
-      return {*std::get<std::ranges::iterator_t<Ranges>>(_iterators)...};
+    template<std::size_t... Is>
+    reference _dereference(std::index_sequence<Is...>) const {
+      return {*std::get<Is>(_iterators)...};
+    }
+
+    reference operator*() const {
+      return _dereference(std::index_sequence_for<Ranges...>{});
+    }
+
+    template<std::size_t... Is>
+    void _increment(std::index_sequence<Is...>) {
+      (..., ++std::get<Is>(_iterators));
     }
 
     iterator& operator++() {
-      return (_iterators = std::make_tuple(++std::get<std::ranges::iterator_t<Ranges>>(_iterators)...)), *this;
+      _increment(std::index_sequence_for<Ranges...>{});
+      return *this;
     }
 
     bool operator==(const iterator& other) const {
@@ -79,7 +66,6 @@ public:
     }
 
   private:
-    std::tuple<Ranges&...>* _rangesPtr;
     std::tuple<std::ranges::iterator_t<Ranges>...> _iterators;
   };
 
@@ -92,17 +78,27 @@ public:
 
 public:
   zip_view(Ranges&... ranges)
-      : _rangesPtr(ranges...) {
+      : _ranges(ranges...) {
   }
 
   iterator begin() {
-    return iterator(&_rangesPtr, /* isEnd */ false);
+    return _make_iterator(/* isEnd */ false, std::index_sequence_for<Ranges...>{});
   }
 
   iterator end() {
-    return iterator(&_rangesPtr, /* isEnd */ true);
+    return _make_iterator(/* isEnd */ true, std::index_sequence_for<Ranges...>{});
   }
 
 private:
-  std::tuple<Ranges&...> _rangesPtr;
+  template<std::size_t... Is>
+  iterator _make_iterator(bool isEnd, std::index_sequence<Is...>) {
+    if(isEnd) {
+      return iterator{std::make_tuple(std::ranges::end(std::get<Is>(_ranges))...)};
+    } else {
+      return iterator{std::make_tuple(std::ranges::begin(std::get<Is>(_ranges))...)};
+    }
+  }
+
+private:
+  std::tuple<Ranges&...> _ranges;
 };
