@@ -43,6 +43,9 @@ $ ./aho_corasick aho_corasick.dct aho_corasick.cpp
 ### allocator.cpp  
 Implement a simple allocator. Follow `std::allocator` as an example.
   
+### any_iterator.cpp  
+A focused C++ dojo exploring zero‑overhead type erasure through a custom forward iterator implementation. The project demonstrates how to build a fully type‑erased iterator without virtual functions, dynamic allocation, std::function, or std::any — relying instead on a compact, statically generated erase‑vtable and inline storage. The goal is to provide a clear, minimalist reference for understanding how high‑performance type erasure works under the hood.
+  
 ### apply.cpp  
 Demonstrates usage of a custom `apply` function. From [cppreference](https://en.cppreference.com/w/cpp/utility/apply.html) `std::apply` function invokes a callable object `f` with the elements of the tuple `t` expanded to it as parameters.
   
@@ -598,12 +601,7 @@ Implement _named type_ utility. The _named type_ is strongly-typed wrappers arou
 
   static_assert(std::is_assignable<Int, Age>::value == false);
 ```
-  
-### type_erasure_*.cpp  
-Implement a program representing the type erasure idiom.
-
-From [Wikibooks](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Erasure) type erasure is a mechanism to provide a type-neutral container that interfaces a variety of concrete types. An example can be an implementation of [boost::any](http://www.boost.org/doc/libs/1_61_0/doc/html/any.html) and also a way how does arbitrary deleter type can be used in [std::shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr).
-  
+    
 ### union_cast.cpp  
 Implement union_cast.
     
