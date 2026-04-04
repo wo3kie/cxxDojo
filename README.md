@@ -80,6 +80,9 @@ Demonstrates parallel computation using `std::async` to find the minimum and max
 assert(min_max({1, 2, 3, 4, 5}) == {1, 5});
 ```
   
+### avl_tree.cpp  
+Implement an AVL tree data structure. From [Wikipedia](https://en.wikipedia.org/wiki/AVL_tree) an AVL tree is a self-balancing binary search tree, where the difference between heights of left and right subtrees cannot be more than one for any node.  
+  
 ### base64.cpp  
 Implement a program to do _base64_ encoding/decoding. From [Wikipedia](https://en.wikipedia.org/wiki/Base64) _base64_ is encoding scheme that transforms binary data into a sequence of printable characters, limited to a set of 64 unique characters.
   
