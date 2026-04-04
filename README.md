@@ -159,9 +159,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijks
 ### enumerate_view.cpp  
 Implement a simple version of `std::enumerate_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html) the `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
   
-### exec.cpp  
-Implement a function to run shell commands and capture their output, including support for long-running processes.
-  
 ### fdm.cpp  
 Implement a program demonstrating a Finite Difference Method to calculate differential equation.
   
@@ -271,10 +268,7 @@ Implement a set of functions to calculate numerical integration for a function _
   
 ### interpolation.cpp  
 Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
-  
-### is_prime.cpp  
-Implement a function to check whether a given number is prime using _Fermat's Little Theorem_ and _Rho-Pollard_ algorithm.
-  
+    
 ### jaccard_index.cpp  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
   
@@ -311,20 +305,7 @@ Implement used defined literal _bin_ to convert a string of zeros and ones "1010
 assert( 561 == "1000110001"_bin );
 assert( 561 == 1000110001_bin );
 ```
-  
-### ls.cpp  
-Implement a program to print a content of a given directory.
-
-```{r, engine='bash'}
-$ ./ls .
-F "./get.request.cpp"
-F "./par.cpp"
-F "./barrier.cpp"
-F "./ls.cpp"
-F "./scope_exit.cpp"
-...
-```
-  
+    
 ### mandelbrot.cpp  
 Implement a program to print ASCII art of Mandelbrot set fractal.
 
@@ -389,7 +370,7 @@ Implement `map`, `reduce`, `filter` and `to` functions. Follow `std::ranges` and
 ```
   
 ### matrix.cpp  
-This task involves implementing a simple matrix class and providing essential functionality.
+This task involves implementing a simple math vector and a matrix class and providing essential functionality.
   
 ### matrix_chain_multiplication.cpp  
 From [Wikipedia](https://en.wikipedia.org/wiki/Matrix_chain_multiplication) _the matrix chain multiplication_ is an optimization problem that for given sequence of matrices, the goal is to find the most efficient way to multiply these matrices.
@@ -412,9 +393,6 @@ Implement a function to calculate struct/class member offert.
   
 ### metasort.cpp  
 Implement a program that demonstrates how to sort numbers inside a `TypeList` using template metaprogramming.  
-  
-### modexp.cpp  
-Implement a function to perform modular exponentiation.
   
 ### mt_map.cpp  
 Implement a thread-safe map with a fixed number of buckets. The map should support concurrent access from multiple threads, allowing them to read and write key-value pairs without data races.  
@@ -582,10 +560,7 @@ $ ./timer
 9
 702µs
 ```
-  
-### tree_classification.cpp  
-Check if a tree is a full tree or a complete tree. A full tree is a tree in which every node other than the leaves has two children. A complete tree is a tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
-  
+    
 ### trie.cpp  
 Implement TRIE data structure.  
   
