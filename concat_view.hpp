@@ -184,10 +184,14 @@ private:
 template<std::ranges::range Range, std::size_t N /* CTAD Deducted */>
 struct uniform_concat_view final : std::ranges::view_interface<uniform_concat_view<Range, N>> {
   using iterator_t = std::ranges::iterator_t<Range>;
-  using const_iterator_t = std::ranges::iterator_t<Range>;
-  using reference = std::ranges::range_reference_t<Range>;
 
   struct iterator {
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = std::ranges::range_value_t<Range>;
+    using difference_type = std::ptrdiff_t;
+    using reference = std::ranges::range_reference_t<Range>;
+    using pointer = std::add_pointer_t<reference>;
+
     iterator(const std::array<std::pair<iterator_t, iterator_t>, N>* segments, std::size_t idx)
         : _segments(segments)
         , _idx(idx) 

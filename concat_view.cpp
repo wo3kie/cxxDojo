@@ -70,6 +70,8 @@ void uniform_concat_view_test_basic() {
   std::vector<int> c{6, 7, 8, 9};
 
   uniform_concat_view view(a, b, c);
+  assert(std::vector<int>(view.begin(), view.end()) == std::vector<int>({1, 2, 3, 4, 5, 6, 7, 8, 9}));
+
 
   std::vector<int> result;
   for(int x : view) {
