@@ -11,164 +11,242 @@
 #include <algorithm>
 #include <memory>
 
-template<typename T>
-struct AvlNode final {
-  T value{};
-  int height{1};
+template<typename TKey, typename TCompare = std::less<TKey>, typename TAllocator = std::allocator<TKey>>
+class AvlTree {
+private:
+  struct _Node {
+    TKey _key;
+    _Node* _left;
+    _Node* _right;
+    int _height;
 
-  std::unique_ptr<AvlNode> _left{};
-  std::unique_ptr<AvlNode> _right{};
+    explicit _Node(const TKey& k)
+        : _key(k)
+        , _left(nullptr)
+        , _right(nullptr)
+        , _height(1) {
+    }
+  };
 
-  explicit AvlNode(const T& v)
-      : value(v) {
-  }
+  using _Allocator = typename std::allocator_traits<TAllocator>::template rebind_alloc<_Node>;
 
-  int left_height() const {
-    return _left ? _left->height : 0;
-  }
+  _Node* root = nullptr;
 
-  int right_height() const {
-    return _right ? _right->height : 0;
-  }
+  bool _cache_inserted = false;
+  bool _cache_erased = false;
 
-  void update_height() {
-    height = 1 + std::max(left_height(), right_height());
-  }
+  TCompare _less;
+  _Allocator _allocator;
 
-  int balance() const {
-    return right_height() - left_height();
-  }
-};
-
-template<typename T>
-class AvlTree final {
 public:
-  void insert(const T& value) {
-    _root = insert_impl(std::move(_root), value);
+  AvlTree() = default;
+
+  AvlTree(TCompare comp, TAllocator alloc = TAllocator())
+      : _less(comp)
+      , _allocator(alloc) {
   }
 
-  T* find(const T& value) const {
-    AvlNode<T>* node = _root.get();
+  ~AvlTree() {
+    _destroy(root);
+  }
 
-    while(node) {
-      if(value < node->value) {
-        node = node->_left.get();
-      } else if(value > node->value) {
-        node = node->_right.get();
-      } else {
-        return &node->value;
+  AvlTree(AvlTree&& other)
+      : _less(std::move(other._less))
+      , _allocator(std::move(other._allocator))
+      , root(other.root) 
+  {
+    other.root = nullptr;
+  }
+
+  AvlTree(const AvlTree& other) = delete;
+
+  AvlTree& operator=(AvlTree&& other) {
+    if(this != &other) {
+      _destroy(root);
+
+      _less = std::move(other._less);
+      _allocator = std::move(other._allocator);
+
+      root = other.root;
+      other.root = nullptr;
+    }
+
+    return *this;
+  }
+
+  AvlTree& operator=(const AvlTree& other) = delete;
+
+public: // api
+  [[nodiscard]] bool empty() const {
+    return root == nullptr;
+  }
+
+  bool insert(const TKey& k) {
+    _cache_inserted = false;
+    root = _insert(root, k);
+    return _cache_inserted;
+  }
+
+  bool erase(const TKey& k) {
+    _cache_erased = false;
+    root = _erase(root, k);
+    return _cache_erased;
+  }
+
+  [[nodiscard]] bool contains(const TKey& k) const {
+    return _contains(root, k);
+  }
+
+private: // memory management
+  void _destroy(_Node* n) {
+    if(n != nullptr) {
+      _destroy(n->_left);
+      _destroy(n->_right);
+      _destroy_node(n);
+    }
+  }
+
+  _Node* _make_node(const TKey& k) {
+    _Node* n = _allocator.allocate(1);
+    new(n) _Node(k);
+    return n;
+  }
+
+  void _destroy_node(_Node* n) {
+    n->~_Node();
+    _allocator.deallocate(n, 1);
+  }
+
+private: // avl tree logic
+  [[nodiscard]] static int _height(_Node* n) {
+    if(n == nullptr) {
+      return 0;
+    }
+
+    return n->_height;
+  }
+
+  static void _update_height(_Node* n) {
+    int hl = _height(n->_left);
+    int hr = _height(n->_right);
+    n->_height = (hl > hr ? hl : hr) + 1;
+  }
+
+  [[nodiscard]] static int _balance_factor(_Node* n) {
+    return _height(n->_left) - _height(n->_right);
+  }
+
+  [[nodiscard]] static _Node* _rotate_right(_Node* y) {
+    _Node* x = y->_left;
+    _Node* t2 = x->_right;
+
+    x->_right = y;
+    y->_left = t2;
+
+    _update_height(y);
+    _update_height(x);
+
+    return x;
+  }
+
+  [[nodiscard]] static _Node* _rotate_left(_Node* x) {
+    _Node* y = x->_right;
+    _Node* t2 = y->_left;
+
+    y->_left = x;
+    x->_right = t2;
+
+    _update_height(x);
+    _update_height(y);
+
+    return y;
+  }
+
+  [[nodiscard]] static _Node* _rebalance(_Node* n) {
+    _update_height(n);
+    int balance_factor = _balance_factor(n);
+
+    if(balance_factor > 1) {
+      if(_balance_factor(n->_left) < 0) {
+        n->_left = _rotate_left(n->_left);
       }
+
+      return _rotate_right(n);
     }
 
-    return nullptr;
-  }
-
-  void remove(const T& value) {
-    _root = remove_impl(std::move(_root), value);
-  }
-
-private:
-  std::unique_ptr<AvlNode<T>> _root{};
-
-private:
-  //      N2                N3
-  //     /  \              /  \
-  //   N1    N3    ->    N2    N5
-  //        /  \        /  \
-  //      N4    N5    N1    N4
-  static std::unique_ptr<AvlNode<T>> rotate_left(std::unique_ptr<AvlNode<T>> n2) {
-    auto n3 = std::move(n2->_right);
-    n2->_right = std::move(n3->_left);
-    n2->update_height();
-    n3->_left = std::move(n2);
-    n3->update_height();
-    return n3;
-  }
-
-  //        N3          N2
-  //       /  \        /  \
-  //     N2    N5 -> N1    N3
-  //    /  \              /  \
-  //  N1    N4          N4    N5
-  static std::unique_ptr<AvlNode<T>> rotate_right(std::unique_ptr<AvlNode<T>> n3) {
-    auto n2 = std::move(n3->_left);
-    n3->_left = std::move(n2->_right);
-    n3->update_height();
-    n2->_right = std::move(n3);
-    n2->update_height();
-    return n2;
-  }
-
-
-  static std::unique_ptr<AvlNode<T>> rebalance(std::unique_ptr<AvlNode<T>> node) {
-    node->update_height();
-
-    if(node->balance() == 2) {
-      if(node->_right->balance() < 0) {
-        node->_right = rotate_right(std::move(node->_right));
+    if(balance_factor < -1) {
+      if(_balance_factor(n->_right) > 0) {
+        n->_right = _rotate_right(n->_right);
       }
 
-      return rotate_left(std::move(node));
+      return _rotate_left(n);
     }
 
-    if(node->balance() == -2) {
-      if(node->_left->balance() > 0) {
-        node->_left = rotate_left(std::move(node->_left));
-      }
-
-      return rotate_right(std::move(node));
-    }
-
-    return node;
+    return n;
   }
 
-  static std::unique_ptr<AvlNode<T>> insert_impl(std::unique_ptr<AvlNode<T>> node, const T& value) {
-    if(! node) {
-      return std::make_unique<AvlNode<T>>(value);
+private: // tree operations
+  _Node* _insert(_Node* n, const TKey& k) {
+    if(n == nullptr) {
+      _cache_inserted = true;
+      return _make_node(k);
     }
 
-    if(value < node->value) {
-      node->_left = insert_impl(std::move(node->_left), value);
-    } else if(node->value < value) {
-      node->_right = insert_impl(std::move(node->_right), value);
+    if(_less(k, n->_key)) {
+      n->_left = _insert(n->_left, k);
+    } else if(_less(n->_key, k)) {
+      n->_right = _insert(n->_right, k);
     } else {
-      return node;
+      return n;
     }
 
-    return rebalance(std::move(node));
+    return _rebalance(n);
   }
 
-  static AvlNode<T>* find_min(AvlNode<T>* node) {
-    while(node->_left) {
-      node = node->_left.get();
+  [[nodiscard]] static _Node* _most_left(_Node* n) {
+    while(n->_left != nullptr) {
+      n = n->_left;
     }
 
-    return node;
+    return n;
   }
 
-  static std::unique_ptr<AvlNode<T>> remove_impl(std::unique_ptr<AvlNode<T>> node, const T& value) {
-    if(! node) {
+  _Node* _erase(_Node* n, const TKey& k) {
+    if(n == nullptr) {
       return nullptr;
     }
 
-    if(value < node->value) {
-      node->_left = remove_impl(std::move(node->_left), value);
-    } else if(node->value < value) {
-      node->_right = remove_impl(std::move(node->_right), value);
+    if(_less(k, n->_key)) {
+      n->_left = _erase(n->_left, k);
+    } else if(_less(n->_key, k)) {
+      n->_right = _erase(n->_right, k);
     } else {
-      if(! node->_left) {
-        return std::move(node->_right);
+      if(n->_left == nullptr || n->_right == nullptr) {
+        _cache_erased = true;
+        _Node* child = (n->_left != nullptr) ? n->_left : n->_right;
+        _destroy_node(n);
+        return child;
+      } else {
+        _Node* succ = _most_left(n->_right);
+        n->_key = succ->_key;
+        n->_right = _erase(n->_right, succ->_key);
       }
-
-      if(! node->_right) {
-        return std::move(node->_left);
-      }
-
-      AvlNode<T>* successor = find_min(node->_right.get());
-      node->value = successor->value;
-      node->_right = remove_impl(std::move(node->_right), successor->value);
     }
 
-    return rebalance(std::move(node));
+    return _rebalance(n);
+  }
+
+  bool _contains(_Node* n, const TKey& k) const {
+    while(n != nullptr) {
+      if(_less(k, n->_key)) {
+        n = n->_left;
+      } else if(_less(n->_key, k)) {
+        n = n->_right;
+      } else {
+        return true;
+      }
+    }
+
+    return false;
   }
 };
