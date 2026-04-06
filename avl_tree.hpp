@@ -16,18 +16,92 @@ class AvlTree {
 private:
   struct _Node {
     TKey _key;
+    int _height;
     _Node* _left;
     _Node* _right;
-    int _height;
 
     explicit _Node(const TKey& k)
         : _key(k)
+        , _height(1)
         , _left(nullptr)
-        , _right(nullptr)
-        , _height(1) {
+        , _right(nullptr) {
+    }
+  };
+  
+public:
+  class iterator {
+  private:
+    _Node* _stack[64];
+    int _top;
+
+  public:
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = TKey;
+    using difference_type = std::ptrdiff_t;
+    using pointer = const TKey*;
+    using reference = const TKey&;
+
+    iterator()
+        : _top(-1) 
+    {
+    }
+
+    explicit iterator(_Node* root)
+        : _top(-1) 
+    {
+      _most_left(root);
+    }
+
+    reference operator*() const {
+      return _stack[_top]->_key;
+    }
+
+    pointer operator->() const {
+      return &_stack[_top]->_key;
+    }
+
+    iterator& operator++() {
+      _Node* n = _stack[_top--];
+
+      if(n->_right != nullptr) {
+        _most_left(n->_right);
+      }
+
+      return *this;
+    }
+
+    iterator operator++(int) {
+      iterator tmp = *this;
+      ++(*this);
+      return tmp;
+    }
+
+    bool operator==(const iterator& other) const {
+      if(_top != other._top) {
+        return false;
+      }
+
+      if(_top == -1) {
+        return true;
+      }
+
+      return _stack[_top] == other._stack[other._top];
+    }
+
+    bool operator!=(const iterator& other) const {
+      return ! (*this == other);
+    }
+
+  private:
+    void _most_left(_Node* n) {
+      while(n != nullptr) {
+        _stack[++_top] = n;
+        n = n->_left;
+      }
     }
   };
 
+private:
   using _Allocator = typename std::allocator_traits<TAllocator>::template rebind_alloc<_Node>;
 
   _Node* root = nullptr;
@@ -53,8 +127,7 @@ public:
   AvlTree(AvlTree&& other)
       : _less(std::move(other._less))
       , _allocator(std::move(other._allocator))
-      , root(other.root) 
-  {
+      , root(other.root) {
     other.root = nullptr;
   }
 
@@ -77,6 +150,14 @@ public:
   AvlTree& operator=(const AvlTree& other) = delete;
 
 public: // api
+  iterator begin() const {
+    return iterator(root);
+  }
+
+  iterator end() const {
+    return iterator();
+  }
+
   [[nodiscard]] bool empty() const {
     return root == nullptr;
   }

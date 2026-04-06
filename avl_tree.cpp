@@ -81,8 +81,21 @@ void test_avl_tree_benchmark(size_t size) {
   );
 }
 
+void test_avl_tree_iterators() {
+  AvlTree<int> tree{};
+
+  for(int i = 1; i <= 10; ++i) {
+    assert(tree.insert(i));
+  }
+
+  const std::vector<int> expected{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  const std::vector<int> actual{tree.begin(), tree.end()};
+  Assert(expected == actual);
+}
+
 int main() {
   test_avl_tree();
   test_avl_tree_benchmark(100'000);
+  test_avl_tree_iterators();
   return 0;
 }
