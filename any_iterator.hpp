@@ -256,3 +256,39 @@ private: // storage
 
 template<typename Iter>
 AnyIterator(Iter) -> AnyIterator<typename std::iterator_traits<Iter>::value_type, sizeof(Iter), alignof(Iter)>;
+
+template<typename T, std::size_t MaxSize, std::size_t MaxAlign>
+struct AnyRange {
+  template<typename Range>
+  AnyRange(Range&& range)
+      : _begin(range.begin()), _end(range.end()) 
+  {
+  }
+
+  using iterator = AnyIterator<T, MaxSize, MaxAlign>;
+
+  iterator _begin;
+  iterator _end;
+
+  iterator begin() const {
+    return _begin;
+  }
+
+  iterator end() const {
+    return _end;
+  }
+};
+
+template<typename Range>
+auto any_range(Range& range) {
+  using Iter = decltype(std::ranges::begin(range));
+  using Value = typename std::iterator_traits<Iter>::value_type;
+  return AnyRange<Value, sizeof(Iter), alignof(Iter)>(range);
+}
+
+template<typename Range>
+auto any_range(const Range& range) {
+  using Iter = decltype(std::ranges::begin(range));
+  using Value = typename std::iterator_traits<Iter>::value_type;
+  return AnyRange<const Value, sizeof(Iter), alignof(Iter)>(range);
+}
