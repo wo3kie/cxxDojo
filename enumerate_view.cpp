@@ -4,9 +4,7 @@
  *
  * Auttor:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/enumerate_view
+
  */
 
 #include <iostream>
