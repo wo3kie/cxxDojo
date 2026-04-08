@@ -15,38 +15,49 @@
 #include "./assert.hpp"
 #include "./enumerate_view.hpp"
 
-/*
- * enumerate_view_test_1
- */
-
-void enumerate_view_test_1() {
+void test_basic()
+{
   std::vector<char> vec{'a', 'b', 'c'};
-  enumerate_view e(vec);
 
-  const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
-  const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+  {
+    enumerate_view e(vec);
+    const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
+    const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+    assert(actual == expected);
+    static_assert(std::is_same_v<decltype(e), enumerate_view<std::ranges::ref_view<std::vector<char>>>>);
+  }
 
-  assert(actual == expected);
-}
+  {
+    enumerate_view e(std::vector<char>{'a', 'b', 'c'});
+    const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
+    const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+    assert(actual == expected);
+    static_assert(std::is_same_v<decltype(e), enumerate_view<std::ranges::owning_view<std::vector<char>>>>);
+  }
 
-/*
- * enumerate_view_test_2
- */
+  {
+    auto e = enumerate_view(vec);
+    const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
+    const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+    assert(actual == expected);
+  }
 
-void enumerate_view_test_2() {
-  std::vector<char> vec{'a'};
+  {
+    auto e = vec | enumerate();
+    const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
+    const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+    assert(actual == expected);
+  }
 
-  for(auto [idx, value] : enumerate_view(vec)) {
-    Assert(idx == 0);
-    Assert(value == 'a');
+  {
+    auto e = enumerate(vec);
+    const std::vector<std::tuple<size_t, char>> actual{e.begin(), e.end()};
+    const std::vector<std::tuple<size_t, char>> expected{{0, 'a'}, {1, 'b'}, {2, 'c'}};
+    assert(actual == expected);
   }
 }
 
-/*
- * main
- */
-
-int main() {
-  enumerate_view_test_1();
-  enumerate_view_test_2();
+int main()
+{
+  test_basic();
 }

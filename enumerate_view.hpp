@@ -13,75 +13,116 @@
 #include <tuple>
 #include <type_traits>
 
-/*
- * enumerate_view
- */
-
-template<std::ranges::range Range>
-struct enumerate_view: public std::ranges::view_interface<enumerate_view<Range>> {
-public:
-  /*
-   * iterator
-   */
-
-  struct iterator {
-  public:
-    using reference = std::tuple<size_t, std::ranges::range_reference_t<Range>>;
-    using value_type = std::tuple<size_t, std::ranges::range_value_t<Range>>;
-    using iterator_category = std::input_iterator_tag;
+template<std::ranges::view TView>
+struct enumerate_view: public std::ranges::view_interface<enumerate_view<TView>>
+{
+  struct iterator
+  {
+    using base_iterator = std::ranges::iterator_t<TView>;
+    using reference = std::tuple<std::size_t, std::ranges::range_reference_t<TView>>;
+    using value_type = std::tuple<std::size_t, std::ranges::range_value_t<TView>>;
     using difference_type = std::ptrdiff_t;
-    using pointer = value_type*;
+    using iterator_category = std::input_iterator_tag;
 
-  public:
-    iterator(std::ranges::iterator_t<Range> iterator, size_t idx = 0)
-        : _idx(idx)
-        , _iterator(iterator) {
+    iterator() = default;
+
+    iterator(base_iterator it, std::size_t idx)
+      : _it(it)
+      , _idx(idx)
+    {
     }
 
-    reference operator*() {
-      return {_idx, *_iterator};
+    reference operator*() const
+    {
+      return {_idx, *_it};
     }
 
-    iterator& operator++() {
+    iterator& operator++()
+    {
       ++_idx;
-      ++_iterator;
-
+      ++_it;
       return *this;
     }
 
-    bool operator==(const iterator& other) const {
-      return (_idx == other._idx) && (_iterator == other._iterator);
+    void operator++(int)
+    {
+      ++(*this);
     }
 
-    bool operator!=(const iterator& other) const {
-      return ! (*this == other);
+    friend bool operator==(const iterator& lhs, const iterator& rhs)
+    {
+      return lhs._it == rhs._it;
     }
 
   private:
-    size_t _idx;
-    std::ranges::iterator_t<Range> _iterator;
+    base_iterator _it{};
+    std::size_t _idx{0};
   };
 
 public:
-  using pointer = iterator::pointer;
-  using reference = iterator::reference;
-  using value_type = iterator::value_type;
-  using difference_type = iterator::difference_type;
-  using iterator_category = iterator::iterator_category;
+  enumerate_view() = default;
 
-public:
-  enumerate_view(Range& range)
-      : _range(range) {
+  explicit enumerate_view(TView view)
+    : _view(std::move(view))
+  {
   }
 
-  iterator begin() {
-    return iterator(_range.begin(), 0);
+  enumerate_view(enumerate_view&&) = default;
+  enumerate_view(const enumerate_view&) = default;
+
+  ~enumerate_view() = default;
+
+  enumerate_view& operator=(enumerate_view&&) = default;
+  enumerate_view& operator=(const enumerate_view&) = default;
+
+  iterator begin()
+  {
+    return iterator(std::ranges::begin(_view), 0);
   }
 
-  iterator end() {
-    return iterator(_range.end(), _range.size());
+  iterator end()
+  {
+    return iterator(std::ranges::end(_view), std::ranges::distance(_view));
   }
 
 private:
-  Range& _range;
+  TView _view{};
 };
+
+// enumerate_view e(vec);
+// auto e = enumerate_view(vec);
+template<std::ranges::viewable_range R>
+enumerate_view(R&&) -> enumerate_view<std::views::all_t<R>>;
+
+struct enumerate_closure
+{
+  template<std::ranges::viewable_range R>
+  auto operator()(R&& r) const
+  {
+    return enumerate_view(std::views::all(std::forward<R>(r)));
+  }
+  
+  template<std::ranges::viewable_range R>
+  friend auto operator|(R&& r, const enumerate_closure& self)
+  {
+    return self(std::forward<R>(r));
+  }
+};
+
+struct enumerate_fn
+{
+  // auto e = vec | enumerate();
+  auto operator()() const
+  {
+    return enumerate_closure{};
+  }
+  
+  // auto e = enumerate(vec);
+  template<std::ranges::viewable_range R>
+  auto operator()(R&& r) const
+  {
+    return enumerate_view(std::views::all(std::forward<R>(r)));
+  }
+};
+
+inline constexpr enumerate_fn enumerate{};
