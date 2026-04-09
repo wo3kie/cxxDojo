@@ -10,74 +10,56 @@
 
 #include <iterator>
 #include <ranges>
-#include <tuple>
 #include <type_traits>
 #include <utility>
-#include <variant>
 
-/*
- * uniform_concat_view
- *
- * A lightweight, zero‑allocation view that concatenates multiple ranges
- * of the same type into a single forward range.
- *
- * This view is designed for high‑performance scenarios where:
- *   - all input ranges have the same type, (enforced by static_assert).
- *   - all iterators have the same iterator type, (enforced by static_assert).
- *   - all iterators must satisfy forward iterator requirements, (enforced by static_assert).
- *
- * Key properties:
- *   - Zero allocations: all storage is in a fixed-size std::array.
- *   - Zero type erasure: iterator type is uniform across all ranges.
- *   - Zero overhead: iteration is equivalent to a hand-written loop.
- *   - Reference integrity: dereferencing yields true references to the
- *     underlying elements; modifying through the view modifies the source.
- *   - Const-correct: const uniform_concat_view iterates using const iterators.
- *   - No surprises: iteration stops when all ranges are exhausted.
- */
-
-template<std::ranges::range Range, std::size_t N /* CTAD Deducted */>
-struct uniform_concat_view final : std::ranges::view_interface<uniform_concat_view<Range, N>> {
-  using iterator_t = std::ranges::iterator_t<Range>;
-
-  struct iterator {
-    using iterator_category = std::forward_iterator_tag;
-    using value_type = std::ranges::range_value_t<Range>;
+template<std::ranges::view TView, std::size_t N /* CTAD Deducted */>
+struct uniform_concat_view final: std::ranges::view_interface<uniform_concat_view<TView, N>>
+{
+  struct iterator
+  {
+    using base_iterator = std::ranges::iterator_t<TView>;
+    using reference = std::ranges::range_reference_t<TView>;
+    using value_type = std::ranges::range_value_t<TView>;
     using difference_type = std::ptrdiff_t;
-    using reference = std::ranges::range_reference_t<Range>;
-    using pointer = std::add_pointer_t<reference>;
+    using iterator_category = std::forward_iterator_tag;
 
-    iterator(const std::array<std::pair<iterator_t, iterator_t>, N>* ranges, std::size_t idx)
-        : _ranges(ranges)
-        , _idx(idx) 
+    iterator() = default;
+
+    iterator(std::array<TView, N>* viewsPtr, std::size_t idx)
+      : _viewsPtr(viewsPtr)
+      , _idx(idx)
     {
-      if (_idx < N) {
-        _it = (*_ranges)[_idx].first;
+      if(_idx < N) {
+        _it = std::ranges::begin((*_viewsPtr)[_idx]);
         _skip_empty();
       }
     }
 
-    reference operator*() const {
+    reference operator*() const
+    {
       return *_it;
     }
 
-    iterator& operator++() {
+    iterator& operator++()
+    {
       ++_it;
 
-      if (_it == (*_ranges)[_idx].second) {
+      if(_it == std::ranges::end((*_viewsPtr)[_idx])) {
         ++_idx;
         _skip_empty();
       }
-      
+
       return *this;
     }
 
-    bool operator==(const iterator& other) const {
-      if (_ranges != other._ranges) {
+    bool operator==(const iterator& other) const
+    {
+      if(_viewsPtr != other._viewsPtr) {
         return false;
       }
 
-      if (_idx == N && other._idx == N) {
+      if(_idx == N && other._idx == N) {
         return true;
       }
 
@@ -85,66 +67,70 @@ struct uniform_concat_view final : std::ranges::view_interface<uniform_concat_vi
     }
 
   private:
-    void _skip_empty() {
-      while ((_idx < N) && ((*_ranges)[_idx].first == (*_ranges)[_idx].second)) {
+    void _skip_empty()
+    {
+      while((_idx < N) && (std::ranges::begin((*_viewsPtr)[_idx]) == std::ranges::end((*_viewsPtr)[_idx]))) {
         ++_idx;
       }
 
-      if (_idx < N) {
-        _it = (*_ranges)[_idx].first;
+      if(_idx < N) {
+        _it = std::ranges::begin((*_viewsPtr)[_idx]);
       }
     }
 
     size_t _idx;
-    iterator_t _it;
-    const std::array<std::pair<iterator_t, iterator_t>, N>* _ranges;
+    base_iterator _it;
+    std::array<TView, N>* _viewsPtr;
   };
 
 public:
-  uniform_concat_view(uniform_concat_view&&) = delete;
-  uniform_concat_view(const uniform_concat_view&) = delete;
+  uniform_concat_view(uniform_concat_view&&) = default;
+  uniform_concat_view(const uniform_concat_view&) = default;
 
-  uniform_concat_view& operator=(uniform_concat_view&&) = delete;
-  uniform_concat_view& operator=(const uniform_concat_view&) = delete;
+  ~uniform_concat_view() = default;
 
-  template<typename... Rs>
-  uniform_concat_view(Rs&... rs) {
-    static_assert((std::same_as<Range, Rs> && ...),
-                  "All ranges must have the same type");
+  uniform_concat_view& operator=(uniform_concat_view&&) = default;
+  uniform_concat_view& operator=(const uniform_concat_view&) = default;
 
-    static_assert(std::forward_iterator<std::ranges::iterator_t<Range>>,
-                  "Range must provide a forward iterator");
-
-    _fill(0, rs...);
+  template<typename... TViews>
+  uniform_concat_view(TViews&&... views)
+    : _views{std::forward<TViews>(views)...}
+  {
   }
 
-  [[nodiscard]] iterator begin() const {
-    return iterator(&_ranges, 0);
+  iterator begin()
+  {
+    return iterator(&_views, 0);
   }
 
-  [[nodiscard]] iterator end() const {
-    return iterator(&_ranges, N);
+  iterator end()
+  {
+    return iterator(&_views, N);
   }
 
 private:
-  template<typename R, typename... Rs>
-  void _fill(std::size_t i, R& r, Rs&... rs) {
-    _ranges[i] = {std::ranges::begin(r), std::ranges::end(r)};
-
-    if constexpr(sizeof...(Rs) > 0) {
-      _fill(i + 1, rs...);
-    }
-  }
-
-  std::array<std::pair<iterator_t, iterator_t>, N> _ranges;
+  std::array<TView, N> _views;
 };
 
+template<typename TView, typename... TViews>
+uniform_concat_view(TView&&, TViews&&...) -> uniform_concat_view<std::views::all_t<TView>, 1 + sizeof...(TViews)>;
 
-template<typename Range, typename... Rs>
-uniform_concat_view(Range&, Rs&...) -> uniform_concat_view<Range, 1 + sizeof...(Rs)>;
+struct uniform_concat_closure
+{ 
+  template<std::ranges::viewable_range R>
+  friend auto operator|(R&& r, const uniform_concat_closure& self)
+  {
+    return self(std::forward<R>(r));
+  }
+};
 
+struct uniform_concat_fn
+{ 
+  template<std::ranges::viewable_range... Rs>
+  auto operator()(Rs&&... rs) const
+  {
+    return uniform_concat_view(std::views::all(std::forward<Rs>(rs))...);
+  }
+};
 
-template<typename Range, typename... Rs>
-auto concat_view(Range& r, Rs&... rs) {
-  return uniform_concat_view(r, rs...);
-}
+inline constexpr uniform_concat_fn uniform_concat{};

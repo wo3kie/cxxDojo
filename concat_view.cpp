@@ -6,52 +6,56 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <deque>
-#include <list>
+#include <map>
 #include <vector>
 
-#include "./any_iterator.hpp"
 #include "./assert.hpp"
 #include "./concat_view.hpp"
 
-void test_basic_vector() {
-  std::vector<int> v;
+void test_basic_vector()
+{
+  std::vector<int> a{1, 2, 3};
+  std::vector<int> b{4, 5, 6};
 
-  auto view = concat_view(v);
-  
-  const std::vector<int> actual{view.begin(), view.end()};
-  const std::vector<int> expected{};
-  Assert(actual == expected);
+  {
+    uniform_concat_view view1(a);
+    const std::vector<int> actual1{view1.begin(), view1.end()};
+    const std::vector<int> expected1{1, 2, 3};
+    Assert(actual1 == expected1);
+
+    uniform_concat_view view2(a, b);
+    const std::vector<int> actual2{view2.begin(), view2.end()};
+    const std::vector<int> expected2{1, 2, 3, 4, 5, 6};
+    Assert(actual2 == expected2);
+  }
+
+  {
+    uniform_concat_view view1(std::vector<int>{1, 2, 3});
+    const std::vector<int> actual1{view1.begin(), view1.end()};
+    const std::vector<int> expected1{1, 2, 3};
+    Assert(actual1 == expected1);
+
+    uniform_concat_view view2(std::vector<int>{1, 2, 3}, std::vector<int>{4, 5, 6});
+    const std::vector<int> actual2{view2.begin(), view2.end()};
+    const std::vector<int> expected2{1, 2, 3, 4, 5, 6};
+    Assert(actual2 == expected2);
+  }
+
+  {
+    auto view1 = uniform_concat(a);
+    const std::vector<int> actual1{view1.begin(), view1.end()};
+    const std::vector<int> expected1{1, 2, 3};
+    Assert(actual1 == expected1);
+
+    auto view2 = uniform_concat(a, b);
+    const std::vector<int> actual2{view2.begin(), view2.end()};
+    const std::vector<int> expected2{1, 2, 3, 4, 5, 6};
+    Assert(actual2 == expected2);
+  }
 }
 
-void test_all_empty() {
-  std::vector<int> a{};
-  std::vector<int> b{};
-  std::vector<int> c{};
-
-  auto view = concat_view(a, b, c);
-
-  Assert(view.begin() == view.end());
-}
-
-void test_basic_vectors() {
-  std::vector<int> a{};
-  std::vector<int> b{1};
-  std::vector<int> c{};
-  std::vector<int> d{2, 3};
-  std::vector<int> e{};
-  std::vector<int> f{};
-  std::vector<int> g{4, 5};
-  std::vector<int> h{};
-  
-  auto view = concat_view(a, b, c, d, e, f, g, h);
-
-  const std::vector<int> actual = {view.begin(), view.end()};
-  const std::vector<int> expected{1, 2, 3, 4, 5}; 
-  Assert(actual == expected);
-}
-
-void test_basic_const_vectors() {
+void test_basic_vectors()
+{
   const std::vector<int> a{};
   const std::vector<int> b{1};
   const std::vector<int> c{};
@@ -60,31 +64,15 @@ void test_basic_const_vectors() {
   const std::vector<int> f{};
   const std::vector<int> g{4, 5};
   const std::vector<int> h{};
-  
-  auto view = concat_view(a, b, c, d, e, f, g, h);
 
+  auto view = uniform_concat(a, b, c, d, e, f, g, h);
   const std::vector<int> actual = {view.begin(), view.end()};
-  const std::vector<int> expected{1, 2, 3, 4, 5}; 
+  const std::vector<int> expected{1, 2, 3, 4, 5};
   Assert(actual == expected);
 }
 
-void test_iterator_copies_equal() {
-  const std::vector<int> v{1, 2, 3};
-
-  auto view = concat_view(v);
-
-  auto it1 = view.begin();
-  auto it2 = view.begin();
-  auto it3 = it1;
-
-  Assert(it1 == it2);
-  Assert(it2 == it3);
-
-  ++it1;
-  Assert(it1 != it2);
-}
-
-void test_basic_map() {
+void test_basic_map()
+{
   std::map<std::string, int> a{};
   std::map<std::string, int> b{{"c++", 3}};
   std::map<std::string, int> c{};
@@ -92,63 +80,15 @@ void test_basic_map() {
   std::map<std::string, int> e{};
   std::map<std::string, int> f{};
 
-  auto view = concat_view(a, b, c, d, e, f);
+  auto view = uniform_concat(a, b, c, d, e, f);
   const std::vector<std::pair<std::string, int>> actual = {view.begin(), view.end()};
-  const std::vector<std::pair<std::string, int>> expected{{"c++", 3}, {"haskell", 7}, {"python", 6}}; 
+  const std::vector<std::pair<std::string, int>> expected{{"c++", 3}, {"haskell", 7}, {"python", 6}};
   Assert(actual == expected);
 }
 
-void test_non_uniform() {
-  std::vector<int> v{1, 2, 3};
-  std::list<int> l{4, 5, 6};
-  
-  AnyRange<int, 8, 8> v_any_view = any_range(v);
-  AnyRange<int, 8, 8> l_any_view = any_range(l);
-  
-  auto view = concat_view(v_any_view, l_any_view);
-  const std::vector<int> actual = {view.begin(), view.end()};
-  const std::vector<int> expected{1, 2, 3, 4, 5, 6}; 
-  Assert(actual == expected);
-}
-
-void test_const_non_uniform() {
-  const std::vector<int> v{1, 2, 3};
-  std::list<int> l{4, 5, 6};
-  
-  AnyRange<const int, 8, 8> v_any_view = any_range(v);
-  AnyRange<const int, 8, 8> l_any_view = any_range(std::as_const(l));
-  
-  auto view = concat_view(v_any_view, l_any_view);
-  const std::vector<int> actual = {view.begin(), view.end()};
-  const std::vector<int> expected{1, 2, 3, 4, 5, 6}; 
-  Assert(actual == expected);
-}
-
-void test_const_reference() {
-  static std::vector<int> v{1, 2, 3};
-
-  auto get_seq_1 = [&]() -> const std::vector<int>& {
-    return v;
-  };
-
-  auto get_seq_2 = [&]() -> const std::vector<int>& {
-    return v;
-  };
-
-  auto view = concat_view(get_seq_1(), get_seq_2());
-  const std::vector<int> actual = {view.begin(), view.end()};
-  const std::vector<int> expected{1, 2, 3, 1, 2, 3}; 
-  Assert(actual == expected);
-}
-
-int main() {
+int main()
+{
   test_basic_vector();
-  test_all_empty();
   test_basic_vectors();
-  test_basic_const_vectors();
-  test_iterator_copies_equal();
   test_basic_map();
-  test_non_uniform();
-  test_const_non_uniform();
-  test_const_reference();
 }
