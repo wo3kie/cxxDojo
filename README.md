@@ -9,16 +9,15 @@ https://github.com/wo3kie/cxxdojo
 ## Requirements
 C++20  
 boost  
-gsl  
   
 ## How to build it?
-mkdir build  
-cd build  
+mkdir debug  
+cd debug  
 cmake ..  
 cmake --build .  
 
 ## How to clean it?
-rm -rf build
+rm -rf debug
 
 ## List of puzzles
   
@@ -104,19 +103,11 @@ Implement the Bellman-Ford algorithm.
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm), the Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph.  
   
-### black_scholes.cpp  
-Calculate an option price for a given time and underlying stock price using _Black-Scholes_ method for it.  
-  
-From [Wikipedia](https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model), the Black–Scholes model is a mathematical model for the dynamics of a financial market containing derivative investment instruments.  
-  
 ### bloom_filter.cpp  
 Implement a Bloom filter.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is a space-efficient probabilistic data structure with false positive matches possible but false negatives not.
   
-### box_muller.cpp  
-Implement the Box-Muller algorithm.
-
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
     
 ### concat_view.cpp  
@@ -134,14 +125,6 @@ assert(convertBase("52", 8, 10) == "42");
 assert(convertBase("42", 10, 16) == "2A");
 assert(convertBase("2A", 16, 2) == "101010");
 ```
-  
-### copy_vs_move.cpp  
-Compare function calls passing arguments by value, by reference, and by ref ref.
-    
-### count_bits.cpp  
-Implement a program to count the number of `1` bits in a given integer.  
-Can you use `constexpr` to achieve this?  
-Can you use `preprocessor` to achieve this?  
   
 ### crtp.cpp  
 Implement the CRTP pattern example.  
@@ -161,9 +144,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) the Dijks
     
 ### enumerate_view.cpp  
 Implement a simple version of `std::enumerate_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/enumerate_view.html) the `enumerate_view` is a range adaptor that takes a view and produces a view of tuples which holds: the value which is a zero-based index of the element of underlying sequence, and the reference to the underlying element.  
-  
-### fdm.cpp  
-Implement a program demonstrating a Finite Difference Method to calculate differential equation.
   
 ### filter_view.cpp  
 Implement a simple version of `std::filter_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/filter_view.html) the `filter_view` is a range adaptor that represents view of an underlying sequence with only the elements that satisfy the predicate. 
@@ -208,32 +188,11 @@ Implement simple examples that demonstrate how to use C++17 fold expressions.
 ### functional.cpp  
 Implement higher-order functions such as `fold`, `reduce`, and `filter`.
   
-### gcd.cpp  
-Implement a function to calculate the greatest common divisor.
-  
 ### gram_schmidt.cpp  
 Implement the Gram-Schmidt process function. From [Wikipedia](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) the Gram-Schmidt algorithm is a way of finding a set of two or more vectors that are perpendicular to each other.
   
 ### group_by.cpp  
 Implement a `group_by` function, for aggregating data into a dictionary by a given key.
-  
-### gsl/covariance.cpp  
-Implement a function to calculate the covariance between two collections using gsl library.
-  
-### gsl/interpolation.cpp  
-Implement a program to interpolate a set of points with a polynomial function. Can you use boost::ublas for it? Can you use GNU Scientific Library for it?
-
-### gsl/mean.cpp  
-Implement a function to calculate a mean value from a collection.
-
-### gsl/page_rank.cpp  
-Implement the Page Rank algorithm using eigenvalues and eigenvectors. 
-  
-### gsl/pca.cpp  
-Implement Principal Component Analysis using gsl library. From [Wikipedia](https://en.wikipedia.org/wiki/Principal_component_analysis) principal component analysis is a procedure to transform a given data set _X_ of dimension _p_ to an alternative data set _Y_ of smaller dimension _p'_.
-  
-### gsl/variance.cpp  
-Implement a function to calculate a variance. From [Wikipedia](https://en.wikipedia.org/wiki/Variance) variance is a measure how far a values are spread out.
   
 ### gzip.cpp  
 Implement a function to compress and decompress text using the _gzip_ algorithm.
@@ -252,9 +211,6 @@ Move from 3 to 2
 Move from 1 to 2
 ```
   
-### has_type.cpp  
-Implement various methods to determine whether a given class contains a nested internal type.  
-  
 ### heap.cpp  
 Implement the heap data structure.
   
@@ -266,12 +222,6 @@ assert(    1 <in> std::vector< int >{ 1 } );
 assert( !( 2 <in> std::vector< int >{ 1 } ) );
 ```
   
-### integration.cpp  
-Implement a set of functions to calculate numerical integration for a function _f(x)_ in range _(a,b)_.
-  
-### interpolation.cpp  
-Implement a function to interpolate a given set of points with a polynomial. Use Newton's divided difference method.  
-    
 ### jaccard_index.cpp  
 Implement a function to compute the Jaccard Index for two given sets. From [Wikipedia](https://en.wikipedia.org/wiki/Jaccard_index) the Jaccard index is used for comparing the similarity and diversity of sample sets.
   
@@ -287,9 +237,6 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Prat
 $ ./kmp 5 3.14159265359
 5 9 11
 ```
-  
-### laplace_smoothing.cpp  
-Implement a function to perform _the Laplace smoothing_. From [Wikipedia](https://en.wikipedia.org/wiki/Additive_smoothing) the Laplace smoothing, also known as additive smothing (not to be confused with Laplacian smoothing) is a technique used to smooth categorical data.
   
 ### levenshtein.cpp  
 Implement the _Levenshtein distance_ function.
@@ -391,9 +338,6 @@ pnm: 1738803µs
 pmn: 962802µs
 ```
     
-### member_offset.cpp  
-Implement a function to calculate struct/class member offert.
-  
 ### metasort.cpp  
 Implement a program that demonstrates how to sort numbers inside a `TypeList` using template metaprogramming.  
   
@@ -406,9 +350,6 @@ OneBucketPolicy: 195972µs
  AZBucketPolicy: 34203µs
 ```
   
-### ode.cpp  
-Implement a function to solve a first order ordinary differential equation numerically with Euler's and Runge-Kutta methods.
-  
 ### output.cpp  
 Implement the output stream operator (`operator<<`) for basic STL containers such as `std::array`, `std::vector`, `std::list`...
   
@@ -417,26 +358,6 @@ Create a dispatch mechanism for `overloaded` lambda expressions.
   
 ### parameter_pack.cpp  
 Implement operations that work with template parameter pack—like `size`, `head`, `front`, `tail`, `back`, `any`, `all`, and `none`.
-  
-### par.cpp  
-Create a function to execute shell commands in parallel, inspired by [GNU Parallel](http://www.gnu.org/software/parallel/).
-
-```{r, engine='bash'}
-$ echo {1..10} > 1-10-file
-$ sed -i 's/ /\n/g' 1-10-file
-$
-$ cat 1-10-file | ./par echo
-140556950165248: 1
-140556941772544: 2
-140556950165248: 3
-140556941772544: 4
-140556950165248: 5
-140556941772544: 6
-140556950165248: 7
-140556941772544: 8
-140556941772544: 10
-140556950165248: 9
-```
   
 ### partition.cpp  
 Implement `partition` and `stable_partition` algorithms. 
@@ -579,9 +500,6 @@ Implement _named type_ utility. The _named type_ is strongly-typed wrappers arou
 
   static_assert(std::is_assignable<Int, Age>::value == false);
 ```
-    
-### union_cast.cpp  
-Implement union_cast.
     
 ### virtual_range.cpp  
 Implement a program that demonstrates how to integrate C++20 `std::ranges` concepts with _virtual functions_. Since `std::ranges` concepts operate at compile time, while _virtual functions_ enable runtime polymorphism, a direct combination is not possible. To bridge this gap, apply _type erasure_ as a technique for enabling runtime dispatch over range-based constructs.  

@@ -38,4 +38,4 @@ foreach(DOJO ${DOJOS})
 endforeach()
 
 # Add gsl subdirectory to the build (processes CMakeLists.txt in gsl/)
-add_subdirectory(gsl)
+# add_subdirectory(gsl)
