@@ -1,14 +1,3 @@
-/*
- * Website:
- *      https://gittub.com/wo3kie/cxxdojo
- *
- * Auttor:
- *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/filter_view
- */
-
 #include <iostream>
 #include <vector>
 
@@ -20,31 +9,62 @@
  */
 
 void filter_view_test_1() {
-  const auto isOdd = [](const int& i) -> bool { return i % 2 == 1; };
-  
+  std::function<bool(const int&)> isOdd = [](const int& i) -> bool { //
+    return i % 2 == 1; };
+ 
+  std::function<bool(const int&)> isEven = [](const int& i) -> bool { //
+    return i % 2 == 0; };
+
   std::vector<int> vec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  filter_view f(vec, isOdd);
 
-  const std::vector<int> actual{f.begin(), f.end()};
-  const std::vector<int> expected{1, 3, 5, 7, 9};
+  {
 
-  Assert(actual == expected);
-}
+    filter_view f(vec, isOdd);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{1, 3, 5, 7, 9};
+    Assert(actual == expected);
+  }
 
-/*
- * filter_view_test_2
- */
+  {
+    filter_view f(std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, isOdd);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{1, 3, 5, 7, 9};
+    Assert(actual == expected);
+  }
 
-void filter_view_test_2() {
-  const auto isEven = [](const int& i) -> bool { return i % 2 == 0; };
-  
-  const std::vector<int> vec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  filter_view f(vec, isEven);
+  {
+    auto f = filter_view(vec, isOdd);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{1, 3, 5, 7, 9};
+    Assert(actual == expected);
+  }
 
-  const std::vector<int> actual{f.begin(), f.end()};
-  const std::vector<int> expected{2, 4, 6, 8, 10};
+  {
+    auto f = filter_view(std::vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, isOdd);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{1, 3, 5, 7, 9};
+    Assert(actual == expected);
+  }
 
-  Assert(actual == expected);
+  {
+    auto f = vec | filter(isEven);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{2, 4, 6, 8, 10};
+    Assert(actual == expected);
+  }
+
+  {
+    auto f = filter(vec, isEven);
+   
+    const std::vector<int> actual{f.begin(), f.end()};
+    const std::vector<int> expected{2, 4, 6, 8, 10};
+    Assert(actual == expected);
+  }
 }
 
 /*
@@ -53,5 +73,4 @@ void filter_view_test_2() {
 
 int main() {
   filter_view_test_1();
-  filter_view_test_2();
 }
