@@ -11,7 +11,13 @@
 
 template<typename TValue, std::size_t Capacity>
 class RingBufferSPSC {
-  static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be 2^N");
+  template<typename T>
+  struct alignas(64) Padded {
+      T value;
+  };
+
+  static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be equal to 2^N");
+  static_assert(sizeof(TValue) <= 64, "TValue must be less equal than 64 bytes");
 
 public:
   using value_type = TValue;
@@ -35,7 +41,7 @@ public:
       return false;
     }
 
-    _buffer[end] = std::forward<TT>(value);
+    _buffer[end].value = std::forward<TT>(value);
     _end.store(_increment(end), std::memory_order_release);
 
     return true;
@@ -49,7 +55,7 @@ public:
       return false;
     }
 
-    out = std::move(_buffer[begin]);
+    out = std::move(_buffer[begin].value);
     _begin.store(_increment(begin), std::memory_order_release);
    
     return true;
@@ -84,7 +90,7 @@ public:
   }
 
 private:
-  static constexpr size_t _increment(size_t i) noexcept {
+  [[nodiscard]] static constexpr size_t _increment(size_t i) noexcept {
     const size_t result = (i + 1) & (Capacity - 1);
     return result;
   }
@@ -102,5 +108,5 @@ private:
    */
   alignas(64) std::atomic<size_t> _end{0};
  
-  alignas(64) std::array<TValue, /* N+1 trick */ Capacity> _buffer;
+  alignas(64) std::array<Padded<TValue>, /* N+1 trick */ Capacity> _buffer;
 };
