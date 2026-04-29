@@ -306,7 +306,7 @@ Implement a program to print ASCII art of Mandelbrot set fractal.
 ...............................,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,....
 ```
   
-### map_reduce.cpp  
+### map_reduce_view.cpp  
 Implement `map`, `reduce`, `filter` and `to` functions. Follow `std::ranges` and `std::views` patterns, that all can be composed in a pipeline expression.
   
 ```{r, engine='cpp'}
