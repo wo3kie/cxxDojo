@@ -4,15 +4,12 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/map_reduce
  */
 
 #include <vector>
 
 #include "assert.hpp"
-#include "map_reduce.hpp"
+#include "map_reduce_view.hpp"
 
 /*
  * map_test
