@@ -89,8 +89,6 @@ private:
   TView _view{};
 };
 
-// enumerate_view e(vec);
-// auto e = enumerate_view(vec);
 template<std::ranges::viewable_range R>
 enumerate_view(R&&) -> enumerate_view<std::views::all_t<R>>;
 
@@ -111,13 +109,11 @@ struct enumerate_closure
 
 struct enumerate_fn
 {
-  // auto e = vec | enumerate();
   auto operator()() const
   {
     return enumerate_closure{};
   }
   
-  // auto e = enumerate(vec);
   template<std::ranges::viewable_range R>
   auto operator()(R&& r) const
   {
