@@ -1,6 +1,6 @@
 /*
  * Project:
- *      CxxDojo (https://github.com/wo3kie/cxxdojo)
+ *      CxxDojo (https://github.com/wo3kie/cpp-dojo)
  *
  * void_t:
  *      http://en.cppreference.com/w/cpp/types/void_t
