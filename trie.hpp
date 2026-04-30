@@ -2,7 +2,7 @@
 
 /*
  * Website:
- *      https://github.com/wo3kie/cxxdojo
+ *      https://github.com/wo3kie/cpp-dojo
  * 
  * Author:
  *      Lukasz Czerwinski
