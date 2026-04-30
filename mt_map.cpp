@@ -4,9 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/mt_map
  */
 
 #include "./mt_map.hpp"
