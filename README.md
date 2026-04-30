@@ -110,6 +110,9 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Bloom_filter), a Bloom filter is 
   
 From [Wikipedia](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform), the Box-Muller algorithm can transform uniformly distributed random numbers into standard, normally distributed N(0, 1) (expected value 0, standard deviation 1) random numbers.
     
+### chunk_view.cpp  
+Implement a simple version of `std::chunk_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/chunk_view.html) the `chunk_view` is a range adaptor that takes a view and produces a view of non-overlapping contiguous subranges (chunks) of a specified size. The last chunk may be smaller than the specified size if the underlying view's size is not a multiple of the chunk size.
+  
 ### concat_view.cpp  
 Implement a simple version of `std::concat_view`. From [cppreference](https://en.cppreference.com/w/cpp/ranges/concat_view.html) the `concat_view` takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges. 
   
