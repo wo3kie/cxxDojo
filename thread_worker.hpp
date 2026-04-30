@@ -14,23 +14,26 @@
 
 #include "./ring_buffer_spsc.hpp"
 
-struct YieldIdlePolicy {
-  __attribute__((always_inline))
-  static void doIt() noexcept {
+struct YieldIdlePolicy
+{
+  inline static void doIt() noexcept
+  {
     std::this_thread::yield();
   }
 };
 
 template<std::size_t QueueSize, typename TTask, typename IdlePolicy = YieldIdlePolicy>
-class ThreadWorkerSPSC {
+class ThreadWorkerSPSC
+{
 public:
   ThreadWorkerSPSC()
-      : _running(true)
-      , _thread([this]() { this->run(); })
+    : _running(true)
+    , _thread([this]() { this->run(); })
   {
   }
 
-  ~ThreadWorkerSPSC() noexcept {
+  ~ThreadWorkerSPSC() noexcept
+  {
     stop();
 
     if(_thread.joinable()) {
@@ -40,13 +43,14 @@ public:
 
   ThreadWorkerSPSC(ThreadWorkerSPSC&&) = delete;
   ThreadWorkerSPSC(const ThreadWorkerSPSC&) = delete;
- 
+
   ThreadWorkerSPSC& operator=(ThreadWorkerSPSC&&) = delete;
   ThreadWorkerSPSC& operator=(const ThreadWorkerSPSC&) = delete;
 
 public:
   template<typename F>
-  bool push(F&& f) {
+  bool push(F&& f)
+  {
     if(! _running.load(std::memory_order_acquire)) {
       return false;
     }
@@ -54,12 +58,14 @@ public:
     return _queue.push(std::forward<F>(f));
   }
 
-  void stop() {
+  void stop()
+  {
     _running.store(false, std::memory_order_release);
   }
 
 private:
-  void run() {
+  void run()
+  {
     TTask task;
 
     while(_running.load(std::memory_order_acquire)) {

@@ -9,21 +9,30 @@
  *      $ ./build/bin/parameter_pack
  */
 
-#include <iostream>
 #include <functional>
+#include <iostream>
 
+#include "./assert.hpp"
 #include "./thread_worker.hpp"
 
-int main() {
-  ThreadWorkerSPSC<4, std::function<void()>> worker;
+int main()
+{
+  size_t counter = 0;
 
-  for (size_t i = 0; i < 10; ++i) {
-    worker.push([i]() {
-      std::cout << "Task " << i << " executed." << std::endl;
-    });
+  {
+    ThreadWorkerSPSC<4, std::function<void()>> worker;
+
+    for(size_t i = 0; i < 1024; ++i) {
+      while(! worker.push([i, &counter]() {
+        counter += 1;
+      })) {
+      };
+    }
+
+    worker.stop();
   }
 
-  worker.stop();
+  Assert(counter == 1024);
 
   return 0;
 }
