@@ -4,9 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/has_type
  */
 
 #include <type_traits>
