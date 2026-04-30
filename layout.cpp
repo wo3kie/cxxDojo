@@ -4,10 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- *
- * Usage:
- *      $ ./build/bin/struct
  */
 
 // clang++ -cc1 -fdump-record-layouts -std=c++11 struct.cpp
