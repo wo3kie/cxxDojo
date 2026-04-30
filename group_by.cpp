@@ -4,9 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- * Usage:
- *      $ ./build/bin/group_by
  */
 
 #include "./group_by.hpp"
