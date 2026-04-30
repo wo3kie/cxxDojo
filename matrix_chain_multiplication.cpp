@@ -4,10 +4,6 @@
  *
  * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
- *
- *
- * Usage:
- *      $ ./build/bin/matrix_chain_multiplication
  */
 
 #include <limits>
