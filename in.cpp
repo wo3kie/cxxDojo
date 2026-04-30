@@ -1,6 +1,6 @@
 /*
  * Project:
- *      CxxDojo (https://github.com/wo3kie/cxxdojo)
+ *      CxxDojo (https://github.com/wo3kie/cpp-dojo)
  *
  * Named operators:
  *      https://github.com/klmr/named-operator
