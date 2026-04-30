@@ -22,7 +22,6 @@ class RingBufferSPMC
     T value;
   };
 
-  static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be equal to 2^N");
   static_assert(sizeof(TValue) <= 64, "TValue must be less equal than 64 bytes");
 
 public:

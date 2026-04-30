@@ -31,7 +31,7 @@ public:
 
 public:
   template<typename TT>
-  bool push(TT&& t) {
+  bool push(TT&& t) noexcept {
     if (full()) {
       return false;
     }
@@ -42,7 +42,7 @@ public:
     return true;
   }
 
-  bool pop(TValue& out) {
+  bool pop(TValue& out) noexcept{
     if (empty()) {
       return false;
     }
@@ -76,8 +76,18 @@ public:
   }
 
 private:
-  static size_t _increment(size_t i) noexcept {
-    return (i + 1) % Capacity;
+  static constexpr bool is_power_of_2(size_t n) noexcept {
+    return (n & (n - 1)) == 0;
+  }
+
+  [[nodiscard]] static constexpr size_t _increment(size_t i) noexcept {
+    constexpr size_t BufferSize = Capacity + 1;
+
+    if constexpr(is_power_of_2(BufferSize)) {
+      return (i + 1) & (BufferSize - 1);
+    } else {
+      return (i + 1) % BufferSize;
+    }
   }
 
 private:

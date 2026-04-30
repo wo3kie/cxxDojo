@@ -381,44 +381,22 @@ Implement a function to reshuffle elements in a container. The function should t
 ### reverse_words.cpp  
 Implement a program that reverses the words in a given sentence.
   
-### ring_buffer.cpp  
-Implement a ring buffer data structure. The `ring_buffer.cpp` should be a single-threaded version, `ring_buffer_mutex.cpp` should be a multi-threaded version using mutexes for synchronization, `ring_buffer_spsc.cpp` should be a single-producer single-consumer version using lock-free programming techniques and `ring_buffer_spmc` should be a single-producer multiple-consumer version using lock-free programming techniques. Check the performance of all implementations.  
+### ring_buffer_test.cpp  
+Implement a ring buffer data structure with four variants: `ring_buffer` (single-threaded), `ring_buffer_mutex` (multi-threaded with mutex synchronization), `ring_buffer_spsc` (single-producer single-consumer, lock-free), and `ring_buffer_spmc` (single-producer multiple-consumer, lock-free). Check the performance of all implementations.  
 
 ```{r, engine='bash'}
-$ ./ring_buffer
-RingBufferMT<int, 2>: 8ms
-RingBufferSPSC<int, 2>: 533µs
-RingBuffer<int, 2>: 278µs
+$ ./bin/ring_buffer_test 
+RingBuffer<int, 2>: 403µs
+RingBufferSPSC<int, 2>: 278µs
+RingBufferSPMC<int, 2>: 448µs
+RingBufferMT<int, 2>: 18ms
 
-RingBufferMT<int, 4>: 7ms
-RingBufferSPSC<int, 4>: 1ms
-RingBuffer<int, 4>: 201µs
-
-RingBufferMT<int, 8>: 6ms
-RingBufferSPSC<int, 8>: 323µs
-RingBuffer<int, 8>: 277µs
-
-RingBufferMT<int, 1024>: 43ms
-RingBufferSPSC<int, 1024>: 16ms
-RingBuffer<int, 1024>: 6ms
-
-RingBufferMT<int, 32*1024>: 776ms
-RingBufferSPSC<int, 32*1024>: 458ms
-RingBuffer<int, 32*1024>: 171ms
+RingBuffer<int, 1023>: 9ms
+RingBufferSPSC<int, 1023>: 15ms
+RingBufferSPMC<int, 1023>: 21ms
+RingBufferMT<int, 1023>: 527ms
 ```
-  
-### ring_buffer_lb.cpp  
-Implement a single-producer multiple-consumer container with round robin load balancer that distributes incoming values across a fixed number of queues.
-
-```{r, engine='bash'}
-$ ./ring_buffer_lb
-Producer0 inserted: 100000
-Consumer1 popped:    25176
-Consumer2 popped:    25214
-Consumer3 popped:    24923
-Consumer4 popped:    24687
-```
-  
+    
 ### rotate_matrix.cpp  
 Implement a program to rotate inplace matrix to right by 90 degrees
 
@@ -500,9 +478,6 @@ Implement _named type_ utility. The _named type_ is strongly-typed wrappers arou
 
   static_assert(std::is_assignable<Int, Age>::value == false);
 ```
-    
-### virtual_range.cpp  
-Implement a program that demonstrates how to integrate C++20 `std::ranges` concepts with _virtual functions_. Since `std::ranges` concepts operate at compile time, while _virtual functions_ enable runtime polymorphism, a direct combination is not possible. To bridge this gap, apply _type erasure_ as a technique for enabling runtime dispatch over range-based constructs.  
   
 ### visitor.cpp  
 Implement an example of the visitor design pattern.
