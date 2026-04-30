@@ -1,8 +1,8 @@
 /*
  * Website:
- *      https://gittub.com/wo3kie/cxxdojo
+ *      https://github.com/wo3kie/cpp-dojo
  *
- * Auttor:
+ * Author:
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  *
  * Usage:
