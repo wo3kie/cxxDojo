@@ -4,7 +4,7 @@
 Solutions to selected programming puzzles.  
   
 ## Website
-https://github.com/wo3kie/cxxdojo
+https://github.com/wo3kie/cpp-dojo
 
 ## Requirements
 C++20  
