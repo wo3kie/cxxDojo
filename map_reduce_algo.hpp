@@ -32,42 +32,45 @@ struct MapReduce
   template<typename TIn, typename... TIns>
   [[nodiscard]] auto run(TIn&& value, TIns&&... values)
   {
-    using TOut = decltype(_map_fn(std::declval<TIn>()));
-    return run2(TOut(), std::forward<TIn>(value), std::forward<TIns>(values)...);
+    auto task = [&](auto&& val) {
+        return std::async(std::launch::async, [this, v = std::forward<decltype(val)>(val)]() mutable {
+            return this->_map_fn(std::move(v));
+        });
+    };
+
+    std::array futures = {
+      task(std::forward<TIns>(values))...
+    };
+
+    auto init = this->_map_fn(std::forward<TIn>(value));
+
+    for(auto& future : futures) {
+      init = this->_reduce_fn(std::move(init), future.get());
+    }
+
+    return init;
   }
 
   template<typename TOut, typename TIn, typename... TIns>
-  [[nodiscard]] auto run2(TOut init, TIn&& value, TIns&&... values)
+  [[nodiscard]] auto run_with_init(TOut&& init, TIn&& value, TIns&&... values)
   {
-    constexpr size_t N = 1 + sizeof...(TIns);
-    std::array<std::future<TOut>, N> futures;
+    auto task = [&](auto&& val) {
+        return std::async(std::launch::async, [this, v = std::forward<decltype(val)>(val)]() mutable {
+            return this->_map_fn(std::move(v));
+        });
+    };
 
-    _push<0, N>(futures, std::forward<TIn>(value), std::forward<TIns>(values)...);
-    return _reduce<0, N>(std::move(init), futures);
-  }
+    std::array futures = {
+      task(std::forward<TIns>(values))...
+    };
 
-  template<size_t I, size_t N, typename Futures, typename TIn, typename... TIns>
-  void _push(Futures& futures, TIn&& value, TIns&&... values)
-  {
-    using X = std::decay_t<TIn>;
+    init = _reduce_fn(std::forward<TOut>(init), _map_fn(std::forward<TIn>(value)));
 
-    futures[I] = std::async(std::launch::async, [this, v = X(std::forward<TIn>(value))]() mutable {
-      return this->_map_fn(std::move(v));
-    });
-
-    if constexpr(I + 1 != N) {
-      _push<I + 1, N>(futures, std::forward<TIns>(values)...);
+    for(auto& future : futures) {
+      init = _reduce_fn(std::forward<TOut>(init), future.get());
     }
-  }
 
-  template<size_t I, size_t N, typename TOut, typename Futures>
-  TOut _reduce(TOut&& result, Futures& futures)
-  {
-    if constexpr(I != N) {
-      return _reduce<I + 1, N>(_reduce_fn(std::move(result), futures[I].get()), futures);
-    } else {
-      return result;
-    }
+    return init;
   }
 
 private:
