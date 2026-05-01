@@ -14,10 +14,11 @@
 
 #include "./ring_buffer_spsc.hpp"
 
-enum class WorkerState {
-    Running,
-    Stopping,
-    HardStop
+enum class WorkerState
+{
+  Running,
+  Stopping,
+  HardStop
 };
 
 struct YieldIdlePolicy
@@ -41,7 +42,9 @@ class ThreadWorkerSPSC
 public:
   ThreadWorkerSPSC()
     : _state(WorkerState::Running)
-    , _thread([this]() { this->run(); })
+    , _thread([this]() {
+      this->run();
+    })
   {
   }
 
@@ -79,30 +82,28 @@ public:
 
   void hard_stop()
   {
-      _state.store(WorkerState::HardStop, std::memory_order_release);
+    _state.store(WorkerState::HardStop, std::memory_order_release);
   }
 
 private:
-void run()
-{
+  void run()
+  {
     TTask task;
 
     while(_state.load(std::memory_order_acquire) == WorkerState::Running) {
-        if(_queue.pop(task)) {
-            task();
-            task = TTask();
-        } else {
-            IdlePolicy::doIt();
-        }
+      if(_queue.pop(task)) {
+        task();
+      } else {
+        IdlePolicy::doIt();
+      }
     }
 
-    if (_state.load(std::memory_order_acquire) == WorkerState::Stopping) {
-        while(_queue.pop(task)) {
-            task();
-            task = TTask();
-        }
+    if(_state.load(std::memory_order_acquire) == WorkerState::Stopping) {
+      while(_queue.pop(task)) {
+        task();
+      }
     }
-}
+  }
 
 private:
   std::atomic<WorkerState> _state{WorkerState::Running};
