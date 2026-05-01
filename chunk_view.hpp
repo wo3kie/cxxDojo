@@ -8,9 +8,7 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <cassert>
-#include <ranges>
-#include <utility>
+ #include <ranges>
 
 template<std::ranges::view TView>
 class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
@@ -18,8 +16,8 @@ class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
   struct iterator
   {
     using base_iterator = std::ranges::iterator_t<TView>;
-    using value_type = std::tuple<base_iterator, base_iterator>;
-    using reference = std::tuple<base_iterator, base_iterator>;
+    using value_type = std::ranges::subrange<base_iterator>;
+    using reference = std::ranges::subrange<base_iterator>;
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
 
@@ -31,7 +29,7 @@ class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
       , _to{current}
       , _end{end}
     {
-      this->operator++();
+      std::ranges::advance(_to, _chunk_size, _end);
     }
 
     reference operator*() const
@@ -42,13 +40,15 @@ class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
     iterator& operator++()
     {
       _from = _to;
-      _to = _from;
-
-      for(std::size_t i = 0; i < _chunk_size && _to != _end; ++i) {
-        ++_to;
-      }
-
+      std::ranges::advance(_to, _chunk_size, _end);
       return *this;
+    }
+
+    iterator operator++(int)
+    {
+      iterator copy = *this;
+      ++(*this);
+      return copy;
     }
 
     bool operator==(const iterator& other) const
@@ -65,12 +65,12 @@ class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
   };
 
 public:
-  auto begin()
+  auto begin() const
   {
     return iterator{std::ranges::begin(_view), std::ranges::end(_view), _chunk_size};
   }
 
-  auto end()
+  auto end() const
   {
     return iterator{std::ranges::end(_view), std::ranges::end(_view), _chunk_size};
   }
