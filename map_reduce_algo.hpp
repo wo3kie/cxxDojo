@@ -1,3 +1,5 @@
+#pragma once
+
 /*
  * Project:
  *      CxxDojo (https://github.com/wo3kie/cpp-dojo)
@@ -9,8 +11,6 @@
 #include <array>
 #include <future>
 #include <utility>
-
-#include <iostream>
 
 template<typename TMapFn, typename TReduceFn>
 struct MapReduce
