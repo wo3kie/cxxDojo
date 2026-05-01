@@ -8,6 +8,7 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
+ #include <cassert>
  #include <ranges>
 
 template<std::ranges::view TView>
@@ -20,6 +21,7 @@ class chunk_view: public std::ranges::view_interface<chunk_view<TView>>
     using reference = std::ranges::subrange<base_iterator>;
     using difference_type = std::ptrdiff_t;
     using iterator_category = std::forward_iterator_tag;
+    using pointer = void;
 
     iterator() = default;
 
@@ -70,7 +72,17 @@ public:
     return iterator{std::ranges::begin(_view), std::ranges::end(_view), _chunk_size};
   }
 
+  auto begin()
+  {
+    return iterator{std::ranges::begin(_view), std::ranges::end(_view), _chunk_size};
+  }
+
   auto end() const
+  {
+    return iterator{std::ranges::end(_view), std::ranges::end(_view), _chunk_size};
+  }
+
+  auto end()
   {
     return iterator{std::ranges::end(_view), std::ranges::end(_view), _chunk_size};
   }
