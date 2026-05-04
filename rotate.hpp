@@ -72,8 +72,8 @@ void rotate_left(Iterator begin, Iterator pivot, Iterator end) {
 
 template<std::random_access_iterator Iterator>
 void rotate_right_cycle(Iterator begin, Iterator pivot, Iterator end) {
-  const size_t leftSize = std::distance(begin, pivot);
-  const size_t rightSize = std::distance(pivot, end);
+  const std::size_t leftSize = std::distance(begin, pivot);
+  const std::size_t rightSize = std::distance(pivot, end);
 
   if(leftSize == 0 || rightSize == 0) {
     return;
