@@ -448,8 +448,8 @@ Implement `StoreIf`, a single‑value container that conditionally stores a new 
   Assert(accU.value() == 6);
 ```
   
-### thread_worker.cpp  
-Implement a simple thread worker that can execute tasks in a separate thread. The worker should support pushing tasks to a queue and stopping the worker thread gracefully. Consider using a single-producer single-consumer (SPSC) queue for task management to ensure thread safety and efficient communication between the producer and consumer threads.
+### task_worker.cpp  
+Implement a simple task worker that can execute tasks in a separate thread. The worker should support pushing tasks to a queue and stopping the worker thread gracefully. Consider using a single-producer single-consumer (SPSC) queue for task management to ensure thread safety and efficient communication between the producer and consumer threads.
   
 ### timer.cpp  
 Implement a function to measure an execution time of a some piece of code.

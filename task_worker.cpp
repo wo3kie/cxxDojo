@@ -10,14 +10,14 @@
 #include <iostream>
 
 #include "./assert.hpp"
-#include "./thread_worker.hpp"
+#include "./task_worker.hpp"
 
 int main()
 {
   std::size_t counter = 0;
 
   {
-    ThreadWorkerSPSC<4, std::function<void()>> worker;
+    TaskWorkerSPSC<4, std::function<void()>> worker;
 
     for(std::size_t i = 0; i < 1024; ++i) {
       while(! worker.push([i, &counter]() {
