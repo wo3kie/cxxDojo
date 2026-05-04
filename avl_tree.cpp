@@ -34,47 +34,47 @@ void test_avl_tree() {
   }
 }
 
-void test_avl_tree_benchmark(size_t size) {
+void test_avl_tree_benchmark(std::size_t size) {
   AvlTree<int> tree{};
   std::set<int> set{};
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { tree.insert(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { tree.insert(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "AVL Tree insert: " << formatted << std::endl;
       }
   );
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { set.insert(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { set.insert(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "std::set insert: " << formatted << std::endl;
       }
   );
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { (void) tree.contains(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { (void) tree.contains(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "AVL Tree contains: " << formatted << std::endl;
       }
   );
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { set.contains(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { set.contains(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "std::set contains: " << formatted << std::endl;
       }
   );
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { tree.erase(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { tree.erase(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "AVL Tree erase: " << formatted << std::endl;
       }
   );
 
   timer([&](){
-    for(size_t i = 1; i <= size; ++i) { set.erase(i); }}, 10).log(
+    for(std::size_t i = 1; i <= size; ++i) { set.erase(i); }}, 10).log(
       [](long int ns, const std::string& formatted) {
         std::cout << "std::set erase: " << formatted << std::endl;
       }
