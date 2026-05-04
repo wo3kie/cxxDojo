@@ -11,7 +11,7 @@
 #include "./reshuffle.hpp"
 #include <iostream>
 
-void test_reshuffle(size_t size, int stddev) {
+void test_reshuffle(std::size_t size, int stddev) {
   std::vector<int> values;
   
   for(int i = 0; i < size; ++i) {
