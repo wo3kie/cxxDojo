@@ -11,13 +11,13 @@
 #include "./assert.hpp"
 
 /*
- * operator"" _bin(const char* text, size_t length)
+ * operator"" _bin(const char* text, std::size_t length)
  */
 
-int operator"" _bin(const char* text, size_t length) {
+int operator"" _bin(const char* text, std::size_t length) {
   int result = 0;
 
-  for(size_t i = 0; i < length; ++i) {
+  for(std::size_t i = 0; i < length; ++i) {
     result = 2 * result + (text[i] - '0');
   }
 
@@ -31,7 +31,7 @@ int operator"" _bin(const char* text, size_t length) {
 int operator"" _bin(const char* text) {
   int result = 0;
 
-  for(size_t i = 0; text[i] != char(0); ++i) {
+  for(std::size_t i = 0; text[i] != char(0); ++i) {
     result = 2 * result + (text[i] - '0');
   }
 
@@ -43,6 +43,6 @@ int operator"" _bin(const char* text) {
  */
 
 int main() {
-  Assert(561 == "1000110001"_bin); // int operator"" _bin(const char* text, size_t length)
+  Assert(561 == "1000110001"_bin); // int operator"" _bin(const char* text, std::size_t length)
   Assert(561 == 1000110001_bin);   // int operator"" _bin(const char* text)
 }
