@@ -17,8 +17,8 @@
 
 using Queue = RingBufferLB<int, 4>;
 
-void producer(Queue& queue, size_t count, std::atomic<bool>& all_done) {
-  size_t inserted = 0;
+void producer(Queue& queue, std::size_t count, std::atomic<bool>& all_done) {
+  std::size_t inserted = 0;
 
   do {
     if (queue.push(static_cast<int>(inserted))) {
@@ -29,8 +29,8 @@ void producer(Queue& queue, size_t count, std::atomic<bool>& all_done) {
   all_done = true;
 }
 
-size_t consumer(Queue& queue, size_t id, std::atomic<bool>& all_done) {
-  size_t count = 0;
+std::size_t consumer(Queue& queue, std::size_t id, std::atomic<bool>& all_done) {
+  std::size_t count = 0;
   int value;
 
   while (true) {
@@ -50,7 +50,7 @@ size_t consumer(Queue& queue, size_t id, std::atomic<bool>& all_done) {
   return count;
 }
 
-void test_load_balancer(size_t N) {
+void test_load_balancer(std::size_t N) {
   Queue queue;
   std::atomic<bool> all_done{false};
 
@@ -58,18 +58,18 @@ void test_load_balancer(size_t N) {
 
   std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
-  std::future<size_t> consumer_future1 = std::async(consumer, std::ref(queue), 0, std::ref(all_done));
-  std::future<size_t> consumer_future2 = std::async(consumer, std::ref(queue), 1, std::ref(all_done));
-  std::future<size_t> consumer_future3 = std::async(consumer, std::ref(queue), 2, std::ref(all_done));
-  std::future<size_t> consumer_future4 = std::async(consumer, std::ref(queue), 3, std::ref(all_done));
+  std::future<std::size_t> consumer_future1 = std::async(consumer, std::ref(queue), 0, std::ref(all_done));
+  std::future<std::size_t> consumer_future2 = std::async(consumer, std::ref(queue), 1, std::ref(all_done));
+  std::future<std::size_t> consumer_future3 = std::async(consumer, std::ref(queue), 2, std::ref(all_done));
+  std::future<std::size_t> consumer_future4 = std::async(consumer, std::ref(queue), 3, std::ref(all_done));
 
   producer_future.get();
-  size_t count1 = consumer_future1.get();
-  size_t count2 = consumer_future2.get();
-  size_t count3 = consumer_future3.get(); 
-  size_t count4 = consumer_future4.get(); 
+  std::size_t count1 = consumer_future1.get();
+  std::size_t count2 = consumer_future2.get();
+  std::size_t count3 = consumer_future3.get(); 
+  std::size_t count4 = consumer_future4.get(); 
 
-  auto symm_diff = [](size_t a, size_t b) -> size_t {
+  auto symm_diff = [](std::size_t a, std::size_t b) -> std::size_t {
     return (a > b) ? (a - b) : (b - a);
   };
 
