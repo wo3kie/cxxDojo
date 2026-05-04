@@ -124,13 +124,13 @@ struct chunk_closure
 
 struct chunk_fn
 {
-  auto operator()(size_t chunk_size) const
+  auto operator()(std::size_t chunk_size) const
   {
     return chunk_closure{chunk_size};
   }
 
   template<std::ranges::viewable_range R>
-  auto operator()(R&& r, size_t chunk_size) const
+  auto operator()(R&& r, std::size_t chunk_size) const
   {
     return chunk_view{std::views::all(std::forward<R>(r)), chunk_size};
   }
