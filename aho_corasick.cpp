@@ -9,7 +9,7 @@
  *       $ ./build/bin/aho_corasick aho_corasick.dct aho_corasick.cpp
  * 
  * --------------------------------------------------------------------------------
- * >     auto const print = []( size_t const pos, std::string const & word ){
+ * >     auto const print = []( std::size_t const pos, std::string const & word ){
  * >     auto
  * >          const
  * >                  int
@@ -59,15 +59,15 @@ int main(int argc, char* argv[]) {
   ac.build();
 
   while(std::getline(textFile, line)) {
-    const auto print = [&](const size_t pos, const std::string& word) {
+    const auto print = [&](const std::size_t pos, const std::string& word) {
       std::cout << "> " << std::string(pos, ' ') << word << "\n";
       std::cout << "> " << line << "\n\n";
     };
 
     auto print_color = [&](const char* color) {
-      return [&, color](const size_t pos, const std::string& word) {
-        const size_t start = pos;
-        const size_t end = pos + word.size();
+      return [&, color](const std::size_t pos, const std::string& word) {
+        const std::size_t start = pos;
+        const std::size_t end = pos + word.size();
         std::cout << line.substr(0, start) << color << line.substr(start, word.size()) << RESET << line.substr(end) << "\n";
       };
     };
