@@ -36,17 +36,17 @@
  */
 
 struct OneBucketPolicy {
-  constexpr static size_t SIZE = 1;
+  constexpr static std::size_t SIZE = 1;
 
-  static size_t get(const std::string&) {
+  static std::size_t get(const std::string&) {
     return 0;
   }
 };
 
 struct AZBucketPolicy {
-  constexpr static size_t SIZE = ('Z' - 'A' + 1);
+  constexpr static std::size_t SIZE = ('Z' - 'A' + 1);
 
-  static size_t get(const std::string& key) {
+  static std::size_t get(const std::string& key) {
     assert(!key.empty());
     assert(std::isupper(key[0]));
 
@@ -139,7 +139,7 @@ public:
     return _update(map, key, value);
   }
 
-  size_t erase(const KeyType& key) {
+  std::size_t erase(const KeyType& key) {
     Bucket& bucket = buckets[_index(key)];
     MutexType& mtx = bucket.mtx;
     MapType& map = bucket.map;
@@ -157,8 +157,8 @@ public:
     return _get(map, key);
   }
 
-  size_t size() {
-    size_t total_size = 0;
+  std::size_t size() {
+    std::size_t total_size = 0;
 
     for(Bucket& bucket : buckets) {
       MutexType& mtx = bucket.mtx;
@@ -172,7 +172,7 @@ public:
   }
 
 private:
-  static size_t _index(const KeyType& key) {
+  static std::size_t _index(const KeyType& key) {
     return TBucketPolicy::get(key);
   }
 
@@ -180,7 +180,7 @@ private:
     return map.insert({key, value}).second;
   }
 
-  static size_t _erase(MapType& map, const KeyType& key) {
+  static std::size_t _erase(MapType& map, const KeyType& key) {
     return map.erase(key);
   }
 
@@ -205,7 +205,7 @@ private:
     }
   }
 
-  static size_t _size(MapType& map) {
+  static std::size_t _size(MapType& map) {
     return map.size();
   }
 };
