@@ -23,9 +23,9 @@
 std::string reverse_words(std::string string) {
   std::reverse(string.begin(), string.end());
 
-  size_t wordBegin = 0;
-  size_t wordEnd = 0;
-  const size_t end = string.size();
+  std::size_t wordBegin = 0;
+  std::size_t wordEnd = 0;
+  const std::size_t end = string.size();
 
   while(wordEnd < end) {
     while(wordEnd < end) {
