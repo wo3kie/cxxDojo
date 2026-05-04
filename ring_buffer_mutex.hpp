@@ -17,7 +17,7 @@
  * RingBufferMT - Ring Buffer MuTex
  */
 
-template<typename TValue, size_t Capacity>
+template<typename TValue, std::size_t Capacity>
 class RingBufferMT {
 public:
   using value_type = TValue;
@@ -59,7 +59,7 @@ public:
     return true;
   }
 
-  [[nodiscard]] static constexpr size_t capacity() noexcept {
+  [[nodiscard]] static constexpr std::size_t capacity() noexcept {
     return Capacity;
   }
 
