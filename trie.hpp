@@ -30,7 +30,7 @@ struct Node {
 
 struct Trie {
   Trie() {
-    for(size_t i = 0; i < 10 + 26 + 1; ++i) {
+    for(std::size_t i = 0; i < 10 + 26 + 1; ++i) {
       nodes.push_back(Node());
     }
   }
@@ -47,7 +47,7 @@ struct Trie {
     int nodeId = letterId;
     Node* node = &nodes[nodeId];
 
-    for(size_t i = 1; i < text.size(); ++i) {
+    for(std::size_t i = 1; i < text.size(); ++i) {
       letter = text[i];
       letterId = letterToId(letter);
       nodeId = node->letters[letterId];
@@ -73,7 +73,7 @@ struct Trie {
   std::vector<std::string> dump() const {
     std::vector<std::string> result;
 
-    for(size_t i = 0; i < 10 + 26 + 1; ++i) {
+    for(std::size_t i = 0; i < 10 + 26 + 1; ++i) {
       const std::string prefix = std::string(1, idToLetter(i));
       const std::vector<std::string> partialResult = dump(prefix, i);
       result.insert(result.end(), partialResult.begin(), partialResult.end());
@@ -82,14 +82,14 @@ struct Trie {
     return result;
   }
 
-  std::vector<std::string> dump(const std::string& prefix, size_t nodeId) const {
+  std::vector<std::string> dump(const std::string& prefix, std::size_t nodeId) const {
     std::vector<std::string> result;
 
     if(nodes[nodeId].isEnd) {
       result.push_back(prefix);
     }
 
-    for(size_t i = 0; i < 10 + 26 + 1; ++i) {
+    for(std::size_t i = 0; i < 10 + 26 + 1; ++i) {
       if(nodes[nodeId].letters[i] == -1) {
         continue;
       }
