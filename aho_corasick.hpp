@@ -113,11 +113,11 @@ struct AhoCorasick {
 
   void search(
       const std::string& text,
-      const std::function<void(size_t, const std::string&)>& on_match
+      const std::function<void(std::size_t, const std::string&)>& on_match
   ) const {
     std::shared_ptr<Node> node = _root;
 
-    for(size_t i = 0; i < text.size(); ++i) {
+    for(std::size_t i = 0; i < text.size(); ++i) {
       const char c = text[i];
 
       while(node != _root && ! node->_children.count(c)) {
@@ -129,7 +129,7 @@ struct AhoCorasick {
       }
 
       for(const auto& word : node->_outputs) {
-        const size_t pos = i + 1 - word.size();
+        const std::size_t pos = i + 1 - word.size();
         on_match(pos, word);
       }
     }
