@@ -78,7 +78,7 @@ struct uniform_concat_view final: std::ranges::view_interface<uniform_concat_vie
       }
     }
 
-    size_t _idx;
+    std::size_t _idx;
     base_iterator _it;
     std::array<TView, N>* _viewsPtr;
   };
