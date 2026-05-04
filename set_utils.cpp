@@ -15,7 +15,7 @@ using namespace stl;
 
 template<typename T>
 struct MyHash {
-  size_t operator()(const T& i) const noexcept {
+  std::size_t operator()(const T& i) const noexcept {
     return std::hash<T>()(i);
   }
 };
