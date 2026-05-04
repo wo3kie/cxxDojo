@@ -14,12 +14,12 @@
 
 int main()
 {
-  size_t counter = 0;
+  std::size_t counter = 0;
 
   {
     ThreadWorkerSPSC<4, std::function<void()>> worker;
 
-    for(size_t i = 0; i < 1024; ++i) {
+    for(std::size_t i = 0; i < 1024; ++i) {
       while(! worker.push([i, &counter]() {
         counter += 1;
       })) {
