@@ -19,9 +19,9 @@
 
 template<std::ranges::input_range R>
   requires std::convertible_to<std::ranges::range_value_t<R>, std::string_view>
-size_t _join_range_calc_length(R&& range) {
-  size_t count = 0;
-  size_t total_len = 0;
+std::size_t _join_range_calc_length(R&& range) {
+  std::size_t count = 0;
+  std::size_t total_len = 0;
 
   for(auto&& r : range) {
     count += 1;
@@ -65,9 +65,9 @@ std::string join(R&& range, char sep) {
  */
 
 template<typename... Ts>
-size_t _join_variadic_calc_length(bool skip_empty, Ts&&... ts) {
-  size_t count = 0;
-  size_t total_len = 0;
+std::size_t _join_variadic_calc_length(bool skip_empty, Ts&&... ts) {
+  std::size_t count = 0;
+  std::size_t total_len = 0;
 
   auto count_len = [&](std::string_view s) {
     if(skip_empty && s.empty()) {
