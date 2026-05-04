@@ -115,37 +115,37 @@ public:
     return true;
   }
 
-  [[nodiscard]] static constexpr size_t capacity() noexcept
+  [[nodiscard]] static constexpr std::size_t capacity() noexcept
   {
     return Capacity;
   }
 
-  [[nodiscard]] static constexpr size_t _index(size_t i) noexcept
+  [[nodiscard]] static constexpr std::size_t _index(std::size_t i) noexcept
   {
     return i & (Capacity - 1);
   }
 
-  /* approximate */ [[nodiscard]] bool _empty(size_t pushed, size_t popped) const noexcept
+  /* approximate */ [[nodiscard]] bool _empty(std::size_t pushed, std::size_t popped) const noexcept
   {
     return popped >= pushed;
   }
 
   /* approximate */ [[nodiscard]] bool _empty() const noexcept
   {
-    const size_t pushed = _pushed.load(std::memory_order_acquire);
-    const size_t popped = _popped.load(std::memory_order_acquire);
+    const std::size_t pushed = _pushed.load(std::memory_order_acquire);
+    const std::size_t popped = _popped.load(std::memory_order_acquire);
     return _empty(pushed, popped);
   }
 
-  /* approximate */ [[nodiscard]] bool _full(size_t pushed, size_t popped) const noexcept
+  /* approximate */ [[nodiscard]] bool _full(std::size_t pushed, std::size_t popped) const noexcept
   {
     return (pushed - popped) >= Capacity;
   }
 
   /* approximate */ [[nodiscard]] bool _full() const noexcept
   {
-    const size_t pushed = _pushed.load(std::memory_order_acquire);
-    const size_t popped = _popped.load(std::memory_order_acquire);
+    const std::size_t pushed = _pushed.load(std::memory_order_acquire);
+    const std::size_t popped = _popped.load(std::memory_order_acquire);
     return _full(pushed, popped);
   }
 
