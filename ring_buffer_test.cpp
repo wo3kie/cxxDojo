@@ -24,24 +24,24 @@
  * test_ring_buffer
  */
 
-template<size_t P /* Producers */, size_t C /* Consumers */, typename TRBuffer>
+template<std::size_t P /* Producers */, std::size_t C /* Consumers */, typename TRBuffer>
 void test_ring_buffer() {
   static_assert(P > 0 && C > 0);
 
-  constexpr size_t K = 100 * TRBuffer::capacity();
-  constexpr size_t TOTAL = P * K;
+  constexpr std::size_t K = 100 * TRBuffer::capacity();
+  constexpr std::size_t TOTAL = P * K;
 
   TRBuffer rBuffer;
 
-  std::atomic<size_t> produced_total{0};
-  std::atomic<size_t> consumed_total{0};
+  std::atomic<std::size_t> produced_total{0};
+  std::atomic<std::size_t> consumed_total{0};
 
   std::vector<std::thread> producers;
   producers.reserve(P);
 
-  for(size_t pid = 0; pid < P; ++pid) {
+  for(std::size_t pid = 0; pid < P; ++pid) {
     producers.emplace_back([&, pid] {
-      for(size_t i = 0; i < K; ++i) {
+      for(std::size_t i = 0; i < K; ++i) {
         typename TRBuffer::value_type v = static_cast<typename TRBuffer::value_type>(i + pid * K);
 
         while(! rBuffer.push(v)) {
@@ -56,7 +56,7 @@ void test_ring_buffer() {
   std::vector<std::thread> consumers;
   consumers.reserve(C);
 
-  for(size_t cid = 0; cid < C; ++cid) {
+  for(std::size_t cid = 0; cid < C; ++cid) {
     consumers.emplace_back([&] {
       typename TRBuffer::value_type v;
 
