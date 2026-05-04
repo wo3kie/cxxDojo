@@ -111,10 +111,11 @@ int main()
                                             std::move(value_moveable3),
                                             std::move(value_moveable4)));
 
-    Assert(48 == MapReduce(map, reduce).run(Moveable(12), 
-                                            Moveable(12), 
-                                            Moveable(12),
-                                            Moveable(12)));
+    Assert(2 + 48 == MapReduce(map, reduce).run_with_init(2, 
+                                                          Moveable(12), 
+                                                          Moveable(12), 
+                                                          Moveable(12),
+                                                          Moveable(12)));
   }
 
   {
@@ -145,5 +146,30 @@ int main()
     Assert(value_bigdata2.size() == 12);
     Assert(value_bigdata3.size() == 12);
     Assert(value_bigdata4.size() == 12);
+  }
+
+  {
+    std::function<int(const BigData&)> map = [](const BigData& data) -> int {
+      return data.size();
+    };
+
+    std::function<int(int, int)> reduce = [](int a, int i) -> int {
+      return a + i;
+    };
+
+    std::array<BigData, 4> bigdata_array = {
+      BigData({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}),
+      BigData({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}),
+      BigData({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}),
+      BigData({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12})
+    };
+    
+    Assert(48 == MapReduce(map, reduce).run(bigdata_array));
+    Assert(2 + 48 == MapReduce(map, reduce).run_with_init(2, bigdata_array));
+
+    Assert(bigdata_array[0].size() == 12);
+    Assert(bigdata_array[1].size() == 12);
+    Assert(bigdata_array[2].size() == 12);
+    Assert(bigdata_array[3].size() == 12);
   }
 }
