@@ -35,9 +35,7 @@ class TaskWorkerSPSC
 
 public:
   TaskWorkerSPSC()
-    : _thread([this]() {
-      this->run();
-    })
+    : _thread([this]() { this->run(); })
   {
   }
 
