@@ -31,8 +31,8 @@ public:
 public:
   template<typename TT>
   bool push(TT&& value) noexcept {
-    const size_t head = _head.load(std::memory_order_acquire);
-    const size_t tail = _tail.load(std::memory_order_relaxed);
+    const std::size_t head = _head.load(std::memory_order_acquire);
+    const std::size_t tail = _tail.load(std::memory_order_relaxed);
 
     if(head == _increment(tail)) {
       return false;
@@ -45,8 +45,8 @@ public:
   }
 
   bool pop(TValue& out) noexcept {
-    const size_t head = _head.load(std::memory_order_relaxed);
-    const size_t tail = _tail.load(std::memory_order_acquire);
+    const std::size_t head = _head.load(std::memory_order_relaxed);
+    const std::size_t tail = _tail.load(std::memory_order_acquire);
 
     if(head == tail) {
       return false;
@@ -58,20 +58,20 @@ public:
     return true;
   }
 
-  [[nodiscard]] static constexpr size_t capacity() noexcept {
+  [[nodiscard]] static constexpr std::size_t capacity() noexcept {
     return Capacity;
   }
 
   /* approximate */ [[nodiscard]] bool _empty() const noexcept {
-    const size_t head = _head.load(std::memory_order_acquire);
-    const size_t tail = _tail.load(std::memory_order_acquire);
+    const std::size_t head = _head.load(std::memory_order_acquire);
+    const std::size_t tail = _tail.load(std::memory_order_acquire);
 
     return head == tail ;
   }
 
   /* approximate */ [[nodiscard]] bool _full() const noexcept {
-    const size_t head = _head.load(std::memory_order_acquire);
-    const size_t tail = _tail.load(std::memory_order_acquire);
+    const std::size_t head = _head.load(std::memory_order_acquire);
+    const std::size_t tail = _tail.load(std::memory_order_acquire);
 
     return head == _increment(tail);
   }
@@ -87,12 +87,12 @@ public:
   }
 
 private:
-  static constexpr bool is_power_of_2(size_t n) noexcept {
+  static constexpr bool is_power_of_2(std::size_t n) noexcept {
     return (n & (n - 1)) == 0;
   }
 
-  [[nodiscard]] static constexpr size_t _increment(size_t i) noexcept {
-    constexpr size_t BufferSize = Capacity + 1;
+  [[nodiscard]] static constexpr std::size_t _increment(std::size_t i) noexcept {
+    constexpr std::size_t BufferSize = Capacity + 1;
 
     if constexpr(is_power_of_2(BufferSize)) {
       return (i + 1) & (BufferSize - 1);
@@ -102,8 +102,8 @@ private:
   }
 
 private:
-  alignas(64) std::atomic<size_t> _head{0};
-  alignas(64) std::atomic<size_t> _tail{0};
+  alignas(64) std::atomic<std::size_t> _head{0};
+  alignas(64) std::atomic<std::size_t> _tail{0};
  
   alignas(64) std::array<Padded<TValue>, /* N+1 trick */ Capacity + 1> _buffer;
 };
