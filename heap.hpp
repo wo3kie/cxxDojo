@@ -55,7 +55,7 @@ struct Heap {
     return _data.empty();
   }
 
-  [[nodiscard]] size_t size() const {
+  [[nodiscard]] std::size_t size() const {
     return _data.size();
   }
 
@@ -125,7 +125,7 @@ struct Heap {
     return _data.empty();
   }
 
-  [[nodiscard]] size_t size() const {
+  [[nodiscard]] std::size_t size() const {
     return _data.size();
   }
 
@@ -134,9 +134,9 @@ struct Heap {
   }
 
 private:
-  void heapifyUp(std::vector<TValue>& data, size_t currentIndex) {
+  void heapifyUp(std::vector<TValue>& data, std::size_t currentIndex) {
     while(currentIndex != 0) {
-      const size_t parentIndex = getParent(currentIndex);
+      const std::size_t parentIndex = getParent(currentIndex);
 
       TValue& current = data[currentIndex];
       TValue& parent = data[parentIndex];
@@ -150,11 +150,11 @@ private:
     }
   }
 
-  void heapifyDown(std::vector<TValue>& data, size_t current) {
+  void heapifyDown(std::vector<TValue>& data, std::size_t current) {
     while(true) {
-      size_t max = current;
-      size_t left = getLeft(current);
-      size_t right = getRight(current);
+      std::size_t max = current;
+      std::size_t left = getLeft(current);
+      std::size_t right = getRight(current);
 
       if(left < data.size() && _less(data[max], data[left])) {
           max = left;
@@ -173,16 +173,16 @@ private:
     }
   }
 
-  static size_t getParent(size_t index) {
+  static std::size_t getParent(std::size_t index) {
     Assert(index != 0);
     return (index - 1) / 2;
   }
 
-  static size_t getLeft(size_t index) {
+  static std::size_t getLeft(std::size_t index) {
     return 2 * index + 1;
   }
 
-  static size_t getRight(size_t index) {
+  static std::size_t getRight(std::size_t index) {
     return 2 * index + 2;
   }
 
