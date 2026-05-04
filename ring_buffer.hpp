@@ -15,7 +15,7 @@
  * RingBuffer
  */
 
-template<typename TValue, size_t Capacity>
+template<typename TValue, std::size_t Capacity>
 class RingBuffer {
 public:
   using value_type = TValue;
@@ -53,7 +53,7 @@ public:
     return true;
   }
 
-  [[nodiscard]] static constexpr size_t capacity() noexcept {
+  [[nodiscard]] static constexpr std::size_t capacity() noexcept {
     return Capacity;
   }
 
@@ -76,12 +76,12 @@ public:
   }
 
 private:
-  static constexpr bool is_power_of_2(size_t n) noexcept {
+  static constexpr bool is_power_of_2(std::size_t n) noexcept {
     return (n & (n - 1)) == 0;
   }
 
-  [[nodiscard]] static constexpr size_t _increment(size_t i) noexcept {
-    constexpr size_t BufferSize = Capacity + 1;
+  [[nodiscard]] static constexpr std::size_t _increment(std::size_t i) noexcept {
+    constexpr std::size_t BufferSize = Capacity + 1;
 
     if constexpr(is_power_of_2(BufferSize)) {
       return (i + 1) & (BufferSize - 1);
@@ -91,8 +91,8 @@ private:
   }
 
 private:
-  size_t _begin{0};
-  size_t _end{0};
+  std::size_t _begin{0};
+  std::size_t _end{0};
 
   std::array<TValue, /* N+1 trick */ Capacity + 1> _buffer;
 };
