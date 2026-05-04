@@ -142,7 +142,7 @@ public:
   using const_iterator = const TValue*;
 
 public:
-  explicit StoreN(size_t n, TCompare compare = TCompare(), TPredicates... preds)
+  explicit StoreN(std::size_t n, TCompare compare = TCompare(), TPredicates... preds)
       : _size(0)
       , _capacity(n)
       , _data(std::make_unique<TValue[]>(n))
@@ -183,11 +183,11 @@ public:
     return insert(std::move(value));
   }
 
-  [[nodiscard]] size_t size() const {
+  [[nodiscard]] std::size_t size() const {
     return _size;
   }
 
-  [[nodiscard]] size_t capacity() const {
+  [[nodiscard]] std::size_t capacity() const {
     return _capacity;
   }
 
@@ -200,9 +200,9 @@ public:
   }
 
 private:
-  void heapify(TValue* data, size_t currentIndex) {
+  void heapify(TValue* data, std::size_t currentIndex) {
     while(currentIndex != 0) {
-      const size_t parentIndex = getParentIndex(currentIndex);
+      const std::size_t parentIndex = getParentIndex(currentIndex);
 
       TValue& current = data[currentIndex];
       TValue& parent = data[parentIndex];
@@ -216,13 +216,13 @@ private:
     }
   }
 
-  static int getParentIndex(size_t index) {
+  static int getParentIndex(std::size_t index) {
     return (index - 1) / 2;
   }
 
 private:
-  size_t _size;
-  size_t _capacity;
+  std::size_t _size;
+  std::size_t _capacity;
 
   std::unique_ptr<TValue[]> _data;
   TCompare _compare;
@@ -230,6 +230,6 @@ private:
 };
 
 template<typename TValue, typename TCompare, typename... TPredicates>
-auto make_store_n(size_t n, TCompare compare, TPredicates... preds) -> StoreN<TValue, TCompare, TPredicates...> {
+auto make_store_n(std::size_t n, TCompare compare, TPredicates... preds) -> StoreN<TValue, TCompare, TPredicates...> {
   return StoreN<TValue, TCompare, TPredicates...>(n, std::move(compare), std::move(preds)...);
 }
