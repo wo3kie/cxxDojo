@@ -66,10 +66,10 @@ inline unsigned optimalNumberOfBits(int items, double probFalsePositive) {
 template<typename T>
 class BloomFilter {
 public:
-  typedef std::function<size_t(const T&)> HashFunction;
+  typedef std::function<std::size_t(const T&)> HashFunction;
 
 public:
-  explicit BloomFilter(size_t numberOfBits = 1024)
+  explicit BloomFilter(std::size_t numberOfBits = 1024)
       : m_bits(numberOfBits) {
   }
 
@@ -92,14 +92,14 @@ public:
 
   void insert(const T& t) {
     for(const HashFunction& filter : m_filters) {
-      const size_t bit = filter(t) % m_bits.size();
+      const std::size_t bit = filter(t) % m_bits.size();
       m_bits[bit] = true;
     }
   }
 
   int find(const T& t) const {
     for(const HashFunction& filter : m_filters) {
-      const size_t bit = filter(t) % m_bits.size();
+      const std::size_t bit = filter(t) % m_bits.size();
       if(m_bits[bit] == false) {
         return None;
       }
