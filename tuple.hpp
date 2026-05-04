@@ -41,7 +41,7 @@ Tuple<Ts...> makeTuple(Ts&&... ts) {
   return Tuple<Ts...>(std::forward<Ts>(ts)...);
 }
 
-template<size_t N, typename T, typename... Ts>
+template<std::size_t N, typename T, typename... Ts>
 struct Get {
   static auto get(Tuple<T, Ts...> tuple) {
     return Get<N - 1, Ts...>::get(tuple._ts);
@@ -55,18 +55,18 @@ struct Get<0, T, Ts...> {
   }
 };
 
-template<size_t N, typename T, typename... Ts>
+template<std::size_t N, typename T, typename... Ts>
 auto get(Tuple<T, Ts...> tuple) {
   return Get<N, T, Ts...>::get(tuple);
 }
 
 template<typename T, typename... Ts>
-size_t size(const Tuple<T, Ts...>& tuple) {
+std::size_t size(const Tuple<T, Ts...>& tuple) {
   return 1 + size(tuple._ts);
 }
 
 template<typename T>
-size_t size(const Tuple<T>& tuple) {
+std::size_t size(const Tuple<T>& tuple) {
   return 1;
 }
 
@@ -98,7 +98,7 @@ Tuple<T, Ts...> makeTuple(T t, Ts... ts) {
   return Tuple<T, Ts...>(t, ts...);
 }
 
-template<size_t N, typename T, typename... Ts>
+template<std::size_t N, typename T, typename... Ts>
 struct Get {
   static auto get(Tuple<T, Ts...> tuple) {
     // object slicing, Tuple<T, Ts...> --{sliced to base class}-->  Tuple<Ts...>
@@ -113,13 +113,13 @@ struct Get<0, T, Ts...> {
   }
 };
 
-template<size_t N, typename T, typename... Ts>
+template<std::size_t N, typename T, typename... Ts>
 auto get(Tuple<T, Ts...> tuple) {
   return Get<N, T, Ts...>::get(tuple);
 }
 
 template<typename T, typename... Ts>
-size_t size(const Tuple<T, Ts...>& tuple) {
+std::size_t size(const Tuple<T, Ts...>& tuple) {
   return 1 + sizeof...(Ts);
 }
 
@@ -190,7 +190,7 @@ Acc foldr(F f, Acc acc, const std::tuple<T, Ts...>& t) {
  * all
  */
 
-template<size_t I, typename F, typename T, typename... Ts>
+template<std::size_t I, typename F, typename T, typename... Ts>
 bool _all(F f, const std::tuple<T, Ts...>& t) {
   if constexpr(I < std::tuple_size<std::tuple<T, Ts...>>::value) {
     return f(std::get<I>(t)) && _all<I+1>(f, t);
@@ -208,7 +208,7 @@ bool all(F f, const std::tuple<T, Ts...>& t) {
  * any
  */
 
-template<size_t I, typename F, typename T, typename... Ts>
+template<std::size_t I, typename F, typename T, typename... Ts>
 bool _any(F f, const std::tuple<T, Ts...>& t) {
   if constexpr(I < std::tuple_size<std::tuple<T, Ts...>>::value) {
     return f(std::get<I>(t)) || _any<I+1>(f, t);
@@ -232,7 +232,7 @@ struct merge {
 };
 
 /*
- * hash : (a, b, c, ...) -> size_t
+ * hash : (a, b, c, ...) -> std::size_t
  */
 
 template<typename T, typename... Ts>
