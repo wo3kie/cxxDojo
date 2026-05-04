@@ -60,7 +60,7 @@ struct BigData
 
   ~BigData() = default;
 
-  size_t size() const
+  std::size_t size() const
   {
     return _data.size();
   }
