@@ -17,7 +17,7 @@
  */
 
 template<typename TCompare>
-void test_heap(size_t size) {
+void test_heap(std::size_t size) {
   /*
    * Assuming STL implementation of a heap is correct, 
    * we can compare hand-made implementation with it
@@ -28,7 +28,7 @@ void test_heap(size_t size) {
 
   std::vector<int> array;
 
-  for(size_t i = 0; i < size; ++i) {
+  for(std::size_t i = 0; i < size; ++i) {
     array.push_back(i);
   }
 
@@ -41,7 +41,7 @@ void test_heap(size_t size) {
     Assert(stl_heap.top() == dojo_heap.top());
   }
 
-  for(size_t i = 0; i < size; ++i) {
+  for(std::size_t i = 0; i < size; ++i) {
     const int stl_top = stl_heap.top();
     const int dojo_top = dojo_heap.top();
 
