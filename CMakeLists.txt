@@ -22,9 +22,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Collect all .cpp files in the root directory into the DOJOS variable
 file(GLOB DOJOS "${CMAKE_SOURCE_DIR}/*.cpp")
 
-# Find Boost libraries (iostreams and filesystem) and make them required
-find_package(Boost REQUIRED COMPONENTS iostreams filesystem)
-
 # For each .cpp file, create a separate executable and link Boost libraries
 foreach(DOJO ${DOJOS})
   # Get the filename without extension to use as the executable name
@@ -32,9 +29,6 @@ foreach(DOJO ${DOJOS})
 
   # Create an executable for this lesson
   add_executable(${EXE_NAME} ${DOJO})
-  
-  # Link Boost::iostreams and Boost::filesystem to the executable
-  target_link_libraries(${EXE_NAME} PRIVATE Boost::iostreams Boost::filesystem)
 endforeach()
 
 # Add gsl subdirectory to the build (processes CMakeLists.txt in gsl/)
