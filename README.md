@@ -29,13 +29,13 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm), 
 ```
 $ ./aho_corasick aho_corasick.dct aho_corasick.cpp
 --------------------------------------------------------------------------------
->     auto const print = []( std::size_t const pos, std::string const & word ){
+>     auto const print = [](std::size_t const pos, std::string const & word ){
 >     auto
 >          const
 >                  int
->                                        const
->                                                               const
->                                                                        or
+>                                       const
+>                                                              const
+>                                                                       or
 --------------------------------------------------------------------------------
 ```
   

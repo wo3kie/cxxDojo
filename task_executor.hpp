@@ -15,21 +15,55 @@
 #include <type_traits>
 #include <utility>
 
+#include "./assert.hpp"
 #include "./task_worker.hpp"
 
-#pragma once
+/*
+ * Channel
+ */
 
-#include <future>
-#include <type_traits>
-#include <utility>
+template<class TType>
+struct Channel
+{
+public:
+  Channel() = default;
+
+  Channel(Channel&&) = delete;
+  Channel(const Channel&) = delete;
+
+  Channel& operator=(Channel&&) = delete;
+  Channel& operator=(const Channel&) = delete;
+
+public:
+  void set(TType value) 
+  {
+    _value = std::move(value);
+    _ready.store(true, std::memory_order_release);
+  }
+  
+  [[nodiscard]] TType& get(bool yield = true)
+  {
+    while(! _ready.load(std::memory_order_acquire)) {
+      if(yield) {
+        std::this_thread::yield();
+      }
+    }
+
+    return _value;
+  }
+
+private:
+  TType _value;
+  std::atomic<bool> _ready{false};
+};
+
+/*
+ * TaskExecutor
+ */
 
 template<std::size_t QueueSize, typename IdlePolicy = YieldIdlePolicy>
 class TaskExecutor
 {
-private:
-  using Task = std::packaged_task<void()>;
-  using Worker = TaskWorkerSPSC<QueueSize, Task, IdlePolicy>;
-
 public:
   TaskExecutor() = default;
   TaskExecutor(TaskExecutor&&) = delete;
@@ -41,25 +75,30 @@ public:
   TaskExecutor& operator=(const TaskExecutor&) = delete;
 
 public:
-  template<typename F>
-  auto submit(F&& f) -> std::future<std::invoke_result_t<F>>
+  template<class F, typename T>
+  bool try_submit(F&& f, Channel<T>& channel)
   {
-    using R = std::invoke_result_t<F>;
+    assert(_worker.running_approx());
+    
+    if(_worker.full_approx()) {
+      return false;
+    }
+    
+    std::function<void()> task = [f = std::forward<F>(f), &channel]() mutable {
+      static_assert(noexcept(f(channel)));
+      f(channel);
+    };
 
-    Assert(_worker.state() == Worker::WorkerState::Running);
+    assert(_worker.push(std::move(task)));
+    return true;
+  }
 
-    std::packaged_task<R()> pt{std::forward<F>(f)};
-    std::future<R> future = pt.get_future();
-
-    Task task{[pt = std::move(pt)]() mutable {
-      pt();
-    }};
-
-    while(! _worker.push(std::move(task))) {
+  template<class F, typename T>
+  void submit(F&& f, Channel<T>& channel)
+  {
+    while(!try_submit(std::forward<F>(f), channel)) {
       IdlePolicy::doIt();
     }
-
-    return future;
   }
 
   void stop()
@@ -73,5 +112,5 @@ public:
   }
 
 private:
-  Worker _worker;
+  TaskWorkerSPSC<QueueSize, std::function<void()>, IdlePolicy> _worker;
 };

@@ -16,49 +16,39 @@
 #include <iostream>
 #include <chrono>
 
-void test_simple_return()
+void test_basic()
 {
-  TaskExecutor<8> exec;
+  TaskExecutor<4> exec;
 
-  auto h = exec.submit([]() {
-    return 123;
-  });
+  Channel<int> channel1;
+  Channel<int> channel2;
+  Channel<int> channel3;
+  Channel<int> channel4;
+  Channel<int> channel5;
+  Channel<int> channel6;
+  Channel<int> channel7;
+  Channel<int> channel8;
 
-  int v = h.get();
-  assert(v == 123);
-}
+  Assert(exec.try_submit([](Channel<int>& channel) noexcept { channel.set(1); }, channel1));
+  Assert(exec.try_submit([](Channel<int>& channel) noexcept { channel.set(2); }, channel2));
+  Assert(exec.try_submit([](Channel<int>& channel) noexcept { channel.set(3); }, channel3));
+  Assert(exec.try_submit([](Channel<int>& channel) noexcept { channel.set(4); }, channel4));
+  exec.submit([](Channel<int>& channel) noexcept { channel.set(5); }, channel5);
+  exec.submit([](Channel<int>& channel) noexcept { channel.set(6); }, channel6);
+  exec.submit([](Channel<int>& channel) noexcept { channel.set(7); }, channel7);
+  exec.submit([](Channel<int>& channel) noexcept { channel.set(8); }, channel8);
 
-void test_void_task()
-{
-  TaskExecutor<8> exec;
-
-  bool flag = false;
-
-  auto h = exec.submit([&flag]() {
-    flag = true;
-  });
-
-  h.get();
-  assert(flag == true);
-}
-
-void test_multiple_tasks()
-{
-  TaskExecutor<32> exec;
-
-  auto h1 = exec.submit([]() { return 1; });
-  auto h2 = exec.submit([]() { return 2; });
-  auto h3 = exec.submit([]() { return 3; });
-
-  assert(h1.get() == 1);
-  assert(h2.get() == 2);
-  assert(h3.get() == 3);
+  Assert(channel1.get() == 1);
+  Assert(channel2.get() == 2);
+  Assert(channel3.get() == 3);
+  Assert(channel4.get() == 4);
+  Assert(channel5.get() == 5);
+  Assert(channel6.get() == 6);
+  Assert(channel7.get() == 7);
+  Assert(channel8.get() == 8);
 }
 
 int main()
 {
-  test_simple_return();
-  test_void_task();
-  test_multiple_tasks();
+  test_basic();
 }
-
