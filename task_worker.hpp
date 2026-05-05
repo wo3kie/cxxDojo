@@ -41,8 +41,8 @@ public:
 
   ~TaskWorkerSPSC() noexcept
   {
-    if(_state.load(std::memory_order_acquire) == WorkerState::Running) {
-      stop();
+    if(_state.load(std::memory_order_relaxed) == WorkerState::Running) {
+      _state.store(WorkerState::Stopping, std::memory_order_release);
     }
 
     if(_thread.joinable()) {
@@ -61,12 +61,14 @@ public:
   bool push(F&& f)
   {
     assert(_state.load(std::memory_order_relaxed) == WorkerState::Running);
+    
     return _queue.push(std::forward<F>(f));
   }
 
   void stop()
   {
-    assert(_state.load(std::memory_order_relaxed) == WorkerState::Running);
+    assert(_state.load(std::memory_order_relaxed) != WorkerState::HardStop);
+
     _state.store(WorkerState::Stopping, std::memory_order_release);
   }
 
