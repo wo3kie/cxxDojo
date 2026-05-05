@@ -8,46 +8,58 @@
  *      Lukasz Czerwinski (https://www.lukaszczerwinski.pl/)
  */
 
-#include <functional>
+#include <exception>
 #include <future>
+#include <memory>
+#include <optional>
 #include <type_traits>
 #include <utility>
 
 #include "./task_worker.hpp"
 
+#pragma once
+
+#include <future>
+#include <type_traits>
+#include <utility>
+
 template<std::size_t QueueSize, typename IdlePolicy = YieldIdlePolicy>
-class TaskExecutorSPSC
+class TaskExecutor
 {
-public:
-  TaskExecutorSPSC() = default;
-
-  TaskExecutorSPSC(TaskExecutorSPSC&&) = delete;
-  TaskExecutorSPSC(const TaskExecutorSPSC&) = delete;
-
-  TaskExecutorSPSC& operator=(TaskExecutorSPSC&&) = delete;
-  TaskExecutorSPSC& operator=(const TaskExecutorSPSC&) = delete;
+private:
+  using Task = std::packaged_task<void()>;
+  using Worker = TaskWorkerSPSC<QueueSize, Task, IdlePolicy>;
 
 public:
-  template<typename F, typename... TArgs>
-  auto submit(F&& f, TArgs&&... args) -> std::future<std::invoke_result_t<std::decay_t<F>, std::decay_t<TArgs>...>>
+  TaskExecutor() = default;
+  TaskExecutor(TaskExecutor&&) = delete;
+  TaskExecutor(const TaskExecutor&) = delete;
+
+  ~TaskExecutor() = default;
+
+  TaskExecutor& operator=(TaskExecutor&&) = delete;
+  TaskExecutor& operator=(const TaskExecutor&) = delete;
+
+public:
+  template<typename F>
+  auto submit(F&& f) -> std::future<std::invoke_result_t<F>>
   {
-    using TResult = std::invoke_result_t<std::decay_t<F>, std::decay_t<TArgs>...>;
+    using R = std::invoke_result_t<F>;
 
-    std::packaged_task<TResult()> task([fn = std::forward<F>(f), ... task_args = std::forward<TArgs>(args)]() mutable -> TResult {
-      return std::invoke(std::move(fn), std::move(task_args)...);
-    });
+    Assert(_worker.state() == Worker::WorkerState::Running);
 
-    std::future<TResult> result = task.get_future();
+    std::packaged_task<R()> pt{std::forward<F>(f)};
+    std::future<R> future = pt.get_future();
 
-    std::packaged_task<void()> queue_task([task = std::move(task)]() mutable {
-      task();
-    });
+    Task task{[pt = std::move(pt)]() mutable {
+      pt();
+    }};
 
-    while(! _worker.push(std::move(queue_task))) {
+    while(! _worker.push(std::move(task))) {
       IdlePolicy::doIt();
     }
 
-    return result;
+    return future;
   }
 
   void stop()
@@ -61,5 +73,5 @@ public:
   }
 
 private:
-  TaskWorkerSPSC<QueueSize, std::packaged_task<void()>, IdlePolicy> _worker;
+  Worker _worker;
 };

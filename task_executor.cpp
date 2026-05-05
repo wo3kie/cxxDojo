@@ -7,23 +7,58 @@
  */
 
 #include <cstdint>
-#include <numeric>
 #include <vector>
 
 #include "./assert.hpp"
 #include "./task_executor.hpp"
 
+#include <cassert>
+#include <iostream>
+#include <chrono>
+
+void test_simple_return()
+{
+  TaskExecutor<8> exec;
+
+  auto h = exec.submit([]() {
+    return 123;
+  });
+
+  int v = h.get();
+  assert(v == 123);
+}
+
+void test_void_task()
+{
+  TaskExecutor<8> exec;
+
+  bool flag = false;
+
+  auto h = exec.submit([&flag]() {
+    flag = true;
+  });
+
+  h.get();
+  assert(flag == true);
+}
+
+void test_multiple_tasks()
+{
+  TaskExecutor<32> exec;
+
+  auto h1 = exec.submit([]() { return 1; });
+  auto h2 = exec.submit([]() { return 2; });
+  auto h3 = exec.submit([]() { return 3; });
+
+  assert(h1.get() == 1);
+  assert(h2.get() == 2);
+  assert(h3.get() == 3);
+}
+
 int main()
 {
-  TaskExecutorSPSC<8> executor;
-
-  std::future<int> product = executor.submit([](int a, int b) { return a * b; }, 6, 7);
-  std::future<int> sum = executor.submit([](int a, int b, int c) { return a + b + c; }, 6, 7, 8);
-
-  executor.stop();
-
-  Assert(sum.get() == 21);
-  Assert(product.get() == 42);
-
-  return 0;
+  test_simple_return();
+  test_void_task();
+  test_multiple_tasks();
 }
+
