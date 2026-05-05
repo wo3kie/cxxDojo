@@ -26,6 +26,7 @@ struct YieldIdlePolicy
 template<std::size_t QueueSize, typename TTask, typename IdlePolicy = YieldIdlePolicy>
 class TaskWorkerSPSC
 {
+public:
   enum class WorkerState
   {
     Running,
@@ -35,7 +36,9 @@ class TaskWorkerSPSC
 
 public:
   TaskWorkerSPSC()
-    : _thread([this]() { this->run(); })
+    : _thread([this]() {
+      this->run();
+    })
   {
   }
 
@@ -61,7 +64,7 @@ public:
   bool push(F&& f)
   {
     assert(_state.load(std::memory_order_relaxed) == WorkerState::Running);
-    
+
     return _queue.push(std::forward<F>(f));
   }
 
@@ -75,6 +78,21 @@ public:
   void hard_stop()
   {
     _state.store(WorkerState::HardStop, std::memory_order_release);
+  }
+
+  WorkerState state() const noexcept
+  {
+    return _state.load(std::memory_order_relaxed);
+  }
+
+  /* approximate */ [[nodiscard]] bool empty_approx() const noexcept
+  {
+    return _queue.empty_approx();
+  }
+
+  /* approximate */ [[nodiscard]] bool full_approx() const noexcept
+  {
+    return _queue.full_approx();
   }
 
 private:
