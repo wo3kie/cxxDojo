@@ -16,14 +16,6 @@
 template<typename TValue, std::size_t Capacity>
 class RingBufferSPMC
 {
-  template<typename T>
-  struct alignas(64) Padded
-  {
-    T value;
-  };
-
-  static_assert(sizeof(TValue) <= 64, "TValue must be less equal than 64 bytes");
-
 public:
   using value_type = TValue;
 
@@ -55,7 +47,7 @@ public:
     }
 
     const std::size_t index = _index(pushed);
-    _buffer[index].value = std::forward<TT>(value);
+    _buffer[index] = std::forward<TT>(value);
 
     _pushed.store(pushed + 1, std::memory_order_release);
     return true;
@@ -66,10 +58,6 @@ public:
     std::size_t claim;
 
     {
-      /*
-       * Try to find an item to reserve 
-       */
-
       claim = _claim.load(std::memory_order_acquire);
 
       while(true) {
@@ -86,24 +74,12 @@ public:
     }
 
     {
-      /* 
-       * Take the item out from the buffer 
-       */
-
       const std::size_t index = _index(claim);
-      out = std::move(_buffer[index].value);
+      out = std::move(_buffer[index]);
     }
 
     {
-      /* 
-       * Marked the item as popped 
-       */
-
       while(true) {
-        /*
-         * invariant: assert(_popped <= claim);
-         */
-
         std::size_t claim2 = claim;
 
         if(_popped.compare_exchange_weak(/* ref */ claim2, claim + 1, std::memory_order_release, std::memory_order_relaxed)) {
@@ -120,29 +96,14 @@ public:
     return Capacity;
   }
 
-  [[nodiscard]] static constexpr std::size_t _index(std::size_t i) noexcept
-  {
-    return i & (Capacity - 1);
-  }
-
-  /* approximate */ [[nodiscard]] bool _empty(std::size_t pushed, std::size_t popped) const noexcept
-  {
-    return popped >= pushed;
-  }
-
-  /* approximate */ [[nodiscard]] bool _empty() const noexcept
+  /* approximate */ [[nodiscard]] bool empty_approx() const noexcept
   {
     const std::size_t pushed = _pushed.load(std::memory_order_acquire);
     const std::size_t popped = _popped.load(std::memory_order_acquire);
     return _empty(pushed, popped);
   }
 
-  /* approximate */ [[nodiscard]] bool _full(std::size_t pushed, std::size_t popped) const noexcept
-  {
-    return (pushed - popped) >= Capacity;
-  }
-
-  /* approximate */ [[nodiscard]] bool _full() const noexcept
+  /* approximate */ [[nodiscard]] bool full_approx() const noexcept
   {
     const std::size_t pushed = _pushed.load(std::memory_order_acquire);
     const std::size_t popped = _popped.load(std::memory_order_acquire);
@@ -161,8 +122,30 @@ public:
   }
 
 private:
+  /* approximate */ [[nodiscard]] bool _empty(std::size_t pushed, std::size_t popped) const noexcept
+  {
+    return popped >= pushed;
+  }
+
+  /* approximate */ [[nodiscard]] bool _full(std::size_t pushed, std::size_t popped) const noexcept
+  {
+    return (pushed - popped) >= Capacity;
+  }
+
+  [[nodiscard]] static constexpr std::size_t _index(std::size_t i) noexcept
+  {
+    constexpr bool isPowerOf2 = ((Capacity) & (Capacity - 1)) == 0;
+
+    if constexpr(isPowerOf2) {
+      return i & (Capacity - 1);
+    } else {
+      return i % Capacity;
+    }
+  }
+
+private:
   alignas(64) std::atomic<std::size_t> _pushed;
   alignas(64) std::atomic<std::size_t> _popped;
   alignas(64) std::atomic<std::size_t> _claim;
-  alignas(64) Padded<TValue> _buffer[Capacity];
+  alignas(64) TValue _buffer[Capacity];
 };
