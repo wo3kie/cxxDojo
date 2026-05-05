@@ -10,10 +10,16 @@
 
 #include <atomic>
 #include <cassert>
+#include <cstring>
+#include <optional>
 #include <thread>
 #include <utility>
 
+#include <pthread.h>
+
 #include "./ring_buffer_spsc.hpp"
+
+static constexpr std::size_t NoAffinity = std::numeric_limits<std::size_t>::max();
 
 struct YieldIdlePolicy
 {
@@ -35,10 +41,8 @@ public:
   };
 
 public:
-  TaskWorkerSPSC()
-    : _thread([this]() {
-      this->run();
-    })
+  explicit TaskWorkerSPSC(std::size_t cpuAffinity = NoAffinity)
+    : _thread([this, cpuAffinity]() { this->_run(cpuAffinity); })
   {
   }
 
@@ -64,14 +68,12 @@ public:
   bool push(F&& f)
   {
     assert(_state.load(std::memory_order_relaxed) == WorkerState::Running);
-
     return _queue.push(std::forward<F>(f));
   }
 
   void stop()
   {
     assert(_state.load(std::memory_order_relaxed) != WorkerState::HardStop);
-
     _state.store(WorkerState::Stopping, std::memory_order_release);
   }
 
@@ -80,9 +82,9 @@ public:
     _state.store(WorkerState::HardStop, std::memory_order_release);
   }
 
-  WorkerState state() const noexcept
+  /* approximate */ [[nodiscard]] bool running_approx() const noexcept
   {
-    return _state.load(std::memory_order_relaxed);
+    return _state.load(std::memory_order_acquire) == WorkerState::Running;
   }
 
   /* approximate */ [[nodiscard]] bool empty_approx() const noexcept
@@ -96,7 +98,32 @@ public:
   }
 
 private:
-  void run()
+  void _setThreadAffinity(std::size_t cpuAffinity) const noexcept
+  {
+    if (cpuAffinity == NoAffinity) {
+      return;
+    }
+
+    if (cpuAffinity >= std::thread::hardware_concurrency()) {
+      return;
+    }
+
+    cpu_set_t cpuset;
+    CPU_ZERO(&cpuset);
+    CPU_SET(cpuAffinity, &cpuset);
+   
+    if(pthread_t thread = pthread_self(); pthread_setaffinity_np(thread, sizeof(cpu_set_t), &cpuset) != 0) {
+      // Failed to set thread affinity, continue anyway.
+    }
+  }
+
+  void _run(std::size_t cpuAffinity)
+  {
+    _setThreadAffinity(cpuAffinity);
+    _run();
+  }
+
+  void _run()
   {
     TTask task;
 
